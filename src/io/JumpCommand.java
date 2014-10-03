@@ -4,7 +4,8 @@ package io;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import main.Player;
+import main.ActionEngine;
+
 
 public class JumpCommand extends BasicCommand implements GenericCommand{
 
@@ -15,8 +16,8 @@ public class JumpCommand extends BasicCommand implements GenericCommand{
 	}
 
 	@Override
-	public void execute(Player player){
-		player.attemptJump();
+	public void execute(ActionEngine engine){
+		engine.attemptJump();
 	}
 
 	
