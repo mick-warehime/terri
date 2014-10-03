@@ -3,6 +3,7 @@ $ cat .gitignore
 .project
 bin/
 Libraries/
+.classpath
 *~
 .*
 *.class
