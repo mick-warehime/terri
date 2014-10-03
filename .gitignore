@@ -1,0 +1,8 @@
+$ cat .gitignore
+.gitignore
+.project
+bin/
+Libraries/
+*~
+.*
+*.class
