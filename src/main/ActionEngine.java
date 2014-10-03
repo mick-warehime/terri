@@ -13,7 +13,6 @@ import org.newdawn.slick.command.Command;
 //Takes in command inputs and implements corresponding actions
 public class ActionEngine {
 
-	private Player player;
 	private PlayerInputListener listener;
 	private PlayerStatus status;
 
@@ -31,7 +30,6 @@ public class ActionEngine {
 
 
 	public ActionEngine(PlayerInputListener listener, PlayerStatus status){
-		this.player= player;
 		this.listener = listener;
 		this.status = status;
 	}

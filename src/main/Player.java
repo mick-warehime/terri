@@ -1,18 +1,9 @@
 package main;
 
 
-import io.JumpCommand;
-import io.MoveCommand;
 import io.PlayerInputListener;
 
-import java.util.Vector;
-
-import io.GenericCommand;
-
 import org.newdawn.slick.*;
-//import org.newdawn.slick.command.BasicCommand;
-import org.newdawn.slick.command.Command;
-import org.newdawn.slick.geom.Rectangle;
 
 //TODO: Fix fall stutter. Add wall jumping.
 public class Player {
