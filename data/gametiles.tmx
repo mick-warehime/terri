@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
+  <image source="metroidtiles.png" width="1024" height="800"/>
+ </tileset>
+ <tileset firstgid="3201" name="meta" tilewidth="16" tileheight="16">
+  <image source="metatiles.png" width="96" height="16"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="ether" value="true"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="blocked" value="true"/>
+    <property name="wall" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="meta" width="100" height="30">
+  <properties>
+   <property name="blocked" value="&quot;false&quot;"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ZQQqDMBCGUQ/gpYvQc0spQmmNmBKdf/EezMaVzIdZmGkCAGCk51z9BnzSI8tej9ezR+cwhh5ZWj2ooUcWPbLokUWPLHpk0SOLHlkqeizze/ilR5aKs0mPNj2y9PTY9rg3PfRo831kuaPH9795PdqO7jr+4X7kGmd3avc13A0C1VbWaDIW4C4AAA==
+  </data>
+ </layer>
+ <layer name="tiles" width="100" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3WPQrCQBCG4SEgCbaeRy/hSbTXS3gS7fUSnsTfVAlOKkFmIWLYGcxbPO2yOx/Dt/VEpAYAAMBgZlP/O+BtSR6h7Iw8up1ZSX9r8X/HvzgbeXQ7s5f+DuQxGKs/rJ1BHlZ/WDuDPFL94X2vsUr1h/e9xor+iIX+iIX+iIX+iMWjP5pSpC393x6RR3/MK5FF5f/2iDz+UuxHmsdfiv1I8/hLbTSLLXmYPP5SR83iRB6mHP1xKUSu6qbuqtEsWvIwdf3xOa+HehbDzP6Xs/D9TJl/nHyYPYCcXp0cPWrgLgAA
+  </data>
+ </layer>
+</map>

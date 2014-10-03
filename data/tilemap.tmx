@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="blocked" value="false"/>
+ </properties>
+ <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
+  <image source="metroidtiles.png" width="1024" height="800"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ZQW7CMBAF0CyKoNyLHoRwFXo3OAVHaawom5RFSAr+NG/xFBaxZPItj0e+bJvm2rmMnrcPavjcNc1+9/tZe16QzL4136H7bl9//O3sW/Oduyy+rWWoRj3Jop4AwLo4i2VxFgMAeC3n4SzOwyR5xn0u87nPnSdlHau3vZR1rN4CAAD0Uvpmeil9MwAAML1fOm7qz3UNpvZL8sgijyzyyCKPLPLIIo8sJQ/3CDnkkaXkMfVep+Q29JkyrJ9HeW/oM591N1fm03ZOK61rj+Zx7zfy+K9q5bH2fSktD+TxDkoeUw37yyNjxmNf/R+WzHmJdsHYHyStlErAXQAA
+  </data>
+ </layer>
+</map>
