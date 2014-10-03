@@ -1,8 +1,6 @@
 package main;
 
 
-import io.JumpCommand;
-
 import io.PlayerInputListener;
 
 import java.util.Vector;
@@ -38,8 +36,7 @@ public class Player {
     private Collide collisionHandler;
     
     public Player(int x, int y, Collide collisionHandler) throws SlickException {
-        // TODO Auto-generated constructor stub
-
+        
         this.x = x;
         this.y = y;
         this.vx = 0;
@@ -98,20 +95,66 @@ public class Player {
 
     ///////////////////////////
 
-//    // Attempts a displacement, or a smaller
-//    // one if possible. returns success or failure
-//    private boolean attemptDisplacement(int dx, int dy){
-//        boolean answer;
-//        
-//        //x only displacement
-//        if (dy == 0){
-//            
-//        }
-//        
-//        return answer;
-//        
-//        
-//    }
+    // Attempts a displacement, or a smaller
+    // one if possible. returns success or failure
+    private boolean attemptDisplacement(int dx, int dy){
+        boolean notCollided = false;
+        
+        //Null displacement always succeeds
+        if (dx == 0 && dy == 0){return true;}
+        
+        //x only displacement
+        if (dy == 0){
+        	if (dx>0){
+        		for (int ddx = dx; ddx >0 ; ddx--){//Try displacements until they work
+        			displace(ddx,0);
+        			notCollided = !isCollided();
+        			if (notCollided){break;};
+        			displace(-ddx,0); // Only keep the displacement if no collision occured
+        		} 	
+        		return notCollided;
+        	}
+        	if (dx<0){
+        		for (int ddx = dx; ddx <0 ; ddx++){//Try displacements until they work
+        			displace(ddx,0);
+        			notCollided = !isCollided();
+        			if (notCollided){break;};
+        			displace(-ddx,0); // Only keep the displacement if no collision occured
+        		} 	
+        		return notCollided;
+        	}
+        }
+        
+        //y only displacement
+        if (dx == 0){
+        	if (dy>0){
+        		for (int ddy = dy; ddy >0 ; ddy--){//Try displacements until they work
+        			displace(0,ddy);
+        			notCollided = !isCollided();
+        			if (notCollided){break;};
+        			displace(0,-ddy); // Only keep the displacement if no collision occured
+        		} 	
+        		return notCollided;
+        	}
+        	if (dy<0){
+        		for (int ddy = dy; ddy <0 ; ddy++){//Try displacements until they work
+        			displace(0,ddy);
+        			notCollided = !isCollided();
+        			if (notCollided){break;};
+        			displace(0,-ddy); // Only keep the displacement if no collision occured
+        		} 	
+        		return notCollided;
+        	}
+        }
+        
+        //If x and y displacements occur, a success occurs if there is any
+        // displacement
+        boolean xAttemptSuccess = attemptDisplacement(dx,0);
+        boolean yAttemptSuccess = attemptDisplacement(0,dy);
+        
+        return (xAttemptSuccess || yAttemptSuccess);
+        
+    }
     
     private void updateTimers(){
         if (jumpTimer>0){
@@ -130,7 +173,6 @@ public class Player {
         answer = isCollided();
         displace(0,-1);
 
-        // TODO Auto-generated method stub
         return answer;
     }
 
@@ -157,19 +199,15 @@ public class Player {
 
 
         //Horizontal movement and collision checking
-        displace(vx,0);
-        if (isCollided()){
-            displace(-vx,0);
-        }
+        attemptDisplacement(vx,0);
         //reset the velocity to 0 (move command has to be called constantly)
         this.vx =0;
 
-        //Vertical 
-        displace(0,vy);
-        if (isCollided()){
-            displace(0,-vy);
-            this.vy =0;
-        }
+        //Vertical displacement
+        boolean success = attemptDisplacement(0,vy);
+        if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
+        
+
 
 
         assert !isCollided() : "Player is inside an object!";
