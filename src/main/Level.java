@@ -101,6 +101,7 @@ public class Level {
 		}
 	}
 	
+	
 	private void drawEther(Graphics g){
 		// loop over the ether tiles and draw the ether/solid tiles where necessary
 		for(int i = 0; i < map.getWidth(); i++){
@@ -108,10 +109,11 @@ public class Level {
 				
 				if(collisionHandler.isEther(i,j)){
 					etherSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-				} 
-//				else{
-//					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-//				}
+				}
+				if(collisionHandler.isSolid(i,j)){
+					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
+				}
+//				
 			}
 		}
 	}

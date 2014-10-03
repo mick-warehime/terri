@@ -18,7 +18,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static String title = "Monkey Head";
     static int fpslimit = 59;
-        
+    private Collide collisionHandler;     
     
     private Player terri;
     private Level level;
@@ -38,9 +38,13 @@ public class Game extends BasicGame {
 			gc.exit();
 		}
 		
-//		if( gc.getInput().isKeyPressed(Input.KEY_F){
-//			level.toggleEther;
-//		}
+		if( gc.getInput().isKeyPressed(Input.KEY_F)){
+			 
+			collisionHandler = level.getCollisionHandler();
+			for(int j=11; j<18; j++){
+				collisionHandler.toggleEther(j,24);
+			}
+		}
  
 
 		

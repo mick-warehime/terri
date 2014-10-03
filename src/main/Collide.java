@@ -13,9 +13,10 @@ public class Collide {
 	// This will keep a list of Tiles that are blocked
 	private boolean blocked[][];
 	private boolean ether[][];
+	private boolean solid[][];
 	private int tileSize;
 	private Rectangle playerRect;
-	
+
 	public Collide(TiledMap map) throws SlickException {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
@@ -25,11 +26,12 @@ public class Collide {
 	public void addPlayerRect(Rectangle playerRect){
 		this.playerRect = playerRect;
 	}
-	
+
 	private void initializeMeta(TiledMap map){
 		// This will create an Array with all the Tiles in your map. When set to true, it means that Tile is blocked.
 		blocked = new boolean[map.getWidth()][map.getHeight()];
 		ether = new boolean[map.getWidth()][map.getHeight()];
+		solid = new boolean[map.getWidth()][map.getHeight()];
 
 		// Loop through the Tiles and read their Properties
 
@@ -58,19 +60,50 @@ public class Collide {
 				}
 				if(etherValue.equals("true")) {
 					// We set that index of the TileMap as blocked
-					ether[i][j] = true;
+					solid[i][j] = true;
+					blocks.add(new Rectangle(i * tileSize,j * tileSize, tileSize, tileSize));
 				}
 			}
-		}		
+		}
+		
 	}
-	
+
+
+
+	public void toggleEther(int i, int j){
+		ether[i][j] = !ether[i][j];
+		solid[i][j] = !solid[i][j];
+
+		if(ether[i][j]){
+
+			for(int k = 0; k < blocks.size(); k++){
+				Rectangle r = blocks.get(k);
+				if(r.getMinX()/tileSize == i && r.getMinY()/tileSize == j){
+					blocks.remove(k);
+					
+//					System.out.println(i+"   "+j);
+				}
+			}						
+		}
+		if(solid[i][j]){
+
+			blocks.add(new Rectangle(i * tileSize,j * tileSize, tileSize, tileSize));
+		}						
+	}
+
+
+
+
 	public boolean isEther(int i, int j){
 		return ether[i][j];
 	}
+	public boolean isSolid(int i, int j){
+		return solid[i][j];
+	}
 
 	public boolean isCollided(Rectangle heroRect){	
-//		System.out.println(getRectStr(playerRect));
-//		System.out.println(getRectStr(heroRect));
+		//		System.out.println(getRectStr(playerRect));
+		//		System.out.println(getRectStr(heroRect));
 		for(Rectangle r: blocks ){
 			if(heroRect.intersects(r)){
 				return true;
