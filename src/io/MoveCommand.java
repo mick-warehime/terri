@@ -22,7 +22,7 @@ public class MoveCommand extends BasicCommand implements GenericCommand{
 
 	@Override
 	public void execute(Player player){
-		player.setVxToDirection(direction);
+		player.attemptRunTo(direction);
 
 	}
 	

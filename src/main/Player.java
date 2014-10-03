@@ -18,13 +18,16 @@ import org.newdawn.slick.geom.Rectangle;
 public class Player {
 
 
-    private int x;
-    private int y;
-    private int vx;
-    private int vy;
-    private int ups = 20;
-    private int gravity = 1;
-    private int speed = 3;
+    private float x;
+    private float y;
+    private float vx;
+    private float vy;
+    private float ups = 20;
+    private float wallUps = 15;
+    private float gravity = 1;
+    private float runAcc = 2;
+    private float runDec = 1;
+    private float maxSpeed = 5;
     private int height = 32;
     private int width = 32;
     private int jumpTimer= 0;
@@ -38,23 +41,23 @@ public class Player {
     
     public Player(int x, int y, Collide collisionHandler) throws SlickException {
         
-        this.x = x;
-        this.y = y;
+        this.x = (float) x;
+        this.y = (float) y;
         this.vx = 0;
         this.vy = 0;
-        rect.setX(this.x);
-        rect.setY(this.y);
+        rect.setX((int)this.x);
+        rect.setY((int)this.y);
 
         this.collisionHandler = collisionHandler;        
         this.collisionHandler.addPlayerRect(rect);
 
     }
 
-    public double getX (){return x;}
-    public double getY (){return y;}
+    public int getX (){return (int)x;}
+    public int getY (){return (int)y;}
 
     public void render(Graphics g, int mapX, int mapY){
-        sprite.draw(this.x-mapX,this.y-mapY);    
+        sprite.draw((int)this.x-mapX,(int)this.y-mapY);    
     }
 
 
@@ -70,14 +73,19 @@ public class Player {
         return listener;
     }
 
-    public void setVxToDirection(int direction) {
-        if (direction>0){
-            vx = speed;
+    public void attemptRunTo(int direction) {
+    	//Only accelerate if not in air
+    	if (!isTouchingGround()){return;}
+    	
+        if (direction>0 ){
+            vx = Math.min(vx + runAcc, maxSpeed);
         }else if(direction<0){
-            vx = -speed;
-        }else{
-            vx = 0;
+            vx = Math.max(vx - runAcc, -maxSpeed);
         }
+        System.out.println("Velocity:" + vx);
+//        }else{
+//            vx = 0;
+//        }
 
         return;
 
@@ -101,7 +109,7 @@ public class Player {
     	
     	if (canWallJump()){
 //    		System.out.println("Yippee!");
-    		this.vy -=ups;
+    		this.vy -=wallUps;
             jumpTimer += jumpTimerIncrement;
             this.vx = -this.vx;
     		}
@@ -138,7 +146,7 @@ public class Player {
     
     // Attempts a displacement, or a smaller
     // one if possible. returns success or failure
-    private boolean attemptDisplacement(int dx, int dy){
+    private boolean attemptDisplacement(float dx, float dy){
         boolean notCollided = false;
         
         //Null displacement always succeeds
@@ -147,7 +155,7 @@ public class Player {
         //x only displacement
         if (dy == 0){
         	if (dx>0){
-        		for (int ddx = dx; ddx >0 ; ddx--){//Try displacements until they work
+        		for (int ddx = (int) dx; ddx >0 ; ddx--){//Try displacements until they work
         			displace(ddx,0);
         			notCollided = !isCollided();
         			if (notCollided){break;};
@@ -156,7 +164,7 @@ public class Player {
         		return notCollided;
         	}
         	if (dx<0){
-        		for (int ddx = dx; ddx <0 ; ddx++){//Try displacements until they work
+        		for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
         			displace(ddx,0);
         			notCollided = !isCollided();
         			if (notCollided){break;};
@@ -169,7 +177,7 @@ public class Player {
         //y only displacement
         if (dx == 0){
         	if (dy>0){
-        		for (int ddy = dy; ddy >0 ; ddy--){//Try displacements until they work
+        		for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
         			displace(0,ddy);
         			notCollided = !isCollided();
         			if (notCollided){break;};
@@ -178,7 +186,7 @@ public class Player {
         		return notCollided;
         	}
         	if (dy<0){
-        		for (int ddy = dy; ddy <0 ; ddy++){//Try displacements until they work
+        		for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
         			displace(0,ddy);
         			notCollided = !isCollided();
         			if (notCollided){break;};
@@ -239,6 +247,10 @@ public class Player {
         if (triedJump && triedMove){
         	attemptWallJump();
         }
+        //Decelerate if no move command given
+        if (!triedMove && isTouchingGround()){
+        	decelerate();
+        }
         
     }
 
@@ -254,8 +266,7 @@ public class Player {
 
         //Horizontal movement and collision checking
         attemptDisplacement(vx,0);
-        //reset the velocity to 0 (move command has to be called constantly)
-        this.vx =0;
+        
 
         //Vertical displacement
         boolean success = attemptDisplacement(0,vy);
@@ -276,12 +287,16 @@ public class Player {
     }
 
     //Displaces the player 
-    private void displace(int dx, int dy){
+    private void displace(float dx, float dy){
         this.x += dx;
         this.y += dy;
-        rect.setX(this.x+2);
-        rect.setY(this.y+2);
+        rect.setX((int)this.x);
+        rect.setY((int)this.y);
         return;
     }
 
+    private void decelerate(){
+    	if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
+    	if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
+    }
 }
