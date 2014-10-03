@@ -38,6 +38,9 @@ public class Game extends BasicGame {
 			gc.exit();
 		}
 		
+//		if( gc.getInput().isKeyPressed(Input.KEY_F){
+//			level.toggleEther;
+//		}
  
 
 		
@@ -68,6 +71,7 @@ public class Game extends BasicGame {
 		provider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 //		provider.bindCommand(new KeyControl(Input.KEY_S), moveDown);
 		provider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
+		
 						
 	}
  

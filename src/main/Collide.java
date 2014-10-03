@@ -63,6 +63,10 @@ public class Collide {
 			}
 		}		
 	}
+	
+	public boolean isEther(int i, int j){
+		return ether[i][j];
+	}
 
 	public boolean isCollided(Rectangle heroRect){	
 //		System.out.println(getRectStr(playerRect));
