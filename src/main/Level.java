@@ -22,13 +22,15 @@ public class Level {
 	private int height = 480;
 	private int mapX = 0;
 	private int mapY = 0;
-	private int tolX = 150;
-	private int tolY = 150;
+	private int tol = 8; // number of tiles away from edge
+	private int tolX = tol*tileSize;
+	private int tolY = tol*tileSize;
 	private int tileSizeWidth = width/tileSize;
 	private int tileSizeHeight = height/tileSize;
 	private TiledMap map;
 	private Collide collisionHandler;
-
+	private Image etherSprite;
+	private Image solidSprite;
 
 
 	public Level(int x, int y) throws SlickException {
@@ -39,6 +41,9 @@ public class Level {
 		mapY = y;
 		map = new TiledMap("data/gametiles.tmx");
 		collisionHandler = new Collide(map);
+		
+		etherSprite = new Image("data/ether.png");
+		solidSprite = new Image("data/solid.png");
 	}
 
 	
@@ -54,24 +59,67 @@ public class Level {
 		int dY = mapY - tYmin*tileSize;
 
 		// allows the player to get within tolX/tolY of the top/side
-		if ((x - tolX) < mapX){mapX = x-tolX;}
-		if ((x+tolX-width)>mapX){mapX = x+tolX-width;}
-		if ((y - tolY) < mapY){mapY = y-tolY;}
-		if ((y+tolY-height) > mapY){mapY = y+tolY-height;}
+		if (mapX > (x - tolX) ){mapX = x-tolX;}
+		if (mapX < (x+tolX-width)){mapX = x+tolX-width;}
+		if (mapY > (y - tolY) ){mapY = y-tolY;}
+		if (mapY < (y+tolY-height)){mapY = y+tolY-height;}
 
-
+		// see if we are close to the edge of a map
+		mapXCheck();
+		mapYCheck();		
+//		System.out.println(mapY+height+" "+y+"  "+map.getHeight()*tileSize);
+		
 		// map.render(-mapX,-mapY);
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight);
-
+		drawEther(g);
+		
 	}
 
+	private void mapXCheck(){
+		if(mapX<0){
+			mapX = 0;
+			tolX = tileSize;			
+		}else if(mapX>map.getWidth()*tileSize-width){
+			mapX = map.getWidth()*tileSize-width;
+			tolX = tileSize;
+		}else{
+			tolX = tol*tileSize;
+		}
+	}
+	private void mapYCheck(){
+		
+		if(mapY<0){
+			mapY = 0;
+			tolY = tileSize;			
+		}
+		else if(mapY>map.getHeight()*tileSize-height){
+			mapY = map.getHeight()*tileSize-height;
+			tolY = tileSize;
+	}
+		else{
+			tolY = tol*tileSize;
+		}
+	}
+	
+	private void drawEther(Graphics g){
+		// loop over the ether tiles and draw the ether/solid tiles where necessary
+		for(int i = 0; i < map.getWidth(); i++){
+			for(int j = 0; j < map.getHeight(); j++){
+				
+				if(collisionHandler.isEther(i,j)){
+					etherSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
+				} 
+//				else{
+//					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
+//				}
+			}
+		}
+	}
+	
 	public int getMapX(){return mapX;}
 	public int getMapY(){return mapY;}
 	
 	public Collide getCollisionHandler(){
 		return collisionHandler;
 	}
-	//This should be moved to a different class, handling
-	//only collision detection.
-
 }
