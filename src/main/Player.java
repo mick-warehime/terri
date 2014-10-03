@@ -1,12 +1,13 @@
 package main;
 
 
+import io.JumpCommand;
+import io.MoveCommand;
 import io.PlayerInputListener;
 
 import java.util.Vector;
 
 import io.GenericCommand;
-
 
 import org.newdawn.slick.*;
 //import org.newdawn.slick.command.BasicCommand;
@@ -21,13 +22,13 @@ public class Player {
     private int y;
     private int vx;
     private int vy;
-    private int ups = 25;
+    private int ups = 20;
     private int gravity = 1;
     private int speed = 3;
     private int height = 32;
     private int width = 32;
     private int jumpTimer= 0;
-    private int jumpTimerIncrement = 30;
+    private int jumpTimerIncrement = 20;
     private Rectangle rect = new Rectangle(0,0,width,height);
     private Image sprite = new Image("data/head.png"); 
     /////////
@@ -93,8 +94,48 @@ public class Player {
 
     }
 
-    ///////////////////////////
+    ///////////////////////////PRIVATES
 
+    //
+    private void attemptWallJump(){
+    	
+    	if (canWallJump()){
+//    		System.out.println("Yippee!");
+    		this.vy -=ups;
+            jumpTimer += jumpTimerIncrement;
+            this.vx = -this.vx;
+    		}
+//    	else{ 
+////    		System.out.println("Aw...");
+//    		
+//    		}
+    	
+    	return;
+    }
+    
+    //
+    private boolean canWallJump(){
+    	boolean answer = false;
+    	
+    	//Check that I am touching a wall in the direction
+    	//that I'm moving	
+    	if (vx<0){
+    		displace(-1,0);
+    		answer = isCollided();
+    		displace(1,0);
+    	}else{
+    		displace(1,0);
+    		answer = isCollided();
+    		displace(-1,0);
+    	}
+    	//Check that jumpTimer is 0;
+    	answer = answer && (jumpTimer == 0); 
+    	
+    	
+    	return answer;
+    }
+    
+    
     // Attempts a displacement, or a smaller
     // one if possible. returns success or failure
     private boolean attemptDisplacement(int dx, int dy){
@@ -182,10 +223,23 @@ public class Player {
 
         Vector<Command> commands = listener.getCommands();
 
+        boolean triedMove = false;
+        boolean triedJump = false;
+        
         for (Command cmd : commands){
-            //            System.out.println("Doing something..." + ((BasicCommand)cmd).getName());
             ((GenericCommand)cmd).execute(this);
+            if (cmd instanceof JumpCommand){
+            	triedJump = true;
+            }
+            if (cmd instanceof MoveCommand){
+            	triedMove = true;
+            }
         }
+        //Attempt a wall jump (conditioned on having tried a jump and move)
+        if (triedJump && triedMove){
+        	attemptWallJump();
+        }
+        
     }
 
     //Displace the player according to his velocity, gravity, etc.
