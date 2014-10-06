@@ -17,7 +17,7 @@ public class PlayerStatus {
 		this.x = x;
 		this.y = y;
 		
-		rect = new Rectangle(0,0,30,30);
+		rect = new Rectangle(1,1,31,31);
 		
 //		System.out.println("Crahs here???");
 		
