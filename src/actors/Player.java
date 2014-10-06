@@ -1,12 +1,12 @@
-package main;
+package actors;
 
 
 import io.PlayerInputListener;
+import main.CollisionHandler;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 
-//TODO: Fix fall stutter. Add wall jumping.
 public class Player {
 
 

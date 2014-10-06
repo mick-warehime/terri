@@ -8,6 +8,8 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 
+import actors.Player;
+
 public class Game extends BasicGame {
 
 

@@ -1,4 +1,4 @@
-package main;
+package actors;
 
 import io.GenericCommand;
 import io.JumpCommand;

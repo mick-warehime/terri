@@ -1,6 +1,6 @@
 package io;
 
-import main.ActionEngine;
+import actors.ActionEngine;
 
 public interface GenericCommand {
 
