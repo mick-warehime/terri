@@ -5,7 +5,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 // I HAVE CODED etherObjects in one class and we probably dont need this interface...
 
-interface Ether {	
+public interface Ether {	
 	public void restore();
 	
 	void drawTiles(int I, int J, int mapX, int mapY, float opacity);

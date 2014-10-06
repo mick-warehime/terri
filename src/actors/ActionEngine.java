@@ -15,6 +15,7 @@ public class ActionEngine {
 
 	private PlayerInputListener listener;
 	private PlayerStatus status;
+	private Gun gun;
 
 
 	private float gravity = 1;
@@ -29,9 +30,10 @@ public class ActionEngine {
 	private int jumpTimerIncrement = 20;
 
 
-	public ActionEngine(PlayerInputListener listener, PlayerStatus status){
+	public ActionEngine(PlayerInputListener listener, PlayerStatus status, Gun gun){
 		this.listener = listener;
 		this.status = status;
+		this.gun = gun;
 	}
 
 	public void update() {

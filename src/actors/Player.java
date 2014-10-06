@@ -18,11 +18,13 @@ public class Player {
 	private ActionEngine engine;
 	//Stores information about player
 	private PlayerStatus status;
+	private Gun gun;
 
 	public Player(int x, int y, CollisionHandler collisionHandler) throws SlickException {
 
 		status = new PlayerStatus((float) x, (float) y, collisionHandler);
-		engine = new ActionEngine(listener,status);
+		gun = new Gun(collisionHandler);
+		engine = new ActionEngine(listener,status, gun);
 	}
 
 	public int getX (){return status.getX();}
@@ -36,6 +38,7 @@ public class Player {
 	public void update(){
 
 		engine.update();
+		gun.update();
 		
 	}
 
@@ -51,6 +54,10 @@ public class Player {
 	
 	public Rectangle getRect(){
 		return status.getRect();
+	}
+
+	public Gun getGun() {
+		return gun;
 	}
 
 	

@@ -8,6 +8,7 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 
+import actors.Gun;
 import actors.Player;
 
 public class Game extends BasicGame {
@@ -25,7 +26,6 @@ public class Game extends BasicGame {
 	private Player terri;
 	private Level level;
 
-
 	private Ether activeEtherObject = null; 
 
 	public Game() {
@@ -42,31 +42,33 @@ public class Game extends BasicGame {
 		terri.update();
 		level.update(mouseX, mouseY);
 
-
+		
 
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-			if(activeEtherObject==null){
-				activeEtherObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
-				if(activeEtherObject!=null){
-					activeEtherObject.setObjectToEther();
-				}
-			}else{
-
-				if(collisionHandler.canPlaceEtherAt(activeEtherObject.getRect())){
-					activeEtherObject.put(mouseX,mouseY);
-				}
-
-			}
+			terri.getGun().shootEtherBeam(mouseX, mouseY);
+//			if(activeEtherObject==null){
+//				activeEtherObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
+//				if(activeEtherObject!=null){
+//					activeEtherObject.setObjectToEther();
+//				}
+//			}else{
+//
+//				if(collisionHandler.canPlaceEtherAt(activeEtherObject.getRect())){
+//					activeEtherObject.put(mouseX,mouseY);
+//				}
+//
+//			}
 		}
 
 		if(gc.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
 
-			if(activeEtherObject!=null){
-				activeEtherObject.restore();
-				activeEtherObject = null;
-			}
+			terri.getGun().restoreHeldObject();
+//			if(activeEtherObject!=null){
+//				activeEtherObject.restore();
+//				activeEtherObject = null;
+//			}
 		}
 
 
