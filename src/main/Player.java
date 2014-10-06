@@ -82,7 +82,7 @@ public class Player {
         }else if(direction<0){
             vx = Math.max(vx - runAcc, -maxSpeed);
         }
-        System.out.println("Velocity:" + vx);
+//        System.out.println("Velocity:" + vx);
 //        }else{
 //            vx = 0;
 //        }

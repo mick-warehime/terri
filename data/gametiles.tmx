@@ -13,6 +13,7 @@
   <tile id="2">
    <properties>
     <property name="ether" value="true"/>
+    <property name="type" value="platform"/>
    </properties>
   </tile>
   <tile id="5">
@@ -27,12 +28,17 @@
    <property name="blocked" value="&quot;false&quot;"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3ZQQ6CMBBAUQ/QSxMTzu3KIFShJLTzGf9LukTJfDYMU3kIYCrLUTx7sNiDxR4s9mCxB0tkj9lnoGIPlneLiNl8+8+5rJ+RlpPJXo/es7FHjdjjnx316MkeNXuw2IPFHiz2YLEHS5YeWd5DsvTIIrKHavbg+NxzOPuxjvZN9B7P8vvcwdld35ked59NTz13rRlsZ7K3s77i96/6BjCiB3k2rdeN+v7ibNruP/q909mwOZsxXmEk0DPgLgAA
+   H4sIAAAAAAAAA+2Z3Q5GMBBEPYCXFonndiXf569WO7s7mJP0Dl1zqmENfdcNJ6OFs2tmDkbu1Gm9L6980Bl7OUKskZaaotee55pHrTVkHeJH1h4nH1zIBxfywUXmHin2ZPmY5OOQxUVkPqX5pop39/FFbks+arKxzon08SYYfXyZKx9ec8rHMfLBhXxwIR9cyAcX8sGFfHDxVR+s3/QZPhZYM8kk04dY89/nUPaxXPWb2H08fW+72+uz+nh6Lt6g+tDsz0ct20xKPWvE9VH/ACJ8MGdjPS/q/4uysdXvlX9LXS3HoWpgyIYBZRPDDKTVDCXgLgAA
   </data>
  </layer>
  <layer name="tiles" width="100" height="30" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aW27CMBBFR7EQUX+7qCyAlZRNeAFdSdmEF8BKgD6+qOqpg5BSm5fq3FFyP84PiDg5155xLHwj8rUgaHxzBn0vRCQ0CeZhg6VLBOZhgs4lNBP0vZBYp1yiYx4mCC7hmYcJftdHkzIZe+znJ/zzWyMA81gxj2IeCDevmTF1zbzI7awF77BGHgg328yYOi/e5HY2E8vD9++DCDe5/pGbF3NC89B3D4SbXI3MzYs5oXnouwfCTalGop2g89A9L8JNqUainaDz0J6OcMP+Uc6D/cMGoc+D/cMGy/78iv3DBp1j/7CEd7j+Qf5yOm9nb8Wzi718HzkUzq/IOO7fI8dW5Ls9f8+1gPU/ZC77zNp1oOT9kvscU91nDv1oHRh+9hH5fPD/Nf95rTHnjWU39/yulv8hdHP9urXc13A6NzcWoJvx+AEubt374C4AAA==
+   H4sIAAAAAAAAA+2a222DMBSGLawoEa8digE6SbuEB+gkzRIeoC8lW/T+1Kp2D0iR5RuXY5/CifRJUSA2/n6bAySqEeL5BPSGS4CvQx5jWzHGfnL3SxHatw+8nzKeubjHlLOfaoCU25iX6+2983nK85Rse09/U72mxrPEfazdnHmuGyCWR2722PNtSaZzXU6Zk2scx1ECekYeW2bJ+ltCJwGbSW0HjDlPSaDjPEigJaA4DxL8rY8GMinV500L1B47RXSFPG5boPbYKTLmUdLPQwv4ttl1cyfyuRf1HWLk4fOD5eapBXzb7Lx4FPmcN5aHGu4HfX6w3MTqR2jd7AWbh7338PnBchOrH6F1sxdsHvbew+cHy02qftR2UjsPe80bqh8YfabqR20ntfOwNT1UPzD65PqRzoPrBw30kAfXDxoch+dXXD9o0EmuH5RQsnz9YMKMz9tL1g/Gz4up5a+Gt8DzK6aM+3fD90mIn6vfhamvhdir9rGt4d8l91rqv3vBPg+EvMfc+9jqdabrx54H3M8+DJ8z/1+zZlsl5w1lN1O+h+Xfhd2k28Vyj+F0b24owG7K8Qtunqw64C4AAA==
+  </data>
+ </layer>
+ <layer name="ether" width="100" height="30" opacity="0.5">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3XMQqAQAxFwcDev9DV9br7e0XsRJmB14cUgVQBAADAtyytak09bWlPIx3t7ckAAACAO376MzsB/shtu2YvAADPTFrKZm7gLgAA
   </data>
  </layer>
 </map>

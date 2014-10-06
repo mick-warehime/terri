@@ -17,21 +17,19 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Level {
 
 
-	private int tileSize = 16; // size of a single tile in tilemap
+	private static int tileSize; // size of a single tile in tilemap
 	private int width = 640;
 	private int height = 480;
 	private int mapX = 0;
 	private int mapY = 0;
 	private int tol = 8; // number of tiles away from edge
-	private int tolX = tol*tileSize;
-	private int tolY = tol*tileSize;
-	private int tileSizeWidth = width/tileSize;
-	private int tileSizeHeight = height/tileSize;
+	private int tolX;
+	private int tolY;
+	private int tileSizeWidth;
+	private int tileSizeHeight;
 	private TiledMap map;
 	private Collide collisionHandler;
-	private Image etherSprite;
-	private Image solidSprite;
-
+	private int tileLayerId;
 
 	public Level(int x, int y) throws SlickException {
 
@@ -39,15 +37,21 @@ public class Level {
 		//tileSize location of top-left corner of the map to blit
 		mapX = x;
 		mapY = y;
+		
 		map = new TiledMap("data/gametiles.tmx");
 		collisionHandler = new Collide(map);
+		tileLayerId = map.getLayerIndex("tiles");
 		
-		etherSprite = new Image("data/ether.png");
-		solidSprite = new Image("data/solid.png");
+		tileSize = map.getTileHeight();
+		tolX = tol*tileSize;
+		tolY = tol*tileSize;
+		tileSizeWidth = width/tileSize;
+		tileSizeHeight = height/tileSize;
+		
 	}
 
 	
-	public void draw( Graphics g,int x, int y){		
+	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
 
 
 		// min/max sets the submatrix of tiles to draw		
@@ -67,12 +71,15 @@ public class Level {
 		// see if we are close to the edge of a map
 		mapXCheck();
 		mapYCheck();		
-//		System.out.println(mapY+height+" "+y+"  "+map.getHeight()*tileSize);
 		
 		// map.render(-mapX,-mapY);
-		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight);
-		drawEther(g);
+		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
+
 		
+		//     drawEther(g);
+		for(Ether s:collisionHandler.getEtherObjects()){
+			s.draw(mapX,mapY,mouseX,mouseY);
+		}
 	}
 
 	private void mapXCheck(){
@@ -102,21 +109,21 @@ public class Level {
 	}
 	
 	
-	private void drawEther(Graphics g){
-		// loop over the ether tiles and draw the ether/solid tiles where necessary
-		for(int i = 0; i < map.getWidth(); i++){
-			for(int j = 0; j < map.getHeight(); j++){
-				
-				if(collisionHandler.isEther(i,j)){
-					etherSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-				}
-				if(collisionHandler.isSolid(i,j)){
-					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-				}
+//	private void drawEther(Graphics g){
+//		// loop over the ether tiles and draw the ether/solid tiles where necessary
+//		for(int i = 0; i < map.getWidth(); i++){
+//			for(int j = 0; j < map.getHeight(); j++){
 //				
-			}
-		}
-	}
+//				if(collisionHandler.isEther(i,j)){
+//					etherSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
+//				}
+//				if(collisionHandler.isSolid(i,j)){
+//					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
+//				}
+////				
+//			}
+//		}
+//	}
 	
 	public int getMapX(){return mapX;}
 	public int getMapY(){return mapY;}

@@ -6,12 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-
-// TODOOOO
-//
-// getObjectId(x,y) --> id of object or nil got a given coordinate
-
-public class Collide {
+public class TileData {
 
 	private ArrayList<Rectangle> blocks = new ArrayList<Rectangle>(); 
 	private ArrayList<Ether> etherObjects = new ArrayList<Ether>(); 
@@ -21,16 +16,17 @@ public class Collide {
 	private int tileSize;
 	private Rectangle playerRect;
 
-	public Collide(TiledMap map) throws SlickException {
+	
+	
+	public TileData(TiledMap map) throws SlickException {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
 		initializeMeta(map);
 	}
-
-	public void addPlayerRect(Rectangle playerRect){
-		this.playerRect = playerRect;
-	}
-
+	
+	
+	
+	
 	private void initializeMeta(TiledMap map){
 		// This will create an Array with all the Tiles in your map. When set to true, it means that Tile is blocked.
 		blocked = new boolean[map.getWidth()][map.getHeight()];
@@ -53,7 +49,7 @@ public class Collide {
 				String blockedValue = map.getTileProperty(tileID, "blocked", "false");
 				String etherValue = map.getTileProperty(tileID, "ether", "false");
 				String etherType = map.getTileProperty(tileID, "type","none" );
-				
+
 				// If the value of the Property is "true"...
 				if(blockedValue.equals("true")) {
 
@@ -70,69 +66,5 @@ public class Collide {
 		}	
 	}
 
-
-	public boolean isCollided(Rectangle anotherRect){	
-		//	check if collided with permanent solid blocks	
-		for(Rectangle r: blocks ){
-			if(anotherRect.intersects(r)){
-				return true;
-			}	
-		}
-		// check if collided with solid etherable Objects
-		for(Ether eObj: etherObjects){
-			if(eObj.isCollided(anotherRect)){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isAtEtherObject(int x, int y){
-
-		for(Ether eObj: etherObjects){
-			if(eObj.contains(x,y)){
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public int getEtherObjectId(int x, int y){
-
-		for(int i = 0; i < etherObjects.size(); i++){
-			if(etherObjects.get(i).contains(x,y))
-				return i;
-		}
-		// error message... 
-		System.out.println("there are no ether objects... why did you ask for one?");
-		return -1;
-
-	}
-
-	public boolean activeEtherObjectExists(){
-		for(Ether eObj: etherObjects){
-			if(eObj.isActive()){
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public int getActiveEtherObject(){
-		for(int i = 0; i < etherObjects.size(); i++){
-			if(etherObjects.get(i).isActive())
-				return i;
-		}
-		// error message... 
-		System.out.println("there are no ether objects... why did you ask for one?");
-		return -1;
-
-	}
-
-	public ArrayList<Ether> getEtherObjects(){
-		return etherObjects;
-	}
 
 }
