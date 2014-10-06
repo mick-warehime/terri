@@ -1,9 +1,9 @@
 package io;
 
-import main.Player;
+import main.ActionEngine;
 
 public interface GenericCommand {
 
 	
-	public void execute(Player player);
+	public void execute(ActionEngine engine);
 }
