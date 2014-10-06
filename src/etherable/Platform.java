@@ -1,4 +1,4 @@
-package main;
+package etherable;
 
 import java.util.ArrayList;
 
@@ -14,14 +14,14 @@ import org.newdawn.slick.tiled.TiledMap;
 //  change tile data instead of height/width give them types,
 //         - type = "platform" etc that have hardcoded heights/widths
 
-public class EtherObject implements Ether{
+public class Platform implements Ether{
 	private int etherLayerId;	
 	private int tileI;
 	private int tileJ;
 	private int putI;
 	private int putJ;
-	private int h; 
-	private int w;
+	private int h = 1; 
+	private int w = 7;
 	private int tileSize;
 	private Rectangle rect;
 	private boolean isEther;
@@ -30,7 +30,7 @@ public class EtherObject implements Ether{
 	private ArrayList<Image> sprites = new ArrayList<Image>(); 
 
 
-	public EtherObject( int i, int j, boolean isEther, String type, TiledMap map, int layerId){
+	public Platform( int i, int j, boolean isEther, String type, TiledMap map, int layerId){
 		etherLayerId = layerId;
 
 		tileSize = map.getTileHeight();				

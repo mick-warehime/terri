@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-
 import io.JumpCommand;
 import io.MoveCommand;
 
@@ -20,12 +18,13 @@ public class Game extends BasicGame {
 	static boolean showFPS = true;
 	static String title = "Monkey Head";
 	static int fpslimit = 59;
-	private Collide collisionHandler;     
+	private CollisionHandler collisionHandler;     
 
 	private Player terri;
 	private Level level;
 
 
+	private Ether activeEtherObject = null; 
 
 	public Game() {
 		super("Monkey Head");
@@ -34,52 +33,40 @@ public class Game extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int t) throws SlickException {
 
+		int mouseX = gc.getInput().getMouseX()+level.getMapX();
+		int mouseY = gc.getInput().getMouseY()+level.getMapY();
+
+
 		terri.update();
+		level.update(mouseX, mouseY);
 
 
-		int mouseX = gc.getInput().getMouseX();
-		int mouseY = gc.getInput().getMouseY();
 
-		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){
-			gc.exit();
-		}
-		
-		// NOTE NOTE NOTE
-		
-		// getting the activeID is a bit cludgey. probably something should have an 
-		// activeObjectId and do isempty(activeID) check instead of looking for it all the time
-		 
+		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
+
 		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+			if(activeEtherObject==null){
+				activeEtherObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
+				if(activeEtherObject!=null){
+					activeEtherObject.setObjectToEther();
+				}
+			}else{
 
-			collisionHandler = level.getCollisionHandler();
-			ArrayList<Ether> etherObjects = collisionHandler.getEtherObjects();
-
-			// if there is an active etherObject the left click returns it 
-			if(collisionHandler.activeEtherObjectExists()){
-				int activeEtherObjId = collisionHandler.getActiveEtherObject();
-				etherObjects.get(activeEtherObjId).put(mouseX+level.getMapX(),mouseY+level.getMapY());
-			}
-			// if there is no active etherObject then check if the clicked location corresponds to an EtherObject and gets it
-			else{
-				// check if mouse is above an ether object
-				if(!collisionHandler.activeEtherObjectExists()){
-					if(collisionHandler.isAtEtherObject(mouseX+level.getMapX(),mouseY+level.getMapY())){
-						int etherObjId = collisionHandler.getEtherObjectId(mouseX+level.getMapX(), mouseY+level.getMapY());
-						etherObjects.get(etherObjId).get();
-					}
+				if(collisionHandler.canPlaceEtherAt(activeEtherObject.getRect())){
+					activeEtherObject.put(mouseX,mouseY);
 				}
 
 			}
 		}
+
 		if(gc.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
 
-			collisionHandler = level.getCollisionHandler();
-			ArrayList<Ether> etherObjects = collisionHandler.getEtherObjects();
-			if(collisionHandler.activeEtherObjectExists()){
-				int activeEtherObjId = collisionHandler.getActiveEtherObject();
-				etherObjects.get(activeEtherObjId).restore();
+			if(activeEtherObject!=null){
+				activeEtherObject.restore();
+				activeEtherObject = null;
 			}
 		}
+
 
 
 
@@ -89,8 +76,11 @@ public class Game extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 
 		level = new Level(0,0);
+		// i dont like this initialization
+		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(32,300,level.getCollisionHandler());
+		terri = new Player(32,300,collisionHandler);
+
 
 
 

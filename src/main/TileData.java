@@ -12,24 +12,22 @@ public class TileData {
 	private ArrayList<Ether> etherObjects = new ArrayList<Ether>(); 
 
 	// This will keep a list of Tiles that are blocked
-	private boolean blocked[][];	
 	private int tileSize;
-	private Rectangle playerRect;
 
-	
-	
 	public TileData(TiledMap map) throws SlickException {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
 		initializeMeta(map);
 	}
+
+	
+	//  todo instead of finding etherable objects find all objects and have a levelObjects class
+	// to return a more general object that can be mutable, etherable, usable, etc.
 	
 	
-	
-	
+
 	private void initializeMeta(TiledMap map){
-		// This will create an Array with all the Tiles in your map. When set to true, it means that Tile is blocked.
-		blocked = new boolean[map.getWidth()][map.getHeight()];
+		
 
 		// Loop through the Tiles and read their Properties
 
@@ -53,18 +51,24 @@ public class TileData {
 				// If the value of the Property is "true"...
 				if(blockedValue.equals("true")) {
 
-					// We set that index of the TileMap as blocked
-					blocked[i][j] = true;
-
-					// And create the collision Rectangle
+					// keep a list of all the rects of the permanently blocked tiles
 					blocks.add(new Rectangle(i * tileSize,j * tileSize, tileSize, tileSize));
 				}
-				if(etherValue.equals("true")) {					
+				if(etherValue.equals("true")) {		
+					// a list of all the etherable
 					etherObjects.add(new EtherObject(i,j,false,etherType,map,etherIndex));					
 				}
 			}
 		}	
 	}
 
-
+	public ArrayList<Ether> getEtherObjects(){
+		return etherObjects;
+	}
+	
+	public ArrayList<Rectangle> getBlocks(){
+		return blocks;
+	}
+	
+	
 }

@@ -9,28 +9,31 @@ public class PlayerStatus {
 	private float y;
 
 	private Rectangle rect;
-	private Collide collisionHandler;
+	private CollisionHandler collisionHandler;
 
-	public PlayerStatus(float x, float y, Collide collisionHandler) {
+	public PlayerStatus(float x, float y, CollisionHandler collisionHandler) {
 //		this.player = player;
-
 
 		this.x = x;
 		this.y = y;
 		
-		rect = new Rectangle(0,0,32,32);
+		rect = new Rectangle(0,0,30,30);
 		
-		System.out.println("Crahs here???");
+//		System.out.println("Crahs here???");
 		
 		rect.setX((int) x);
 		rect.setY((int) y);
 		
-		System.out.println("Crahs here???");
+//		System.out.println("Crahs here???");
 		
 		this.collisionHandler = collisionHandler;
 		this.collisionHandler.addPlayerRect(rect);
 		
 		
+	}
+	
+	public Rectangle getRect(){
+		return rect;
 	}
 
 	public boolean isTouchingGround() {

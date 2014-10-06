@@ -1,4 +1,4 @@
-package main;
+package etherable;
 
 import org.newdawn.slick.geom.Rectangle;
 

@@ -4,6 +4,7 @@ package main;
 import io.PlayerInputListener;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 
 //TODO: Fix fall stutter. Add wall jumping.
 public class Player {
@@ -18,9 +19,8 @@ public class Player {
 	//Stores information about player
 	private PlayerStatus status;
 
-	public Player(int x, int y, Collide collisionHandler) throws SlickException {
+	public Player(int x, int y, CollisionHandler collisionHandler) throws SlickException {
 
-		      
 		status = new PlayerStatus((float) x, (float) y, collisionHandler);
 		engine = new ActionEngine(listener,status);
 	}
@@ -47,6 +47,10 @@ public class Player {
 
 		// TODO Auto-generated method stub
 		return status;
+	}
+	
+	public Rectangle getRect(){
+		return status.getRect();
 	}
 
 	

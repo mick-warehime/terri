@@ -1,6 +1,5 @@
 package main;
 
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -28,8 +27,10 @@ public class Level {
 	private int tileSizeWidth;
 	private int tileSizeHeight;
 	private TiledMap map;
-	private Collide collisionHandler;
+	
 	private int tileLayerId;
+	private CollisionHandler collisionHandler;
+	private TileData tileData;
 
 	public Level(int x, int y) throws SlickException {
 
@@ -39,17 +40,32 @@ public class Level {
 		mapY = y;
 		
 		map = new TiledMap("data/gametiles.tmx");
-		collisionHandler = new Collide(map);
+		
+		
+		tileData = new TileData(map);
+		
+		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getEtherObjects());
+		
 		tileLayerId = map.getLayerIndex("tiles");
 		
+		// used for drawing (allows the dude to be outside the center of the screen)
 		tileSize = map.getTileHeight();
 		tolX = tol*tileSize;
 		tolY = tol*tileSize;
 		tileSizeWidth = width/tileSize;
 		tileSizeHeight = height/tileSize;
-		
 	}
 
+	
+	public void update(int mouseX, int mouseY){
+		for(Ether eObj: tileData.getEtherObjects()){
+			if(eObj.isActive() && !eObj.isPut()){
+				eObj.update(mouseX,mouseY);
+			}
+		}
+			
+	}
+	
 	
 	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
 
@@ -76,9 +92,8 @@ public class Level {
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
 
 		
-		//     drawEther(g);
-		for(Ether s:collisionHandler.getEtherObjects()){
-			s.draw(mapX,mapY,mouseX,mouseY);
+		for(Ether eObj: tileData.getEtherObjects()){		
+			eObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 	}
 
@@ -109,26 +124,12 @@ public class Level {
 	}
 	
 	
-//	private void drawEther(Graphics g){
-//		// loop over the ether tiles and draw the ether/solid tiles where necessary
-//		for(int i = 0; i < map.getWidth(); i++){
-//			for(int j = 0; j < map.getHeight(); j++){
-//				
-//				if(collisionHandler.isEther(i,j)){
-//					etherSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-//				}
-//				if(collisionHandler.isSolid(i,j)){
-//					solidSprite.draw(i*tileSize-mapX,j*tileSize-mapY);
-//				}
-////				
-//			}
-//		}
-//	}
-	
 	public int getMapX(){return mapX;}
 	public int getMapY(){return mapY;}
 	
-	public Collide getCollisionHandler(){
+	
+	public CollisionHandler getCollisionHandler(){
 		return collisionHandler;
 	}
+	
 }
