@@ -1,10 +1,15 @@
+
 package main;
+import etherable.Ether;
+import etherable.Platform;
+import etherable.Elevator;
 
 import java.util.ArrayList;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
+
 
 public class TileData {
 
@@ -20,14 +25,14 @@ public class TileData {
 		initializeMeta(map);
 	}
 
-	
+
 	//  todo instead of finding etherable objects find all objects and have a levelObjects class
 	// to return a more general object that can be mutable, etherable, usable, etc.
-	
-	
+
+
 
 	private void initializeMeta(TiledMap map){
-		
+
 
 		// Loop through the Tiles and read their Properties
 
@@ -56,7 +61,12 @@ public class TileData {
 				}
 				if(etherValue.equals("true")) {		
 					// a list of all the etherable
-					etherObjects.add(new EtherObject(i,j,false,etherType,map,etherIndex));					
+					if(etherType.equals("platform")){
+						etherObjects.add(new Platform(i,j,false,map,etherIndex));
+					}
+					if(etherType.equals("elevator")){
+						etherObjects.add(new Elevator(i,j,false,map,etherIndex));
+					}
 				}
 			}
 		}	
@@ -65,10 +75,10 @@ public class TileData {
 	public ArrayList<Ether> getEtherObjects(){
 		return etherObjects;
 	}
-	
+
 	public ArrayList<Rectangle> getBlocks(){
 		return blocks;
 	}
-	
-	
+
+
 }

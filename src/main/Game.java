@@ -2,6 +2,7 @@ package main;
 
 import io.JumpCommand;
 import io.MoveCommand;
+import etherable.*;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.Command;
@@ -79,7 +80,7 @@ public class Game extends BasicGame {
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(32,300,collisionHandler);
+		terri = new Player(150,300,collisionHandler);
 
 
 

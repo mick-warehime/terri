@@ -3,6 +3,8 @@ package main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
+import etherable.Ether;
+
 
 // TODO
 //
@@ -27,7 +29,7 @@ public class Level {
 	private int tileSizeWidth;
 	private int tileSizeHeight;
 	private TiledMap map;
-	
+
 	private int tileLayerId;
 	private CollisionHandler collisionHandler;
 	private TileData tileData;
@@ -38,16 +40,16 @@ public class Level {
 		//tileSize location of top-left corner of the map to blit
 		mapX = x;
 		mapY = y;
-		
+
 		map = new TiledMap("data/gametiles.tmx");
-		
-		
+
+
 		tileData = new TileData(map);
-		
+
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getEtherObjects());
-		
+
 		tileLayerId = map.getLayerIndex("tiles");
-		
+
 		// used for drawing (allows the dude to be outside the center of the screen)
 		tileSize = map.getTileHeight();
 		tolX = tol*tileSize;
@@ -56,17 +58,16 @@ public class Level {
 		tileSizeHeight = height/tileSize;
 	}
 
-	
+
 	public void update(int mouseX, int mouseY){
 		for(Ether eObj: tileData.getEtherObjects()){
-			if(eObj.isActive() && !eObj.isPut()){
-				eObj.update(mouseX,mouseY);
-			}
+			eObj.update(mouseX,mouseY);
+			eObj.movingUpdate(tileData.getBlocks(), tileData.getEtherObjects());
 		}
-			
+
 	}
-	
-	
+
+
 	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
 
 
@@ -84,17 +85,18 @@ public class Level {
 		if (mapY > (y - tolY) ){mapY = y-tolY;}
 		if (mapY < (y+tolY-height)){mapY = y+tolY-height;}
 
-		// see if we are close to the edge of a map
+		// see if we are close to the edge of a map inwhich case dont let mapx<0 or mapx>size of map in pixels
 		mapXCheck();
 		mapYCheck();		
-		
+
 		// map.render(-mapX,-mapY);
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
 
-		
+
 		for(Ether eObj: tileData.getEtherObjects()){		
 			eObj.draw(mapX, mapY, mouseX, mouseY);
 		}
+		
 	}
 
 	private void mapXCheck(){
@@ -109,7 +111,7 @@ public class Level {
 		}
 	}
 	private void mapYCheck(){
-		
+
 		if(mapY<0){
 			mapY = 0;
 			tolY = tileSize;			
@@ -117,19 +119,19 @@ public class Level {
 		else if(mapY>map.getHeight()*tileSize-height){
 			mapY = map.getHeight()*tileSize-height;
 			tolY = tileSize;
-	}
+		}
 		else{
 			tolY = tol*tileSize;
 		}
 	}
-	
-	
+
+
 	public int getMapX(){return mapX;}
 	public int getMapY(){return mapY;}
-	
-	
+
+
 	public CollisionHandler getCollisionHandler(){
 		return collisionHandler;
 	}
-	
+
 }

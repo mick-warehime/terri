@@ -16,48 +16,64 @@ import org.newdawn.slick.tiled.TiledMap;
 //  change tile data instead of height/width give them types,
 //         - type = "platform" etc that have hardcoded heights/widths
 
-public class Platform implements Ether{
+// CHECK FOR ENTIRE RANGE OF ELEVATOR MOTION / or allow them to bounce
+// output command functions
+
+public class Elevator implements Ether{
 	private int etherLayerId;	
 
 	private int tileX;
 	private int tileY;
-
+	private int yPos;
 	private int putX;
 	private int putY;
 	private int h; 
 	private int w;
 	private int tileSize;
+	private int speed;
+	private int etherSpeed;
+	private int range;
+	private int elevation;
+	private int etherElevation;
 	private Rectangle rect;
 	private Rectangle etherRect;
 	private boolean isEther;
 	private boolean isPut;
 	private boolean isActive;
 	private boolean isMoving;
+
 	private ArrayList<Image> sprites = new ArrayList<Image>(); 
 
 
-	public Platform( int i, int j, boolean isEther, TiledMap map, int layerId){
+	public Elevator( int i, int j, boolean isEther, TiledMap map, int layerId){
 		etherLayerId = layerId;
 
 		tileSize = map.getTileHeight();				
 
-		h = tileSize;
-		w = 7*tileSize;
-		
+		h = 2*tileSize;
+		w = 5*tileSize;
+
+		speed = 1;
+		etherSpeed = 1;
+		range = 200;
+
 		tileX = i*tileSize;
 		tileY = j*tileSize;
+		yPos = tileY;
 
 		this.isEther = isEther;
 		this.isPut = false;
 		this.isActive = false;
-		this.isMoving = false;
+		this.isMoving = true;
 
 		// get height/width and images
 		getSprites(i,j,map);
 
 		// used for collision detection			
 		rect = new Rectangle(tileX,tileY,w,h);
- 	}
+		etherRect = new Rectangle(tileX,tileY,w,h);
+
+	}
 
 	@Override
 	public void update(int mouseX, int mouseY){
@@ -67,6 +83,32 @@ public class Platform implements Ether{
 			int hoverY = (mouseY-h/2);
 			rect.setLocation(hoverX,hoverY);			
 		}
+
+		if(isMoving){
+			elevation = elevation + speed;
+
+			if(Math.abs(elevation)>range){
+				speed = -speed;
+			}else if (elevation>0){
+				speed = -speed;
+			}
+			rect.setY(yPos+elevation);
+		}
+
+		// the ether version should always update and never change phase
+		etherElevation = etherElevation + etherSpeed;
+
+		if(Math.abs(etherElevation)>range){
+			etherSpeed = -etherSpeed;
+		}else if (etherElevation>0){
+			etherSpeed = -etherSpeed;
+		}
+		etherRect.setY(tileY+etherElevation);
+	}
+	
+	public void movingUpdate(ArrayList<Rectangle> blocks, ArrayList<Ether> eObjs){
+		
+			
 	}
 
 	@Override
@@ -77,7 +119,9 @@ public class Platform implements Ether{
 			putX = x-w/2;
 			putY = y-h/2;
 
-			rect.setLocation(putX,putY);
+			yPos = putY;			
+			isMoving = true;
+			rect.setLocation(putX,yPos+elevation);
 		}
 	};
 
@@ -85,6 +129,8 @@ public class Platform implements Ether{
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
+		isMoving = false;	
+		elevation = 0;
 	}
 
 	@Override
@@ -94,13 +140,14 @@ public class Platform implements Ether{
 		isPut = false;
 		isActive = false;
 
-		rect.setLocation(tileX,tileY);
+		yPos = tileY;
+		elevation = etherElevation;
+		speed = etherSpeed;
+		rect.setLocation(tileX,yPos+elevation);
 	}
 
 
 	public boolean isCollided(Rectangle anotherRect){
-		// this if statement prevents collisions occuring before the etherObj is put back
-		//		System.out.println(rect.intersects(anotherRect));
 		if(!isEther || isPut){
 			return rect.intersects(anotherRect);
 		}else{
@@ -111,7 +158,6 @@ public class Platform implements Ether{
 	public boolean contains(int x,int y){
 		return rect.contains(x,y);
 	}
-
 	public boolean isActive(){
 		return isActive;
 	}
@@ -121,15 +167,13 @@ public class Platform implements Ether{
 	public boolean isMoving(){
 		return isMoving;
 	}
-	
-
 
 	@Override
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
 		if(isEther){
-			drawTiles(tileX,tileY,mapX,mapY,(float) 0.5);
+			drawTiles(tileX,tileY+etherElevation,mapX,mapY,(float) 0.5);
 			if(isPut){
-				drawTiles(putX,putY,mapX,mapY,(float) 1);	
+				drawTiles(putX,yPos+elevation,mapX,mapY,(float) 1);	
 			}else{
 				int hoverX = (mouseX-w/2+mapX);
 				int hoverY = (mouseY-h/2+mapY);
@@ -137,13 +181,12 @@ public class Platform implements Ether{
 				drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
 			}
 		}else{
-			drawTiles(tileX,tileY,mapX,mapY,(float) 1);
+			drawTiles(tileX,tileY+etherElevation,mapX,mapY,(float) 1);
 		}		
 	}
 
 	@Override
 	public void drawTiles(int X, int Y, int mapX, int mapY, float opacity) {
-
 		int count = 0;
 		for(int x = X; x < X+w; x += tileSize){
 			for(int y = Y; y < Y+h; y += tileSize){
@@ -157,6 +200,16 @@ public class Platform implements Ether{
 	}	
 
 
+
+
+	public Rectangle getRect(){
+		return rect;
+	}
+	public Rectangle getEtherRect(){
+		return etherRect;
+	}
+
+
 	private void getSprites(int tileI, int tileJ, TiledMap map){
 
 		for(int i = tileI; i < (tileI+w/tileSize); i++){
@@ -167,17 +220,7 @@ public class Platform implements Ether{
 		}
 	}
 
-	public Rectangle getRect(){
-		return rect;
-	}
-	public Rectangle getEtherRect(){
-		return etherRect;
-	}
-	@Override
-	public void movingUpdate(ArrayList<Rectangle> blocks, ArrayList<Ether> eObjs){
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }
 

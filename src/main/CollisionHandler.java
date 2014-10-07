@@ -1,7 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+
 import org.newdawn.slick.geom.Rectangle;
+
+import etherable.Ether;
 
 
 public class CollisionHandler {
@@ -35,6 +38,7 @@ public class CollisionHandler {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
