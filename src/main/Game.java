@@ -1,14 +1,16 @@
 package main;
 
+import io.FireCommand;
 import io.JumpCommand;
 import io.MoveCommand;
+import io.RestoreCommand;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
+import org.newdawn.slick.command.MouseButtonControl;
 
-import actors.Gun;
 import actors.Player;
 
 public class Game extends BasicGame {
@@ -26,7 +28,7 @@ public class Game extends BasicGame {
 	private Player terri;
 	private Level level;
 
-	private Ether activeEtherObject = null; 
+//	private Ether activeEtherObject = null; 
 
 	public Game() {
 		super("Monkey Head");
@@ -45,32 +47,6 @@ public class Game extends BasicGame {
 		
 
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
-
-		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-			terri.getGun().shootEtherBeam(mouseX, mouseY);
-//			if(activeEtherObject==null){
-//				activeEtherObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
-//				if(activeEtherObject!=null){
-//					activeEtherObject.setObjectToEther();
-//				}
-//			}else{
-//
-//				if(collisionHandler.canPlaceEtherAt(activeEtherObject.getRect())){
-//					activeEtherObject.put(mouseX,mouseY);
-//				}
-//
-//			}
-		}
-
-		if(gc.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
-
-			terri.getGun().restoreHeldObject();
-//			if(activeEtherObject!=null){
-//				activeEtherObject.restore();
-//				activeEtherObject = null;
-//			}
-		}
-
 
 
 
@@ -98,14 +74,16 @@ public class Game extends BasicGame {
 		//		Command moveDown = new MoveCommand("move down", 0 ,8);
 		Command moveLeft = new MoveCommand("move left", -1);
 		Command moveRight = new MoveCommand("move right", 1);
+		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);
+		Command restore = new RestoreCommand("restore held object");
 
 		//Bind commands to keys
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), Jump);
 		provider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
-		//		provider.bindCommand(new KeyControl(Input.KEY_S), moveDown);
 		provider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
-
-
+		provider.bindCommand(new MouseButtonControl(0), shoot);
+		provider.bindCommand(new MouseButtonControl(1), restore);
+		
 	}
 
 

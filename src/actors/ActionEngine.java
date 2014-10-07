@@ -61,14 +61,25 @@ public class ActionEngine {
 
 	}
 
+	public void attemptShoot(int mouseX, int mouseY){
+		
+		if (gun.canShoot(mouseX,mouseY)){
+			gun.shootEtherBeam(mouseX, mouseY);
+		}
+		return;
+	}
 
-
+	public void restoreHeld(){
+		gun.restoreHeldObject();
+	}
 
 	////////////////
 
 
 
 
+	
+	
 
 	private void decelerate(){
 		//		float vx = status.getVx();
@@ -138,7 +149,7 @@ public class ActionEngine {
 	// while checking for collisions
 	private void movePhysics(){        
 
-		//Apply gravity if not touching the ground
+		//Apply gra)vity if not touching the ground
 		if (!(status.isTouchingGround())){
 			this.vy += gravity;
 		}

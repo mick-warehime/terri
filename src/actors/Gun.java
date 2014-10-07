@@ -20,24 +20,27 @@ public class Gun {
 	}
 	
 	
-	public void shootEtherBeam(int x, int y){
-		if (status == "idle"){ //Fire gun to turn things ether
+	public void shootEtherBeam(int mouseX, int mouseY){
+		if (status == "idle"){ //Fire gun to turn things ether, if something is there
 			
-			heldObject = collisionHandler.isAtEtherObject(x,y);
+			heldObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
 			if(heldObject!=null){
 				heldObject.setObjectToEther();
+				busyTime += busyTimeIncrement;
+				status = "holding object";
 			}
 			
-			busyTime += busyTimeIncrement;
-			status = "holding object";
+			
 			
 		}else if (status == "holding object"){ //Fire gun to place an ethered thing
-			if(collisionHandler.canPlaceEtherAt(heldObject.getRect())){
-				heldObject.put(x,y);
+			if(heldObject!=null){
+				if(collisionHandler.canPlaceEtherAt(heldObject.getRect())){
+					heldObject.put(mouseX,mouseY);
+					busyTime += busyTimeIncrement;
+					status = "object placed";
+				}				
 			}
 			
-			busyTime += busyTimeIncrement;
-			status = "object placed";
 		}
 			
 		
@@ -46,9 +49,13 @@ public class Gun {
 	
 	
 	public void restoreHeldObject(){
-		heldObject.restore();
-		heldObject = null;
+		if (heldObject!=null){
+			heldObject.restore();
+			heldObject = null;
+		}
+		
 		status = "idle";
+		return;
 	}
 	
 	//Restores held/placed object
@@ -56,7 +63,7 @@ public class Gun {
 	
 	//Determines whether a shot is legal (will not be blocked)
 	public boolean canShoot(int x, int y){
-		return true;
+		return busyTime==0;
 	}
 
 
