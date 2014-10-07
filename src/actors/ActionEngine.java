@@ -1,4 +1,4 @@
-package main;
+package actors;
 
 import io.GenericCommand;
 import io.JumpCommand;
@@ -15,6 +15,7 @@ public class ActionEngine {
 
 	private PlayerInputListener listener;
 	private PlayerStatus status;
+	private Gun gun;
 
 
 	private float gravity = 1;
@@ -29,9 +30,10 @@ public class ActionEngine {
 	private int jumpTimerIncrement = 20;
 
 
-	public ActionEngine(PlayerInputListener listener, PlayerStatus status){
+	public ActionEngine(PlayerInputListener listener, PlayerStatus status, Gun gun){
 		this.listener = listener;
 		this.status = status;
+		this.gun = gun;
 	}
 
 	public void update() {
@@ -59,14 +61,25 @@ public class ActionEngine {
 
 	}
 
+	public void attemptShoot(int mouseX, int mouseY){
+		
+		if (gun.canShoot(mouseX,mouseY)){
+			gun.shootEtherBeam(mouseX, mouseY);
+		}
+		return;
+	}
 
-
+	public void restoreHeld(){
+		gun.restoreHeldObject();
+	}
 
 	////////////////
 
 
 
 
+	
+	
 
 	private void decelerate(){
 		//		float vx = status.getVx();
@@ -136,7 +149,7 @@ public class ActionEngine {
 	// while checking for collisions
 	private void movePhysics(){        
 
-		//Apply gravity if not touching the ground
+		//Apply gra)vity if not touching the ground
 		if (!(status.isTouchingGround())){
 			this.vy += gravity;
 		}

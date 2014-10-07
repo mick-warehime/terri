@@ -4,7 +4,7 @@ package io;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import main.ActionEngine;
+import actors.ActionEngine;
 
 
 public class JumpCommand extends BasicCommand implements GenericCommand{

@@ -3,7 +3,11 @@ package main;
 import io.FireCommand;
 import io.JumpCommand;
 import io.MoveCommand;
+<<<<<<< HEAD
+import etherable.*;
+=======
 import io.RestoreCommand;
+>>>>>>> 146b1242b6d0dc56750f7971765d18901e9c6dfe
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.Command;
@@ -59,7 +63,7 @@ public class Game extends BasicGame {
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(32,300,collisionHandler);
+		terri = new Player(150,300,collisionHandler);
 
 
 

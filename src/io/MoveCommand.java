@@ -2,7 +2,7 @@ package io;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import main.ActionEngine;
+import actors.ActionEngine;
 
 
 public class MoveCommand extends BasicCommand implements GenericCommand{

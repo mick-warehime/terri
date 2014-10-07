@@ -1,4 +1,6 @@
-package main;
+package actors;
+
+import main.CollisionHandler;
 
 import org.newdawn.slick.geom.Rectangle;
 
