@@ -34,7 +34,7 @@ public class CollisionHandler {
 		}
 		// check if collided with solid etherable Objects
 		for(Ether eObj: etherObjects){
-			if(eObj.isCollided(rect)){
+			if(rect.intersects(eObj.getRect())){
 				return true;
 			}
 		}
@@ -45,7 +45,7 @@ public class CollisionHandler {
 	public Ether isAtEtherObject(int x, int y){
 
 		for(Ether eObj: etherObjects){
-			if(eObj.contains(x,y)){
+			if(eObj.getRect().contains(x,y)){
 				return eObj;
 			}
 		}
@@ -64,7 +64,7 @@ public class CollisionHandler {
 		}
 		// check if collided with solid etherable Objects
 		for(Ether eObj: etherObjects){
-			if(eObj.isCollided(rect)){
+			if(rect.intersects(eObj.getRect())){
 				return false;
 			}
 		}
