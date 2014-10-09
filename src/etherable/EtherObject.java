@@ -11,17 +11,17 @@ public class EtherObject {
 	
 	private int etherLayerId;	
 
-	private int tileX;
-	private int tileY;
-	private int putX;
-	private int putY;
+	protected int tileX;
+	protected int tileY;
+	protected int putX;
+	protected int putY;
 	protected int h; 
 	protected int w;
 	protected int tileSize;
 	
 
-	private Rectangle rect;
-	private Rectangle etherRect;
+	protected Rectangle rect;
+	protected Rectangle etherRect;
 	private boolean isEther = false;
 	private boolean isPut = false;
 	private boolean isActive = false;
@@ -35,15 +35,20 @@ public class EtherObject {
 		tileSize = map.getTileHeight();				
 		
 		tileX = i*tileSize;
-		tileY = j*tileSize;		
-
+		tileY = j*tileSize;	
+		
+		setObjectDimensions();
 		// get height/width and images
 		getSprites(i,j,map);
+		
+		
+		
 
-		setObjectDimensions();
+		
 		// used for collision detection			
 		rect = new Rectangle(tileX,tileY,w,h);
 		etherRect = new Rectangle(tileX,tileY,w,h);
+		
 		
 	}
 	
@@ -66,7 +71,8 @@ public class EtherObject {
 		int count = 0;
 		for(int x = X; x < X+w; x += tileSize){
 			for(int y = Y; y < Y+h; y += tileSize){
-				//				
+				//		
+				
 				Image im = sprites.get(count);
 				im.setAlpha(opacity);
 				im.draw(x-mapX,y-mapY);
@@ -84,10 +90,11 @@ public class EtherObject {
 	}
 
 	private void getSprites(int tileI, int tileJ, TiledMap map){
-	
+		
+		
 		for(int i = tileI; i < (tileI+w/tileSize); i++){
 			for(int j = tileJ; j < (tileJ+h/tileSize); j++){
-				//	System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
+//				System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
 				sprites.add(map.getTileImage(i,j,etherLayerId));
 			}
 		}
@@ -107,6 +114,26 @@ public class EtherObject {
 	
 
 	
+	
+
+	
+	public void setObjectToEther(){
+		isEther = true;	
+		isActive = true;
+		isPut = false;
+	}
+	public void put(int x, int y){
+		
+		if(isActive && !isPut){
+			this.isPut = true;
+			putX = x-w/2;
+			putY = y-h/2;
+	
+			rect.setLocation(putX,putY);
+			
+		}
+	}
+	
 	public void restore() {
 		// TODO Auto-generated method stub
 		isEther = false;
@@ -114,12 +141,6 @@ public class EtherObject {
 		isActive = false;
 	
 		rect.setLocation(tileX,tileY);
-	}
-
-	
-	public void setObjectToEther(){
-		isEther = true;	
-		isActive = true;
 	}
 
 	
@@ -135,31 +156,24 @@ public class EtherObject {
 
 	
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-		if(isEther){
-			drawTiles(tileX,tileY,mapX,mapY,(float) 0.5);
+		if(isEther){ //If ether
+			//Draw ether tile
+			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
+			//If it's placed:
 			if(isPut){
-				drawTiles(putX,putY,mapX,mapY,(float) 1);	
-			}else{
+				drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);	
+			}else{ //Otherwise
 				int hoverX = (mouseX-w/2+mapX);
 				int hoverY = (mouseY-h/2+mapY);
 	
 				drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
 			}
 		}else{
-			drawTiles(tileX,tileY,mapX,mapY,(float) 1);
+			drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
 		}		
 	}
 
 	
-	public void put(int x, int y){
 	
-		if(isActive && !isPut){
-			this.isPut = true;
-			putX = x-w/2;
-			putY = y-h/2;
-	
-			rect.setLocation(putX,putY);
-		}
-	}
 
 }

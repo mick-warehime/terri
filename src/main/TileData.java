@@ -1,9 +1,9 @@
 
 package main;
-import etherable.Ether;
+//import etherable.Platform;
+//import etherable.Elevator;
+import etherable.Elevator2;
 import etherable.Platform;
-import etherable.Elevator;
-import etherable.Platform2;
 import etherable.EtherObject;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ import org.newdawn.slick.tiled.TiledMap;
 public class TileData {
 
 	private ArrayList<Rectangle> blocks = new ArrayList<Rectangle>(); 
-	private ArrayList<Ether> etherObjects = new ArrayList<Ether>();
-	private ArrayList<EtherObject> etherObjects2 = new ArrayList<EtherObject>();
+//	private ArrayList<Ether> etherObjects = new ArrayList<Ether>();
+	private ArrayList<EtherObject> etherObjects = new ArrayList<EtherObject>();
 
 	// This will keep a list of Tiles that are blocked
 	private int tileSize;
@@ -65,23 +65,27 @@ public class TileData {
 				if(etherValue.equals("true")) {		
 					// a list of all the etherable
 					if(etherType.equals("platform")){
-						etherObjects.add(new Platform(i,j,false,map,etherIndex));
-						etherObjects2.add(new Platform2(i,j,map,etherIndex));
+						etherObjects.add(new Platform(i,j,map,etherIndex));
 					}
 					if(etherType.equals("elevator")){
-						etherObjects.add(new Elevator(i,j,false,map,etherIndex));
+						etherObjects.add(new Elevator2(i,j,map,etherIndex));
+//						etherObjects.add(new Elevator(i,j,false,map,etherIndex));
 					}
 				}
 				
 				
 			}
 		}
-		System.out.println(etherObjects2);
+//		System.out.println(etherObjects2);
 	}
 
-	public ArrayList<Ether> getEtherObjects(){
+	public ArrayList<EtherObject> getEtherObjects(){
 		return etherObjects;
 	}
+	
+//	public ArrayList<EtherObject> getEtherObjects2(){
+//		return etherObjects2;
+//	}
 
 	public ArrayList<Rectangle> getBlocks(){
 		return blocks;

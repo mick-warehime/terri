@@ -15,7 +15,7 @@ public class RestoreCommand extends BasicCommand implements GenericCommand {
 
 	@Override
 	public void execute(ActionEngine engine) {
-		engine.restoreHeld();
+		engine.restoreActive();
 
 	}
 

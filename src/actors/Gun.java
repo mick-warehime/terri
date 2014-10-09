@@ -1,7 +1,7 @@
 package actors;
 
 import main.CollisionHandler;
-import etherable.Ether;
+import etherable.EtherObject;
 
 
 
@@ -12,7 +12,7 @@ public class Gun {
 	private String status = "idle";
 	private int busyTime = 0;
 	private int busyTimeIncrement = 30;
-	private Ether heldObject = null;
+	private EtherObject activeObject = null;
 	private CollisionHandler collisionHandler;
 	
 	public Gun(CollisionHandler collisionHandler) {
@@ -24,9 +24,9 @@ public class Gun {
 	public void shootEtherBeam(int mouseX, int mouseY){
 		if (status == "idle"){ //Fire gun to turn things ether, if something is there
 			
-			heldObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
-			if(heldObject!=null){
-				heldObject.setObjectToEther();
+			activeObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
+			if(activeObject!=null){
+				activeObject.setObjectToEther();
 				busyTime += busyTimeIncrement;
 				status = "holding object";
 			}
@@ -34,9 +34,10 @@ public class Gun {
 			
 			
 		}else if (status == "holding object"){ //Fire gun to place an ethered thing
-			if(heldObject!=null){
-				if(collisionHandler.canPlaceEtherAt(heldObject.getRect())){
-					heldObject.put(mouseX,mouseY);
+			if(activeObject!=null){
+				
+				if(collisionHandler.canPlaceEtherAt(activeObject.getRect())){
+					activeObject.put(mouseX,mouseY);
 					busyTime += busyTimeIncrement;
 					status = "object placed";
 				}				
@@ -49,10 +50,10 @@ public class Gun {
 	}
 	
 	
-	public void restoreHeldObject(){
-		if (heldObject!=null){
-			heldObject.restore();
-			heldObject = null;
+	public void restoreActiveObject(){
+		if (activeObject!=null){
+			activeObject.restore();
+			activeObject = null;
 		}
 		
 		status = "idle";

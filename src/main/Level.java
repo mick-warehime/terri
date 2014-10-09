@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
-import etherable.Ether;
+import etherable.EtherObject;
 
 
 // TODO
@@ -60,9 +60,9 @@ public class Level {
 
 
 	public void update(int mouseX, int mouseY){
-		for(Ether eObj: tileData.getEtherObjects()){
+		for(EtherObject eObj: tileData.getEtherObjects()){
 			eObj.update(mouseX,mouseY);
-			eObj.movingUpdate(tileData.getBlocks(), tileData.getEtherObjects());
+//			eObj.movingUpdate(tileData.getBlocks(), tileData.getEtherObjects());
 		}
 
 	}
@@ -93,7 +93,7 @@ public class Level {
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
 
 
-		for(Ether eObj: tileData.getEtherObjects()){		
+		for(EtherObject eObj: tileData.getEtherObjects()){		
 			eObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 		

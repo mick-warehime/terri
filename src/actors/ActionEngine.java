@@ -49,7 +49,7 @@ public class ActionEngine {
 
 	public void attemptRunTo(int direction) {
 		//Only accelerate if not in air
-		if (!status.isTouchingGround()){return;}
+		//if (!status.isTouchingGround()){return;}
 
 		if (direction>0 ){
 			vx = Math.min(vx + runAcc, maxSpeed);
@@ -69,8 +69,8 @@ public class ActionEngine {
 		return;
 	}
 
-	public void restoreHeld(){
-		gun.restoreHeldObject();
+	public void restoreActive(){
+		gun.restoreActiveObject();
 	}
 
 	////////////////
@@ -191,7 +191,7 @@ public class ActionEngine {
 		}
 		//Decelerate if no move command given
 		//		System.out.println(status.isTouchingGround());
-		if (!triedMove && (status.isTouchingGround())){
+		if (!triedMove ){//&& (status.isTouchingGround()
 			decelerate();
 		}
 

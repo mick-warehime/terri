@@ -4,19 +4,21 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.geom.Rectangle;
 
-import etherable.Ether;
+import etherable.EtherObject;
 
 
 public class CollisionHandler {
 
 
 	private ArrayList<Rectangle> blocks;
-	private ArrayList<Ether> etherObjects;
+	private ArrayList<EtherObject> etherObjects;
+//	private ArrayList<EtherObject> etherObjects2;
 	private Rectangle playerRect;
 
-	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<Ether> etherObjects){
+	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<EtherObject> etherObjects){
 		this.blocks = blockedList;
 		this.etherObjects = etherObjects;
+		
 	}
 
 
@@ -33,18 +35,20 @@ public class CollisionHandler {
 			}	
 		}
 		// check if collided with solid etherable Objects
-		for(Ether eObj: etherObjects){
-			if(rect.intersects(eObj.getRect())){
-				return true;
+		for(EtherObject eObj: etherObjects){
+			if(eObj.isPut() || !eObj.isActive()){
+				if(rect.intersects(eObj.getRect())){
+					return true;
+				}
 			}
 		}
 
 		return false;
 	}
 
-	public Ether isAtEtherObject(int x, int y){
+	public EtherObject isAtEtherObject(int x, int y){
 
-		for(Ether eObj: etherObjects){
+		for(EtherObject eObj: etherObjects){
 			if(eObj.getRect().contains(x,y)){
 				return eObj;
 			}
@@ -63,9 +67,11 @@ public class CollisionHandler {
 			}	
 		}
 		// check if collided with solid etherable Objects
-		for(Ether eObj: etherObjects){
-			if(rect.intersects(eObj.getRect())){
-				return false;
+		for(EtherObject eObj: etherObjects){
+			if(eObj.isPut() || !eObj.isActive()){
+				if(rect.intersects(eObj.getRect())){
+					return false;
+				}
 			}
 		}
 		if(playerRect.intersects(rect)){
