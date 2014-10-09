@@ -2,7 +2,7 @@
 package main;
 //import etherable.Platform;
 //import etherable.Elevator;
-import etherable.Elevator2;
+import etherable.Elevator;
 import etherable.Platform;
 import etherable.EtherObject;
 
@@ -26,6 +26,9 @@ public class TileData {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
 		initializeMeta(map);
+		
+		
+		
 	}
 
 
@@ -68,24 +71,20 @@ public class TileData {
 						etherObjects.add(new Platform(i,j,map,etherIndex));
 					}
 					if(etherType.equals("elevator")){
-						etherObjects.add(new Elevator2(i,j,map,etherIndex));
-//						etherObjects.add(new Elevator(i,j,false,map,etherIndex));
+						etherObjects.add(new Elevator(i,j,map,etherIndex));
 					}
 				}
 				
 				
 			}
 		}
-//		System.out.println(etherObjects2);
 	}
 
 	public ArrayList<EtherObject> getEtherObjects(){
 		return etherObjects;
 	}
 	
-//	public ArrayList<EtherObject> getEtherObjects2(){
-//		return etherObjects2;
-//	}
+
 
 	public ArrayList<Rectangle> getBlocks(){
 		return blocks;

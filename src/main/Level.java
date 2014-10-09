@@ -46,16 +46,21 @@ public class Level {
 
 		tileData = new TileData(map);
 
-		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getEtherObjects());
-
-		tileLayerId = map.getLayerIndex("tiles");
-
 		// used for drawing (allows the dude to be outside the center of the screen)
 		tileSize = map.getTileHeight();
 		tolX = tol*tileSize;
 		tolY = tol*tileSize;
 		tileSizeWidth = width/tileSize;
 		tileSizeHeight = height/tileSize;
+		tileLayerId = map.getLayerIndex("tiles");
+		
+		
+		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getEtherObjects());
+
+		
+
+		
+
 	}
 
 

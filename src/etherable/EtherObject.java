@@ -2,6 +2,8 @@ package etherable;
 
 import java.util.ArrayList;
 
+import main.CollisionHandler;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
@@ -27,6 +29,7 @@ public class EtherObject {
 	private boolean isActive = false;
 	private ArrayList<Image> sprites = new ArrayList<Image>(); 
 	
+	protected CollisionHandler collisionHandler;
 	
 	
 	public EtherObject(int i, int j,  TiledMap map, int layerId) {
@@ -57,14 +60,6 @@ public class EtherObject {
 		throw new UnsupportedOperationException(); 
 		
 	}
-
-//	private void setObjectDimensions(int wTiles, int hTiles){
-//		this.w = wTiles*tileSize;
-//		this.h = hTiles*tileSize; 
-//		
-//	}
-	
-	
 
 	
 	private void drawTiles(int X, int Y, int mapX, int mapY, float opacity) {
@@ -173,7 +168,9 @@ public class EtherObject {
 		}		
 	}
 
-	
+	public void setCollisionHandler(CollisionHandler collisionHandler){
+		this.collisionHandler = collisionHandler;
+	}
 	
 
 }

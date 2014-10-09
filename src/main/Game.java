@@ -13,6 +13,11 @@ import org.newdawn.slick.command.MouseButtonControl;
 
 import actors.Player;
 
+// TODO change the order in which ether objects are drawn such that the one held is drawn last/above all the others
+
+
+
+
 public class Game extends BasicGame {
 
 
