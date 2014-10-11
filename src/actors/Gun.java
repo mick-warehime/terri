@@ -36,7 +36,7 @@ public class Gun {
 		}else if (status == "holding object"){ //Fire gun to place an ethered thing
 			if(activeObject!=null){
 				
-				if(collisionHandler.canPlaceEtherAt(activeObject.getRect())){
+				if(collisionHandler.canPlaceEtherAt(activeObject)){
 					activeObject.put(mouseX,mouseY);
 					busyTime += busyTimeIncrement;
 					status = "object placed";
