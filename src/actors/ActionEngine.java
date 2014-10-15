@@ -236,11 +236,13 @@ public class ActionEngine {
 
 	private void doActions(){
 
+		//Get all player commands
 		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
 
 		boolean triedMove = false;
 		boolean triedJump = false;
 
+		//Do the associated actions
 		for (Command cmd : currentActionCommands){
 			((GenericCommand)cmd).execute(this);
 			if (cmd instanceof JumpCommand){
