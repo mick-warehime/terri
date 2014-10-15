@@ -1,15 +1,15 @@
 package main;
 
-import io.FireCommand;
-import io.JumpCommand;
-import io.MoveCommand;
-import io.RestoreCommand;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
+
+import commands.FireCommand;
+import commands.JumpCommand;
+import commands.MoveCommand;
+import commands.RestoreCommand;
 
 import actors.Player;
 

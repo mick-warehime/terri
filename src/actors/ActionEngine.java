@@ -1,22 +1,25 @@
 package actors;
 
-import io.GenericCommand;
-import io.JumpCommand;
-import io.MoveCommand;
-import io.PlayerInputListener;
-
+import java.util.ArrayList;
 import java.util.Vector;
 
 import org.newdawn.slick.command.Command;
+
+import commands.GenericCommand;
+import commands.GlobalInputListener;
+import commands.JumpCommand;
+import commands.MoveCommand;
 
 
 //Takes in command inputs and implements corresponding actions
 public class ActionEngine {
 
-	private PlayerInputListener listener;
+	private GlobalInputListener listener;
+//	private PlayerInputListener listener;
 	private PlayerStatus status;
 	private Gun gun;
-
+	
+	
 
 	private float gravity = 1;
 	private float vx = 0;
@@ -30,20 +33,83 @@ public class ActionEngine {
 	private int jumpTimerIncrement = 20;
 
 
-	public ActionEngine(PlayerInputListener listener, PlayerStatus status, Gun gun){
+	public ActionEngine(GlobalInputListener listener, PlayerStatus status, Gun gun){
 		this.listener = listener;
 		this.status = status;
 		this.gun = gun;
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
+		//Receive all command inputs
+		listener.update();
+		
 		doActions();
 		movePhysics();
 		updateTimers();
 	}
 
-	
+
+	// Attempts a displacement, or a smaller
+	// one if possible. returns success or failure
+	public boolean attemptDisplacement(float dx, float dy){
+		boolean notCollided = false;
+
+		//Null displacement always succeeds
+		if (dx == 0 && dy == 0){return true;}
+
+		//x only displacement
+		if (dy == 0){
+			if (dx>0){
+				for (int ddx = (int) dx; ddx >0 ; ddx--){//Try displacements until they work
+					status.displace(ddx,0);
+					notCollided = !status.isCollided();
+					if (notCollided){break;};
+					status.displace(-ddx,0); // Only keep the displacement if no collision occured
+				} 	
+				return notCollided;
+			}
+			if (dx<0){
+				for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
+					status.displace(ddx,0);
+					notCollided = !status.isCollided();
+					if (notCollided){break;};
+					status.displace(-ddx,0); // Only keep the displacement if no collision occured
+				} 	
+				return notCollided;
+			}
+		}
+
+		//y only displacement
+		if (dx == 0){
+			if (dy>0){
+				for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
+					status.displace(0,ddy);
+					notCollided = !status.isCollided();
+					if (notCollided){break;};
+					status.displace(0,-ddy); // Only keep the displacement if no collision occured
+				} 	
+				return notCollided;
+			}
+			if (dy<0){
+				for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
+					status.displace(0,ddy);
+					notCollided = !status.isCollided();
+					if (notCollided){break;};
+					status.displace(0,-ddy); // Only keep the displacement if no collision occured
+				} 	
+				return notCollided;
+			}
+		}
+
+		//If x and y displacements occur, a success occurs if there is any
+		// displacement
+		boolean xAttemptSuccess = attemptDisplacement(dx,0);
+		boolean yAttemptSuccess = attemptDisplacement(0,dy);
+
+		return (xAttemptSuccess || yAttemptSuccess);
+
+	}
+
 
 
 
@@ -62,7 +128,7 @@ public class ActionEngine {
 	}
 
 	public void attemptShoot(int mouseX, int mouseY){
-		
+
 		if (gun.canShoot(mouseX,mouseY)){
 			gun.shootEtherBeam(mouseX, mouseY);
 		}
@@ -73,13 +139,23 @@ public class ActionEngine {
 		gun.restoreActiveObject();
 	}
 
+	public void attemptJump() {
+		//Check that player is on solid ground
+		if (canJump()){
+			this.vy -=ups;
+			jumpTimer += jumpTimerIncrement;
+		}
+
+		return;
+
+	}
+
 	////////////////
 
 
+	
 
 
-	
-	
 
 	private void decelerate(){
 		//		float vx = status.getVx();
@@ -123,17 +199,6 @@ public class ActionEngine {
 		return answer;
 	}
 
-	public void attemptJump() {
-		//Check that player is on solid ground
-		if (canJump()){
-			this.vy -=ups;
-			jumpTimer += jumpTimerIncrement;
-		}
-
-		return;
-
-	}
-
 	private boolean canJump(){
 		return (status.isTouchingGround() && (jumpTimer==0)) ;
 	}
@@ -156,10 +221,10 @@ public class ActionEngine {
 
 
 		//Horizontal movement and collision checking
-		status.attemptDisplacement(vx,0);
+		attemptDisplacement(vx,0);
 
 		//Vertical displacement
-		boolean success = status.attemptDisplacement(0,vy);
+		boolean success = attemptDisplacement(0,vy);
 		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
 
 
@@ -168,15 +233,15 @@ public class ActionEngine {
 		assert !status.isCollided() : "Player is inside an object!";
 
 	}
-	
+
 	private void doActions(){
 
-		Vector<Command> commands = listener.getCommands();
+		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
 
 		boolean triedMove = false;
 		boolean triedJump = false;
 
-		for (Command cmd : commands){
+		for (Command cmd : currentActionCommands){
 			((GenericCommand)cmd).execute(this);
 			if (cmd instanceof JumpCommand){
 				triedJump = true;
@@ -194,8 +259,14 @@ public class ActionEngine {
 		if (!triedMove ){//&& (status.isTouchingGround()
 			decelerate();
 		}
+		
+		
 
 	}
+	
+
+
+
 
 
 }

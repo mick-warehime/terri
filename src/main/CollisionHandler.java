@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 
 import etherable.Elevator;
@@ -15,6 +16,10 @@ public class CollisionHandler {
 	private ArrayList<EtherObject> etherObjects;
 	//	private ArrayList<EtherObject> etherObjects2;
 	private Rectangle playerRect;
+	//Commands sent to the player if a collision
+	// occurs
+	private ArrayList<Command> collisionCommandStack = new ArrayList<Command>();
+	
 
 	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<EtherObject> etherObjects){
 		this.blocks = blockedList;
@@ -55,8 +60,9 @@ public class CollisionHandler {
 
 		return false;
 	}
-
-
+	
+	
+	
 
 
 	public EtherObject isAtEtherObject(int x, int y){
@@ -97,6 +103,20 @@ public class CollisionHandler {
 		return true;
 	}
 
+	public boolean isCollidedWithPlayer(EtherObject eObj){
+
+		return playerRect.intersects(eObj.getRect());
+	}
+	
+	public void addToCommandStack(Command cmd){
+		collisionCommandStack.add(cmd);
+		
+	}
+	public ArrayList<Command> popCollisionCommands(){
+		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
+		collisionCommandStack.clear();
+		return answer;
+	}
 
 
 

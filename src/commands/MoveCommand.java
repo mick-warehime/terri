@@ -1,4 +1,4 @@
-package io;
+package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 

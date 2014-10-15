@@ -83,6 +83,8 @@ public class Elevator extends EtherObject {
 		speed = etherSpeed;
 		rect.setLocation(tileX,yPos+elevation);
 	}
+	
+	
 
 	
 
