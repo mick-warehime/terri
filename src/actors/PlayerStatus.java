@@ -40,9 +40,9 @@ public class PlayerStatus {
 
 	public boolean isTouchingGround() {
 		boolean answer = false;
-		displace(0,+1);
+		displace(0,+2);
 		answer = isCollided();
-		displace(0,-1);
+		displace(0,-2);
 
 		
 		

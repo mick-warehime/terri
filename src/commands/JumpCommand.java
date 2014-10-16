@@ -18,6 +18,7 @@ public class JumpCommand extends BasicCommand implements GenericCommand{
 	@Override
 	public void execute(ActionEngine engine){
 		engine.attemptJump();
+		
 	}
 
 	
