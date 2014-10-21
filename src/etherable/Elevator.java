@@ -66,9 +66,9 @@ public class Elevator extends EtherObject {
 		
 		//Check for collision with player and displace player accordingly
 		if (collisionHandler.isCollidedWithPlayer(this)){
-//			if (speed>0){
-//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
-//			}
+			if (speed>0){
+				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
+			}
 			if (speed<0){
 				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
 			}

@@ -236,7 +236,7 @@ public class ActionEngine {
 		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
 		 
 		
-		System.out.println("velocity: " + vy);
+//		System.out.println("velocity: " + vy);
 
 
 		assert !status.isCollided() : "Player is inside an object!";
