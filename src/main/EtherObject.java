@@ -14,7 +14,7 @@ import org.newdawn.slick.tiled.TiledMap;
 //  change tile data instead of height/width give them types,
 //         - type = "platform" etc that have hardcoded heights/widths
 
-public class EtherObject implements Ether{
+public class EtherObject{
 	private int etherLayerId;	
 	private int tileI;
 	private int tileJ;
@@ -52,7 +52,7 @@ public class EtherObject implements Ether{
 	}
 
 	
-	@Override
+
 	public void update(int mouseX, int mouseY){
 //		eventually used to update doors/elevators etc;
 		int hoverI = (int) (mouseX-w*tileSize/2)/tileSize;
@@ -60,7 +60,7 @@ public class EtherObject implements Ether{
 		rect.setLocation(hoverI*tileSize,hoverJ*tileSize);
 	}
 	
-	@Override
+	
 	public void put(int x, int y){
 
 		if(isEther && !isPut){
@@ -73,13 +73,13 @@ public class EtherObject implements Ether{
 		
 	};
 
-	@Override
+	
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
 	}
 
-	@Override
+	
 	public void restore() {
 		// TODO Auto-generated method stub
 		isEther = false;
@@ -119,7 +119,7 @@ public class EtherObject implements Ether{
 	}
 	
 
-	@Override
+	
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
 		if(isEther){
 			drawTiles(tileI,tileJ,mapX,mapY,(float) 0.5);
@@ -136,7 +136,7 @@ public class EtherObject implements Ether{
 		}		
 	}
 
-	@Override
+	
 	public void drawTiles(int I, int J, int mapX, int mapY, float opacity) {
 
 		int count = 0;

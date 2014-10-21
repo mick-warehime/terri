@@ -2,6 +2,10 @@ package etherable;
 
 import org.newdawn.slick.tiled.TiledMap;
 
+// BUG FIX - after a collision the restore function gets screwed up
+//
+
+
 public class Elevator extends EtherObject {
 
 
