@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 
 import etherable.Elevator;
@@ -15,6 +16,10 @@ public class CollisionHandler {
 	private ArrayList<EtherObject> etherObjects;
 	//	private ArrayList<EtherObject> etherObjects2;
 	private Rectangle playerRect;
+	//Commands sent to the player if a collision
+	// occurs
+	private ArrayList<Command> collisionCommandStack = new ArrayList<Command>();
+	
 
 	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<EtherObject> etherObjects){
 		this.blocks = blockedList;
@@ -55,8 +60,9 @@ public class CollisionHandler {
 
 		return false;
 	}
-
-
+	
+	
+	
 
 
 	public EtherObject isAtEtherObject(int x, int y){
@@ -71,12 +77,23 @@ public class CollisionHandler {
 	}
 
 
+	
+	
 	public boolean canPlaceEtherAt(EtherObject etherObject){
 
-		//	check if collided with permanent solid blocks	
+		if (isCollidedWithNonPlayer(etherObject)){return false;}
+
+		if(playerRect.intersects(etherObject.getRect())){
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isCollidedWithNonPlayer(EtherObject etherObject){
+		//		check if collided with permanent solid blocks	
 		for(Rectangle r: blocks ){
 			if(r.intersects(etherObject.getRect())){
-				return false;
+				return true;
 			}	
 		}
 		// check if collided with solid etherable Objects
@@ -85,18 +102,31 @@ public class CollisionHandler {
 			if(eObj != etherObject){
 				if(eObj.isPut() || !eObj.isActive()){
 					if(etherObject.getRect().intersects(eObj.getRect())){
-						return false;
+						return true;
 					}
 				}
 			}
 		}
-
-		if(playerRect.intersects(etherObject.getRect())){
-			return false;
-		}
-		return true;
+		
+		return false;
 	}
+	
+	
+	public boolean isCollidedWithPlayer(EtherObject eObj){
 
+		return playerRect.intersects(eObj.getRect());
+	}
+	
+	public void addToCommandStack(Command cmd){
+		collisionCommandStack.add(cmd);
+		
+	}
+	
+	public ArrayList<Command> popCollisionCommands(){
+		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
+		collisionCommandStack.clear();
+		return answer;
+	}
 
 
 

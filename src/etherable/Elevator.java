@@ -1,10 +1,9 @@
 package etherable;
 
+import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
-// BUG FIX - after a collision the restore function gets screwed up
-//
-
+import commands.LegalDisplaceCommand;
 
 public class Elevator extends EtherObject {
 
@@ -36,7 +35,7 @@ public class Elevator extends EtherObject {
 		
 		boolean answer = Math.abs(elevation)>range || elevation>0;
 		
-		answer = answer || !collisionHandler.canPlaceEtherAt(this);
+		answer = answer || collisionHandler.isCollidedWithNonPlayer(this);
 		return answer;
 	}
 	
@@ -45,12 +44,18 @@ public class Elevator extends EtherObject {
 	public void update(int mouseX, int mouseY){
 		super.update(mouseX, mouseY);
 
+		
+		
+		
+		//Check for direction change
 		if(isMoving){
 			if(cantMove()){speed = -speed;}
 			elevation = elevation + speed;
 
 			rect.setY(yPos+elevation);
 		}
+		
+		
 
 		// the ether version should always update and never change phase
 		etherElevation = etherElevation + etherSpeed;
@@ -58,6 +63,19 @@ public class Elevator extends EtherObject {
 			etherSpeed = -etherSpeed;
 		}
 		etherRect.setY(tileY+etherElevation);
+		
+		//Check for collision with player and displace player accordingly
+		if (collisionHandler.isCollidedWithPlayer(this)){
+			if (speed>0){
+				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
+			}
+			if (speed<0){
+				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
+			}
+//			System.out.println("Bam!");
+		}
+		
+		
 		
 	}
 	
@@ -87,6 +105,8 @@ public class Elevator extends EtherObject {
 		speed = etherSpeed;
 		rect.setLocation(tileX,yPos+elevation);
 	}
+	
+	
 
 	
 

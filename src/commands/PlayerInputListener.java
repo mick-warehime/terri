@@ -1,19 +1,17 @@
-package io;
+package commands;
 
-import java.util.Vector;
+
+import java.util.ArrayList;
 
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
-
-
-
 
 //Takes in input commands and implements them for the player
 public class PlayerInputListener implements InputProviderListener {
 
 	
 //	private Player player;
-	private Vector<Command> currentActions = new Vector<Command>();
+	private ArrayList<Command> currentActions = new ArrayList<Command>();
 	
 	
 	public PlayerInputListener() {
@@ -30,7 +28,7 @@ public class PlayerInputListener implements InputProviderListener {
 	}
 	
 
-	public Vector<Command> getCommands(){
+	public ArrayList<Command> getCommands(){
 		return currentActions;
 	}
 
