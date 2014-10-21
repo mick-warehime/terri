@@ -42,7 +42,7 @@ public class Level {
 		mapY = y;
 
 		map = new TiledMap("data/gametiles.tmx");
-
+		
 
 		tileData = new TileData(map);
 
