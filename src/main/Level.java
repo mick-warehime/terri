@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
-import etherable.EtherObject;
+import etherable.GameObject;
 
 
 // TODO
@@ -55,7 +55,7 @@ public class Level {
 		tileLayerId = map.getLayerIndex("tiles");
 		
 		
-		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getEtherObjects());
+		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects());
 
 		
 
@@ -65,9 +65,9 @@ public class Level {
 
 
 	public void update(int mouseX, int mouseY){
-		for(EtherObject eObj: tileData.getEtherObjects()){
-			eObj.update(mouseX,mouseY);
-//			eObj.movingUpdate(tileData.getBlocks(), tileData.getEtherObjects());
+		for(GameObject gObj: tileData.getGameObjects()){
+			gObj.update(mouseX,mouseY);
+//			gObj.movingUpdate(tileData.getBlocks(), tileData.getGameObjects());
 		}
 
 	}
@@ -98,8 +98,9 @@ public class Level {
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
 
 
-		for(EtherObject eObj: tileData.getEtherObjects()){		
-			eObj.draw(mapX, mapY, mouseX, mouseY);
+		for(GameObject gObj: tileData.getGameObjects()){		
+			
+			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 		
 	}

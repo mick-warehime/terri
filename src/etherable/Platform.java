@@ -8,13 +8,9 @@ public class Platform extends EtherObject{
 		super(i, j, map, layerId);
 		
 	}
-
 	
 	protected void setObjectDimensions(){
 		this.h = this.tileSize;
 		this.w = 7*this.tileSize;
 	}
-
-	
-
 }

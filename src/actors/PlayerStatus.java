@@ -43,8 +43,6 @@ public class PlayerStatus {
 		displace(0,+2);
 		answer = isCollided();
 		displace(0,-2);
-
-		
 		
 		return answer;
 	}

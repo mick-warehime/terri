@@ -7,29 +7,30 @@ import org.newdawn.slick.geom.Rectangle;
 
 import etherable.Elevator;
 import etherable.EtherObject;
+import etherable.GameObject;
 
 
 public class CollisionHandler {
 
 
 	private ArrayList<Rectangle> blocks;
-	private ArrayList<EtherObject> etherObjects;
-	//	private ArrayList<EtherObject> etherObjects2;
+	private ArrayList<GameObject> gameObjects;
+	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
 	//Commands sent to the player if a collision
 	// occurs
 	private ArrayList<Command> collisionCommandStack = new ArrayList<Command>();
-	
 
-	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<EtherObject> etherObjects){
+
+	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects){
 		this.blocks = blockedList;
-		this.etherObjects = etherObjects;
+		this.gameObjects = gameObjects;
 
 		// add the collisionHandler to the ether objects that need it
 
-		for(EtherObject eObj: etherObjects){
-			if(eObj instanceof Elevator){
-				eObj.setCollisionHandler(this);
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof Elevator){
+				gObj.setCollisionHandler(this);
 			}
 		}
 
@@ -50,9 +51,9 @@ public class CollisionHandler {
 			}	
 		}
 		// check if collided with solid etherable Objects
-		for(EtherObject eObj: etherObjects){
-			if(eObj.isPut() || !eObj.isActive()){
-				if(rect.intersects(eObj.getRect())){
+		for(GameObject gObj: gameObjects){
+			if(gObj.canCollide()){
+				if(rect.intersects(gObj.getRect())){
 					return true;
 				}
 			}
@@ -60,16 +61,18 @@ public class CollisionHandler {
 
 		return false;
 	}
-	
-	
-	
+
+
+
 
 
 	public EtherObject isAtEtherObject(int x, int y){
 
-		for(EtherObject eObj: etherObjects){
-			if(eObj.getRect().contains(x,y)){
-				return eObj;
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof EtherObject){
+				if(gObj.getRect().contains(x,y)){
+					return (EtherObject) gObj;
+				}
 			}
 		}
 
@@ -77,52 +80,59 @@ public class CollisionHandler {
 	}
 
 
+<<<<<<< HEAD
 	
 	//Checks if a held etherobject can be placed
 	public boolean canPlaceEtherAt(EtherObject etherObject){
+=======
+>>>>>>> 2bc0a90af9482f3638380435363725faa27c3257
 
-		if (isCollidedWithNonPlayer(etherObject)){return false;}
 
-		if(playerRect.intersects(etherObject.getRect())){
+	public boolean canPlaceEtherAt(GameObject gameObject){
+
+		if (isCollidedWithNonPlayer(gameObject)){return false;}
+
+		if(playerRect.intersects(gameObject.getRect())){
 			return false;
 		}
 		return true;
 	}
 
-	public boolean isCollidedWithNonPlayer(EtherObject etherObject){
+	public boolean isCollidedWithNonPlayer(GameObject gameObject){
 		//		check if collided with permanent solid blocks	
 		for(Rectangle r: blocks ){
-			if(r.intersects(etherObject.getRect())){
+			if(r.intersects(gameObject.getRect())){
 				return true;
 			}	
 		}
 		// check if collided with solid etherable Objects
-		for(EtherObject eObj: etherObjects){
+		for(GameObject gObj: gameObjects){
 			// don't check with its own rect and dont check with objects that are currently being held
-			if(eObj != etherObject){
-				if(eObj.isPut() || !eObj.isActive()){
-					if(etherObject.getRect().intersects(eObj.getRect())){
+			if(gObj != gameObject){
+				if(gObj.canCollide()){
+					if(gameObject.getRect().intersects(gObj.getRect())){
 						return true;
 					}
 				}
 			}
 		}
-		
+
 		return false;
 	}
-	
-	
-	public boolean isCollidedWithPlayer(EtherObject eObj){
 
-		return playerRect.intersects(eObj.getRect());
+
+	public boolean isCollidedWithPlayer(GameObject gObj){
+
+		return playerRect.intersects(gObj.getRect());
 	}
-	
+
 	public void addToCommandStack(Command cmd){
 		collisionCommandStack.add(cmd);
-		
+
 	}
-	
+
 	public ArrayList<Command> popCollisionCommands(){
+		@SuppressWarnings("unchecked")
 		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
 		collisionCommandStack.clear();
 		return answer;
