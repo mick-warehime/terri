@@ -29,10 +29,7 @@ public class Gun {
 				activeObject.setObjectToEther();
 				busyTime += busyTimeIncrement;
 				status = "holding object";
-			}
-			
-			
-			
+			}							
 		}else if (status == "holding object"){ //Fire gun to place an ethered thing
 			if(activeObject!=null){
 				
@@ -40,6 +37,7 @@ public class Gun {
 					activeObject.put(mouseX,mouseY);
 					busyTime += busyTimeIncrement;
 					status = "object placed";
+					// set gun to idle set active obj to null
 				}				
 			}
 			

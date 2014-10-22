@@ -16,6 +16,15 @@ import actors.Player;
 // TODO change the order in which ether objects are drawn such that the one held is drawn last/above all the others
 // TODO elevator collisions with dude
 
+// features to add
+//
+//  doors
+//  timed doors
+//  timed etherables
+//  permanent etherables
+//  weight sensitive switches
+//  enemies
+//  restore ether needs to check if isCollided 
 
 
 public class Game extends BasicGame {
@@ -45,15 +54,10 @@ public class Game extends BasicGame {
 		int mouseX = gc.getInput().getMouseX()+level.getMapX();
 		int mouseY = gc.getInput().getMouseY()+level.getMapY();
 
-
 		terri.update();
 		level.update(mouseX, mouseY);
 
-		
-
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
-
-
 
 	}
 
@@ -67,8 +71,6 @@ public class Game extends BasicGame {
 		terri = new Player(32,300,collisionHandler);
 
 
-
-
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		InputProvider provider = new InputProvider(gc.getInput());
 		//The listener is linked to the provider
@@ -76,7 +78,7 @@ public class Game extends BasicGame {
 
 		//Define action commands for provider
 		Command Jump = new JumpCommand("Jump");
-		//		Command moveDown = new MoveCommand("move down", 0 ,8);
+		//Command moveDown = new MoveCommand("move down", 0 ,8);
 		Command moveLeft = new MoveCommand("move left", -1);
 		Command moveRight = new MoveCommand("move right", 1);
 		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);

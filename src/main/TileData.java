@@ -3,8 +3,10 @@ package main;
 //import etherable.Platform;
 //import etherable.Elevator;
 import etherable.Elevator;
+import etherable.GameObject;
 import etherable.Platform;
-import etherable.EtherObject;
+import etherable.Switch;
+import etherable.Wall;
 
 import java.util.ArrayList;
 
@@ -17,7 +19,7 @@ public class TileData {
 
 	private ArrayList<Rectangle> blocks = new ArrayList<Rectangle>(); 
 //	private ArrayList<Ether> etherObjects = new ArrayList<Ether>();
-	private ArrayList<EtherObject> etherObjects = new ArrayList<EtherObject>();
+	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 	// This will keep a list of Tiles that are blocked
 	private int tileSize;
@@ -25,12 +27,39 @@ public class TileData {
 	public TileData(TiledMap map) throws SlickException {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
+		
+		
 		initializeMeta(map);
+		initializeObjects(map);
+	}
+	
+	
+	private void initializeObjects(TiledMap map) throws NumberFormatException, SlickException{
 		
-		
+		int objectGroupCount = map.getObjectGroupCount();
+		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
+		{
+		    int objectCount = map.getObjectCount(gi);
+		    for( int oi=0; oi < objectCount; oi++ ) // oi = object index
+		    {
+		    	String objectType =  map.getObjectProperty(gi, oi, "type", "" );
+		    	String objX =  map.getObjectProperty(gi, oi, "objectX", "0" );
+		    	String objY =  map.getObjectProperty(gi, oi, "objectY", "0" );
+		    	String tarX =  map.getObjectProperty(gi, oi, "targetX", "0" );
+		    	String tarY =  map.getObjectProperty(gi, oi, "targetY", "0" );
+		    	int oX = Integer.parseInt(objX);
+		    	int oY = Integer.parseInt(objY);
+		    	int tX = Integer.parseInt(tarX);
+		    	int tY = Integer.parseInt(tarY);
+		    	
+		    	if(objectType.equals("switch")){
+		    		gameObjects.add(new Switch(oX,oY,tX,tY,map,gameObjects));
+		    	}
+		    }
+		}
 		
 	}
-
+	
 
 	//  todo instead of finding etherable objects find all objects and have a levelObjects class
 	// to return a more general object that can be mutable, etherable, usable, etc.
@@ -68,10 +97,13 @@ public class TileData {
 				if(etherValue.equals("true")) {		
 					// a list of all the etherable
 					if(etherType.equals("platform")){
-						etherObjects.add(new Platform(i,j,map,etherIndex));
+						gameObjects.add(new Platform(i,j,map,etherIndex));
 					}
 					if(etherType.equals("elevator")){
-						etherObjects.add(new Elevator(i,j,map,etherIndex));
+						gameObjects.add(new Elevator(i,j,map,etherIndex));
+					}
+					if(etherType.equals("wall")){
+						gameObjects.add(new Wall(i,j,map,etherIndex));
 					}
 				}
 				
@@ -80,8 +112,8 @@ public class TileData {
 		}
 	}
 
-	public ArrayList<EtherObject> getEtherObjects(){
-		return etherObjects;
+	public ArrayList<GameObject> getGameObjects(){
+		return gameObjects;
 	}
 	
 

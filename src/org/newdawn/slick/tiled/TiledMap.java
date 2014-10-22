@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.tiled.TiledMap.GroupObject;
 import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 import org.w3c.dom.Document;
@@ -167,7 +168,7 @@ public class TiledMap {
 	 * @return The index of the layer or -1 if there is no layer with given name
 	 */
 	public int getLayerIndex(String name) {
-		int idx = 0;
+//		int idx = 0;
 
 		for (int i = 0; i < layers.size(); i++) {
 			Layer layer = (Layer) layers.get(i);
@@ -527,11 +528,11 @@ public class TiledMap {
 			if (height > width)
 				min = (startLineTileY < width - 1) ? startLineTileY : (width
 						- currentTileX < height) ? width - currentTileX - 1
-						: width - 1;
+								: width - 1;
 			else
 				min = (startLineTileY < height - 1) ? startLineTileY : (width
 						- currentTileX < height) ? width - currentTileX - 1
-						: height - 1;
+								: height - 1;
 
 			for (int burner = 0; burner <= min; currentTileX++, currentTileY--, burner++) {
 				for (int layerIdx = 0; layerIdx < drawLayers.size(); layerIdx++) {
@@ -986,7 +987,7 @@ public class TiledMap {
 		/** The name of this group - read from the XML */
 		public String name;
 		/** The Objects of this group */
-		public ArrayList objects;
+		public ArrayList<GroupObject> objects;
 		/** The width of this layer */
 		public int width;
 		/** The height of this layer */
@@ -1004,10 +1005,20 @@ public class TiledMap {
 		 *             Indicates a failure to parse the XML group
 		 */
 		public ObjectGroup(Element element) throws SlickException {
-			name = element.getAttribute("name");
-			width = Integer.parseInt(element.getAttribute("width"));
-			height = Integer.parseInt(element.getAttribute("height"));
-			objects = new ArrayList();
+
+			name = element.getAttribute("name"); 
+			try {
+				width = Integer.parseInt(element.getAttribute("width"));
+			} catch (NumberFormatException e) {
+				width = 0;
+			}
+
+			try {
+				height = Integer.parseInt(element.getAttribute("height"));
+			} catch (NumberFormatException e) {
+				height = 0;
+			}
+			objects = new ArrayList<GroupObject>();
 
 			// now read the layer properties
 			Element propsElement = (Element) element.getElementsByTagName(
