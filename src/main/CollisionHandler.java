@@ -80,13 +80,6 @@ public class CollisionHandler {
 	}
 
 
-<<<<<<< HEAD
-	
-	//Checks if a held etherobject can be placed
-	public boolean canPlaceEtherAt(EtherObject etherObject){
-=======
->>>>>>> 2bc0a90af9482f3638380435363725faa27c3257
-
 
 	public boolean canPlaceEtherAt(GameObject gameObject){
 

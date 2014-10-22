@@ -48,23 +48,14 @@ public class EtherObject extends GameObject {
 		}
 	}
 
-<<<<<<< HEAD
-	public boolean isActive(){
-		return isActive;
-	}
 
 	
-
-	public boolean isPut(){
-		return isPut;
-	}
 
 	
 	
 
 	
-=======
->>>>>>> 2bc0a90af9482f3638380435363725faa27c3257
+
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
