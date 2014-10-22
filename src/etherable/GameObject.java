@@ -15,6 +15,7 @@ public class GameObject {
 	protected int h; 
 	protected int w;
 	protected int tileSize;
+	protected int proximity = 0;
 	
 	protected Rectangle rect;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
@@ -72,6 +73,12 @@ public class GameObject {
 	public void toggle() {
 		throw new UnsupportedOperationException(); 
 		
+	}
+
+	public boolean isNear(int x, int y) {
+		Rectangle slightlyBiggerRect = new Rectangle(x-proximity,y-proximity,w+2*proximity,h+2*proximity);
+		
+		return slightlyBiggerRect.contains(x,y);
 	}
 	
 }
