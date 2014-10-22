@@ -79,6 +79,19 @@ public class CollisionHandler {
 		return null;
 	}
 
+	public GameObject isNearGameObject(int x, int y){
+
+		for(GameObject gObj: gameObjects){
+			if(!(gObj instanceof EtherObject)){
+				if(gObj.isNear(x,y)){
+					return (EtherObject) gObj;
+				}
+			}
+		}
+
+		return null;
+	}
+	
 
 
 
