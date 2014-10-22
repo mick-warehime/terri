@@ -18,13 +18,13 @@ public class Elevator extends EtherObject {
 	private int elevation = 0;
 	private int etherElevation = 0;
 	private boolean isMoving = true;
-	private int proximity = 8;
-
+ 
 
 	public Elevator(int i, int j, TiledMap map, int layerId) {
 		super(i, j, map, layerId);
 
 		yPos = tileY;
+		proximity = 8;
 
 	}
 
