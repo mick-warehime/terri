@@ -78,7 +78,7 @@ public class CollisionHandler {
 
 
 	
-	
+	//Checks if a held etherobject can be placed
 	public boolean canPlaceEtherAt(EtherObject etherObject){
 
 		if (isCollidedWithNonPlayer(etherObject)){return false;}

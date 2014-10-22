@@ -109,9 +109,6 @@ public class EtherObject {
 	
 
 	
-	
-
-	
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
