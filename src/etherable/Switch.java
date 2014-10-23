@@ -10,24 +10,22 @@ public class Switch extends GameObject implements Interactive{
 	// state  = 1 for up and state = 2 for down
 	private boolean state = false;
 	private GameObject target;
-	
+	private int targetX;
+	private int targetY;
 
-	public Switch(int objX, int objY, int tarX, int tarY, TiledMap map, ArrayList<GameObject> gameObjects) throws SlickException {		
+	public Switch(int objX, int objY, int tarX, int tarY, TiledMap map) throws SlickException {		
 		super(objX, objY, map);
 		proximity = 8;
 		getSprites();
-
-		setTarget(tarX, tarY,  gameObjects);
-		
+		targetX = tarX*this.tileSize;
+		targetY = tarY*this.tileSize;
 	}
 
-	private void setTarget(int targetX, int targetY, ArrayList<GameObject> gameObjects){
-
-		int tX = targetX*this.tileSize;
-		int tY = targetY*this.tileSize;
+	public void setTarget(ArrayList<GameObject> gameObjects){
+		
 		for(GameObject gObj : gameObjects) {
+			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
 
-			if(gObj.getTileX()==tX && gObj.getTileY()==tY){				
 				target = gObj;
 				return;
 			} 

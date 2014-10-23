@@ -95,12 +95,7 @@ public class CollisionHandler {
 				
 			}
 		}
-//			if(!(gObj instanceof EtherObject)){
-//				if(gObj.isNear(x,y)){
-//					return gObj;
-//				}
-//			}
-		
+
 
 		return output;
 	}

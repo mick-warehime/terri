@@ -74,6 +74,11 @@ public class GameObject {
 		throw new UnsupportedOperationException(); 
 		
 	}
+	
+	public void setTarget(ArrayList<GameObject> gameObjects) {
+		throw new UnsupportedOperationException(); 
+		
+	}
 
 	//Checks if an input rect is near the object's rect
 	public boolean isNear(Rectangle rectTest) {
@@ -92,6 +97,20 @@ public class GameObject {
 			for(int j = tileJ; j < (tileJ+h/tileSize); j++){
 				//				System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
 				sprites.add(map.getTileImage(i,j,etherIndex));
+			}
+		}
+	}
+	
+	protected void drawTiles(int X, int Y, int mapX, int mapY, float opacity) {
+		int count = 0;
+		for(int x = X; x < X+w; x += tileSize){
+			for(int y = Y; y < Y+h; y += tileSize){
+				//		
+
+				Image im = sprites.get(count);
+				im.setAlpha(opacity);
+				im.draw(x-mapX,y-mapY);
+				count ++;			
 			}
 		}
 	}

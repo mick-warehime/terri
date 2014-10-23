@@ -45,12 +45,12 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object x="240" y="144" width="16" height="16">
+  <object x="64" y="419" width="16" height="16">
    <properties>
     <property name="function" value="toggle"/>
-    <property name="objectX" value="15"/>
-    <property name="objectY" value="9"/>
-    <property name="targetX" value="20"/>
+    <property name="objectX" value="4"/>
+    <property name="objectY" value="26"/>
+    <property name="targetX" value="27"/>
     <property name="targetY" value="22"/>
     <property name="type" value="switch"/>
    </properties>
