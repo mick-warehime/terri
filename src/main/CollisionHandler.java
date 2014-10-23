@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 import org.newdawn.slick.command.Command;
+import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
 import etherable.Elevator;
@@ -139,6 +140,11 @@ public class CollisionHandler {
 	}
 
 
+	public boolean isCollidedWithPlayer(Rectangle rect){
+
+		return playerRect.intersects(rect);
+	}
+	
 	public boolean isCollidedWithPlayer(GameObject gObj){
 
 		return playerRect.intersects(gObj.getRect());
@@ -154,6 +160,23 @@ public class CollisionHandler {
 		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
 		collisionCommandStack.clear();
 		return answer;
+	}
+	
+	//Returns if the line of sight from the player to an EtherObject
+	// is collided with any game objects
+	public boolean lineOfSightCollision(EtherObject eObj){
+		
+		//Make a line from centers of player and object
+		float playerX = playerRect.getCenterX();
+		float playerY = playerRect.getCenterY();
+		float objectX = eObj.getRect().getCenterX();
+		float objectY = eObj.getRect().getCenterY();
+		
+		Line line = new Line(playerX, playerY, objectX,objectY);
+		
+		
+		
+		return false;
 	}
 
 

@@ -66,7 +66,6 @@ public class Switch extends GameObject implements Interactive{
 	public void toggle(){
 		state = !state;
 		target.toggle();
-		System.out.println("IM TOOGLED");
 	}
 
 

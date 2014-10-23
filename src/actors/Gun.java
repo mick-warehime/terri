@@ -24,21 +24,23 @@ public class Gun {
 	public void shootEtherBeam(int mouseX, int mouseY){
 		if (status == "idle"){ //Fire gun to turn things ether, if something is there
 			
-			activeObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
-			if(activeObject!=null){
+			EtherObject testObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
+			
+			if(canEtherize(testObject)){
+				activeObject = testObject;
 				activeObject.setObjectToEther();
 				busyTime += busyTimeIncrement;
 				status = "holding object";
 			}							
 		}else if (status == "holding object"){ //Fire gun to place an ethered thing
-			if(activeObject!=null){
-				
-				if(collisionHandler.canPlaceEtherAt(activeObject)){
-					activeObject.put(mouseX,mouseY);
-					busyTime += busyTimeIncrement;
-					status = "object placed";
-					// set gun to idle set active obj to null
-				}				
+			
+			if (canPut()){
+
+				activeObject.put(mouseX,mouseY);
+				busyTime += busyTimeIncrement;
+				status = "object placed";
+				// set gun to idle set active obj to null
+							
 			}
 			
 		}
@@ -49,20 +51,29 @@ public class Gun {
 	
 	
 	public void restoreActiveObject(){
-		if (activeObject!=null){
+		
+		if (canRestore()){
+
+			
 			activeObject.restore();
 			activeObject = null;
+			
+			
+			status = "idle";
 		}
 		
-		status = "idle";
+		
 		return;
 	}
 	
 	//Restores held/placed object
 	
 	
-	//Determines whether a shot is legal (will not be blocked)
+	//Determines whether the gun can trigger
 	public boolean canShoot(int x, int y){
+		
+		
+		
 		return busyTime==0;
 	}
 
@@ -74,6 +85,29 @@ public class Gun {
 		
 		return;
 		
+	}
+	
+	
+	private boolean canEtherize(EtherObject testObject){
+		if (testObject==null){
+			return false;
+		}
+		
+		return !collisionHandler.lineOfSightCollision(testObject);
+	}
+	
+	//Tests whether a held object can be put in a given place.
+	private boolean canPut(){
+		
+		return (activeObject!=null) && collisionHandler.canPlaceEtherAt(activeObject);
+	}
+	
+	private boolean canRestore(){
+		
+		if (activeObject==null){ return false;}
+		
+		
+		return !collisionHandler.isCollidedWithPlayer(activeObject.getEtherRect());
 	}
 	
 
