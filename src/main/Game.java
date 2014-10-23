@@ -18,13 +18,11 @@ import actors.Player;
 
 // features to add
 //
-//  doors
 //  timed doors
 //  timed etherables
 //  permanent etherables
 //  weight sensitive switches
 //  enemies
-//  restore ether needs to check if isCollided 
 
 
 public class Game extends BasicGame {

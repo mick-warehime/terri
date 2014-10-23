@@ -98,8 +98,12 @@ public class Gun {
 	
 	//Tests whether a held object can be put in a given place.
 	private boolean canPut(){
+		if (activeObject==null){return false;}
+		boolean answer = !collisionHandler.lineOfSightCollision(activeObject);
+		answer = answer && collisionHandler.canPlaceEtherAt(activeObject);	
 		
-		return (activeObject!=null) && collisionHandler.canPlaceEtherAt(activeObject);
+		
+		return answer;
 	}
 	
 	private boolean canRestore(){

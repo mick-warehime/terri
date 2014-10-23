@@ -169,7 +169,24 @@ public class CollisionHandler {
 		
 		Line line = new Line(playerX, playerY, objectX,objectY);
 		
+		//Check if collideable Game objects are intersecting 
+		// this line, other than the one from eObj
+		for(GameObject gObj: gameObjects){
+			if(gObj != eObj && gObj.canCollide()){
+				if(line.intersects(gObj.getRect())){
+					return true;
+				}
+			}
+		}
+		//Also check the basic game tiles
+		for(Rectangle block :blocks){
+			if(line.intersects(block)){
+				return true;
+			}
+		}
 		
+		
+		System.out.println("no collision");
 		
 		return false;
 	}
