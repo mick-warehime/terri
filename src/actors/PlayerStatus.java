@@ -1,8 +1,12 @@
 package actors;
 
+import java.util.ArrayList;
+
 import main.CollisionHandler;
 
 import org.newdawn.slick.geom.Rectangle;
+
+import etherable.GameObject;
 
 public class PlayerStatus {
 
@@ -45,6 +49,11 @@ public class PlayerStatus {
 		displace(0,-2);
 		
 		return answer;
+	}
+	
+	public ArrayList<GameObject> nearbyInteractives(){
+		
+		return collisionHandler.interactivesNearPlayer();
 	}
 
 

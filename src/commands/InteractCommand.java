@@ -6,14 +6,14 @@ import actors.ActionEngine;
 
 public class InteractCommand extends BasicCommand implements GenericCommand{
 
-	public InteractCommand(String name) {
-		super(name);
+	public InteractCommand() {
+		super("Interact Command");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute(ActionEngine engine) {
-		// TODO Auto-generated method stub
+		engine.attemptInteract();
 		
 	}
 

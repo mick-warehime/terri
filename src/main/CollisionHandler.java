@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
+import etherable.Interactive;
 
 
 public class CollisionHandler {
@@ -79,17 +80,28 @@ public class CollisionHandler {
 		return null;
 	}
 
-	public GameObject isNearGameObject(int x, int y){
+	
+	//Returns a list of interactive game objects near the player
+	public ArrayList<GameObject> interactivesNearPlayer(){
 
+		ArrayList<GameObject> output = new ArrayList<GameObject>();
+		
 		for(GameObject gObj: gameObjects){
-			if(!(gObj instanceof EtherObject)){
-				if(gObj.isNear(x,y)){
-					return (EtherObject) gObj;
+			if (gObj instanceof Interactive){
+				if (gObj.isNear(playerRect)){
+					output.add(gObj);
 				}
+				
 			}
 		}
+//			if(!(gObj instanceof EtherObject)){
+//				if(gObj.isNear(x,y)){
+//					return gObj;
+//				}
+//			}
+		
 
-		return null;
+		return output;
 	}
 	
 

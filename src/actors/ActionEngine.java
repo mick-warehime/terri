@@ -8,6 +8,7 @@ import commands.GenericCommand;
 import commands.GlobalInputListener;
 import commands.JumpCommand;
 import commands.MoveCommand;
+import etherable.GameObject;
 
 
 //Takes in command inputs and implements corresponding actions
@@ -30,6 +31,8 @@ public class ActionEngine {
 	private float maxSpeed = 5;
 	private int jumpTimer= 0;
 	private int jumpTimerIncrement = 20;
+	private int interactTimer = 0;
+	private int interactTimerIncrement = 20;
 
 
 	public ActionEngine(GlobalInputListener listener, PlayerStatus status, Gun gun){
@@ -134,6 +137,19 @@ public class ActionEngine {
 		return;
 	}
 
+	public void attemptInteract(){
+		ArrayList<GameObject> objects = status.nearbyInteractives();
+		
+		if (interactTimer==0 && !objects.isEmpty()){
+			
+			for (GameObject gObj: objects){
+				gObj.toggle();
+			}
+			
+			interactTimer+= interactTimerIncrement;
+		}
+	}
+	
 	public void restoreActive(){
 		gun.restoreActiveObject();
 	}
@@ -206,7 +222,11 @@ public class ActionEngine {
 		if (jumpTimer>0){
 			jumpTimer -=1;
 		}
-		//        System.out.println(jumpTimer);
+		if (interactTimer>0){
+			interactTimer -=1;
+		}
+		
+		
 	}
 
 	//Displace the player according to his velocity, gravity, etc.

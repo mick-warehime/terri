@@ -6,14 +6,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class Switch extends GameObject{
+public class Switch extends GameObject implements Interactive{
 	// state  = 1 for up and state = 2 for down
 	private boolean state = false;
 	private GameObject target;
+	
 
 	public Switch(int objX, int objY, int tarX, int tarY, TiledMap map, ArrayList<GameObject> gameObjects) throws SlickException {		
 		super(objX, objY, map);
-
+		proximity = 8;
 		getSprites();
 
 		setTarget(tarX, tarY,  gameObjects);
