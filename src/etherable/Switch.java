@@ -17,6 +17,7 @@ public class Switch extends GameObject{
 		getSprites();
 
 		setTarget(tarX, tarY,  gameObjects);
+		
 	}
 
 	private void setTarget(int targetX, int targetY, ArrayList<GameObject> gameObjects){

@@ -81,4 +81,16 @@ public class GameObject {
 		return slightlyBiggerRect.contains(x,y);
 	}
 	
+	
+	protected void getSprites(int tileI, int tileJ, TiledMap map){
+		
+		int etherIndex = map.getLayerIndex("ether");
+
+		for(int i = tileI; i < (tileI+w/tileSize); i++){
+			for(int j = tileJ; j < (tileJ+h/tileSize); j++){
+				//				System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
+				sprites.add(map.getTileImage(i,j,etherIndex));
+			}
+		}
+	}
 }

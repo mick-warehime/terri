@@ -20,11 +20,10 @@ public class Elevator extends EtherObject {
 	private boolean isMoving = true;
  
 
-	public Elevator(int i, int j, TiledMap map, int layerId) {
-		super(i, j, map, layerId);
+	public Elevator(int i, int j, TiledMap map) {
+		super(i, j, map);
 
 		yPos = tileY;
-		proximity = 8;
 
 	}
 

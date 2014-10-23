@@ -7,7 +7,6 @@ import org.newdawn.slick.tiled.TiledMap;
 public class EtherObject extends GameObject {
 
 
-	private int etherLayerId;	
 
 	protected int putX;
 	protected int putY;
@@ -19,13 +18,10 @@ public class EtherObject extends GameObject {
 
 
 
-	public EtherObject(int i, int j,  TiledMap map, int layerId) {
+	public EtherObject(int i, int j,  TiledMap map) {
 		super(i,j,map);
 		
-		etherLayerId = layerId;
-
-		// get height/width and images
-		getSprites(i,j,map);
+ 		getSprites(i,j,map);
 
 		// used for collision detection		
 		setEtherRect();
@@ -37,16 +33,7 @@ public class EtherObject extends GameObject {
 	}
 
 
-	private void getSprites(int tileI, int tileJ, TiledMap map){
 
-
-		for(int i = tileI; i < (tileI+w/tileSize); i++){
-			for(int j = tileJ; j < (tileJ+h/tileSize); j++){
-				//				System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
-				sprites.add(map.getTileImage(i,j,etherLayerId));
-			}
-		}
-	}
 
 	public void setObjectToEther(){
 		isEther = true;	

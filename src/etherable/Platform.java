@@ -4,8 +4,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Platform extends EtherObject{
 
-	public Platform(int i, int j, TiledMap map, int layerId) {
-		super(i, j, map, layerId);
+	public Platform(int i, int j, TiledMap map) {
+		super(i, j, map);
 		
 	}
 	
