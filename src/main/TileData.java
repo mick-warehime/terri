@@ -7,6 +7,7 @@ import etherable.Elevator;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.Switch;
+import etherable.TimedPlatform;
 import etherable.Wall;
 
 import java.util.ArrayList;
@@ -106,6 +107,10 @@ public class TileData {
 				// a list of all the etherable
 				if(objectType.equals("platform")){
 					gameObjects.add(new Platform(i,j,map));
+				}
+				if(objectType.equals("timedPlatform")){
+					String duration = map.getTileProperty(tileID, "duration","0" );					
+					gameObjects.add(new TimedPlatform(i,j,map,Integer.parseInt(duration)));
 				}
 				if(objectType.equals("elevator")){
 					gameObjects.add(new Elevator(i,j,map));

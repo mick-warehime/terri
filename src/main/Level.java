@@ -2,17 +2,10 @@ package main;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
-
 import etherable.GameObject;
 
 
 // TODO
-//
-//  MAKE A MAP DATA API/MAP LOADER to clean up some of this bullshit
-
-//  Make Map an instance of level???
-
-//  place ether with tiledmap objects
 
 
 public class Level {
@@ -67,7 +60,6 @@ public class Level {
 	public void update(int mouseX, int mouseY){
 		for(GameObject gObj: tileData.getGameObjects()){
 			gObj.update(mouseX,mouseY);
-//			gObj.movingUpdate(tileData.getBlocks(), tileData.getGameObjects());
 		}
 
 	}
@@ -99,7 +91,6 @@ public class Level {
 
 
 		for(GameObject gObj: tileData.getGameObjects()){		
-			
 			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 		

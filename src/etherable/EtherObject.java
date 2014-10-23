@@ -19,8 +19,8 @@ public class EtherObject extends GameObject {
 
 	public EtherObject(int i, int j,  TiledMap map) {
 		super(i,j,map);
-		
- 		getSprites(i,j,map);
+
+		getSprites(i,j,map);
 
 		// used for collision detection		
 		setEtherRect();
@@ -68,6 +68,7 @@ public class EtherObject extends GameObject {
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+
 		if(isEther){ //If ether
 			//Draw ether tile
 			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
@@ -78,7 +79,11 @@ public class EtherObject extends GameObject {
 				int hoverX = (mouseX-w/2+mapX);
 				int hoverY = (mouseY-h/2+mapY);
 
-				drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
+
+				// if the dude cant see the location he cant put it there... dont draw it there
+				if(canPut()){
+					drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
+				}
 			}
 		}else{
 			drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
@@ -86,6 +91,11 @@ public class EtherObject extends GameObject {
 	}
 
 
+	public boolean canPut(){
+		boolean answer = !collisionHandler.lineOfSightCollision(this);
+		answer = answer && collisionHandler.canPlaceEtherAt(this);
+		return answer;
+	}
 
 	public Rectangle getEtherRect(){
 		return etherRect;
@@ -94,7 +104,7 @@ public class EtherObject extends GameObject {
 	public boolean isActive(){
 		return isActive;
 	}
-	
+
 	public boolean isPut(){
 		return isPut;
 	}
@@ -102,7 +112,7 @@ public class EtherObject extends GameObject {
 	public boolean canCollide(){
 		return isPut || !isActive;
 	}
-	
+
 
 
 }
