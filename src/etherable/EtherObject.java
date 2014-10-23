@@ -33,16 +33,6 @@ public class EtherObject extends GameObject {
 	}
 
 
-
-
-
-	
-
-	
-	
-
-	
-
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
@@ -65,7 +55,6 @@ public class EtherObject extends GameObject {
 		isEther = false;
 		isPut = false;
 		isActive = false;
-
 		rect.setLocation(tileX,tileY);
 	}
 
@@ -77,7 +66,6 @@ public class EtherObject extends GameObject {
 			int hoverY = (mouseY-h/2);
 			rect.setLocation(hoverX,hoverY);			
 		}		
-
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
@@ -98,19 +86,7 @@ public class EtherObject extends GameObject {
 		}		
 	}
 
-	private void drawTiles(int X, int Y, int mapX, int mapY, float opacity) {
-		int count = 0;
-		for(int x = X; x < X+w; x += tileSize){
-			for(int y = Y; y < Y+h; y += tileSize){
-				//		
 
-				Image im = sprites.get(count);
-				im.setAlpha(opacity);
-				im.draw(x-mapX,y-mapY);
-				count ++;			
-			}
-		}
-	}
 
 	public Rectangle getEtherRect(){
 		return etherRect;

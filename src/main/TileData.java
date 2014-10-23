@@ -52,13 +52,20 @@ public class TileData {
 				int oY = Integer.parseInt(objY);
 				int tX = Integer.parseInt(tarX);
 				int tY = Integer.parseInt(tarY);
-
-				if(objectType.equals("switch")){
-					gameObjects.add(new Switch(oX,oY,tX,tY,map,gameObjects));
-				}
-				if(objectType.equals("door")){
+				if(objectType.equals("door")){					
 					gameObjects.add(new Door(oX,oY,map));
 				}
+				if(objectType.equals("switch")){
+					gameObjects.add(new Switch(oX,oY,tX,tY,map));
+				}
+				
+			}
+		}
+		
+		// Add swtich targets
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof Switch){
+				gObj.setTarget(gameObjects);
 			}
 		}
 

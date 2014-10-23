@@ -6,7 +6,6 @@ public class Platform extends EtherObject{
 
 	public Platform(int i, int j, TiledMap map) {
 		super(i, j, map);
-		
 	}
 	
 	protected void setObjectDimensions(){
