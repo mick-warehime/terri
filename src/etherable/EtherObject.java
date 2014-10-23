@@ -35,6 +35,14 @@ public class EtherObject extends GameObject {
 
 
 
+
+	
+
+	
+	
+
+	
+
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;

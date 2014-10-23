@@ -7,10 +7,10 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
 import commands.FireCommand;
+import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
-
 import actors.Player;
 
 // TODO change the order in which ether objects are drawn such that the one held is drawn last/above all the others
@@ -83,11 +83,13 @@ public class Game extends BasicGame {
 		Command moveRight = new MoveCommand("move right", 1);
 		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);
 		Command restore = new RestoreCommand("restore held object");
+		Command interact = new InteractCommand();
 
 		//Bind commands to keys
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), Jump);
 		provider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 		provider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
+		provider.bindCommand(new KeyControl(Input.KEY_E), interact);
 		provider.bindCommand(new MouseButtonControl(0), shoot);
 		provider.bindCommand(new MouseButtonControl(1), restore);
 		

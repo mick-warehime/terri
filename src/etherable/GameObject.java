@@ -75,10 +75,12 @@ public class GameObject {
 		
 	}
 
-	public boolean isNear(int x, int y) {
-		Rectangle slightlyBiggerRect = new Rectangle(x-proximity,y-proximity,w+2*proximity,h+2*proximity);
+	//Checks if an input rect is near the object's rect
+	public boolean isNear(Rectangle rectTest) {
 		
-		return slightlyBiggerRect.contains(x,y);
+		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,w+2*proximity,h+2*proximity);
+		
+		return slightlyBiggerRect.intersects(rectTest);
 	}
 	
 	

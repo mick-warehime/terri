@@ -24,6 +24,7 @@ public class Elevator extends EtherObject {
 		super(i, j, map);
 
 		yPos = tileY;
+		
 
 	}
 
