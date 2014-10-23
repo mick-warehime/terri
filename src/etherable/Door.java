@@ -29,6 +29,6 @@ public class Door extends GameObject{
 	}
 	
 	public boolean canCollide(){
-		return open;
+		return !open;
 	}
 }
