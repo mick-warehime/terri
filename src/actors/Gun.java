@@ -2,6 +2,7 @@ package actors;
 
 import main.CollisionHandler;
 import etherable.EtherObject;
+import etherable.Timed;
 
 
 
@@ -39,7 +40,10 @@ public class Gun {
 				activeObject.put(mouseX,mouseY);
 				busyTime += busyTimeIncrement;
 				status = "object placed";
-				// set gun to idle set active obj to null
+				if(activeObject instanceof Timed){
+					activeObject = null;
+					status = "idle";
+				}
 							
 			}
 			
@@ -99,11 +103,8 @@ public class Gun {
 	//Tests whether a held object can be put in a given place.
 	private boolean canPut(){
 		if (activeObject==null){return false;}
-		boolean answer = !collisionHandler.lineOfSightCollision(activeObject);
-		answer = answer && collisionHandler.canPlaceEtherAt(activeObject);	
-		
-		
-		return answer;
+			
+		return activeObject.canPut();
 	}
 	
 	private boolean canRestore(){

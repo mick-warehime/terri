@@ -33,9 +33,9 @@ public class CollisionHandler implements CommandProvider {
 		// add the collisionHandler to the ether objects that need it
 
 		for(GameObject gObj: gameObjects){
-			if(gObj instanceof Elevator){
+			
 				gObj.setCollisionHandler(this);
-			}
+			
 		}
 
 
@@ -104,11 +104,11 @@ public class CollisionHandler implements CommandProvider {
 	
 
 
-	public boolean canPlaceEtherAt(GameObject gameObject){
+	public boolean canPlaceEtherAt(EtherObject etherObject){
+				
+		if (isCollidedWithNonPlayer(etherObject)){return false;}
 
-		if (isCollidedWithNonPlayer(gameObject)){return false;}
-
-		if(playerRect.intersects(gameObject.getRect())){
+		if(playerRect.intersects(etherObject.getRect())){
 			return false;
 		}
 		return true;
@@ -169,7 +169,7 @@ public class CollisionHandler implements CommandProvider {
 		float objectX = eObj.getRect().getCenterX();
 		float objectY = eObj.getRect().getCenterY();
 		
-		Line line = new Line(playerX, playerY, objectX,objectY);
+		Line line = new Line(playerX, playerY, objectX, objectY);
 		
 		//Check if collideable Game objects are intersecting 
 		// this line, other than the one from eObj
@@ -186,10 +186,7 @@ public class CollisionHandler implements CommandProvider {
 				return true;
 			}
 		}
-		
-		
-		System.out.println("no collision");
-		
+				
 		return false;
 	}
 

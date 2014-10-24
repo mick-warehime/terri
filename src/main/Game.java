@@ -14,20 +14,21 @@ import commands.RestoreCommand;
 import actors.Actor;
 import actors.Player;
 
-// TODO change the order in which ether objects are drawn such that the one held is drawn last/above all the others
-// TODO elevator collisions with dude
 
 // features to add
 //
 //  timed doors
-//  timed etherables
-//  permanent etherables
 //  weight sensitive switches
 //  enemies
+//  mirrors to reflect beam
+//  portals to transform ether--> solid vice versa
+//  add starting point and finish point collideable objects on the map
 
+// spikes, fire, death objects
+
+//  make one enemy type that when it hits a put object it restores it
 
 public class Game extends BasicGame {
-
 
 	static int width = 640;
 	static int height = 480;

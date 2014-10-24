@@ -106,7 +106,6 @@ public class GameObject {
 		for(int x = X; x < X+w; x += tileSize){
 			for(int y = Y; y < Y+h; y += tileSize){
 				//		
-
 				Image im = sprites.get(count);
 				im.setAlpha(opacity);
 				im.draw(x-mapX,y-mapY);
