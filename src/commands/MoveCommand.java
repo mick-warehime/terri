@@ -2,7 +2,7 @@ package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import actors.ActionEngine;
+import actors.PlayerActionEngine;
 
 
 public class MoveCommand extends BasicCommand implements GenericCommand{
@@ -11,8 +11,8 @@ public class MoveCommand extends BasicCommand implements GenericCommand{
 	
 
 	
-	public MoveCommand(String name, int direction) {
-		super(name);
+	public MoveCommand(int direction) {
+		super("Move Command");
 		this.direction = direction;
 		
 //		this.y = y;
@@ -21,7 +21,7 @@ public class MoveCommand extends BasicCommand implements GenericCommand{
 	
 
 	@Override
-	public void execute(ActionEngine engine){
+	public void execute(PlayerActionEngine engine){
 		engine.attemptRunTo(direction);
 
 	}

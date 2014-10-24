@@ -2,7 +2,7 @@ package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import actors.ActionEngine;
+import actors.PlayerActionEngine;
 
 public class RestoreCommand extends BasicCommand implements GenericCommand {
 
@@ -14,7 +14,7 @@ public class RestoreCommand extends BasicCommand implements GenericCommand {
 	}
 
 	@Override
-	public void execute(ActionEngine engine) {
+	public void execute(PlayerActionEngine engine) {
 		engine.restoreActive();
 
 	}

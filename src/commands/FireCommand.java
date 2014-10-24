@@ -5,7 +5,7 @@ import main.Level;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.command.BasicCommand;
 
-import actors.ActionEngine;
+import actors.PlayerActionEngine;
 
 public class FireCommand extends BasicCommand implements GenericCommand {
 
@@ -20,7 +20,7 @@ public class FireCommand extends BasicCommand implements GenericCommand {
 	}
 
 	@Override
-	public void execute(ActionEngine engine) {
+	public void execute(PlayerActionEngine engine) {
 		int mouseX = input.getMouseX()+level.getMapX();
 		int mouseY = input.getMouseY()+level.getMapY();
 		engine.attemptShoot(mouseX, mouseY);

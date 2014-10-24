@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 import etherable.GameObject;
 
-public class PlayerStatus {
+public class Status {
 
 //	private Player player;
 	private float x;
@@ -17,7 +17,7 @@ public class PlayerStatus {
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
 
-	public PlayerStatus(float x, float y, CollisionHandler collisionHandler) {
+	public Status(float x, float y, CollisionHandler collisionHandler) {
 //		this.player = player;
 
 		this.x = x;

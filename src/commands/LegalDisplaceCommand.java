@@ -2,7 +2,7 @@ package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 
-import actors.ActionEngine;
+import actors.PlayerActionEngine;
 
 //Displaces an actor in a direction, by the minimum required amount to 
 //undo a collision
@@ -23,7 +23,7 @@ public class LegalDisplaceCommand extends BasicCommand implements GenericCommand
 	}
 
 	@Override
-	public void execute(ActionEngine engine) {
+	public void execute(PlayerActionEngine engine) {
 //		System.out.println("displacing...");
 		//Do the displacement depending on assigned direction
 		if (direction == "+x"){

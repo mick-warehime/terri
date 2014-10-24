@@ -11,6 +11,7 @@ import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
+import actors.Actor;
 import actors.Player;
 
 // TODO change the order in which ether objects are drawn such that the one held is drawn last/above all the others
@@ -37,7 +38,7 @@ public class Game extends BasicGame {
 	static int fpslimit = 59;
 	private CollisionHandler collisionHandler;     
 
-	private Player terri;
+	private Actor terri;
 	private Level level;
 
 //	private Ether activeEtherObject = null; 
@@ -72,13 +73,13 @@ public class Game extends BasicGame {
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		InputProvider provider = new InputProvider(gc.getInput());
 		//The listener is linked to the provider
-		provider.addListener(terri.getListener());
+		provider.addListener(((Player) terri).getListener());
 
 		//Define action commands for provider
 		Command Jump = new JumpCommand("Jump");
 		//Command moveDown = new MoveCommand("move down", 0 ,8);
-		Command moveLeft = new MoveCommand("move left", -1);
-		Command moveRight = new MoveCommand("move right", 1);
+		Command moveLeft = new MoveCommand( -1);
+		Command moveRight = new MoveCommand( 1);
 		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);
 		Command restore = new RestoreCommand("restore held object");
 		Command interact = new InteractCommand();

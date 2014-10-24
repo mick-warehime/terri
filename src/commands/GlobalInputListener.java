@@ -7,19 +7,23 @@ import org.newdawn.slick.command.Command;
 import main.CollisionHandler;
 
 
-//Listens to command inputs from both player and world
+//Listens to command inputs from generic providers
 public class GlobalInputListener {
 
 	
-	private PlayerInputListener listener = new PlayerInputListener();	 //keyboard and mouse inputs
-	private CollisionHandler collisionHandler; //inputs due to game collisions
-	private ArrayList<Command> currentActionCommands = new ArrayList<Command>();
+	private ArrayList <CommandProvider> providers; 	
+	private ArrayList<Command> currentActionCommands ;
 
-	public GlobalInputListener(CollisionHandler collisionHandler) {
+	public GlobalInputListener() {
+		providers = new ArrayList <CommandProvider>();
+		this.currentActionCommands = new ArrayList<Command>();
 		
-		this.collisionHandler = collisionHandler;
 		
 		
+	}
+	
+	public void addProvider( CommandProvider provider){
+		providers.add(provider);
 	}
 	
 	public void update(){
@@ -32,23 +36,18 @@ public class GlobalInputListener {
 		
 		return currentActionCommands;
 	}
+	//////////////////////////
 	
 	//For external inputs such as elevator collisions
 	//or being hit by enemies
 	private void receiveExternalInputs(){
 
 		currentActionCommands.clear();
-		//Receive external (game object) commands
-		currentActionCommands.addAll(collisionHandler.popCollisionCommands()) ;
+		
+		for (CommandProvider provider: providers){
+			currentActionCommands.addAll(provider.getCommands());
+		}
 
-		//Receive player input commands
-		currentActionCommands.addAll(listener.getCommands()) ;
-
-
-
-	}
-	public PlayerInputListener getPlayerInputListener(){
-		return listener;
 	}
 	
 	

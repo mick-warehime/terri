@@ -12,14 +12,13 @@ import etherable.GameObject;
 
 
 //Takes in command inputs and implements corresponding actions
-public class ActionEngine {
+public class PlayerActionEngine {
 
 	private GlobalInputListener listener;
-//	private PlayerInputListener listener;
-	private PlayerStatus status;
+	private Status status;
 	private Gun gun;
 	
-	
+//	private ArrayList <Action> actions;
 
 	private float gravity = 1;
 	private float vx = 0;
@@ -35,10 +34,12 @@ public class ActionEngine {
 	private int interactTimerIncrement = 20;
 
 
-	public ActionEngine(GlobalInputListener listener, PlayerStatus status, Gun gun){
+	public PlayerActionEngine(GlobalInputListener listener, Status status, Gun gun){
 		this.listener = listener;
 		this.status = status;
 		this.gun = gun;
+		
+
 	}
 
 	public void update() {
@@ -294,7 +295,7 @@ public class ActionEngine {
 
 	}
 	
-
+	
 
 
 

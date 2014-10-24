@@ -6,13 +6,15 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
+import commands.CommandProvider;
+
 import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Interactive;
 
 
-public class CollisionHandler {
+public class CollisionHandler implements CommandProvider {
 
 
 	private ArrayList<Rectangle> blocks;
@@ -150,7 +152,7 @@ public class CollisionHandler {
 
 	}
 
-	public ArrayList<Command> popCollisionCommands(){
+	public ArrayList<Command> getCommands(){
 		@SuppressWarnings("unchecked")
 		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
 		collisionCommandStack.clear();
