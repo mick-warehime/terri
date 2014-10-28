@@ -8,48 +8,117 @@ import commands.GenericCommand;
 import commands.GlobalInputListener;
 import commands.JumpCommand;
 import commands.MoveCommand;
-import etherable.GameObject;
 
-
-//Takes in command inputs and implements corresponding actions
 public class ActionEngine {
 
-	private GlobalInputListener listener;
-//	private PlayerInputListener listener;
-	private PlayerStatus status;
-	private Gun gun;
 	
-	
-
+	 
+	protected GlobalInputListener listener;
+	protected Status status;
 	private float gravity = 1;
-	private float vx = 0;
-	private float vy = 0;
-	private float ups = 20;
-	private float wallUps = 15;
+	protected float vx = 0;
+	protected float vy = 0;
 	private float runAcc = 2;
 	private float runDec = 1;
+
 	private float maxSpeed = 5;
-	private int jumpTimer= 0;
-	private int jumpTimerIncrement = 20;
-	private int interactTimer = 0;
-	private int interactTimerIncrement = 20;
+	
+	
 
 
-	public ActionEngine(GlobalInputListener listener, PlayerStatus status, Gun gun){
+	public ActionEngine(GlobalInputListener listener, Status status) {
+		
 		this.listener = listener;
 		this.status = status;
-		this.gun = gun;
 	}
 
 	public void update() {
-		//Receive all command inputs
-		listener.update();
 		
+
 		doActions();
 		movePhysics();
 		updateTimers();
+		
+		
 	}
 
+	public void attemptRunTo(int direction) {
+		//Only accelerate if not in air
+		//if (!status.isTouchingGround()){return;}
+
+		if (direction>0 ){
+			vx = Math.min(vx + runAcc, maxSpeed);
+		}else if(direction<0){
+			vx = Math.max(vx - runAcc, -maxSpeed);
+		}
+
+		return;
+
+	}
+	
+	public void die(){
+		status.setDying(true);
+		return;
+	}
+	
+	//////////////////////////
+
+	protected void decelerate() {
+		//		float vx = status.getVx();
+		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
+		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
+		//		status.setVx(vx);
+	}
+
+	private void movePhysics() {        
+
+
+		//Horizontal movement and collision checking
+		attemptDisplacement(vx,0);
+
+		//Set vertical velocity to 0 if touching ground and 
+		//going down.
+		if (status.isTouchingGround() && vy>2){this.vy = 0;}
+
+		//Vertical displacement
+		boolean success = attemptDisplacement(0,vy);
+		//Apply gravity if not touching the ground or
+		// if a positive displacement(down) was successful
+		boolean stopCond = !success && (vy>0); 
+		if (!(status.isTouchingGround())&& !stopCond ){//
+			this.vy += gravity;
+		}
+
+		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
+
+
+		//		System.out.println("velocity: " + vy);
+
+
+		assert !status.isCollided() : "Player is inside an object!";
+
+	}
+
+	protected void updateTimers(){
+		return;
+	}
+
+	protected void doActions() {
+
+		//Get all player commands
+		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
+		
+
+		//Do the associated actions
+		for (Command cmd : currentActionCommands){
+			((GenericCommand)cmd).execute(this);
+			
+		}
+		
+
+
+
+	}
 
 	// Attempts a displacement, or a smaller
 	// one if possible. returns success or failure
@@ -111,192 +180,5 @@ public class ActionEngine {
 		return (xAttemptSuccess || yAttemptSuccess);
 
 	}
-
-
-
-
-	public void attemptRunTo(int direction) {
-		//Only accelerate if not in air
-		//if (!status.isTouchingGround()){return;}
-
-		if (direction>0 ){
-			vx = Math.min(vx + runAcc, maxSpeed);
-		}else if(direction<0){
-			vx = Math.max(vx - runAcc, -maxSpeed);
-		}
-
-		return;
-
-	}
-
-	public void attemptShoot(int mouseX, int mouseY){
-
-		if (gun.canShoot(mouseX,mouseY)){
-			gun.shootEtherBeam(mouseX, mouseY);
-		}
-		return;
-	}
-
-	public void attemptInteract(){
-		ArrayList<GameObject> objects = status.nearbyInteractives();
-		
-		if (interactTimer==0 && !objects.isEmpty()){
-			
-			for (GameObject gObj: objects){
-				gObj.toggle();
-			}
-			
-			interactTimer+= interactTimerIncrement;
-		}
-	}
-	
-	public void restoreActive(){
-		gun.restoreActiveObject();
-	}
-
-	public void attemptJump() {
-		//Check that player is on solid ground
-		if (canJump()){
-			this.vy -=ups;
-			jumpTimer += jumpTimerIncrement;
-		}
-
-		return;
-
-	}
-
-	////////////////
-
-
-	
-
-
-
-	private void decelerate(){
-		//		float vx = status.getVx();
-		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
-		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
-		//		status.setVx(vx);
-	}
-
-	private void attemptWallJump(){
-
-		if (canWallJump()){
-
-			vy -= wallUps;
-			jumpTimer += jumpTimerIncrement;
-			vx = - vx;
-		}
-
-
-		return;
-	}
-
-
-	private boolean canWallJump(){
-		boolean answer = false;
-
-		//Check that I am touching a wall in the direction
-		//that I'm moving	
-		if (vx<0){
-			status.displace(-1,0);
-			answer = status.isCollided();
-			status.displace(1,0);
-		}else{
-			status.displace(1,0);
-			answer = status.isCollided();
-			status.displace(-1,0);
-		}
-		//Check that jumpTimer is 0;
-		answer = answer && (jumpTimer == 0); 
-
-
-		return answer;
-	}
-
-	private boolean canJump(){
-		return (status.isTouchingGround() && (jumpTimer==0)) ;
-	}
-
-	private void updateTimers(){
-		if (jumpTimer>0){
-			jumpTimer -=1;
-		}
-		if (interactTimer>0){
-			interactTimer -=1;
-		}
-		
-		
-	}
-
-	//Displace the player according to his velocity, gravity, etc.
-	// while checking for collisions
-	private void movePhysics(){        
-
-		
-		
-
-		//Horizontal movement and collision checking
-		attemptDisplacement(vx,0);
-		
-		//Set vertical velocity to 0 if touching ground and 
-		//going down.
-		if (status.isTouchingGround() && vy>2){this.vy = 0;}
-		
-		//Vertical displacement
-		boolean success = attemptDisplacement(0,vy);
-		//Apply gravity if not touching the ground or
-		// if a positive displacement(down) was successful
-		boolean stopCond = !success && (vy>0); 
-		if (!(status.isTouchingGround())&& !stopCond ){//
-			this.vy += gravity;
-		}
-
-		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
-		 
-		
-//		System.out.println("velocity: " + vy);
-
-
-		assert !status.isCollided() : "Player is inside an object!";
-
-	}
-
-	private void doActions(){
-
-		//Get all player commands
-		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
-
-		boolean triedMove = false;
-		boolean triedJump = false;
-
-		//Do the associated actions
-		for (Command cmd : currentActionCommands){
-			((GenericCommand)cmd).execute(this);
-			if (cmd instanceof JumpCommand){
-				triedJump = true;
-			}
-			if (cmd instanceof MoveCommand){
-				triedMove = true;
-			}
-		}
-		//Attempt a wall jump (conditioned on having tried a jump and move)
-		if (triedJump && triedMove){
-			attemptWallJump();
-		}
-		//Decelerate if no move command given
-		//		System.out.println(status.isTouchingGround());
-		if (!triedMove ){//&& (status.isTouchingGround()
-			decelerate();
-		}
-		
-		
-
-	}
-	
-
-
-
-
 
 }

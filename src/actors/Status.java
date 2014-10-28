@@ -8,22 +8,23 @@ import org.newdawn.slick.geom.Rectangle;
 
 import etherable.GameObject;
 
-public class PlayerStatus {
+public class Status {
 
 //	private Player player;
 	private float x;
 	private float y;
+	private boolean isDying;
 
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
 
-	public PlayerStatus(float x, float y, CollisionHandler collisionHandler) {
+	public Status(float x, float y, CollisionHandler collisionHandler, float width, float height) {
 //		this.player = player;
-
+		this.isDying = false;
 		this.x = x;
 		this.y = y;
 		
-		rect = new Rectangle(1,1,31,31);
+		rect = new Rectangle(0,0,width, height);
 		
 //		System.out.println("Crahs here???");
 		
@@ -33,7 +34,7 @@ public class PlayerStatus {
 //		System.out.println("Crahs here???");
 		
 		this.collisionHandler = collisionHandler;
-		this.collisionHandler.addPlayerRect(rect);
+		
 		
 		
 	}
@@ -78,6 +79,15 @@ public class PlayerStatus {
 		rect.setX((int)this.x);
 		rect.setY((int)this.y);
 		return;
+	}
+
+	public void setDying(boolean b) {
+		this.isDying = b;
+		
+	}
+	
+	public boolean isDying(){
+		return isDying;
 	}
 
 	

@@ -11,8 +11,8 @@ public class MoveCommand extends BasicCommand implements GenericCommand{
 	
 
 	
-	public MoveCommand(String name, int direction) {
-		super(name);
+	public MoveCommand(int direction) {
+		super("Move Command");
 		this.direction = direction;
 		
 //		this.y = y;

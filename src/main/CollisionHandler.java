@@ -6,17 +6,20 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
+import actors.Enemy;
+import commands.CommandProvider;
 import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Interactive;
 
 
-public class CollisionHandler {
+public class CollisionHandler implements CommandProvider {
 
 
 	private ArrayList<Rectangle> blocks;
 	private ArrayList<GameObject> gameObjects;
+	private ArrayList<Enemy> enemies;
 	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
 	//Commands sent to the player if a collision
@@ -24,9 +27,10 @@ public class CollisionHandler {
 	private ArrayList<Command> collisionCommandStack = new ArrayList<Command>();
 
 
-	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects){
+	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
 		this.blocks = blockedList;
 		this.gameObjects = gameObjects;
+		this.enemies = enemies;
 
 		// add the collisionHandler to the ether objects that need it
 
@@ -39,12 +43,13 @@ public class CollisionHandler {
 
 	}
 
-
+	
 	public void addPlayerRect(Rectangle playerRect){
 		this.playerRect = playerRect;		
 	}
 
 
+	//Checks for collisions with blocks and game Objects
 	public boolean isCollided(Rectangle rect){	
 		//	check if collided with permanent solid blocks	
 		for(Rectangle r: blocks ){
@@ -95,7 +100,7 @@ public class CollisionHandler {
 				
 			}
 		}
-
+		
 
 		return output;
 	}
@@ -104,15 +109,21 @@ public class CollisionHandler {
 
 	public boolean canPlaceEtherAt(EtherObject etherObject){
 				
-		if (isCollidedWithNonPlayer(etherObject)){return false;}
+		if (isCollided(etherObject)){return false;}
 
 		if(playerRect.intersects(etherObject.getRect())){
 			return false;
 		}
+		
+		//Check for collisions with actors
+		if(collidedWithEnemy(etherObject.getRect())){
+			return false;
+		}
+		
 		return true;
 	}
 
-	public boolean isCollidedWithNonPlayer(GameObject gameObject){
+	public boolean isCollided(GameObject gameObject){
 		//		check if collided with permanent solid blocks	
 		for(Rectangle r: blocks ){
 			if(r.intersects(gameObject.getRect())){
@@ -150,7 +161,7 @@ public class CollisionHandler {
 
 	}
 
-	public ArrayList<Command> popCollisionCommands(){
+	public ArrayList<Command> getCommands(){
 		@SuppressWarnings("unchecked")
 		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
 		collisionCommandStack.clear();
@@ -185,6 +196,15 @@ public class CollisionHandler {
 			}
 		}
 				
+		return false;
+	}
+	
+	private boolean collidedWithEnemy(Rectangle rect){
+		for (Enemy nme: enemies){
+			if(nme.getRect().intersects(rect)){
+				return true;
+			}
+		}
 		return false;
 	}
 

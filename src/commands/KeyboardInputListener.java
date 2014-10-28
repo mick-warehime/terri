@@ -7,14 +7,14 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 
 //Takes in input commands and implements them for the player
-public class PlayerInputListener implements InputProviderListener {
+public class KeyboardInputListener implements InputProviderListener,CommandProvider{
 
 	
 //	private Player player;
 	private ArrayList<Command> currentActions = new ArrayList<Command>();
 	
 	
-	public PlayerInputListener() {
+	public KeyboardInputListener() {
 		// TODO Auto-generated constructor stub
 //		this.player = player;
 	}
