@@ -2,6 +2,7 @@ package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 
+import actors.ActionEngine;
 import actors.PlayerActionEngine;
 
 public class InteractCommand extends BasicCommand implements GenericCommand{
@@ -12,8 +13,8 @@ public class InteractCommand extends BasicCommand implements GenericCommand{
 	}
 
 	@Override
-	public void execute(PlayerActionEngine engine) {
-		engine.attemptInteract();
+	public void execute(ActionEngine engine) {
+		((PlayerActionEngine) engine).attemptInteract();
 		
 	}
 

@@ -12,22 +12,14 @@ import etherable.GameObject;
 
 
 //Takes in command inputs and implements corresponding actions
-public class PlayerActionEngine {
+public class PlayerActionEngine extends ActionEngine {
 
-	private GlobalInputListener listener;
-	private Status status;
 	private Gun gun;
 	
 //	private ArrayList <Action> actions;
 
-	private float gravity = 1;
-	private float vx = 0;
-	private float vy = 0;
-	private float ups = 20;
+	private float ups = 15;
 	private float wallUps = 15;
-	private float runAcc = 2;
-	private float runDec = 1;
-	private float maxSpeed = 5;
 	private int jumpTimer= 0;
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
@@ -35,98 +27,9 @@ public class PlayerActionEngine {
 
 
 	public PlayerActionEngine(GlobalInputListener listener, Status status, Gun gun){
-		this.listener = listener;
-		this.status = status;
+		super(listener,status);
 		this.gun = gun;
 		
-
-	}
-
-	public void update() {
-		//Receive all command inputs
-		listener.update();
-		
-		doActions();
-		movePhysics();
-		updateTimers();
-	}
-
-
-	// Attempts a displacement, or a smaller
-	// one if possible. returns success or failure
-	public boolean attemptDisplacement(float dx, float dy){
-		boolean notCollided = false;
-
-		//Null displacement always succeeds
-		if (dx == 0 && dy == 0){return true;}
-
-		//x only displacement
-		if (dy == 0){
-			if (dx>0){
-				for (int ddx = (int) dx; ddx >0 ; ddx--){//Try displacements until they work
-					status.displace(ddx,0);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(-ddx,0); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
-			if (dx<0){
-				for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
-					status.displace(ddx,0);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(-ddx,0); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
-		}
-
-		//y only displacement
-		if (dx == 0){
-			if (dy>0){
-				for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
-					status.displace(0,ddy);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(0,-ddy); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
-			if (dy<0){
-				for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
-					status.displace(0,ddy);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(0,-ddy); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
-		}
-
-		//If x and y displacements occur, a success occurs if there is any
-		// displacement
-		boolean xAttemptSuccess = attemptDisplacement(dx,0);
-		boolean yAttemptSuccess = attemptDisplacement(0,dy);
-
-		return (xAttemptSuccess || yAttemptSuccess);
-
-	}
-
-
-
-
-	public void attemptRunTo(int direction) {
-		//Only accelerate if not in air
-		//if (!status.isTouchingGround()){return;}
-
-		if (direction>0 ){
-			vx = Math.min(vx + runAcc, maxSpeed);
-		}else if(direction<0){
-			vx = Math.max(vx - runAcc, -maxSpeed);
-		}
-
-		return;
 
 	}
 
@@ -139,10 +42,11 @@ public class PlayerActionEngine {
 	}
 
 	public void attemptInteract(){
+		//Get nearby objects to interact with
 		ArrayList<GameObject> objects = status.nearbyInteractives();
 		
+		//Interact, if possible
 		if (interactTimer==0 && !objects.isEmpty()){
-			
 			for (GameObject gObj: objects){
 				gObj.toggle();
 			}
@@ -173,14 +77,7 @@ public class PlayerActionEngine {
 
 
 
-	private void decelerate(){
-		//		float vx = status.getVx();
-		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
-		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
-		//		status.setVx(vx);
-	}
-
-	private void attemptWallJump(){
+	public void attemptWallJump(){
 
 		if (canWallJump()){
 
@@ -219,7 +116,7 @@ public class PlayerActionEngine {
 		return (status.isTouchingGround() && (jumpTimer==0)) ;
 	}
 
-	private void updateTimers(){
+	protected void updateTimers(){
 		if (jumpTimer>0){
 			jumpTimer -=1;
 		}
@@ -229,51 +126,22 @@ public class PlayerActionEngine {
 		
 		
 	}
-
-	//Displace the player according to his velocity, gravity, etc.
-	// while checking for collisions
-	private void movePhysics(){        
-
+	
+	
+	protected void doActions() {
 		
-		
-
-		//Horizontal movement and collision checking
-		attemptDisplacement(vx,0);
-		
-		//Set vertical velocity to 0 if touching ground and 
-		//going down.
-		if (status.isTouchingGround() && vy>2){this.vy = 0;}
-		
-		//Vertical displacement
-		boolean success = attemptDisplacement(0,vy);
-		//Apply gravity if not touching the ground or
-		// if a positive displacement(down) was successful
-		boolean stopCond = !success && (vy>0); 
-		if (!(status.isTouchingGround())&& !stopCond ){//
-			this.vy += gravity;
-		}
-
-		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
-		 
-		
-//		System.out.println("velocity: " + vy);
-
-
-		assert !status.isCollided() : "Player is inside an object!";
-
-	}
-
-	private void doActions(){
-
+		//Do actions from commands
+		super.doActions();
 		//Get all player commands
 		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
 
+//		System.out.println(currentActionCommands);
+		
 		boolean triedMove = false;
 		boolean triedJump = false;
 
-		//Do the associated actions
+		//Check which actions are done (There is a better what to do this)
 		for (Command cmd : currentActionCommands){
-			((GenericCommand)cmd).execute(this);
 			if (cmd instanceof JumpCommand){
 				triedJump = true;
 			}
@@ -294,7 +162,6 @@ public class PlayerActionEngine {
 		
 
 	}
-	
 	
 
 

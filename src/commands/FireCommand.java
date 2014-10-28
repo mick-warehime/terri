@@ -5,6 +5,7 @@ import main.Level;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.command.BasicCommand;
 
+import actors.ActionEngine;
 import actors.PlayerActionEngine;
 
 public class FireCommand extends BasicCommand implements GenericCommand {
@@ -12,19 +13,19 @@ public class FireCommand extends BasicCommand implements GenericCommand {
 	private Level level;
 	private Input input;
 
-	public FireCommand(String name, Input input, Level level) {
-		super(name);
+	public FireCommand(Input input, Level level) {
+		super("Shoot gun");
 		this.level  =level;
 		this.input = input;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void execute(PlayerActionEngine engine) {
+	public void execute(ActionEngine engine) {
 		int mouseX = input.getMouseX()+level.getMapX();
 		int mouseY = input.getMouseY()+level.getMapY();
-		engine.attemptShoot(mouseX, mouseY);
-
+		((PlayerActionEngine) engine).attemptShoot(mouseX, mouseY);
 	}
 
+	
 }

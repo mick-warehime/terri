@@ -7,11 +7,13 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
 import commands.FireCommand;
+import commands.GenericCommand;
 import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
 import actors.Actor;
+import actors.Enemy;
 import actors.Player;
 
 
@@ -28,6 +30,10 @@ import actors.Player;
 
 //  make one enemy type that when it hits a put object it restores it
 
+// Dvir TODO: 
+// Fix inconsistency between Command and BasicCommand declarations (remove Command)
+// Finish determining enemy behavior, figure out how to kill an enemy;
+
 public class Game extends BasicGame {
 
 	static int width = 640;
@@ -39,7 +45,7 @@ public class Game extends BasicGame {
 	static int fpslimit = 59;
 	private CollisionHandler collisionHandler;     
 
-	private Actor terri;
+	private Player terri;
 	private Level level;
 
 //	private Ether activeEtherObject = null; 
@@ -69,24 +75,27 @@ public class Game extends BasicGame {
 		collisionHandler = level.getCollisionHandler();
 
 		terri = new Player(32,300,collisionHandler);
+		
+		Enemy bob = new Enemy(200,300, collisionHandler);
 
+		level.addEnemy(bob);
 
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		InputProvider provider = new InputProvider(gc.getInput());
 		//The listener is linked to the provider
-		provider.addListener(((Player) terri).getListener());
+		provider.addListener(terri.getListener());
 
 		//Define action commands for provider
-		Command Jump = new JumpCommand("Jump");
+		Command jump = new JumpCommand();
 		//Command moveDown = new MoveCommand("move down", 0 ,8);
 		Command moveLeft = new MoveCommand( -1);
 		Command moveRight = new MoveCommand( 1);
-		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);
-		Command restore = new RestoreCommand("restore held object");
+		Command shoot = new FireCommand(gc.getInput(),level);
+		Command restore = new RestoreCommand();
 		Command interact = new InteractCommand();
 
 		//Bind commands to keys
-		provider.bindCommand(new KeyControl(Input.KEY_SPACE), Jump);
+		provider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);
 		provider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 		provider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
 		provider.bindCommand(new KeyControl(Input.KEY_E), interact);

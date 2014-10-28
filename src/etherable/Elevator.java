@@ -38,7 +38,7 @@ public class Elevator extends EtherObject {
 
 		boolean answer = Math.abs(elevation)>range || elevation>0;
 
-		answer = answer || collisionHandler.isCollidedWithNonPlayer(this);
+		answer = answer || collisionHandler.isCollided(this);
 		return answer;
 	}
 

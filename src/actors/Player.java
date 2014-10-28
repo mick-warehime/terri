@@ -24,7 +24,9 @@ public class Player extends Actor {
 		listener.addProvider(collisionHandler);
 		listener.addProvider(keyboard);
 		
-		status = new Status((float) x, (float) y, collisionHandler);
+		status = new Status((float) x, (float) y, collisionHandler, 31, 31);
+		collisionHandler.addPlayerRect(status.getRect());
+		
 		gun = new Gun(collisionHandler);
 		engine = new PlayerActionEngine(listener,status, gun);
 	}

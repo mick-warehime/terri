@@ -12,11 +12,11 @@ public class Actor {
 
 	protected Image sprite;
 	protected GlobalInputListener listener;
-	protected PlayerActionEngine engine;
+	protected ActionEngine engine;
 	protected Status status;
 
 	public Actor() throws SlickException {
-		super();
+		
 		
 		
 	}
@@ -31,18 +31,25 @@ public class Actor {
 
 	public void update() {
 	
+		//Receive all command inputs
+		listener.update();
+		
+		//Do actions
 		engine.update();
+//		if (status.isDying()){
+//			System.out.println("Oh no!!!");
+//		}
 		
 		
 	}
 
 	
 
-	public Status getStatus() {
-	
-		// TODO Auto-generated method stub
-		return status;
-	}
+//	public Status getStatus() {
+//	
+//		// TODO Auto-generated method stub
+//		return status;
+//	}
 
 	public Rectangle getRect() {
 		return status.getRect();

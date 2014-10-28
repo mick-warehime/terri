@@ -1,7 +1,11 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+
+import actors.Enemy;
 import etherable.GameObject;
 
 
@@ -26,6 +30,8 @@ public class Level {
 	private int tileLayerId;
 	private CollisionHandler collisionHandler;
 	private TileData tileData;
+	
+	private ArrayList<Enemy> enemies;
 
 	public Level(int x, int y) throws SlickException {
 
@@ -48,7 +54,8 @@ public class Level {
 		tileLayerId = map.getLayerIndex("tiles");
 		
 		
-		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects());
+		this.enemies = new ArrayList<Enemy>();
+		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
 
 		
 
@@ -56,10 +63,24 @@ public class Level {
 
 	}
 
+	public void addEnemy(Enemy nme){
+		enemies.add(nme);
+	}
+	public void removeEnemy(Enemy nme){
+		enemies.remove(nme);
+	}
+	
 
 	public void update(int mouseX, int mouseY){
 		for(GameObject gObj: tileData.getGameObjects()){
 			gObj.update(mouseX,mouseY);
+		}
+		
+		for (Enemy nme: enemies){
+			nme.update();
+//			if(nme.isDying()){
+//				removeEnemy(nme);
+//			}
 		}
 
 	}
@@ -92,6 +113,10 @@ public class Level {
 
 		for(GameObject gObj: tileData.getGameObjects()){		
 			gObj.draw(mapX, mapY, mouseX, mouseY);
+		}
+		
+		for (Enemy nme: enemies){
+			nme.render(g,mapX,mapY);
 		}
 		
 	}

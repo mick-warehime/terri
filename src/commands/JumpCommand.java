@@ -4,20 +4,21 @@ package commands;
 
 import org.newdawn.slick.command.BasicCommand;
 
+import actors.ActionEngine;
 import actors.PlayerActionEngine;
 
 
 public class JumpCommand extends BasicCommand implements GenericCommand{
 
 	
-	public JumpCommand(String name) {
-		super(name);
+	public JumpCommand() {
+		super("Jump");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void execute(PlayerActionEngine engine){
-		engine.attemptJump();
+	public void execute(ActionEngine engine){
+		((PlayerActionEngine) engine).attemptJump();
 		
 	}
 
