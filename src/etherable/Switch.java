@@ -13,16 +13,25 @@ public class Switch extends GameObject implements Interactive{
 	private int targetX;
 	private int targetY;
 
-	public Switch(int objX, int objY, int tarX, int tarY, TiledMap map) throws SlickException {		
-		super(objX, objY, map);
-		proximity = 8;
+	public Switch(int gi, int oi, TiledMap map) throws SlickException {		
+		super(gi, oi, map);
+
+
 		getSprites();
-		targetX = tarX*this.tileSize;
-		targetY = tarY*this.tileSize;
+
+		// default proximity (how close in pixels to switch) is set to 5
+		String strProximity =  map.getObjectProperty(gi, oi, "proximity", "5" );
+		this.proximity = Integer.parseInt(strProximity);
+
+		String strTargetX =  map.getObjectProperty(gi, oi, "tx", "0" );
+		this.targetX= Integer.parseInt(strTargetX)*tileSize;
+		String strTargetY =  map.getObjectProperty(gi, oi, "ty", "0" );
+		this.targetY= Integer.parseInt(strTargetY)*tileSize;
+
 	}
 
 	public void setTarget(ArrayList<GameObject> gameObjects){
-		
+
 		for(GameObject gObj : gameObjects) {
 			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
 
@@ -62,7 +71,7 @@ public class Switch extends GameObject implements Interactive{
 	public void update(int mouseX, int mouseY){};
 
 	public void toggle(){
-		state = !state;
+		state = !state;		
 		target.toggle();
 	}
 

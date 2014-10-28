@@ -16,7 +16,7 @@ public class Level {
 	private int height = 480;
 	private int mapX = 0;
 	private int mapY = 0;
-	private int tol = 8; // number of tiles away from edge
+	private int tol = 15; // number of tiles away from edge
 	private int tolX;
 	private int tolY;
 	private int tileSizeWidth;

@@ -38,40 +38,73 @@
    </properties>
   </tile>
  </tileset>
- <layer name="meta" width="100" height="30">
+ <layer name="meta" width="100" height="30" visible="0">
   <properties>
    <property name="blocked" value="&quot;false&quot;"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YSRKDMAwEeUA+TRbenTuU402ymmi6yifAFjOyytb+2La9MGYozRk5iPTE2fpfXvpYa+zlkUWOzMS0Ov88c94q1yzjmOWA1oIRomocva5mQ36wkB8sImukuCI/WND8GDm7v/7I28j7XS2eVWd+EkQ/MlPzw3PN0rPMyA8W8oOF/GDR68fHQC/5UUb7g4X8YJHVD+qdPtIPqiaR0PZHZjz7QG/p/ZNar4mer3evbb19vlY/njfXxRurPjR9f4zi3be3nOs8rzdkbVq/89C+dZ3M2ljr4RnXzHtWMRC0ISBt1vAFQRN64eAuAAA=
+   H4sIAAAAAAAAA+2YQQ6DQAwDeUA/zc977KUGVvHGDvJI3DBNMqtly/k5jhNcFdAzlZcjK3U+7WvXfNgz3uWIsUYqNVXny/o9xjxZa41ZR/ih2uPiw4v48CI+vJjoY1q9K8SHF/HhBfM/VfcZ/Y3EhxdVHwriA+cUxAfOKYgPnFMQHzinID5wTkF84JyC+MA5BfGBcwriA+cUvNVH5ZtHfNS4m+ek/ib6WF3Lk/pz9sHaS1z7+8dKf7v33l37eIcP1mzQPZXZPM11vUOd1s1druN84XaGuaqrch+rBofZOJDZ9PAFmIAV1+AuAAA=
   </data>
  </layer>
- <layer name="tiles" width="100" height="30" visible="0" opacity="0.5">
+ <layer name="tiles" width="100" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2a222DMBSGLawqiNcOxQCdpF2CATpJuwQD9CV0i96fWtXuwVJk+XJsMD6FE+mTouBg+H7bB0iGRohzC0yKZw9fVzjMvkKYfrDtYvjaTp73KeeTi31MmHZDA8TchryY7XY7jOeUbKfW7T7VUeh8lrgP7RczzscGCOWBzd54KjnWcjPNdZkyJtc4jpMExow89syS+beEXgI6k9oOGLVOSaDnPEgwSmDgPEjwNz8ayGSrPq87oPa5U2SskMdNB9Q+d4qYPJb40a+U9vcd4Nqm582twHOX2Dd1TB4uPzluMH6eOsC1TY+LB4HncWd5DPP9oMtPjhuMn1D98M2bo6Dz0PceLj+l3ITqh2/eHAWdh773cPkp5SZWP2o7qZ2Hvub11Y8SfcbqR20ntfPQNd1XP0r0yfUjnge2foRe2D65fvgZ5zy4ftDgND+/4vpBg15y/aDEINPqR+k8jo553r5l/eA83LyoWv6qePM8v2K2cf+u+G6F+Ln4XZj6deYa19mU/dtg14//7qX0OuDzHnLvYq/XmbYfvQ7Yn30oPjP/X7PmvrYcN5TdpHyvlH8bdhPfbyn3JZwezQ0F2M12/AKzNKO94C4AAA==
+   H4sIAAAAAAAAA+2Z222DMBSGLRAK4rUT9SJlgE7SLsEAmSRdggH6UrpF70+tCjmxglAwx78xBudY+pSbuf0f9hFOmSj1khN1w+sAPxkPvS8T+jjcfmMM9a0H3ttcD0r/nDj9yoQYy9aUi/6934+Ts43bOj+fvW1Gputxyd60X859XiXEh8EH173OiXve3YaOOa5TNEube3KK89ikBOLDlTmaix90/LmwTYlYfUzpaA7KlBAfy6BKCfGxDA7jA6znoTxcFUSMPqoV+rgvCPGxDB+7ghAfJ94Tot3uQfF4POLangsCbaEzN1GCz4NdH3vF4+mIa4u5frQ+kOdBPWcgx3RtMdeP1gfyPKjnjBA+Yq4fh7VEwIeeM0L4iL5+AD70nBHCR+z1A/Eh9cMPFehD6ocfNuD6ldQPP2xBH1I//FCCPkLWj5h9oOvtIetHrD7eOmseLdcZcdNwm50+97+/y6R+TJn9Z8NvrtRf53/hNa3vrnF8jOXfR3z4zd2U/SX56OajX/uZfTV8g9c/5b7m9mGTDeIDzcZmO1/5n/OxhPuG40f78JXN0H59Ze8j00vLZglINvPxD834K6TgLgAA
   </data>
  </layer>
- <layer name="ether" width="100" height="30" visible="0" opacity="0.3">
+ <layer name="ether" width="100" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XSwrCMBSF4atpnTnThajrcKbLcuB7B7724sxuwdcqPCBisQ60qAnm/+BAIZBectMLNQOAePScWd/5rgI3E/ViSj+CsVMvMvoRDOZVWJhXYWFehaWRmDWT3793qDswUsbu/o3OlDl3AwAAAG+q1K6pKu7hGQDwefzTF3EmiNVCWSorZa1scmt1LxXFba8clKNyUs65tW6J/Zhtz7XSYtpKJ319j8H3ykMJW98FAADwpy7ZuKdc4C4AAA==
+   H4sIAAAAAAAAA+3XsQmAMBRFUZsUjqNO4RrqIGkdza0UfmFhaeCDngO3fyQQSNcB0Fof1ewdhDmq2TsIe1SzdxCOqGbvAAAA/mspd+vVVrIXAdDSUJ6NV5P3HgA+yf/undbn5z7ecX4AkOcEZ+9toeAuAAA=
   </data>
  </layer>
- <objectgroup name="objects" visible="0">
-  <object x="64" y="419" width="16" height="16">
+ <objectgroup name="objects">
+  <object x="431" y="288" width="19" height="17">
    <properties>
-    <property name="function" value="toggle"/>
-    <property name="objectX" value="4"/>
-    <property name="objectY" value="26"/>
-    <property name="targetX" value="27"/>
-    <property name="targetY" value="22"/>
-    <property name="type" value="switch"/>
+    <property name="duration" value="1"/>
+    <property name="h" value="1"/>
+    <property name="type" value="timedPlatform"/>
+    <property name="w" value="7"/>
+    <property name="x" value="27"/>
+    <property name="y" value="18"/>
    </properties>
   </object>
-  <object x="432" y="355" width="15" height="15">
+  <object x="784" y="220" width="19" height="17">
    <properties>
-    <property name="objectX" value="27"/>
-    <property name="objectY" value="22"/>
-    <property name="type" value="door"/>
+    <property name="h" value="1"/>
+    <property name="type" value="platform"/>
+    <property name="w" value="5"/>
+    <property name="x" value="49"/>
+    <property name="y" value="14"/>
+   </properties>
+  </object>
+  <object x="608" y="367" width="17" height="17">
+   <properties>
+    <property name="h" value="2"/>
+    <property name="range" value="10"/>
+    <property name="type" value="elevator"/>
+    <property name="w" value="4"/>
+    <property name="x" value="38"/>
+    <property name="y" value="23"/>
+   </properties>
+  </object>
+  <object x="97" y="336" width="23" height="19">
+   <properties>
+    <property name="proximity" value="8"/>
+    <property name="tx" value="38"/>
+    <property name="ty" value="23"/>
+    <property name="type" value="switch"/>
+    <property name="x" value="7"/>
+    <property name="y" value="21"/>
+   </properties>
+  </object>
+  <object x="287" y="385" width="17" height="17">
+   <properties>
+    <property name="duration" value="1"/>
+    <property name="h" value="2"/>
+    <property name="range" value="7"/>
+    <property name="type" value="timedElevator"/>
+    <property name="w" value="4"/>
+    <property name="x" value="18"/>
+    <property name="y" value="24"/>
    </properties>
   </object>
  </objectgroup>

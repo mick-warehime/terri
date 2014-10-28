@@ -6,18 +6,16 @@ public class TimedPlatform extends EtherObject implements Timed {
 
 	private int duration;
 	private long putTime;
-	public TimedPlatform(int i, int j, TiledMap map, int duration) {
-		super(i, j, map);
 
-		// duration in milliseconds
-		this.duration = duration*1000;
+	public TimedPlatform(int gi, int oi, TiledMap map) {		
+		super(gi, oi, map);
+
+		// default duration is set to 1000 milliseconds	
+		String strDuration =  map.getObjectProperty(gi, oi, "duration", "1" );
+		this.duration = Integer.parseInt(strDuration)*1000;
 
 	}
 
-	protected void setObjectDimensions(){
-		this.h = this.tileSize;
-		this.w = 7*this.tileSize;
-	}
 
 
 	@Override

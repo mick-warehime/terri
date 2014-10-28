@@ -7,6 +7,7 @@ import etherable.Elevator;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.Switch;
+import etherable.TimedElevator;
 import etherable.TimedPlatform;
 import etherable.Wall;
 
@@ -30,7 +31,6 @@ public class TileData {
 		// TODO Auto-generated constructor stub		
 		tileSize = map.getTileHeight();
 
-
 		initializeMeta(map);
 		initializeObjects(map);
 	}
@@ -44,20 +44,23 @@ public class TileData {
 			int objectCount = map.getObjectCount(gi);
 			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
 			{
-				String objectType =  map.getObjectProperty(gi, oi, "type", "" );
-				String objX =  map.getObjectProperty(gi, oi, "objectX", "0" );
-				String objY =  map.getObjectProperty(gi, oi, "objectY", "0" );
-				String tarX =  map.getObjectProperty(gi, oi, "targetX", "0" );
-				String tarY =  map.getObjectProperty(gi, oi, "targetY", "0" );
-				int oX = Integer.parseInt(objX);
-				int oY = Integer.parseInt(objY);
-				int tX = Integer.parseInt(tarX);
-				int tY = Integer.parseInt(tarY);
-				if(objectType.equals("door")){					
-					gameObjects.add(new Door(oX,oY,map));
+				String objectType =  map.getObjectProperty(gi, oi, "type", "" );				
+				
+				if(objectType.equals("timedPlatform")){					
+					gameObjects.add(new TimedPlatform(gi,oi,map));
 				}
+				if(objectType.equals("platform")){					
+					gameObjects.add(new Platform(gi,oi,map));
+				}
+				if(objectType.equals("elevator")){					
+					gameObjects.add(new Elevator(gi,oi,map));
+				}
+				if(objectType.equals("timedElevator")){					
+					gameObjects.add(new TimedElevator(gi,oi,map));
+				}
+				
 				if(objectType.equals("switch")){
-					gameObjects.add(new Switch(oX,oY,tX,tY,map));
+					gameObjects.add(new Switch(gi,oi,map));
 				}
 				
 			}
@@ -97,24 +100,11 @@ public class TileData {
 				// Get the value of the Property named "blocked"
 				String blockedValue = map.getTileProperty(tileID, "blocked", "false");
 				String objectType = map.getTileProperty(tileID, "type","none" );
-
 				// If the value of the Property is "true"...
 				if(blockedValue.equals("true")) {
-
 					// keep a list of all the rects of the permanently blocked tiles
 					blocks.add(new Rectangle(i * tileSize,j * tileSize, tileSize, tileSize));
-				}
-				// a list of all the etherable
-				if(objectType.equals("platform")){
-					gameObjects.add(new Platform(i,j,map));
-				}
-				if(objectType.equals("timedPlatform")){
-					String duration = map.getTileProperty(tileID, "duration","0" );					
-					gameObjects.add(new TimedPlatform(i,j,map,Integer.parseInt(duration)));
-				}
-				if(objectType.equals("elevator")){
-					gameObjects.add(new Elevator(i,j,map));
-				}
+				}			
 				if(objectType.equals("wall")){
 					gameObjects.add(new Wall(i,j,map));
 				}			

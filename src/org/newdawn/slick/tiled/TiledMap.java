@@ -1085,6 +1085,7 @@ public class TiledMap {
 		public GroupObject(Element element) throws SlickException {
 			name = element.getAttribute("name");
 			type = element.getAttribute("type");
+			
 			x = Integer.parseInt(element.getAttribute("x"));
 			y = Integer.parseInt(element.getAttribute("y"));
 			width = Integer.parseInt(element.getAttribute("width"));

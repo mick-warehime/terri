@@ -17,10 +17,8 @@ public class EtherObject extends GameObject {
 
 
 
-	public EtherObject(int i, int j,  TiledMap map) {
-		super(i,j,map);
-
-		getSprites(i,j,map);
+	public EtherObject(int gi, int oi,  TiledMap map) {
+		super(gi,oi,map);
 
 		// used for collision detection		
 		setEtherRect();
@@ -28,7 +26,7 @@ public class EtherObject extends GameObject {
 	}
 
 	protected void setEtherRect(){
-		etherRect = new Rectangle(tileX,tileY,w,h);
+		etherRect = new Rectangle(x,y,w,h);
 	}
 
 
@@ -37,12 +35,13 @@ public class EtherObject extends GameObject {
 		isActive = true;
 		isPut = false;
 	}
-	public void put(int x, int y){
+	
+	public void put(int mouseX, int mouseY){
 
 		if(isActive && !isPut){
 			this.isPut = true;
-			putX = x-w/2;
-			putY = y-h/2;
+			putX = mouseX-w/2;
+			putY = mouseY-h/2;
 
 			rect.setLocation(putX,putY);
 
@@ -54,7 +53,7 @@ public class EtherObject extends GameObject {
 		isEther = false;
 		isPut = false;
 		isActive = false;
-		rect.setLocation(tileX,tileY);
+		rect.setLocation(x,y);
 	}
 
 

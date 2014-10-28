@@ -8,7 +8,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import commands.LegalDisplaceCommand;
 
-public class Elevator extends EtherObject {
+public class TimedElevator extends EtherObject implements Timed {
 
 
 	private int yPos;
@@ -18,17 +18,25 @@ public class Elevator extends EtherObject {
 	private int etherElevation = 0;
 	private int etherSpeed = 0;
 	private boolean isMoving = true;
+	private int duration;
+	private long putTime;
 
 
-	public Elevator(int gi, int oi, TiledMap map) {
+
+
+	public TimedElevator(int gi, int oi, TiledMap map) {
 		super(gi,oi,map);
-		
+
 		// set y position to initial y positiondaad
 		yPos = y;
 
 		// default range is set to 5xtilesize	
 		String strRange =  map.getObjectProperty(gi, oi, "range", "5" );
 		this.range = Integer.parseInt(strRange)*tileSize;
+
+		// default duration is set to 1000 milliseconds	
+		String strDuration =  map.getObjectProperty(gi, oi, "duration", "1" );
+		this.duration = Integer.parseInt(strDuration)*1000;
 
 	}
 
@@ -68,7 +76,12 @@ public class Elevator extends EtherObject {
 			}
 		}
 		
-	
+		if(isPut){
+			long timeElapsed = getTime()-putTime; 
+			if(timeElapsed > duration){
+				this.restore();
+			}
+		}
 	}
 
 	public void put(int x, int y){
@@ -77,7 +90,9 @@ public class Elevator extends EtherObject {
 		yPos = putY;
 		elevation = 0;
 		isMoving = true;
+
 		
+		putTime = getTime();
 
 	}
 
@@ -85,12 +100,12 @@ public class Elevator extends EtherObject {
 		super.setObjectToEther();
 
 		isMoving = false;	
-		
+
 		// the ether variables simply hold the pre-put state to make it easy to restore
 		etherElevation = elevation;
 		etherSpeed = speed;
 		etherRect.setY(y+etherElevation);
-		
+
 		// reset the range counter for the put elevator
 		elevation = 0;
 	}
@@ -103,7 +118,7 @@ public class Elevator extends EtherObject {
 		isMoving = true;
 
 		yPos = y;
-		
+
 		elevation = etherElevation;
 		speed = etherSpeed;
 		rect.setLocation(x,yPos+elevation);
@@ -113,6 +128,9 @@ public class Elevator extends EtherObject {
 		isMoving = !isMoving;
 	}
 
+	public long getTime() {
+		return System.currentTimeMillis() ;
+	}
 
 
 

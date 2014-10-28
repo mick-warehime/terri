@@ -22,7 +22,9 @@ import actors.Player;
 //  mirrors to reflect beam
 //  portals to transform ether--> solid vice versa
 //  add starting point and finish point collideable objects on the map
-
+//  certain time before you have to put object then no timer?
+// other ones that get stuck until you can place it?
+// FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
 // spikes, fire, death objects
 
 //  make one enemy type that when it hits a put object it restores it
@@ -67,7 +69,7 @@ public class Game extends BasicGame {
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(32,300,collisionHandler);
+		terri = new Player(32,375,collisionHandler);
 
 
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
