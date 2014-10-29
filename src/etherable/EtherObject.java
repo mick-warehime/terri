@@ -1,5 +1,6 @@
 package etherable;
 
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -17,8 +18,8 @@ public class EtherObject extends GameObject {
 
 
 
-	public EtherObject(int gi, int oi,  TiledMap map) {
-		super(gi,oi,map);
+	public EtherObject(int x, int y, int w, int h,  TiledMap map) throws SlickException {
+		super(x, y, w, h, map);
 
 		// used for collision detection		
 		setEtherRect();

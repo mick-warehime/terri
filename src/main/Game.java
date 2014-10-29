@@ -7,12 +7,10 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
 import commands.FireCommand;
-import commands.GenericCommand;
 import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
-import actors.Actor;
 import actors.Enemy;
 import actors.Player;
 
@@ -21,20 +19,21 @@ import actors.Player;
 //
 //  timed doors
 //  weight sensitive switches
-//  enemies
 //  mirrors to reflect beam
 //  portals to transform ether--> solid vice versa
 //  add starting point and finish point collideable objects on the map
 //  certain time before you have to put object then no timer?
-// other ones that get stuck until you can place it?
-// FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
-// spikes, fire, death objects
+//  other ones that get stuck until you can place it?
+//  FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
+//  spikes, fire, death objects
 
 //  make one enemy type that when it hits a put object it restores it
 
 // Dvir TODO: 
 // Fix inconsistency between Command and BasicCommand declarations (remove Command)
 // Finish determining enemy behavior, figure out how to kill an enemy;
+//
+//   gameobject >> is near >> slightly bigger DOESNT SEEM TO BE WORKING?
 
 public class Game extends BasicGame {
 

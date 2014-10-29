@@ -3,6 +3,7 @@ package etherable;
 
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -20,20 +21,15 @@ public class Elevator extends EtherObject {
 	private boolean isMoving = true;
 
 
-	public Elevator(int gi, int oi, TiledMap map) {
-		super(gi,oi,map);
+	public Elevator(int x, int y, int w, int h, int range, TiledMap map) throws SlickException {
+		super(x, y, w, h, map);
 		
-		// set y position to initial y positiondaad
-		yPos = y;
+		// set y position to initial y position 
+		yPos = y*tileSize;
 
-		// default range is set to 5xtilesize	
-		String strRange =  map.getObjectProperty(gi, oi, "range", "5" );
-		this.range = Integer.parseInt(strRange)*tileSize;
-
+		// 		
+		this.range = range*tileSize;
 	}
-
-
-
 
 	private boolean cantMove(){
 

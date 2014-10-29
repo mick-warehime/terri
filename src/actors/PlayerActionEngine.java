@@ -18,7 +18,7 @@ public class PlayerActionEngine extends ActionEngine {
 	
 //	private ArrayList <Action> actions;
 
-	private float ups = 15;
+	private float ups = 20;
 	private float wallUps = 15;
 	private int jumpTimer= 0;
 	private int jumpTimerIncrement = 20;

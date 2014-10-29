@@ -1086,8 +1086,8 @@ public class TiledMap {
 			name = element.getAttribute("name");
 			type = element.getAttribute("type");
 			
-			x = Integer.parseInt(element.getAttribute("x"));
-			y = Integer.parseInt(element.getAttribute("y"));
+//			x = Integer.parseInt(element.getAttribute("x"));
+//			y = Integer.parseInt(element.getAttribute("y"));
 			width = Integer.parseInt(element.getAttribute("width"));
 			height = Integer.parseInt(element.getAttribute("height"));
 

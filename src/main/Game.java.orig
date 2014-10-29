@@ -1,24 +1,42 @@
 package main;
 
-import io.FireCommand;
-import io.JumpCommand;
-import io.MoveCommand;
-<<<<<<< HEAD
-import etherable.*;
-=======
-import io.RestoreCommand;
->>>>>>> 146b1242b6d0dc56750f7971765d18901e9c6dfe
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
+import commands.FireCommand;
+import commands.GenericCommand;
+import commands.InteractCommand;
+import commands.JumpCommand;
+import commands.MoveCommand;
+import commands.RestoreCommand;
+import actors.Actor;
+import actors.Enemy;
 import actors.Player;
 
-public class Game extends BasicGame {
 
+// features to add
+//
+//  timed doors
+//  weight sensitive switches
+//  enemies
+//  mirrors to reflect beam
+//  portals to transform ether--> solid vice versa
+//  add starting point and finish point collideable objects on the map
+//  certain time before you have to put object then no timer?
+// other ones that get stuck until you can place it?
+// FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
+// spikes, fire, death objects
+
+//  make one enemy type that when it hits a put object it restores it
+
+// Dvir TODO: 
+// Fix inconsistency between Command and BasicCommand declarations (remove Command)
+// Finish determining enemy behavior, figure out how to kill an enemy;
+
+public class Game extends BasicGame {
 
 	static int width = 640;
 	static int height = 480;
@@ -44,15 +62,10 @@ public class Game extends BasicGame {
 		int mouseX = gc.getInput().getMouseX()+level.getMapX();
 		int mouseY = gc.getInput().getMouseY()+level.getMapY();
 
-
 		terri.update();
 		level.update(mouseX, mouseY);
 
-		
-
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
-
-
 
 	}
 
@@ -63,10 +76,15 @@ public class Game extends BasicGame {
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(150,300,collisionHandler);
+<<<<<<< HEAD
+		terri = new Player(32,375,collisionHandler);
+=======
+		terri = new Player(32,300,collisionHandler);
+		
+		Enemy bob = new Enemy(200,300, collisionHandler);
+>>>>>>> fc7ebc6e2bae6b4cb856427d3068f8cb755db5eb
 
-
-
+		level.addEnemy(bob);
 
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		InputProvider provider = new InputProvider(gc.getInput());
@@ -74,17 +92,19 @@ public class Game extends BasicGame {
 		provider.addListener(terri.getListener());
 
 		//Define action commands for provider
-		Command Jump = new JumpCommand("Jump");
-		//		Command moveDown = new MoveCommand("move down", 0 ,8);
-		Command moveLeft = new MoveCommand("move left", -1);
-		Command moveRight = new MoveCommand("move right", 1);
-		Command shoot = new FireCommand("Shoot gun",gc.getInput(),level);
-		Command restore = new RestoreCommand("restore held object");
+		Command jump = new JumpCommand();
+		//Command moveDown = new MoveCommand("move down", 0 ,8);
+		Command moveLeft = new MoveCommand( -1);
+		Command moveRight = new MoveCommand( 1);
+		Command shoot = new FireCommand(gc.getInput(),level);
+		Command restore = new RestoreCommand();
+		Command interact = new InteractCommand();
 
 		//Bind commands to keys
-		provider.bindCommand(new KeyControl(Input.KEY_SPACE), Jump);
+		provider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);
 		provider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 		provider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
+		provider.bindCommand(new KeyControl(Input.KEY_E), interact);
 		provider.bindCommand(new MouseButtonControl(0), shoot);
 		provider.bindCommand(new MouseButtonControl(1), restore);
 		

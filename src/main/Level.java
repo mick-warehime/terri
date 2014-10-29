@@ -57,11 +57,9 @@ public class Level {
 		this.enemies = new ArrayList<Enemy>();
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
 
-		
-
-		
-
 	}
+	
+	
 
 	public void addEnemy(Enemy nme){
 		enemies.add(nme);
