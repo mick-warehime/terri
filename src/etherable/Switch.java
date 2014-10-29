@@ -13,20 +13,18 @@ public class Switch extends GameObject implements Interactive{
 	private int targetX;
 	private int targetY;
 
-	public Switch(int gi, int oi, TiledMap map) throws SlickException {		
-		super(gi, oi, map);
+	public Switch(int x, int y, int w, int h, int tx, int ty, int prox, TiledMap map) throws SlickException {		
+		super(x, y, w, h, map);
 
-
-		getSprites();
+		// override the default game object call to get sprites and load the same sprites for every switch
+		getSprites(map);
 
 		// default proximity (how close in pixels to switch) is set to 5
-		String strProximity =  map.getObjectProperty(gi, oi, "proximity", "5" );
-		this.proximity = Integer.parseInt(strProximity);
+		this.proximity = prox;
 
-		String strTargetX =  map.getObjectProperty(gi, oi, "tx", "0" );
-		this.targetX= Integer.parseInt(strTargetX)*tileSize;
-		String strTargetY =  map.getObjectProperty(gi, oi, "ty", "0" );
-		this.targetY= Integer.parseInt(strTargetY)*tileSize;
+		// location of the target
+		this.targetX= tx*tileSize;
+		this.targetY= ty*tileSize;
 
 	}
 
@@ -41,13 +39,8 @@ public class Switch extends GameObject implements Interactive{
 		}
 		target = null;
 	}
-
-	protected void setObjectDimensions(){
-		this.h = this.tileSize;
-		this.w = this.tileSize;
-	}
-
-	private void getSprites() throws SlickException{
+	
+	protected void getSprites(TiledMap map) throws SlickException{
 		sprites.add(new Image("data/lever_left.png"));
 		sprites.add(new Image("data/lever_right.png"));
 	}
@@ -60,7 +53,6 @@ public class Switch extends GameObject implements Interactive{
 			// turned switch
 			im = sprites.get(1);
 		}
-
 		im.draw(rect.getX()-mapX,rect.getY()-mapY);		
 	}
 

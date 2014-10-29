@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import main.CollisionHandler;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -26,22 +25,40 @@ public class GameObject {
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
-	public GameObject(int x, int y, int w, int h, TiledMap map) throws SlickException{
+	public GameObject(int gi, int oi,  TiledMap map){
 
 		tileSize = map.getTileHeight();				
 
-		this.I = x;
-		this.J = y;
-		
-		this.x = x*tileSize;
-		this.y = y*tileSize;
-		this.h = h*tileSize;
-		this.w = w*tileSize;	
+		parseObject(gi,oi,map);
+
+//		setObjectDimensions();
 		
 		getSprites(map);
-		
 		// used for collision detection		
 		setRect();
+
+	}
+
+	private void parseObject(int gi, int oi, TiledMap map){
+		//		get position in tiles not pixels
+		String strX =  map.getObjectProperty(gi, oi, "x", "0" );
+		I = Integer.parseInt(strX);
+		x = I*tileSize;
+
+		String strY =  map.getObjectProperty(gi, oi, "y", "0" );
+		J = Integer.parseInt(strY);
+		y = J*tileSize;
+
+		// default duration is set to h/w = 0/0		
+		String strH =  map.getObjectProperty(gi, oi, "h", "0" );
+		h = Integer.parseInt(strH)*tileSize;
+
+		String strW =  map.getObjectProperty(gi, oi, "w", "0" );
+		w = Integer.parseInt(strW)*tileSize;
+
+		if(x==0 || y == 0 ){
+			System.out.println("ERROR NOT ALL DEFAULT OBJECT PROPERTIES SET (X,Y) ");
+		}
 
 	}
 
@@ -92,14 +109,19 @@ public class GameObject {
 
 	//Checks if an input rect is near the object's rect
 	public boolean isNear(Rectangle rectTest) {
+<<<<<<< HEAD
 
-		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,w+2*proximity,h+2*proximity);
+=======
 		
+		
+>>>>>>> fc7ebc6e2bae6b4cb856427d3068f8cb755db5eb
+		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,w+2*proximity,h+2*proximity);
+
 		return slightlyBiggerRect.intersects(rectTest);
 	}
 
 
-	protected void getSprites(TiledMap map) throws SlickException{
+	protected void getSprites(TiledMap map){
 		
 		int etherIndex = map.getLayerIndex("ether");
 
@@ -126,9 +148,4 @@ public class GameObject {
 			}
 		}
 	}
-	
-	public long getTime() {
-		return System.currentTimeMillis() ;
-	}
-
 }

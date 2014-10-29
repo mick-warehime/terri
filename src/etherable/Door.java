@@ -1,19 +1,14 @@
 package etherable;
 
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Door extends GameObject{
 	private boolean open = false;
 	
-	public Door(int i, int j, TiledMap map) {
+	public Door(int x, int y, int w, int h, TiledMap map) throws SlickException {
 
-		super(i, j, map);
-		getSprites(i,j,map);
-	}
-
-	protected void setObjectDimensions(){
-		this.h = 4*this.tileSize;
-		this.w = this.tileSize;
+		super(x, y, w, h, map);
 	}
 
 	public void update(int mouseX, int mouseY){};

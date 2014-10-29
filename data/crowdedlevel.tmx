@@ -38,7 +38,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="meta" width="100" height="30">
+ <layer name="meta" width="100" height="30" visible="0">
   <properties>
    <property name="blocked" value="&quot;false&quot;"/>
   </properties>
@@ -46,27 +46,20 @@
    H4sIAAAAAAAAA+2YQQ6DQAwDeUA/zc977KUGVvHGDvJI3DBNMqtly/k5jhNcFdAzlZcjK3U+7WvXfNgz3uWIsUYqNVXny/o9xjxZa41ZR/ih2uPiw4v48CI+vJjoY1q9K8SHF/HhBfM/VfcZ/Y3EhxdVHwriA+cUxAfOKYgPnFMQHzinID5wTkF84JyC+MA5BfGBcwriA+cUvNVH5ZtHfNS4m+ek/ib6WF3Lk/pz9sHaS1z7+8dKf7v33l37eIcP1mzQPZXZPM11vUOd1s1druN84XaGuaqrch+rBofZOJDZ9PAFmIAV1+AuAAA=
   </data>
  </layer>
- <layer name="tiles" width="100" height="30" visible="0" opacity="0.5">
+ <layer name="tiles" width="100" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2Z222DMBSGLRAK4rUT9SJlgE7SLsEAmSRdggH6UrpF70+tCjmxglAwx78xBudY+pSbuf0f9hFOmSj1khN1w+sAPxkPvS8T+jjcfmMM9a0H3ttcD0r/nDj9yoQYy9aUi/6934+Ts43bOj+fvW1Gputxyd60X859XiXEh8EH173OiXve3YaOOa5TNEube3KK89ikBOLDlTmaix90/LmwTYlYfUzpaA7KlBAfy6BKCfGxDA7jA6znoTxcFUSMPqoV+rgvCPGxDB+7ghAfJ94Tot3uQfF4POLangsCbaEzN1GCz4NdH3vF4+mIa4u5frQ+kOdBPWcgx3RtMdeP1gfyPKjnjBA+Yq4fh7VEwIeeM0L4iL5+AD70nBHCR+z1A/Eh9cMPFehD6ocfNuD6ldQPP2xBH1I//FCCPkLWj5h9oOvtIetHrD7eOmseLdcZcdNwm50+97+/y6R+TJn9Z8NvrtRf53/hNa3vrnF8jOXfR3z4zd2U/SX56OajX/uZfTV8g9c/5b7m9mGTDeIDzcZmO1/5n/OxhPuG40f78JXN0H59Ze8j00vLZglINvPxD834K6TgLgAA
   </data>
  </layer>
  <layer name="ether" width="100" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XsQmAMBQE0DQpHEedwjXUQWwzmltpJ6KdkS/yHlydIweBpATAG5qUlugOHAZ7fEqxx60m6NzVHreG6AKclOgCnKzRBQCAXxnzkWnPnKMbAVBTm6/p9vTeewD4Jf+7Z2rfnz2ecX8AEGcDTaGkQeAuAAA=
+   H4sIAAAAAAAAA+3XsQmAMBRFUZsUjqNO4RrqIGkdza0UfmFhaeCDngO3fyQQSNcB0Fof1ewdhDmq2TsIe1SzdxCOqGbvAAAA/mspd+vVVrIXAdDSUJ6NV5P3HgA+yf/undbn5z7ecX4AkOcEZ+9toeAuAAA=
   </data>
  </layer>
- <objectgroup name="objects" opacity="0.58">
-  <properties>
-   <property name="h" value="4"/>
-   <property name="type" value="door"/>
-   <property name="w" value="1"/>
-   <property name="x" value="43"/>
-   <property name="y" value="3"/>
-  </properties>
+ <objectgroup name="objects">
   <object x="431" y="288" width="19" height="17">
    <properties>
-    <property name="duration" value="2"/>
+    <property name="duration" value="1"/>
     <property name="h" value="1"/>
     <property name="type" value="timedPlatform"/>
     <property name="w" value="7"/>
@@ -74,46 +67,44 @@
     <property name="y" value="18"/>
    </properties>
   </object>
-  <object x="287" y="384.5" width="19" height="17">
+  <object x="784" y="220" width="19" height="17">
    <properties>
     <property name="h" value="1"/>
     <property name="type" value="platform"/>
-    <property name="w" value="4"/>
-    <property name="x" value="18"/>
-    <property name="y" value="24"/>
+    <property name="w" value="5"/>
+    <property name="x" value="49"/>
+    <property name="y" value="14"/>
    </properties>
   </object>
-  <object x="607" y="368" width="19" height="17">
+  <object x="608" y="367" width="17" height="17">
    <properties>
-    <property name="duration" value="2"/>
     <property name="h" value="2"/>
-    <property name="range" value="7"/>
-    <property name="type" value="timedElevator"/>
+    <property name="range" value="10"/>
+    <property name="type" value="elevator"/>
     <property name="w" value="4"/>
     <property name="x" value="38"/>
     <property name="y" value="23"/>
    </properties>
   </object>
-  <object x="115" y="335" width="18" height="17">
+  <object x="97" y="336" width="23" height="19">
    <properties>
-    <property name="7" value="21"/>
-    <property name="h" value="1"/>
-    <property name="tx" value="14"/>
-    <property name="ty" value="6"/>
+    <property name="proximity" value="8"/>
+    <property name="tx" value="38"/>
+    <property name="ty" value="23"/>
     <property name="type" value="switch"/>
-    <property name="w" value="1"/>
     <property name="x" value="7"/>
     <property name="y" value="21"/>
    </properties>
   </object>
-  <object x="224" y="97" width="19" height="17">
+  <object x="287" y="385" width="17" height="17">
    <properties>
     <property name="duration" value="1"/>
-    <property name="h" value="4"/>
-    <property name="type" value="timedDoor"/>
-    <property name="w" value="1"/>
-    <property name="x" value="14"/>
-    <property name="y" value="6"/>
+    <property name="h" value="2"/>
+    <property name="range" value="7"/>
+    <property name="type" value="timedElevator"/>
+    <property name="w" value="4"/>
+    <property name="x" value="18"/>
+    <property name="y" value="24"/>
    </properties>
   </object>
  </objectgroup>
