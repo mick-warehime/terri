@@ -78,7 +78,7 @@ public class Game extends BasicGame {
 
 		terri = new Player(32,300,collisionHandler);
 		
-		Enemy bob = new Enemy(200,300, collisionHandler);
+		Enemy bob = new Enemy(240,300, collisionHandler);
 
 		level.addEnemy(bob);
 

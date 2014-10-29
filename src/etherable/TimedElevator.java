@@ -47,7 +47,7 @@ public class TimedElevator extends EtherObject implements Timed {
 
 		boolean answer = Math.abs(elevation)>range || elevation>0;
 
-		answer = answer || collisionHandler.isCollidedWithNonPlayer(this);
+		answer = answer || collisionHandler.isCollided(this);
 		return answer;
 	}
 

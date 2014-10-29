@@ -18,7 +18,7 @@ public class PlayerActionEngine extends ActionEngine {
 	
 //	private ArrayList <Action> actions;
 
-	private float ups = 15;
+	private float ups = 20;
 	private float wallUps = 15;
 	private int jumpTimer= 0;
 	private int jumpTimerIncrement = 20;
@@ -149,10 +149,10 @@ public class PlayerActionEngine extends ActionEngine {
 				triedMove = true;
 			}
 		}
-		//Attempt a wall jump (conditioned on having tried a jump and move)
-		if (triedJump && triedMove){
-			attemptWallJump();
-		}
+//		//Attempt a wall jump (conditioned on having tried a jump and move)
+//		if (triedJump && triedMove){
+//			attemptWallJump();
+//		}
 		//Decelerate if no move command given
 		//		System.out.println(status.isTouchingGround());
 		if (!triedMove ){//&& (status.isTouchingGround()

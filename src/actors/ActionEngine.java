@@ -72,16 +72,19 @@ public class ActionEngine {
 
 	private void movePhysics() {        
 
-
+		
 		//Horizontal movement and collision checking
-		attemptDisplacement(vx,0);
+		boolean success = attemptDisplacement(vx,0);
+		if (!success){
+			status.gainEffect("X collision", 1);
+		}
 
 		//Set vertical velocity to 0 if touching ground and 
 		//going down.
 		if (status.isTouchingGround() && vy>2){this.vy = 0;}
 
 		//Vertical displacement
-		boolean success = attemptDisplacement(0,vy);
+		success = attemptDisplacement(0,vy);
 		//Apply gravity if not touching the ground or
 		// if a positive displacement(down) was successful
 		boolean stopCond = !success && (vy>0); 
@@ -94,8 +97,8 @@ public class ActionEngine {
 
 		//		System.out.println("velocity: " + vy);
 
-
-		assert !status.isCollided() : "Player is inside an object!";
+		
+		assert !status.isCollided() : "Actor is inside an object!";
 
 	}
 

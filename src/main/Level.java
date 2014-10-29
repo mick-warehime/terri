@@ -1,6 +1,8 @@
 package main;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
@@ -66,9 +68,7 @@ public class Level {
 	public void addEnemy(Enemy nme){
 		enemies.add(nme);
 	}
-	public void removeEnemy(Enemy nme){
-		enemies.remove(nme);
-	}
+	
 	
 
 	public void update(int mouseX, int mouseY){
@@ -76,14 +76,24 @@ public class Level {
 			gObj.update(mouseX,mouseY);
 		}
 		
-		for (Enemy nme: enemies){
-			nme.update();
-//			if(nme.isDying()){
-//				removeEnemy(nme);
-//			}
+		List<Enemy> toKill = new ArrayList<Enemy>();
+		if (enemies != null){
+			for (Enemy nme: enemies){
+				nme.update();
+				if(nme.isDying()){
+					toKill.add(nme);
+				}	
+			}
 		}
-
+		
+		//Removes dead things from the level lists
+		for (Enemy nme : toKill){
+			enemies.remove(nme);
+		}
+		
 	}
+	
+	
 
 
 	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		

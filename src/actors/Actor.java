@@ -31,14 +31,15 @@ public class Actor {
 
 	public void update() {
 	
-		//Receive all command inputs
+		//Note: The order of these calls is important!
+		//Update status
+		status.update();
+		
+		//Receive all command inputs (some depend on status)
 		listener.update();
 		
-		//Do actions
+		//Do actions (depends on listener)
 		engine.update();
-//		if (status.isDying()){
-//			System.out.println("Oh no!!!");
-//		}
 		
 		
 	}
