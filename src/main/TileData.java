@@ -7,9 +7,9 @@ import etherable.Elevator;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.Switch;
-import etherable.TimedDoor;
 import etherable.TimedElevator;
 import etherable.TimedPlatform;
+import etherable.TimedSwitch;
 
 import java.util.ArrayList;
 
@@ -45,15 +45,14 @@ public class TileData {
 			int objectCount = map.getObjectCount(gi);
 			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
 			{
-				String objectType =  getObjectString(gi,oi,map,"type");				
+				String objectType =  map.getObjectType(gi,oi);				
 				
 				// PARSE GAME OBJECT FOR DIMENSION
-				int x = getObjectInt(gi,oi,map,"x");
-				int y = getObjectInt(gi,oi,map,"y");
-				int h = getObjectInt(gi,oi,map,"h");
-				int w = getObjectInt(gi,oi,map,"w");
-				
-			
+				int x = map.getObjectX(gi,oi)/tileSize;
+				int y = map.getObjectY(gi,oi)/tileSize;
+				int h = map.getObjectHeight(gi,oi)/tileSize;
+				int w = map.getObjectWidth(gi,oi)/tileSize;
+								
 				if(objectType.equals("platform")){					
 					gameObjects.add(new Platform(x, y, w, h, map));
 				}
@@ -64,16 +63,14 @@ public class TileData {
 				if(objectType.equals("door")){		
 					gameObjects.add(new Door(x, y, w, h, map));
 				}
-				if(objectType.equals("timedDoor")){		
-					int duration = getObjectInt(gi, oi, map, "duration");
-					gameObjects.add(new TimedDoor(x,y,w,h,duration,map));
-				}
-				
-				if(objectType.equals("elevator")){	
+ 
+				if(objectType.equals("elevator")){
 					int range = getObjectInt(gi, oi, map, "range");
 					gameObjects.add(new Elevator(x, y, w, h, range, map));
 				}
 				if(objectType.equals("timedElevator")){
+					System.out.println(map.getObjectX(gi, oi));
+
 					int range = getObjectInt(gi, oi, map, "range");
 					int duration = getObjectInt(gi, oi, map, "duration");
 
@@ -86,17 +83,22 @@ public class TileData {
 					int prox = getObjectInt(gi, oi, map, "prox"); // how close you need to be in pxls to switch
 					gameObjects.add(new Switch(x,y,w,h,tarX,tarY,prox,map));
 				}
-
+				if(objectType.equals("timedSwitch")){
+					int tarX = getObjectInt(gi, oi, map, "tx"); // (tx,ty) target location in tiles from tiledmap
+					int tarY = getObjectInt(gi, oi, map, "ty");
+					int prox = getObjectInt(gi, oi, map, "prox"); // how close you need to be in pxls to switch
+					int duration = getObjectInt(gi, oi, map, "duration");
+					gameObjects.add(new TimedSwitch(x,y,w,h,tarX,tarY,prox,duration,map));
+				}
 			}
 		}
 
 		// Add swtich targets
 		for(GameObject gObj: gameObjects){
-			if(gObj instanceof Switch){
+			if(gObj instanceof Switch || gObj instanceof TimedSwitch){
 				gObj.setTarget(gameObjects);
 			}
 		}
-
 	}
 
 	private void initializeMeta(TiledMap map){

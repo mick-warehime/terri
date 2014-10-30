@@ -107,5 +107,12 @@
     <property name="y" value="24"/>
    </properties>
   </object>
+  <object x="51" y="404" width="13" height="11">
+   <properties>
+    <property name="type" value="start"/>
+    <property name="x" value="3"/>
+    <property name="y" value="25"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

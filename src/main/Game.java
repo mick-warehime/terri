@@ -74,7 +74,7 @@ public class Game extends BasicGame {
 		level = new Level(0,0);
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
-
+		
 		terri = new Player(32,300,collisionHandler);
 		
 		Enemy bob = new Enemy(240,300, collisionHandler);
