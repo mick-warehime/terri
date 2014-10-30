@@ -41,8 +41,6 @@ public class Level {
 		mapY = y;
 
 		map = new TiledMap("data/gametiles.tmx");
-		
-
 		tileData = new TileData(map);
 
 		// used for drawing (allows the dude to be outside the center of the screen)

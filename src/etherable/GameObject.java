@@ -87,9 +87,9 @@ public class GameObject {
 
 	public void setTarget(ArrayList<GameObject> gameObjects) {
 		throw new UnsupportedOperationException(); 
-
 	}
-
+	
+	
 	//Checks if an input rect is near the object's rect
 	public boolean isNear(Rectangle rectTest) {
 
