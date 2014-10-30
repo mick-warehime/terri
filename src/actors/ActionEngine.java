@@ -49,7 +49,7 @@ public class ActionEngine {
 		}else if(direction<0){
 			vx = Math.max(vx - runAcc, -maxSpeed);
 		}
-		System.out.println(vx);
+		
 		return;
 
 	}
@@ -114,71 +114,7 @@ public class ActionEngine {
 
 	}
 
-//	// Attempts a displacement, or a smaller
-//	// one if possible. returns success or failure, depending on whether
-//	// any displacement occurred at all
-//	public boolean attemptDisplacement(float disp, char XorY){
-//		boolean notCollided = false;
-//
-//		//Null displacement always succeeds
-//		if (disp == (float) 0){return true;}
-//		
-//		
-//		maxDisplace(disp,XorY);
-//		
-//		//x only displacement
-//		if (dy == (float) 0){
-//			if (dx>0){
-//				for (float ddx = dx; ddx >0 ; ddx--){//Try displacements until they work
-//					status.displace(ddx,'x');
-//					notCollided = !status.isCollided();
-//					if (notCollided){break;};
-//					status.displace(-ddx,'x'); // Only keep the displacement if no collision occured
-//				} 	
-//				return notCollided;
-//			}
-//			if (dx<0){
-//				for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
-//					status.displace(ddx,'x');
-//					notCollided = !status.isCollided();
-//					if (notCollided){break;};
-//					status.displace(-ddx,'x'); // Only keep the displacement if no collision occured
-//				} 	
-//				return notCollided;
-//			}
-//		}
-//
-//		//y only displacement
-//		if (dx ==  (float) 0){
-//			if (dy>0){
-//				for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
-//					status.displace(ddy,'y');
-//					notCollided = !status.isCollided();
-//					if (notCollided){break;};
-//					status.displace(-ddy,'y'); // Only keep the displacement if no collision occured
-//				} 	
-//				return notCollided;
-//			}
-//			if (dy<0){
-//				for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
-//					status.displace(ddy,'y');
-//					notCollided = !status.isCollided();
-//					if (notCollided){break;};
-//					status.displace(-ddy,'y'); // Only keep the displacement if no collision occured
-//				} 	
-//				return notCollided;
-//			}
-//		}
-//
-//		//If x and y displacements occur, a success occurs if there is any
-//		// displacement
-//		boolean xAttemptSuccess = attemptDisplacement(dx,0);
-//		boolean yAttemptSuccess = attemptDisplacement(0,dy);
-//
-//		return (xAttemptSuccess || yAttemptSuccess);
-//
-//	}
-	
+
 	//Does the maximum possible displacement in a given direction
 	//Does this through a bisection type algorithm
 	//Returns true if any displacement was possible
