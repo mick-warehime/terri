@@ -84,17 +84,18 @@
    </properties>
   </object>
   <object name="D" type="door" x="224" y="96" width="16" height="64"/>
-  <object name="St" type="start" x="48" y="400" width="16" height="16">
+  <object name="St" type="start" x="512" y="256" width="16" height="16">
    <properties>
     <property name="type" value="start"/>
     <property name="x" value="3"/>
     <property name="y" value="25"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="256" y="416" width="16" height="16">
+  <object name="E" type="enemy" x="256" y="400" width="16" height="16">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
+  <object type="cameraStart" x="304" y="0" width="16" height="16"/>
  </objectgroup>
 </map>

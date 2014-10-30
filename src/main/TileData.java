@@ -69,7 +69,6 @@ public class TileData {
 					gameObjects.add(new Elevator(x, y, w, h, range, map));
 				}
 				if(objectType.equals("timedElevator")){
-					System.out.println(map.getObjectX(gi, oi));
 
 					int range = getObjectInt(gi, oi, map, "range");
 					int duration = getObjectInt(gi, oi, map, "duration");

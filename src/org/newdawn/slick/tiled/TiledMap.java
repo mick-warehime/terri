@@ -1087,11 +1087,12 @@ public class TiledMap {
 			type = element.getAttribute("type");
 			x = (int) Float.parseFloat(element.getAttribute("x"));
 			y = (int) Float.parseFloat(element.getAttribute("y"));
-
+			width = (int) Float.parseFloat(element.getAttribute("width"));
+			height = (int) Float.parseFloat(element.getAttribute("height"));
 //			x = Integer.parseInt(element.getAttribute("x"));
 //			y = Integer.parseInt(element.getAttribute("y"));
-			width = Integer.parseInt(element.getAttribute("width"));
-			height = Integer.parseInt(element.getAttribute("height"));
+//			width = Integer.parseInt(element.getAttribute("width"));
+//			height = Integer.parseInt(element.getAttribute("height"));
 
 			Element imageElement = (Element) element.getElementsByTagName(
 					"image").item(0);
