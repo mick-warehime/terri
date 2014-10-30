@@ -50,6 +50,9 @@ public class Behavior implements CommandProvider{
 	}
 	
 	private void decideMoveDirection(){
+		if (status.hasEffect("X Collision")){
+			System.out.println("X collisioN!");
+		}
 		return;
 	}
 

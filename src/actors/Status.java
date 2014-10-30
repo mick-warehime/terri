@@ -14,6 +14,7 @@ public class Status {
 	private float x;
 	private float y;
 	private boolean isDying;
+	private ArrayList<Effect> effects;
 
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
@@ -35,7 +36,7 @@ public class Status {
 		
 		this.collisionHandler = collisionHandler;
 		
-		
+		effects = new ArrayList<Effect>();
 		
 	}
 	
@@ -89,7 +90,62 @@ public class Status {
 	public boolean isDying(){
 		return isDying;
 	}
-
 	
+	public void update(){
+		
+		ArrayList <Effect> toRemove = new ArrayList<Effect>();
+		
+		//Count down effects and see if they've reached the end of their lifetimes
+		for (Effect eff : effects){
+//			System.out.println(eff.name + ", " + eff.timer);
+			if (eff.countDown()){
+				toRemove.add(eff);
+			}
+		}
+		
+		//Remove dead effects
+		for (Effect eff: toRemove){
+			effects.remove(eff);
+		}
+		
+		return;
+	}
+	
+	public void gainEffect(String name, int duration){
+		effects.add(new Effect(name,duration));
+	}
+	
+	public boolean hasEffect(String name){
+		
+		for (Effect eff: effects){
+			if (eff.name == name){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+
+	class Effect{
+		
+		public String name;
+		public int duration;
+		public int timer;
+		
+		public Effect(String name, int duration){
+			this.name = name;
+			this.duration = duration;
+			this.timer = duration;
+		}
+		
+		//Count down to effect end
+		public boolean countDown(){
+			timer -=1;
+			return (timer < 0);
+		}
+		
+		
+	}
 	
 }
