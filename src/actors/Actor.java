@@ -21,9 +21,9 @@ public class Actor {
 		
 	}
 
-	public int getX() {return status.getX();}
+	public float getX() {return status.getX();}
 
-	public int getY() {return status.getY();}
+	public float getY() {return status.getY();}
 
 	public void render(Graphics g, int mapX, int mapY) {
 		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    

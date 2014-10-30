@@ -20,7 +20,7 @@ public class Enemy extends Actor {
 		
 		listener = new GlobalInputListener();
 		
-		engine = new ActionEngine(listener, status);
+		engine = new EnemyActionEngine(listener, status);
 		
 		sprite = new Image("data/lemming.png");
 		

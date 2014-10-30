@@ -12,11 +12,9 @@ public class MoveCommand extends BasicCommand implements GenericCommand{
 
 	
 	public MoveCommand(int direction) {
-		super("Move Command");
+		super("Move " + direction );
 		this.direction = direction;
-		
-//		this.y = y;
-		// TODO Auto-generated constructor stub
+
 	}
 	
 

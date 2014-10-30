@@ -46,9 +46,9 @@ public class Status {
 
 	public boolean isTouchingGround() {
 		boolean answer = false;
-		displace(0,+2);
+		displace(2,'Y');
 		answer = isCollided();
-		displace(0,-2);
+		displace(-2,'Y');
 		
 		return answer;
 	}
@@ -59,8 +59,8 @@ public class Status {
 	}
 
 
-	public int getX (){return (int)x;}
-	public int getY (){return (int)y;}
+	public float getX (){return x;}
+	public float getY (){return y;}
 	
 	//Fix this. Level is a global variable
 	public boolean isCollided(){
@@ -74,12 +74,20 @@ public class Status {
 	}
 
 	//Displaces the player 
-	public void displace(float dx, float dy){
-		this.x += dx;
-		this.y += dy;
-		rect.setX((int)this.x);
-		rect.setY((int)this.y);
-		return;
+	public void displace(float disp, char XorY){
+		
+		
+		if (XorY == 'x' || XorY == 'X'){
+			this.x += disp;
+			rect.setX( this.x);
+			return;
+		} else if (XorY == 'y' || XorY == 'Y'){
+			this.y += disp;
+			rect.setY( this.y);
+			return;
+		}
+		
+		throw new UnsupportedOperationException("Improper input arguments!");
 	}
 
 	public void setDying(boolean b) {
@@ -142,7 +150,7 @@ public class Status {
 		//Count down to effect end
 		public boolean countDown(){
 			timer -=1;
-			return (timer < 0);
+			return (timer <= 0);
 		}
 		
 		
