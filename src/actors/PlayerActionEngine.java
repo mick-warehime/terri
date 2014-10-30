@@ -24,12 +24,18 @@ public class PlayerActionEngine extends ActionEngine {
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
 	private int interactTimerIncrement = 20;
+	
+	private float runDec = 1;
+	
+
+	
 
 
 	public PlayerActionEngine(GlobalInputListener listener, Status status, Gun gun){
 		super(listener,status);
 		this.gun = gun;
-		
+		this.runAcc = 2;
+		this.maxSpeed = 5;
 
 	}
 
@@ -97,13 +103,13 @@ public class PlayerActionEngine extends ActionEngine {
 		//Check that I am touching a wall in the direction
 		//that I'm moving	
 		if (vx<0){
-			status.displace(-1,0);
+			status.displace(-1,'X');
 			answer = status.isCollided();
-			status.displace(1,0);
+			status.displace(1,'X');
 		}else{
-			status.displace(1,0);
+			status.displace(1,'X');
 			answer = status.isCollided();
-			status.displace(-1,0);
+			status.displace(-1,'X');
 		}
 		//Check that jumpTimer is 0;
 		answer = answer && (jumpTimer == 0); 
@@ -161,6 +167,15 @@ public class PlayerActionEngine extends ActionEngine {
 		
 		
 
+	}
+
+	//////////////////////////
+	
+	protected void decelerate() {
+		
+		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
+		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
+		
 	}
 	
 

@@ -18,10 +18,8 @@ public class ActionEngine {
 	private float gravity = 1;
 	protected float vx = 0;
 	protected float vy = 0;
-	private float runAcc = 2;
-	private float runDec = 1;
-
-	private float maxSpeed = 5;
+	protected float runAcc = 0; //Default values
+	protected float maxSpeed = 0;
 	
 	
 
@@ -51,7 +49,7 @@ public class ActionEngine {
 		}else if(direction<0){
 			vx = Math.max(vx - runAcc, -maxSpeed);
 		}
-
+		System.out.println(vx);
 		return;
 
 	}
@@ -63,20 +61,14 @@ public class ActionEngine {
 	
 	//////////////////////////
 
-	protected void decelerate() {
-		//		float vx = status.getVx();
-		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
-		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
-		//		status.setVx(vx);
-	}
-
 	private void movePhysics() {        
 
 		
 		//Horizontal movement and collision checking
-		boolean success = attemptDisplacement(vx,0);
+		boolean success = attemptDisplacement(vx,'x');
 		if (!success){
 			status.gainEffect("X collision", 1);
+			vx = 0;
 		}
 
 		//Set vertical velocity to 0 if touching ground and 
@@ -84,7 +76,7 @@ public class ActionEngine {
 		if (status.isTouchingGround() && vy>2){this.vy = 0;}
 
 		//Vertical displacement
-		success = attemptDisplacement(0,vy);
+		success = attemptDisplacement(vy,'y');
 		//Apply gravity if not touching the ground or
 		// if a positive displacement(down) was successful
 		boolean stopCond = !success && (vy>0); 
@@ -92,7 +84,7 @@ public class ActionEngine {
 			this.vy += gravity;
 		}
 
-		if (!success){this.vy = 0;} //Only set vy to 0 on a vertical collision
+		if (!success){this.vy = (float) 0;} //Only set vy to 0 on a vertical collision
 
 
 		//		System.out.println("velocity: " + vy);
@@ -115,7 +107,6 @@ public class ActionEngine {
 		//Do the associated actions
 		for (Command cmd : currentActionCommands){
 			((GenericCommand)cmd).execute(this);
-			
 		}
 		
 
@@ -123,64 +114,127 @@ public class ActionEngine {
 
 	}
 
-	// Attempts a displacement, or a smaller
-	// one if possible. returns success or failure
-	public boolean attemptDisplacement(float dx, float dy){
-		boolean notCollided = false;
-
-		//Null displacement always succeeds
-		if (dx == 0 && dy == 0){return true;}
-
-		//x only displacement
-		if (dy == 0){
-			if (dx>0){
-				for (int ddx = (int) dx; ddx >0 ; ddx--){//Try displacements until they work
-					status.displace(ddx,0);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(-ddx,0); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
-			if (dx<0){
-				for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
-					status.displace(ddx,0);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(-ddx,0); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
-			}
+//	// Attempts a displacement, or a smaller
+//	// one if possible. returns success or failure, depending on whether
+//	// any displacement occurred at all
+//	public boolean attemptDisplacement(float disp, char XorY){
+//		boolean notCollided = false;
+//
+//		//Null displacement always succeeds
+//		if (disp == (float) 0){return true;}
+//		
+//		
+//		maxDisplace(disp,XorY);
+//		
+//		//x only displacement
+//		if (dy == (float) 0){
+//			if (dx>0){
+//				for (float ddx = dx; ddx >0 ; ddx--){//Try displacements until they work
+//					status.displace(ddx,'x');
+//					notCollided = !status.isCollided();
+//					if (notCollided){break;};
+//					status.displace(-ddx,'x'); // Only keep the displacement if no collision occured
+//				} 	
+//				return notCollided;
+//			}
+//			if (dx<0){
+//				for (int ddx = (int) dx; ddx <0 ; ddx++){//Try displacements until they work
+//					status.displace(ddx,'x');
+//					notCollided = !status.isCollided();
+//					if (notCollided){break;};
+//					status.displace(-ddx,'x'); // Only keep the displacement if no collision occured
+//				} 	
+//				return notCollided;
+//			}
+//		}
+//
+//		//y only displacement
+//		if (dx ==  (float) 0){
+//			if (dy>0){
+//				for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
+//					status.displace(ddy,'y');
+//					notCollided = !status.isCollided();
+//					if (notCollided){break;};
+//					status.displace(-ddy,'y'); // Only keep the displacement if no collision occured
+//				} 	
+//				return notCollided;
+//			}
+//			if (dy<0){
+//				for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
+//					status.displace(ddy,'y');
+//					notCollided = !status.isCollided();
+//					if (notCollided){break;};
+//					status.displace(-ddy,'y'); // Only keep the displacement if no collision occured
+//				} 	
+//				return notCollided;
+//			}
+//		}
+//
+//		//If x and y displacements occur, a success occurs if there is any
+//		// displacement
+//		boolean xAttemptSuccess = attemptDisplacement(dx,0);
+//		boolean yAttemptSuccess = attemptDisplacement(0,dy);
+//
+//		return (xAttemptSuccess || yAttemptSuccess);
+//
+//	}
+	
+	//Does the maximum possible displacement in a given direction
+	//Does this through a bisection type algorithm
+	//Returns true if any displacement was possible
+	
+	public boolean attemptDisplacement(float disp, char XorY){
+		
+		float dMax = disp;
+		float lastValid = 0;
+		
+		if (disp == 0){
+			return true;
 		}
+		
+		int sign = 1;
+		if (disp<0){ sign = -1;} //Accounts for a negative disp below
+		
+		float diff = (float) Math.abs(dMax*0.5);
+		float minDiff = (float) 0.1;
+		
+		
+		boolean collided;
+		
+		//Check displacements dMax until the maximum displacement
+		// is reached. Store largest valid displacement.
 
-		//y only displacement
-		if (dx == 0){
-			if (dy>0){
-				for (int ddy =(int) dy; ddy >0 ; ddy--){//Try displacements until they work
-					status.displace(0,ddy);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(0,-ddy); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
+		while (diff>minDiff){ //diff starts at dMax/2
+
+			//Check if dMax displacement collides
+			status.displace(dMax,XorY);
+			collided = status.isCollided();
+			status.displace(-dMax, XorY);
+
+			if (!collided && dMax == disp){ //Maximum initial displacement doesn't collide, so accept it
+				status.displace(dMax, XorY);
+				return true;
 			}
-			if (dy<0){
-				for (int ddy =(int) dy; ddy <0 ; ddy++){//Try displacements until they work
-					status.displace(0,ddy);
-					notCollided = !status.isCollided();
-					if (notCollided){break;};
-					status.displace(0,-ddy); // Only keep the displacement if no collision occured
-				} 	
-				return notCollided;
+
+			if (collided){ //dMax collides, so decrease it.
+				dMax -= sign*diff;
+
 			}
+			//Non-maximal displacement doesn't collide, so increase it
+			// and store this valid displacement.
+			if (!collided){ 
+				lastValid = dMax;
+				dMax += sign*diff;
+			}
+
+			diff = (float) (diff*.5);
+
 		}
+		
+		//Do the last valid displacement 
+		status.displace(lastValid,XorY);
+		return (Math.abs(lastValid)>0); //Success if any displacement occurred
 
-		//If x and y displacements occur, a success occurs if there is any
-		// displacement
-		boolean xAttemptSuccess = attemptDisplacement(dx,0);
-		boolean yAttemptSuccess = attemptDisplacement(0,dy);
-
-		return (xAttemptSuccess || yAttemptSuccess);
 
 	}
 

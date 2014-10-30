@@ -28,27 +28,27 @@ public class LegalDisplaceCommand extends BasicCommand implements GenericCommand
 		//Do the displacement depending on assigned direction
 		if (direction == "+x"){
 			//this does the largest possible displacement
-			engine.attemptDisplacement(maxRange,0); 
+			engine.attemptDisplacement(maxRange,'x'); 
 			//so reverse since want to do the minimum displacement
-			engine.attemptDisplacement(-maxRange,0); 
+			engine.attemptDisplacement(-maxRange,'x'); 
 		}
 		if (direction == "-x"){
 			//this does the largest possible displacement
-			engine.attemptDisplacement(-maxRange,0); 
+			engine.attemptDisplacement(-maxRange,'x'); 
 			//so reverse since want to do the minimum displacement
-			engine.attemptDisplacement(maxRange,0); 
+			engine.attemptDisplacement(maxRange,'x'); 
 		}
 		if (direction == "+y"){
 			//this does the largest possible displacement
-			engine.attemptDisplacement(0,maxRange); 
+			engine.attemptDisplacement(maxRange,'y'); 
 			//so reverse since want to do the minimum displacement
-			engine.attemptDisplacement(0,-maxRange); 
+			engine.attemptDisplacement(-maxRange, 'y'); 
 		}
 		if (direction == "-y"){
 			//this does the largest possible displacement
-			engine.attemptDisplacement(0,-maxRange); 
+			engine.attemptDisplacement(-maxRange, 'y'); 
 			//so reverse since want to do the minimum displacement
-			engine.attemptDisplacement(0,maxRange); 
+			engine.attemptDisplacement(maxRange,'y'); 
 		}
 
 	}

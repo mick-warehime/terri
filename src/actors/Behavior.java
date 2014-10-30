@@ -8,6 +8,7 @@ import org.newdawn.slick.command.Command;
 
 import commands.CommandProvider;
 import commands.DieCommand;
+import commands.MoveCommand;
 
 //Gives commands to an actor based on world conditions
 public class Behavior implements CommandProvider{
@@ -15,6 +16,7 @@ public class Behavior implements CommandProvider{
 	private Status status;
 	private CollisionHandler collisionHandler;
 	private ArrayList<Command> commandStack;
+	private int moveDirection = -1;
 	
 	public Behavior(Status status, CollisionHandler collisionHandler) {
 		this.status = status;
@@ -37,7 +39,7 @@ public class Behavior implements CommandProvider{
 			resolvePlayerCollision();
 		}
 		
-		decideMoveDirection();
+		decideMovement();
 			
 		
 		
@@ -49,10 +51,14 @@ public class Behavior implements CommandProvider{
 		commandStack.add(new DieCommand());
 	}
 	
-	private void decideMoveDirection(){
-		if (status.hasEffect("X Collision")){
-			System.out.println("X collisioN!");
+	private void decideMovement(){
+		
+		if (status.hasEffect("X collision")){
+			moveDirection = -moveDirection;
 		}
+		
+		commandStack.add(new MoveCommand(moveDirection));
+		
 		return;
 	}
 
