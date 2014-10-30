@@ -71,15 +71,11 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 
-		level = new Level(0,0);
+		level = new Level();
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 		
-		terri = new Player(32,300,collisionHandler);
-		
-		Enemy bob = new Enemy(240,300, collisionHandler);
-
-		level.addEnemy(bob);
+		terri = new Player(level.getMap(),collisionHandler);
 
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		InputProvider provider = new InputProvider(gc.getInput());

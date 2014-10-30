@@ -32,16 +32,12 @@ public class Level {
 	private int tileLayerId;
 	private CollisionHandler collisionHandler;
 	private TileData tileData;
-	
+
 	private ArrayList<Enemy> enemies;
 
-	public Level(int x, int y) throws SlickException {
+	public Level() throws SlickException {
 
-		// initialize the map location
-		//tileSize location of top-left corner of the map to blit
-		mapX = x;
-		mapY = y;
-
+		// load map
 		map = new TiledMap("data/gametiles.tmx");
 		tileData = new TileData(map);
 
@@ -52,26 +48,58 @@ public class Level {
 		tileSizeWidth = width/tileSize;
 		tileSizeHeight = height/tileSize;
 		tileLayerId = map.getLayerIndex("tiles");
-		
-		
+
+
 		this.enemies = new ArrayList<Enemy>();
+
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
 
+		// set start position and load enemies
+		initializeLevelObjects();
+
+
 	}
-	
-	
+
+
+
+	public void initializeLevelObjects() throws SlickException{
+		int objectGroupCount = map.getObjectGroupCount();
+		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
+		{
+			int objectCount = map.getObjectCount(gi);
+			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
+			{
+				String type = map.getObjectType(gi, oi);
+				int x = map.getObjectX(gi, oi);
+				int y = map.getObjectY(gi, oi);
+
+				if(type.equals("cameraStart")){
+					mapX = x;
+					mapY = y;					
+				}
+
+				if(type.equals("enemy")){
+					enemies.add(new Enemy(x,y, collisionHandler));	
+				}
+
+			}
+		}
+	};
+
+
+
 
 	public void addEnemy(Enemy nme){
 		enemies.add(nme);
 	}
-	
-	
+
+
 
 	public void update(int mouseX, int mouseY){
 		for(GameObject gObj: tileData.getGameObjects()){
 			gObj.update(mouseX,mouseY);
 		}
-		
+
 		List<Enemy> toKill = new ArrayList<Enemy>();
 		if (enemies != null){
 			for (Enemy nme: enemies){
@@ -81,15 +109,15 @@ public class Level {
 				}	
 			}
 		}
-		
+
 		//Removes dead things from the level lists
 		for (Enemy nme : toKill){
 			enemies.remove(nme);
 		}
-		
+
 	}
-	
-	
+
+
 
 
 	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
@@ -120,11 +148,11 @@ public class Level {
 		for(GameObject gObj: tileData.getGameObjects()){		
 			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
-		
+
 		for (Enemy nme: enemies){
 			nme.render(g,mapX,mapY);
 		}
-		
+
 	}
 
 	private void mapXCheck(){
@@ -153,6 +181,9 @@ public class Level {
 		}
 	}
 
+	public TiledMap getMap(){
+		return map;
+	}
 
 	public int getMapX(){return mapX;}
 	public int getMapY(){return mapY;}
