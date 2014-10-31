@@ -35,10 +35,6 @@ public class Enemy extends Actor {
 		
 	}
 	
-	public boolean isDying(){
-		return status.isDying();
-	}
-	
 	
 
 	
