@@ -87,8 +87,7 @@ public class ActionEngine {
 		if (!success){this.vy = (float) 0;} //Only set vy to 0 on a vertical collision
 
 
-		//		System.out.println("velocity: " + vy);
-
+		
 		
 		assert !status.isCollided() : "Actor is inside an object!";
 

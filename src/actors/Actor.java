@@ -56,4 +56,8 @@ public class Actor {
 		return status.getRect();
 	}
 
+	public boolean isDying(){
+		return status.isDying();
+	}
+
 }
