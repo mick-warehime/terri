@@ -8,6 +8,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
+import etherable.DeadlyObject;
 import etherable.GameObject;
 
 
@@ -53,10 +54,12 @@ public class Level {
 		this.enemies = new ArrayList<Enemy>();
 
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
-
+		
+		tileData.setCollisionHandler(collisionHandler);
 		// set start position and load enemies
 		initializeLevelObjects();
-
+		
+		
 
 	}
 
@@ -69,19 +72,18 @@ public class Level {
 			int objectCount = map.getObjectCount(gi);
 			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
 			{
-				String type = map.getObjectType(gi, oi);
+				String objectType = map.getObjectType(gi, oi);
 				int x = map.getObjectX(gi, oi);
 				int y = map.getObjectY(gi, oi);
 
-				if(type.equals("cameraStart")){
+				if(objectType.equals("cameraStart")){
 					mapX = x;
 					mapY = y;					
 				}
 
-				if(type.equals("enemy")){
+				if(objectType.equals("enemy")){
 					enemies.add(new Enemy(x,y, collisionHandler));	
-				}
-
+				}				
 			}
 		}
 	};

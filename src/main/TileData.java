@@ -2,6 +2,7 @@
 package main;
 //import etherable.Platform;
 //import etherable.Elevator;
+import etherable.DeadlyObject;
 import etherable.Door;
 import etherable.Elevator;
 import etherable.GameObject;
@@ -55,6 +56,9 @@ public class TileData {
 								
 				if(objectType.equals("platform")){					
 					gameObjects.add(new Platform(x, y, w, h, map));
+				}
+				if(objectType.equals("deadly")){					
+					gameObjects.add(new DeadlyObject(x, y, w, h, map));
 				}
 				if(objectType.equals("timedPlatform")){		
 					int duration = getObjectInt(gi, oi, map, "duration");
@@ -143,34 +147,12 @@ public class TileData {
 	public ArrayList<Rectangle> getBlocks(){
 		return blocks;
 	}
-
-//	
-//	public ArrayList<Enemy> getEnemies(TiledMap map, collisionHandler){
-//		
-//		ArrayList<Enemy> enemies = new ArrayList<Enemy>(); 
-//		
-//		int objectGroupCount = map.getObjectGroupCount();
-//		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
-//		{
-//			int objectCount = map.getObjectCount(gi);
-//			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
-//			{
-//				String objectType =  getObjectString(gi,oi,map,"type");				
-//				if(objectType.equals("switch")){
-//					// PARSE GAME OBJECT FOR DIMENSION
-//					int x = getObjectInt(gi,oi,map,"x");
-//					int y = getObjectInt(gi,oi,map,"y");
-//					int h = getObjectInt(gi,oi,map,"h");
-//					int w = getObjectInt(gi,oi,map,"w");
-//
-//
-//
-//					gameObjects.add(new Switch(gi,oi,map));
-//				}
-//
-//			}
-//		}
-//	}
-
 	
+	public void setCollisionHandler(CollisionHandler collisionHandler){
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof DeadlyObject){
+				gObj.setCollisionHandler(collisionHandler);
+			}
+		}
+	}
 }

@@ -6,8 +6,6 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class EtherObject extends GameObject {
 
-
-
 	protected int putX;
 	protected int putY;
 
@@ -15,7 +13,7 @@ public class EtherObject extends GameObject {
 	protected boolean isEther = false;
 	protected boolean isPut = false;
 	protected boolean isActive = false;
-
+	protected boolean isTimed = false;
 
 
 	public EtherObject(int x, int y, int w, int h,  TiledMap map) throws SlickException {
@@ -68,18 +66,16 @@ public class EtherObject extends GameObject {
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-
+		
 		if(isEther){ //If ether
 			//Draw ether tile
 			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
 			//If it's placed:
-			if(isPut){
+			if(isPut){			
 				drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);	
 			}else{ //Otherwise
 				int hoverX = (mouseX-w/2+mapX);
 				int hoverY = (mouseY-h/2+mapY);
-
-
 				// if the dude cant see the location he cant put it there... dont draw it there
 				if(canPut()){
 					drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
@@ -112,7 +108,5 @@ public class EtherObject extends GameObject {
 	public boolean canCollide(){
 		return isPut || !isActive;
 	}
-
-
 
 }

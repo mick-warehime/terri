@@ -40,10 +40,8 @@ public class TimedSwitch extends GameObject implements Interactive{
 			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
 				// give the switch the correesponding target object
 				target = gObj;				
-				// if the target has a timer, give the target object the corresponding switch
-//				if(target instanceof Timed){
-//					gObj.setSwitch(target);
-//				}
+	
+				
 				return;
 			} 
 		}

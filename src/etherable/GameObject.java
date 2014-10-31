@@ -20,7 +20,7 @@ public class GameObject {
 	protected int w;
 	
 	protected int tileSize;
-	protected int proximity = 0;
+	protected int proximity;
 
 	protected Rectangle rect;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 

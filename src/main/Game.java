@@ -27,6 +27,8 @@ import actors.Player;
 //  FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
 //  spikes, fire, death objects
 
+//  ENEMY CANNON 
+
 //  make one enemy type that when it hits a put object it restores it
 
 // Dvir TODO: 
