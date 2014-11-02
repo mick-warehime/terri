@@ -41,18 +41,23 @@ public class CollisionHandler implements CommandProvider {
 				
 		}
 		
-		populateInteractiveObjects();
+		
 		
 
 	}
 
 	
-	private void populateInteractiveObjects() {
+	public void populateInteractiveObjects() {
 		interactives = new ArrayList<InteractiveCollideable>();
 		
 		for (GameObject gObj: gameObjects){
 			if (gObj instanceof InteractiveCollideable){
 				interactives.add((InteractiveCollideable) gObj);
+			}
+		}
+		for (Enemy nme: enemies){
+			if (nme instanceof InteractiveCollideable){
+				interactives.add((InteractiveCollideable) nme);
 			}
 		}
 		

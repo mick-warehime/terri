@@ -61,6 +61,11 @@ public class Level {
 		// set start position and load enemies
 		initializeLevelObjects();
 		
+		//This is a bad kludge. This method can't be called
+		// within the collisionHandler constructor because
+		// the collisionHandler has to wait for initializeLevelObjects to run.
+		collisionHandler.populateInteractiveObjects();
+		
 		
 
 	}
