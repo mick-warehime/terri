@@ -6,7 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TimedSwitch extends GameObject implements Interactive{
+public class TimedSwitch extends GameObject implements Interactive, SwitchObject{
 	// state  = 1 for up and state = 2 for down
 	private boolean state = false;
 	private GameObject target;

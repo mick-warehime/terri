@@ -8,9 +8,11 @@ import etherable.Elevator;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.Switch;
+import etherable.SwitchObject;
 import etherable.TimedElevator;
 import etherable.TimedPlatform;
 import etherable.TimedSwitch;
+import etherable.WeightedSwitch;
 
 import java.util.ArrayList;
 
@@ -93,12 +95,17 @@ public class TileData {
 					int duration = getObjectInt(gi, oi, map, "duration");
 					gameObjects.add(new TimedSwitch(x,y,w,h,tarX,tarY,prox,duration,map));
 				}
+				if(objectType.equals("weightedSwitch")){
+					int tarX = getObjectInt(gi, oi, map, "tx"); // (tx,ty) target location in tiles from tiledmap
+					int tarY = getObjectInt(gi, oi, map, "ty");
+					gameObjects.add(new WeightedSwitch(x,y,w,h,tarX,tarY,map));
+				}
 			}
 		}
 
 		// Add swtich targets
 		for(GameObject gObj: gameObjects){
-			if(gObj instanceof Switch || gObj instanceof TimedSwitch){
+			if(gObj instanceof SwitchObject ){
 				gObj.setTarget(gameObjects);
 			}
 		}

@@ -14,7 +14,6 @@ public class DeadlyObject extends EtherObject{
 	public DeadlyObject(int x, int y, int w, int h, TiledMap map) throws SlickException {
 		super(x, y, w, h, map);
 		slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
-		System.out.println(slightlyBiggerRect.getY()+" "+rect.getY());
 	}
 	
 	public void update(int mouseX, int mouseY){
@@ -23,6 +22,7 @@ public class DeadlyObject extends EtherObject{
 		if (collisionHandler.isCollidedWithPlayer(slightlyBiggerRect)){			
 			collisionHandler.addToCommandStack(new DieCommand());
 		}
+				
 	}
 	
 

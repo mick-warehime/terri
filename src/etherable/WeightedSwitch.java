@@ -6,26 +6,23 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class Switch extends GameObject implements Interactive, SwitchObject{
-	// state  = 1 for up and state = 2 for down
+public class WeightedSwitch extends GameObject implements SwitchObject {
+	// state  = false for up and state = true for down
 	private boolean state = false;
 	private GameObject target;
 	private int targetX;
 	private int targetY;
 
-	public Switch(int x, int y, int w, int h, int tx, int ty, int prox, TiledMap map) throws SlickException {		
+
+	public WeightedSwitch(int x, int y, int w, int h, int tx, int ty, TiledMap map) throws SlickException {		
 		super(x, y, w, h, map);
 
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
 
-		// default proximity (how close in pixels to switch) is set to 5
-		this.proximity = prox;
-
 		// location of the target
 		this.targetX= tx*tileSize;
 		this.targetY= ty*tileSize;
-
 	}
 
 	public void setTarget(ArrayList<GameObject> gameObjects){
@@ -34,10 +31,8 @@ public class Switch extends GameObject implements Interactive, SwitchObject{
 			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
 				// give the switch the correesponding target object
 				target = gObj;				
-				// if the target has a timer, give the target object the corresponding switch
-//				if(target instanceof Timed){
-//					gObj.setSwitch(target);
-//				}
+	
+				
 				return;
 			} 
 		}
@@ -46,33 +41,50 @@ public class Switch extends GameObject implements Interactive, SwitchObject{
 
 	protected void getSprites(TiledMap map) throws SlickException{
 		sprites.add(new Image("data/lever_left.png"));
-		sprites.add(new Image("data/lever_right.png"));
 	}
 
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-		// unturned switch
 		Image im = sprites.get(0);
-		if(state){
-			// turned switch
-			im = sprites.get(1);
+		if(!state){
+			// only draw if the switch is not weighed down
+			im.draw(rect.getX()-mapX,rect.getY()-mapY);
 		}
-		im.draw(rect.getX()-mapX,rect.getY()-mapY);		
+				
 	}
 
 	public boolean canCollide(){
 		return false;
 	}
 
-	public void update(int mouseX, int mouseY){};
+	public void update(int mouseX, int mouseY){
+		// if switch was not weighed down
+		if(state){
+//			check if it became weighed down
+			if (!isWeighedDown()){			
+				toggle();
+			}
+			// if the switch was weighed down check if it still is 
+		}else{
+			if (isWeighedDown()){			
+				toggle();
+			}
+		}
+		
+	};
 
 	public void toggle(){
+
 		state = !state;		
 		target.toggle();
 	}
 
-	public void restoreTimedSwitch(){
-		state = false;
+	
+	private boolean isWeighedDown(){
+
+		boolean answer =  collisionHandler.isCollidedWithPlayer(rect);
+		answer = answer || collisionHandler. collidedWithEnemy(rect);
+		return answer;
 	}
 
 

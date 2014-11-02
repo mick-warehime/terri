@@ -43,20 +43,20 @@
    <property name="blocked" value="&quot;false&quot;"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YQQ6DQAwDeUA/zc977KUGVvHGDvJI3DBNMqtly/k5jhNcFdAzlZcjK3U+7WvXfNgz3uWIsUYqNVXny/o9xjxZa41ZR/ih2uPiw4v48CI+vJjoY1q9K8SHF/HhBfM/VfcZ/Y3EhxdVHwriA+cUxAfOKYgPnFMQHzinID5wTkF84JyC+MA5BfGBcwriA+cUvNVH5ZtHfNS4m+ek/ib6WF3Lk/pz9sHaS1z7+8dKf7v33l37eIcP1mzQPZXZPM11vUOd1s1druN84XaGuaqrch+rBofZOJDZ9PAFmIAV1+AuAAA=
+   H4sIAAAAAAAAA+2ZQQ6EIBAEfYCf9ud72qMRQo/WaFXCER26JkDCsW/bcTJWOPvmk4PITJ2j66rKJ51xlaNEj6zUtJpv6n+JPFO9lqyjC/9aK2t+ao/TBwt9sNAHC32w0AcLfbDQBwt9sNAHC32w0AcLfbDQBwt9sNAHi64+OtU7gz5Y6IPD6JtwxTtxovbOXOXafX10ZntaHxlSe8pbfVTvwVX7+Rt8rGQzOu+us3TlbE/34Mi86nsG9S6TyL5y/tcxm3v4AYN1PrrgLgAA
   </data>
  </layer>
- <layer name="tiles" width="100" height="30" visible="0" opacity="0.5">
+ <layer name="tiles" width="100" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Z222DMBSGLRAK4rUT9SJlgE7SLsEAmSRdggH6UrpF70+tCjmxglAwx78xBudY+pSbuf0f9hFOmSj1khN1w+sAPxkPvS8T+jjcfmMM9a0H3ttcD0r/nDj9yoQYy9aUi/6934+Ts43bOj+fvW1Gputxyd60X859XiXEh8EH173OiXve3YaOOa5TNEube3KK89ikBOLDlTmaix90/LmwTYlYfUzpaA7KlBAfy6BKCfGxDA7jA6znoTxcFUSMPqoV+rgvCPGxDB+7ghAfJ94Tot3uQfF4POLangsCbaEzN1GCz4NdH3vF4+mIa4u5frQ+kOdBPWcgx3RtMdeP1gfyPKjnjBA+Yq4fh7VEwIeeM0L4iL5+AD70nBHCR+z1A/Eh9cMPFehD6ocfNuD6ldQPP2xBH1I//FCCPkLWj5h9oOvtIetHrD7eOmseLdcZcdNwm50+97+/y6R+TJn9Z8NvrtRf53/hNa3vrnF8jOXfR3z4zd2U/SX56OajX/uZfTV8g9c/5b7m9mGTDeIDzcZmO1/5n/OxhPuG40f78JXN0H59Ze8j00vLZglINvPxD834K6TgLgAA
+   H4sIAAAAAAAAA+2aywrDIBBFRei351PatP2vZNv3tkoQBqvJNLRkZrwHLgloVOagiySdd25wU8ZC9oUcmH2WUppvaVw6f7xao/P1tqGSVK9YD1qjUp+8vtTDEmmsfPyRXK1xm/FRg9ab1oj73Nr5cvfwsS30HLQKfMhCow+L51QCPmQBH7KAD1nAhyy0+UhOrAIfstDkg747sQp8yAI+ZAEfsoAPWcCHLLT5sPrdI6HNh2UXEU0+rJ9VEU0+WtgfPSPHkFPIeaM1toSm/dEC8CEL+JAFfMgi+riEXP10fw95hDw9759PTnrmWjjP5e3fjK+B1+4zNT9zfWus9fcP3xoo1Zjrh3oCv+ENWuHbPOAuAAA=
   </data>
  </layer>
  <layer name="ether" width="100" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XQQqDMBAF0GyykHqZtqfwGupBuvVo3srsrNSFoO2U8B58ssxnBgJJCYBvaFJ6RXdg1dnHX5nsY1cTdO9sH7u66AJsTNEF2JijCwAAVenzmqFkzNGNALjSPX/mUfL03gNAlfzvzrl6fvZxztH53Urat7P9TT0AqNoCqQg28eAuAAA=
+   H4sIAAAAAAAAA+3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAA4G+ekqdq4C4AAA==
   </data>
  </layer>
- <objectgroup name="objects" opacity="0.58">
+ <objectgroup name="objects" visible="0" opacity="0.58">
   <properties>
    <property name="h" value="4"/>
    <property name="type" value="door"/>
@@ -84,8 +84,7 @@
     <property name="ty" value="23"/>
    </properties>
   </object>
-  <object name="D" type="door" x="224" y="96" width="16" height="64"/>
-  <object name="St" type="start" x="192" y="144" width="16" height="16">
+  <object name="St" type="start" x="352" y="128" width="16" height="16">
    <properties>
     <property name="type" value="start"/>
     <property name="x" value="3"/>
@@ -98,7 +97,7 @@
    </properties>
   </object>
   <object type="cameraStart" x="304" y="0" width="16" height="16"/>
-  <object name="E" type="enemy" x="272" y="112" width="16" height="16">
+  <object name="E" type="enemy" x="416" y="240" width="16" height="16">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
