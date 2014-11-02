@@ -9,7 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import commands.LegalDisplaceCommand;
 
-public class Elevator extends EtherObject {
+public class Elevator extends EtherObject implements InteractiveCollideable {
 
 
 	private int yPos;
@@ -54,15 +54,15 @@ public class Elevator extends EtherObject {
 			rect.setY(yPos+elevation);
 		}
 
-		//Check for collision with player and displace player accordingly
-		if (collisionHandler.isCollidedWithPlayer(this)){
-			if (speed>0){
-				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
-			}
-			if (speed<0){
-				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
-			}
-		}
+//		//Check for collision with player and displace player accordingly
+//		if (collisionHandler.isCollidedWithPlayer(this)){
+//			if (speed>0){
+//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
+//			}
+//			if (speed<0){
+//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
+//			}
+//		}
 		
 	
 	}
@@ -107,6 +107,27 @@ public class Elevator extends EtherObject {
 
 	public void toggle(){
 		isMoving = !isMoving;
+	}
+
+	@Override
+	public void onCollisionDo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Command onCollisionBroadcast() {
+		
+		
+		if (speed>=0){
+			return new LegalDisplaceCommand("+y",20);
+		}
+		else{
+			return new LegalDisplaceCommand("-y",-20) ;
+		}
+	
+		
+		
 	}
 
 

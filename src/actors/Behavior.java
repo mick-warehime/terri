@@ -39,6 +39,9 @@ public class Behavior implements CommandProvider{
 			resolvePlayerCollision();
 		}
 		
+		//Resolve collision with interactives
+		resolveInteractiveCollisions();
+		
 		decideMovement();
 			
 		
@@ -48,8 +51,8 @@ public class Behavior implements CommandProvider{
 	
 	//Apply these reactions on Player Collision
 	private void resolvePlayerCollision(){
-//		commandStack.add(new DieCommand());
-		collisionHandler.addToCommandStack(new DieCommand());
+		commandStack.add(new DieCommand());
+//		collisionHandler.addToCommandStack(new DieCommand());
 	}
 	
 	private void decideMovement(){
@@ -60,6 +63,12 @@ public class Behavior implements CommandProvider{
 		
 		commandStack.add(new MoveCommand(moveDirection));
 		
+		return;
+	}
+	
+	private void resolveInteractiveCollisions(){
+		ArrayList newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect());
+		commandStack.addAll(newCommands);
 		return;
 	}
 
