@@ -9,7 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import commands.LegalDisplaceCommand;
 
-public class TimedElevator extends EtherObject implements Timed {
+public class TimedElevator extends EtherObject implements Timed,InteractiveCollideable {
 
 
 	private int yPos;
@@ -62,15 +62,15 @@ public class TimedElevator extends EtherObject implements Timed {
 			rect.setY(yPos+elevation);
 		}
 
-		//Check for collision with player and displace player accordingly
-		if (collisionHandler.isCollidedWithPlayer(this)){
-			if (speed>0){
-				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
-			}
-			if (speed<0){
-				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
-			}
-		}
+//		//Check for collision with player and displace player accordingly
+//		if (collisionHandler.isCollidedWithPlayer(this)){
+//			if (speed>0){
+//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
+//			}
+//			if (speed<0){
+//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
+//			}
+//		}
 		
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
@@ -122,6 +122,28 @@ public class TimedElevator extends EtherObject implements Timed {
 
 	public void toggle(){
 		isMoving = !isMoving;
+	}
+
+
+
+
+	@Override
+	public void onCollisionDo(String collidingObjectClass) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public Command onCollisionBroadcast(String collidingObjectClass) {
+		if (speed>=0){
+			return new LegalDisplaceCommand("+y",speed);
+		}
+		else{
+			return new LegalDisplaceCommand("-y",-speed) ;
+		}
 	}
 
 

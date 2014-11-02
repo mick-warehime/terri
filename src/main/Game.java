@@ -29,9 +29,7 @@ import actors.Player;
 //  make one enemy type that when it hits a put object it restores it
 
 // Dvir TODO: 
-// Fix inconsistency between Command and BasicCommand declarations (remove Command)
-//
-//   gameobject >> is near >> slightly bigger DOESNT SEEM TO BE WORKING?
+
 
 public class Game extends BasicGame {
 
@@ -46,6 +44,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
+	private int currentLevel = 1;
 
 	//	private Ether activeEtherObject = null; 
 
@@ -65,7 +64,7 @@ public class Game extends BasicGame {
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-			initializeLevel();
+			initializeLevel(currentLevel);
 			
 			//This is a stupid kludge that should be fixed
 			//It should be defined once, but I need to pass it
@@ -84,14 +83,14 @@ public class Game extends BasicGame {
 
 		initializeKeyBindings(gc);
 
-		initializeLevel();
+		initializeLevel(currentLevel);
 		
 		Command shoot = new FireCommand(gc.getInput(),level);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
 	}
 
-	private void initializeLevel() throws SlickException{
-		level = new Level();
+	private void initializeLevel(int levelNumber) throws SlickException{
+		level = new Level(levelNumber);
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 

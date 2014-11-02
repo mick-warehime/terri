@@ -43,12 +43,14 @@ public class LegalDisplaceCommand extends BasicCommand implements GenericCommand
 			engine.attemptDisplacement(maxRange,'y'); 
 			//so reverse since want to do the minimum displacement
 			engine.attemptDisplacement(-maxRange, 'y'); 
+			
 		}
 		if (direction == "-y"){
 			//this does the largest possible displacement
 			engine.attemptDisplacement(-maxRange, 'y'); 
 			//so reverse since want to do the minimum displacement
 			engine.attemptDisplacement(maxRange,'y'); 
+			
 		}
 
 	}

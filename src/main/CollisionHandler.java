@@ -12,6 +12,7 @@ import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Interactive;
+import etherable.InteractiveCollideable;
 
 
 public class CollisionHandler implements CommandProvider {
@@ -22,10 +23,9 @@ public class CollisionHandler implements CommandProvider {
 	private ArrayList<Enemy> enemies;
 	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
-	//Commands sent to the player if a collision
-	// occurs
-	private ArrayList<Command> collisionCommandStack = new ArrayList<Command>();
 
+	// Objects that do something on collision
+	private ArrayList <InteractiveCollideable> interactives;
 
 	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
 		this.blocks = blockedList;
@@ -35,12 +35,32 @@ public class CollisionHandler implements CommandProvider {
 		// add the collisionHandler to the ether objects that need it
 
 		for(GameObject gObj: gameObjects){
-
-			gObj.setCollisionHandler(this);
-
+			
+				gObj.setCollisionHandler(this);
+			
+				
 		}
+		
+		
+		
 
+	}
 
+	
+	public void populateInteractiveObjects() {
+		interactives = new ArrayList<InteractiveCollideable>();
+		
+		for (GameObject gObj: gameObjects){
+			if (gObj instanceof InteractiveCollideable){
+				interactives.add((InteractiveCollideable) gObj);
+			}
+		}
+		for (Enemy nme: enemies){
+			if (nme instanceof InteractiveCollideable){
+				interactives.add((InteractiveCollideable) nme);
+			}
+		}
+		
 	}
 
 
@@ -186,16 +206,17 @@ public class CollisionHandler implements CommandProvider {
 		return playerRect.intersects(gObj.getRect());
 	}
 
-	public void addToCommandStack(Command cmd){
-		collisionCommandStack.add(cmd);
-
-	}
+//	public void addToCommandStack(Command cmd){
+//		collisionCommandStack.add(cmd);
+//
+//	}
 
 	public ArrayList<Command> getCommands(){
-		@SuppressWarnings("unchecked")
-		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
-		collisionCommandStack.clear();
-		return answer;
+//		@SuppressWarnings("unchecked")
+//		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
+//		collisionCommandStack.clear();
+//		return answer;
+		return resolveInteractiveCollisions(playerRect, "Player");
 	}
 
 	//Returns if the line of sight from the player to an EtherObject
@@ -238,6 +259,31 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
+	
+	
+	//Checks a rect for collisions with interactive collideables
+	// outputs a list of commands for an actor with the rect to do,
+	// and does the interactive's inherent collision command
+	// For collisions to be class specific, we pass in a 
+	// collidingObjectClass.
+	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect, String collidingObjectClass ){
+		ArrayList<Command> output = new  ArrayList <Command>();
+		
+		//Make a slightly bigger rectangle because physics don't 
+		// allow you to actually move into another object
+		int proximity = 1;
+		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
+		
+		for (InteractiveCollideable interObj : interactives){
+			if (slightlyBiggerRect.intersects(interObj.getRect())){
+				interObj.onCollisionDo(collidingObjectClass);
+				output.add(interObj.onCollisionBroadcast(collidingObjectClass));
+			}
+		}
+		
+		
+		return output;
+	}
 
 
 }
