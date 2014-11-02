@@ -49,14 +49,11 @@ public class Behavior implements CommandProvider{
 		
 		
 	}
-	public void addCommand(Command cmd){
-		
-	}
+	
 	
 	//Apply these reactions on Player Collision
 	private void resolvePlayerCollision(){
 		commandStack.add(new DieCommand());
-//		collisionHandler.addToCommandStack(new DieCommand());
 	}
 	
 	private void decideMovement(){
