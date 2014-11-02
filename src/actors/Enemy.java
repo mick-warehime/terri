@@ -52,7 +52,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	public Command onCollisionBroadcast(String collidingObjectClass) {
 		// TODO Auto-generated method stub
 		if (collidingObjectClass == "Player"){
-			return new NullCommand();
+			return new DieCommand();
 		}
 		else{
 			return new NullCommand();

@@ -32,6 +32,8 @@ import actors.Player;
 //
 // Refactor Level, TileData?
 // Should TimedElevator extend Elevator?
+// Fix issue with etherobjects restoring on enemies.--> make canRestore
+// an etherObject method and use it in gun.
 
 
 public class Game extends BasicGame {
