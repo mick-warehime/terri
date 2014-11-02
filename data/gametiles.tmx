@@ -43,10 +43,10 @@
    <property name="blocked" value="&quot;false&quot;"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YQQ6DQAwDeUA/zc977KUGVvHGDvJI3DBNMqtly/k5jhNcFdAzlZcjK3U+7WvXfNgz3uWIsUYqNVXny/o9xjxZa41ZR/ih2uPiw4v48CI+vJjoY1q9K8SHF/HhBfM/VfcZ/Y3EhxdVHwriA+cUxAfOKYgPnFMQHzinID5wTkF84JyC+MA5BfGBcwriA+cUvNVH5ZtHfNS4m+ek/ib6WF3Lk/pz9sHaS1z7+8dKf7v33l37eIcP1mzQPZXZPM11vUOd1s1druN84XaGuaqrch+rBofZOJDZ9PAFmIAV1+AuAAA=
+   H4sIAAAAAAAAA+2YQQ6EMAwDeQCf5ud73AsGStzYRR6JG16STFXKHvu2HeCqgH5TeTkyUufTvmbNhz3jWY4Ya6RSU3W+rOcx5slaa8w6wh/VHhcfXsSHF/HhxYo+Vqt3hPjwIj68YH5TdZ/Rv0h8eFH1oSA+cE5BfOCcgvjAOQXxgXMK4gPnFMQHzimID5xjPP9NJj7OcwriA+cUfNVH5T+P+KhxN8+V+lvRx+haXqk/Zx+svcS1vzNG+pu9987axzt8sGaD7qnM5mmu6x3qtG7uch3nC7czzFVdlftYNTjMxoHMpocfTBxl9eAuAAA=
   </data>
  </layer>
- <layer name="tiles" width="100" height="30" visible="0" opacity="0.5">
+ <layer name="tiles" width="100" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2Z222DMBSGLRAK4rUT9SJlgE7SLsEAmSRdggH6UrpF70+tCjmxglAwx78xBudY+pSbuf0f9hFOmSj1khN1w+sAPxkPvS8T+jjcfmMM9a0H3ttcD0r/nDj9yoQYy9aUi/6934+Ts43bOj+fvW1Gputxyd60X859XiXEh8EH173OiXve3YaOOa5TNEube3KK89ikBOLDlTmaix90/LmwTYlYfUzpaA7KlBAfy6BKCfGxDA7jA6znoTxcFUSMPqoV+rgvCPGxDB+7ghAfJ94Tot3uQfF4POLangsCbaEzN1GCz4NdH3vF4+mIa4u5frQ+kOdBPWcgx3RtMdeP1gfyPKjnjBA+Yq4fh7VEwIeeM0L4iL5+AD70nBHCR+z1A/Eh9cMPFehD6ocfNuD6ldQPP2xBH1I//FCCPkLWj5h9oOvtIetHrD7eOmseLdcZcdNwm50+97+/y6R+TJn9Z8NvrtRf53/hNa3vrnF8jOXfR3z4zd2U/SX56OajX/uZfTV8g9c/5b7m9mGTDeIDzcZmO1/5n/OxhPuG40f78JXN0H59Ze8j00vLZglINvPxD834K6TgLgAA
   </data>
@@ -57,13 +57,6 @@
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
-  <properties>
-   <property name="h" value="4"/>
-   <property name="type" value="door"/>
-   <property name="w" value="1"/>
-   <property name="x" value="43"/>
-   <property name="y" value="3"/>
-  </properties>
   <object name="Timed Pl" type="timedPlatform" x="432" y="288" width="112" height="16">
    <properties>
     <property name="duration" value="2"/>
@@ -85,7 +78,7 @@
    </properties>
   </object>
   <object name="D" type="door" x="224" y="96" width="16" height="64"/>
-  <object name="St" type="start" x="192" y="144" width="16" height="16">
+  <object name="St" type="start" x="192" y="128" width="16" height="16">
    <properties>
     <property name="type" value="start"/>
     <property name="x" value="3"/>
