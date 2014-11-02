@@ -128,7 +128,7 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 
 
 	@Override
-	public void onCollisionDo() {
+	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -137,7 +137,7 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 
 
 	@Override
-	public Command onCollisionBroadcast() {
+	public Command onCollisionBroadcast(String collidingObjectClass) {
 		if (speed>=0){
 			return new LegalDisplaceCommand("+y",speed);
 		}

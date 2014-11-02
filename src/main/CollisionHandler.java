@@ -181,7 +181,7 @@ public class CollisionHandler implements CommandProvider {
 //		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
 //		collisionCommandStack.clear();
 //		return answer;
-		return resolveInteractiveCollisions(playerRect);
+		return resolveInteractiveCollisions(playerRect, "Player");
 	}
 	
 	//Returns if the line of sight from the player to an EtherObject
@@ -229,7 +229,9 @@ public class CollisionHandler implements CommandProvider {
 	//Checks a rect for collisions with interactive collideables
 	// outputs a list of commands for an actor with the rect to do,
 	// and does the interactive's inherent collision command
-	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect){
+	// For collisions to be class specific, we pass in a 
+	// collidingObjectClass.
+	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect, String collidingObjectClass ){
 		ArrayList<Command> output = new  ArrayList <Command>();
 		
 		//Make a slightly bigger rectangle because physics don't 
@@ -239,8 +241,8 @@ public class CollisionHandler implements CommandProvider {
 		
 		for (InteractiveCollideable interObj : interactives){
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
-				interObj.onCollisionDo();
-				output.add(interObj.onCollisionBroadcast());
+				interObj.onCollisionDo(collidingObjectClass);
+				output.add(interObj.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
 		

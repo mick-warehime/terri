@@ -67,7 +67,7 @@ public class Behavior implements CommandProvider{
 	}
 	
 	private void resolveInteractiveCollisions(){
-		ArrayList newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect());
+		ArrayList newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect(), "Enemy");
 		commandStack.addAll(newCommands);
 		return;
 	}

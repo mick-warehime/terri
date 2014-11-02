@@ -109,14 +109,10 @@ public class Elevator extends EtherObject implements InteractiveCollideable {
 		isMoving = !isMoving;
 	}
 
-	@Override
-	public void onCollisionDo() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
-	public Command onCollisionBroadcast() {
+	public Command onCollisionBroadcast(String collidingObjectClass) {
 		
 		
 		if (speed>=0){
@@ -127,6 +123,12 @@ public class Elevator extends EtherObject implements InteractiveCollideable {
 		}
 	
 		
+		
+	}
+
+	@Override
+	public void onCollisionDo(String collidingObjectClass) {
+		// TODO Auto-generated method stub
 		
 	}
 

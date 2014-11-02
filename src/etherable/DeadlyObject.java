@@ -27,13 +27,13 @@ public class DeadlyObject extends EtherObject implements InteractiveCollideable{
 //	}
 
 	@Override
-	public void onCollisionDo() {
+	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub
-		return;
+		
 	}
 
 	@Override
-	public Command onCollisionBroadcast() {
+	public Command onCollisionBroadcast(String collidingObjectClass) {
 		// TODO Auto-generated method stub
 		return new DieCommand();
 	}

@@ -36,10 +36,12 @@ public class Level {
 
 	private ArrayList<Enemy> enemies;
 
-	public Level() throws SlickException {
+	public Level(int levelNumber) throws SlickException {
 
 		// load map
-		map = new TiledMap("data/gametiles.tmx");
+		String fileData = "data/Level" + levelNumber + ".tmx";
+		map = new TiledMap(fileData);
+//		map = new TiledMap("data/gametiles.tmx");
 		tileData = new TileData(map);
 
 		// used for drawing (allows the dude to be outside the center of the screen)
