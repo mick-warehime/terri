@@ -109,5 +109,10 @@
    </properties>
   </object>
   <object name="Fire" type="deadly" x="448" y="400" width="80" height="16"/>
+  <object name="E" type="enemy" x="640" y="288" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

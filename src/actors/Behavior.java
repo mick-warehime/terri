@@ -53,7 +53,8 @@ public class Behavior implements CommandProvider{
 	
 	//Apply these reactions on Player Collision
 	private void resolvePlayerCollision(){
-		commandStack.add(new DieCommand());
+//		commandStack.add(new DieCommand());
+
 	}
 	
 	private void decideMovement(){

@@ -196,7 +196,7 @@ public class TiledMap {
 	 */
 	public Image getTileImage(int x, int y, int layerIndex) {
 		Layer layer = (Layer) layers.get(layerIndex);
-
+		
 		int tileSetIndex = layer.data[x][y][0];
 		if ((tileSetIndex >= 0) && (tileSetIndex < tileSets.size())) {
 			TileSet tileSet = (TileSet) tileSets.get(tileSetIndex);
