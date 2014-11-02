@@ -28,7 +28,10 @@ import actors.Player;
 
 //  make one enemy type that when it hits a put object it restores it
 
-// Dvir TODO: 
+// TODO: 
+//
+// Refactor Level, TileData?
+// Should TimedElevator extend Elevator?
 
 
 public class Game extends BasicGame {

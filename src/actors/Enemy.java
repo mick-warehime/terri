@@ -43,7 +43,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	@Override
 	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub
-		if (collidingObjectClass == "Player"){
+		if (collidingObjectClass.equals("Player")){
 			status.gainEffect("Collided with player", 1);
 		}
 	}
@@ -52,7 +52,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	public Command onCollisionBroadcast(String collidingObjectClass) {
 		// TODO Auto-generated method stub
 		if (collidingObjectClass == "Player"){
-			return new DieCommand();
+			return new NullCommand();
 		}
 		else{
 			return new NullCommand();

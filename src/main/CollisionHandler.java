@@ -25,7 +25,7 @@ public class CollisionHandler implements CommandProvider {
 	private Rectangle playerRect;
 
 	// Objects that do something on collision
-	private ArrayList <InteractiveCollideable> interactives;
+	private ArrayList <InteractiveCollideable> interactiveGameObjects;
 
 	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
 		this.blocks = blockedList;
@@ -41,25 +41,21 @@ public class CollisionHandler implements CommandProvider {
 				
 		}
 		
-		
+		populateInteractiveObjects();
 		
 
 	}
 
 	
-	public void populateInteractiveObjects() {
-		interactives = new ArrayList<InteractiveCollideable>();
+	private void populateInteractiveObjects() {
+		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
 		
 		for (GameObject gObj: gameObjects){
 			if (gObj instanceof InteractiveCollideable){
-				interactives.add((InteractiveCollideable) gObj);
+				interactiveGameObjects.add((InteractiveCollideable) gObj);
 			}
 		}
-		for (Enemy nme: enemies){
-			if (nme instanceof InteractiveCollideable){
-				interactives.add((InteractiveCollideable) nme);
-			}
-		}
+		
 		
 	}
 
@@ -274,12 +270,21 @@ public class CollisionHandler implements CommandProvider {
 		int proximity = 1;
 		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
 		
-		for (InteractiveCollideable interObj : interactives){
+		//
+		for (InteractiveCollideable interObj : interactiveGameObjects){
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
 				interObj.onCollisionDo(collidingObjectClass);
 				output.add(interObj.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
+		
+		for (Enemy nme: enemies){
+			if (slightlyBiggerRect.intersects(nme.getRect())){
+				nme.onCollisionDo(collidingObjectClass);
+				output.add(nme.onCollisionBroadcast(collidingObjectClass));
+			}
+		}
+		
 		
 		
 		return output;
