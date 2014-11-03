@@ -37,6 +37,7 @@ import actors.Player;
 // Should TimedElevator extend Elevator?
 // Fix issue with etherobjects restoring on enemies.--> make canRestore
 // an etherObject method and use it in gun.
+// Platform is an empty class. You can just make an etherObject directly instead.
 
 
 public class Game extends BasicGame {

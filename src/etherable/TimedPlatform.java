@@ -1,5 +1,7 @@
 package etherable;
 
+import java.util.Properties;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -8,12 +10,11 @@ public class TimedPlatform extends EtherObject implements Timed {
 	private int duration;
 	private long putTime;
 
-	public TimedPlatform(int x, int y, int w, int h, int duration, TiledMap map) throws SlickException {		
-		super(x, y, w, h, map);
+	public TimedPlatform(int x, int y, int w, int h, TiledMap map, Properties args) throws SlickException {		
+		super(x, y, w, h, map,args);
 
 		// default duration is set to 1000 milliseconds	
-		
-		this.duration = duration*1000;
+		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
 
 	}
 

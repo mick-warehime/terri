@@ -1,6 +1,8 @@
 package etherable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Properties;
 
 import main.CollisionHandler;
 
@@ -26,13 +28,15 @@ public class GameObject {
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
-	public GameObject(int x, int y, int w, int h, TiledMap map) throws SlickException{
+	public GameObject(int x, int y, int w, int h, TiledMap map, Properties args) throws SlickException{
 
 		tileSize = map.getTileHeight();				
 
+		//Position in tile index
 		this.I = x;
 		this.J = y;
 		
+		//x y position, height and width, in pixels
 		this.x = x*tileSize;
 		this.y = y*tileSize;
 		this.h = h*tileSize;
@@ -106,7 +110,6 @@ public class GameObject {
 
 		for(int i = I; i < (I+w/tileSize); i++){
 			for(int j = J; j < (J+h/tileSize); j++){
-				//				System.out.println(i+" "+j+" "+tileI+" "+tileJ+" "+w+" "+h);
 				sprites.add(map.getTileImage(i,j,etherIndex));
 			}
 		}
@@ -128,7 +131,7 @@ public class GameObject {
 		}
 	}
 	
-	public long getTime() {
+	protected long getTime() {
 		return System.currentTimeMillis() ;
 	}
 

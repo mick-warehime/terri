@@ -1,6 +1,7 @@
 package etherable;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -16,21 +17,21 @@ public class TimedSwitch extends GameObject implements Interactive{
 	private long toggleTime = 0;
 
 
-	public TimedSwitch(int x, int y, int w, int h, int tx, int ty, int prox, int duration, TiledMap map) throws SlickException {		
-		super(x, y, w, h, map);
+	public TimedSwitch(int x, int y, int w, int h, TiledMap map,Properties args) throws SlickException {		
+		super(x, y, w, h, map,args);
 
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
 
 		// default proximity (how close in pixels to switch) is set to 5
-		this.proximity = prox;
+		this.proximity = Integer.parseInt((String) args.get("prox"));
 		
 		// how long the switch stays on in milliseconds
-		this.duration = duration*1000;
+		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
 		
 		// location of the target
-		this.targetX= tx*tileSize;
-		this.targetY= ty*tileSize;
+		this.targetX= Integer.parseInt((String) args.get("tx"))*tileSize;
+		this.targetY= Integer.parseInt((String) args.get("ty"))*tileSize;
 
 	}
 
