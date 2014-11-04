@@ -8,7 +8,6 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
-import etherable.DeadlyObject;
 import etherable.GameObject;
 
 
@@ -41,7 +40,7 @@ public class Level {
 		// load map
 		String fileData = "data/Level" + levelNumber + ".tmx";
 		map = new TiledMap(fileData);
-//		map = new TiledMap("data/gametiles.tmx");
+		// map = new TiledMap("data/gametiles.tmx");
 		tileData = new TileData(map);
 
 		// used for drawing (allows the dude to be outside the center of the screen)
@@ -76,12 +75,7 @@ public class Level {
 			{
 				String objectType = map.getObjectType(gi, oi);
 				int x = map.getObjectX(gi, oi);
-				int y = map.getObjectY(gi, oi);
-
-				if(objectType.equals("cameraStart")){
-					mapX = x;
-					mapY = y;					
-				}
+				int y = map.getObjectY(gi, oi);				
 
 				if(objectType.equals("enemy")){
 					enemies.add(new Enemy(x,y, collisionHandler));	

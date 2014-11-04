@@ -34,7 +34,7 @@ public class EtherObject extends GameObject {
 		isActive = true;
 		isPut = false;
 	}
-	
+
 	public void put(int mouseX, int mouseY){
 
 		if(isActive && !isPut){
@@ -48,11 +48,14 @@ public class EtherObject extends GameObject {
 	}
 
 	public void restore() {
-		// TODO Auto-generated method stub
-		isEther = false;
-		isPut = false;
-		isActive = false;
-		rect.setLocation(x,y);
+		
+		if(canRestore()){
+			// TODO Auto-generated method stub
+			isEther = false;
+			isPut = false;
+			isActive = false;
+			rect.setLocation(x,y);
+		}
 	}
 
 
@@ -66,7 +69,7 @@ public class EtherObject extends GameObject {
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-		
+
 		if(isEther){ //If ether
 			//Draw ether tile
 			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
@@ -90,6 +93,14 @@ public class EtherObject extends GameObject {
 	public boolean canPut(){
 		boolean answer = !collisionHandler.lineOfSightCollision(this);
 		answer = answer && collisionHandler.canPlaceEtherAt(this);
+		return answer;
+	}
+
+	// check if anything is at the original position  (ether Rect) before restoring 
+	public boolean canRestore(){		
+		boolean answer = !collisionHandler.isCollidedWithObjects(this);
+		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
+		answer = answer && !collisionHandler.isCollidedWithEnemy(etherRect);
 		return answer;
 	}
 

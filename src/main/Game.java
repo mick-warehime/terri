@@ -11,27 +11,25 @@ import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
-import actors.Enemy;
 import actors.Player;
 
 
 // features to add
 //
-//  weight sensitive switches
-//  mirrors to reflect beam
-//  portals to transform ether--> solid vice versa
-//  certain time before you have to put object then no timer?
+//  
 
-//  FIX BUG WITH TIMED PLATFORMS YOU CAN GET TRAPPED IN THEM (PUT TIMED PLATFORM JUST BELOW STARTING LOCATION AND JUST STAND THERE)
+//  PROGRESS POINTS
  
 //  ENEMY CANNON 
+// dont remove timed platforms from the active objects list in the gun
 
-//  make one enemy type that when it hits a put object it restores it
+//  Timed platforms dont restore correctly (collided with themselves)
 
 // TODO: 
 //
 // Refactor Level, TileData?
-// Should TimedElevator extend Elevator?
+// refactor timed switch, elevator, platform etc to extend the untimed ones
+
 // Fix issue with etherobjects restoring on enemies.--> make canRestore
 // an etherObject method and use it in gun.
 

@@ -64,7 +64,6 @@
    <property name="x" value="43"/>
    <property name="y" value="3"/>
   </properties>
-  <object name="CameraStart" type="cameraStart" x="32" y="112" width="80" height="16"/>
   <object name="Timed Pl" type="timedPlatform" x="16" y="352" width="112" height="16">
    <properties>
     <property name="duration" value="2"/>
@@ -103,7 +102,7 @@
    </properties>
   </object>
   <object name="Lava" type="deadly" x="944" y="432" width="1744" height="32"/>
-  <object name="St" type="start" x="70" y="248" width="16" height="16">
+  <object name="St" type="start" x="80" y="304" width="16" height="16">
    <properties>
     <property name="type" value="start"/>
     <property name="x" value="3"/>

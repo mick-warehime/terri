@@ -114,7 +114,7 @@ public class CollisionHandler implements CommandProvider {
 		}
 
 		//Check for collisions with actors
-		if(collidedWithEnemy(etherObject.getRect())){
+		if(isCollidedWithEnemy(etherObject.getRect())){
 			return false;
 		}
 
@@ -122,19 +122,18 @@ public class CollisionHandler implements CommandProvider {
 	}
 	
 	
-	
 	//Checks for collisions with blocks and game Objects
 	public boolean isCollided(Rectangle rect){	
 		boolean answer = false;
 		//	check if collided with permanent solid blocks	
-		answer = answer || isCollidedBlocks(rect);
+		answer = answer || isCollidedWithBlocks(rect);
 		// check if collided with solid etherable Objects
-		answer = answer || isCollidedGameObjects(rect);
+		answer = answer || isCollidedWithObjects(rect);
 
 		return answer;
 	}
 	
-	public boolean isCollidedBlocks(Rectangle rect){
+	public boolean isCollidedWithBlocks(Rectangle rect){
 		for(Rectangle r: blocks ){
 			if(rect.intersects(r)){
 				return true;
@@ -143,7 +142,7 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 	
-	public boolean isCollidedGameObjects(Rectangle rect){
+	public boolean isCollidedWithObjects(Rectangle rect){
 		for(GameObject gObj: gameObjects){
 			if(gObj.canCollide()){
 				if(rect.intersects(gObj.getRect())){
@@ -159,15 +158,15 @@ public class CollisionHandler implements CommandProvider {
 		boolean answer = false;
 		
 		// check if collided with permanent solid blocks	
-		answer = answer || isCollidedBlocks(gameObject);
+		answer = answer || isCollidedWithBlocks(gameObject);
 		
 		// check if collided with gameOjbects that arent the input variable
-		answer = answer || isCollidedBlocks(gameObject);
+		answer = answer || isCollidedWithObjects(gameObject);
 
 		return answer;
 	}
 	
-	public boolean isCollidedBlocks(GameObject gameObject){
+	public boolean isCollidedWithBlocks(GameObject gameObject){
 		for(Rectangle r: blocks ){
 			if(r.intersects(gameObject.getRect())){
 				return true;
@@ -176,7 +175,7 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedGameObjects(GameObject gameObject){
+	public boolean isCollidedWithObjects(GameObject gameObject){
 
 		// check if collided with solid etherable Objects
 		for(GameObject gObj: gameObjects){
@@ -246,7 +245,7 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean collidedWithEnemy(Rectangle rect){
+	public boolean isCollidedWithEnemy(Rectangle rect){
 		for (Enemy nme: enemies){
 			if(nme.getRect().intersects(rect)){
 				return true;
