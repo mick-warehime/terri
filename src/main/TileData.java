@@ -7,7 +7,9 @@ import etherable.Door;
 import etherable.Elevator;
 import etherable.GameObject;
 import etherable.Platform;
+import etherable.ProgressPoint;
 import etherable.Switch;
+import etherable.SwitchObject;
 import etherable.TimedElevator;
 import etherable.TimedPlatform;
 import etherable.TimedSwitch;
@@ -46,6 +48,7 @@ public class TileData {
 		initializeParserDictionary();
 
 		initializeMeta(map);
+
 		initializeObjects(map);
 	}
 
@@ -62,91 +65,21 @@ public class TileData {
 		parserDict.put("timedElevator", TimedElevator.class);
 		parserDict.put("switch", Switch.class);
 		parserDict.put("timedSwitch", TimedSwitch.class);
-
-
-
-
-
-
-
+		parserDict.put("weightedSwitch", WeightedSwitch.class);
+		parserDict.put("progressPoint", ProgressPoint.class);
 
 	}
 
 
 	private void initializeObjects(TiledMap map) throws NumberFormatException, SlickException{
+		
+		// only load items in the objects layer
+		int grpID = map.getObjectLayerIndex("objects");
 
-		int objectGroupCount = map.getObjectGroupCount();
-		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
-		{
-			int objectCount = map.getObjectCount(gi);
-			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
-			{
-				String objectType =  map.getObjectType(gi,oi);				
-
-				// PARSE GAME OBJECT FOR DIMENSION
-				int x = map.getObjectX(gi,oi)/tileSize;
-				int y = map.getObjectY(gi,oi)/tileSize;
-				int h = map.getObjectHeight(gi,oi)/tileSize;
-				int w = map.getObjectWidth(gi,oi)/tileSize;
-				Properties args = map.getObjectProperties(gi,oi);				
-
-				constructFromData(map,gi,oi);
-				
-
-				//				if(objectType.equals("platform")){					
-				//					gameObjects.add(new Platform(x, y, w, h, map,args));
-				//				}
-				//				if(objectType.equals("deadly")){
-				//					
-				//					Constructor<?>[] test = (parserDict.get("deadly").getConstructors());
-				//					Constructor construct = test[0];
-				//					
-				////					gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
-				//					try {
-				//						gameObjects.add(  (GameObject) construct.newInstance(x, y, w, h, map,args));
-				//					} catch (IllegalArgumentException e) {
-				//						// TODO Auto-generated catch block
-				//						e.printStackTrace();
-				//					} catch (InstantiationException e) {
-				//						// TODO Auto-generated catch block
-				//						e.printStackTrace();
-				//					} catch (IllegalAccessException e) {
-				//						// TODO Auto-generated catch block
-				//						e.printStackTrace();
-				//					} catch (InvocationTargetException e) {
-				//						// TODO Auto-generated catch block
-				//						e.printStackTrace();
-				//					}
-				//				}
-				//				if(objectType.equals("timedPlatform")){	
-				//					gameObjects.add(new TimedPlatform(x,y,w,h,map,args));
-				//				}
-				//				if(objectType.equals("door")){		
-				//					gameObjects.add(new Door(x, y, w, h, map,args));
-				//				}
-				// 
-				//				if(objectType.equals("elevator")){
-				//					gameObjects.add(new Elevator(x, y, w, h, map, args));
-				//				}
-				//				if(objectType.equals("timedElevator")){
-				//
-				//					gameObjects.add(new TimedElevator(x, y, w, h, map,args));
-				//				}
-				//
-				//				if(objectType.equals("switch")){
-				////					int tarX = getObjectInt(gi, oi, map, "tx"); // (tx,ty) target location in tiles from tiledmap
-				////					int tarY = getObjectInt(gi, oi, map, "ty");
-				////					int prox = getObjectInt(gi, oi, map, "prox"); // how close you need to be in pxls to switch
-				//					gameObjects.add(new Switch(x,y,w,h,map,args));
-				//				}
-				//				if(objectType.equals("timedSwitch")){
-				////					int tarX = getObjectInt(gi, oi, map, "tx"); // (tx,ty) target location in tiles from tiledmap
-				////					int tarY = getObjectInt(gi, oi, map, "ty");
-				////					int prox = getObjectInt(gi, oi, map, "prox"); // how close you need to be in pxls to switch
-				////					int duration = getObjectInt(gi, oi, map, "duration");
-				//					gameObjects.add(new TimedSwitch(x,y,w,h,map,args));
-				//				}
-			}
+		int objectCount = map.getObjectCount(grpID);
+		for( int oi=0; oi < objectCount; oi++ ) // oi = object index
+		{		
+			constructFromData(map,grpID,oi);
 		}
 
 		// Add swtich targets
@@ -155,6 +88,7 @@ public class TileData {
 				gObj.setTarget(gameObjects);
 			}
 		}
+		
 	}
 
 	//Create the permanently blocked tiles that don't interact with anything.
@@ -180,17 +114,6 @@ public class TileData {
 		}
 	}
 
-	//Get a given property from a game object
-	private String getObjectString(int gi, int oi, TiledMap map, String property){
-		String propertyStr =  map.getObjectProperty(gi, oi, property, "nil" );
-		return propertyStr;
-	}
-
-	private int getObjectInt(int gi, int oi, TiledMap map, String property){
-		String propertyStr =  map.getObjectProperty(gi, oi, property, "0" );
-		Integer propertyInt = Integer.parseInt(propertyStr);
-		return propertyInt;
-	}
 
 
 	public ArrayList<GameObject> getGameObjects(){
@@ -206,8 +129,6 @@ public class TileData {
 	//Make a new instance of a gameobject based on map data
 	private void constructFromData(TiledMap map, int gi,int oi){
 
-
-
 		// Define input arguments for constructor
 		int x = map.getObjectX(gi,oi)/tileSize;
 		int y = map.getObjectY(gi,oi)/tileSize;
@@ -218,7 +139,7 @@ public class TileData {
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
 
-
+		
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
@@ -245,7 +166,7 @@ public class TileData {
 			return;
 		}
 
-		
+
 
 
 	}

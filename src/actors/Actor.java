@@ -6,7 +6,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 import commands.GlobalInputListener;
-import commands.KeyboardInputListener;
 
 public class Actor {
 

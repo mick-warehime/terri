@@ -11,6 +11,7 @@ import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
+import etherable.ProgressPoint;
 import actors.Player;
 
 
@@ -49,6 +50,7 @@ public class Game extends BasicGame {
 	private Player terri;
 	private Level level;
 	private int currentLevel = 1;
+	private ProgressPoint progress;
 
 	//	private Ether activeEtherObject = null; 
 
@@ -64,10 +66,12 @@ public class Game extends BasicGame {
 
 		terri.update();
 		level.update(mouseX, mouseY);
-
+		progress = level.getProgressPoint();
+		
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
+			
 			initializeLevel(currentLevel);
 			
 			//This is a stupid kludge that should be fixed
@@ -77,28 +81,33 @@ public class Game extends BasicGame {
 			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
 			
 		}
-
+		
+		
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 
-
-
 		initializeKeyBindings(gc);
 
 		initializeLevel(currentLevel);
-		
+
 		Command shoot = new FireCommand(gc.getInput(),level);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
 	}
 
 	private void initializeLevel(int levelNumber) throws SlickException{
 		level = new Level(levelNumber);
+		
+		if(progress==null){
+			progress = level.getProgressPoint();
+		}
+		
+		level.setProgressPoint(progress);
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(level.getMap(),collisionHandler);
+		terri = new Player(level,collisionHandler);
 
 		keyboardInputProvider.addListener(terri.getListener());
 	}

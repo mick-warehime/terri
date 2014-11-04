@@ -1,6 +1,5 @@
 package etherable;
 
-import java.util.HashMap;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -100,7 +99,7 @@ public class EtherObject extends GameObject {
 	}
 
 	// check if anything is at the original position  (ether Rect) before restoring 
-	public boolean canRestore(){		
+	public boolean canRestore(){
 		boolean answer = !collisionHandler.isCollidedWithObjects(this);
 		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
 		answer = answer && !collisionHandler.isCollidedWithEnemy(etherRect);

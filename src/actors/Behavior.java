@@ -7,7 +7,6 @@ import main.CollisionHandler;
 import org.newdawn.slick.command.Command;
 
 import commands.CommandProvider;
-import commands.DieCommand;
 import commands.MoveCommand;
 
 //Gives commands to an actor based on world conditions

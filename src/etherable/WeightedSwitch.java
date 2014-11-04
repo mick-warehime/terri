@@ -1,6 +1,7 @@
 package etherable;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -14,15 +15,16 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 	private int targetY;
 
 
-	public WeightedSwitch(int x, int y, int w, int h, int tx, int ty, TiledMap map) throws SlickException {		
-		super(x, y, w, h, map);
 
+	public WeightedSwitch(int x, int y, int w, int h, TiledMap map,Properties args) throws SlickException {		
+		super(x, y, w, h, map,args);
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
 
 		// location of the target
-		this.targetX= tx*tileSize;
-		this.targetY= ty*tileSize;
+		this.targetX = Integer.parseInt((String) args.get("tx"))*tileSize;
+		this.targetY = Integer.parseInt((String) args.get("ty"))*tileSize;
+
 	}
 
 	public void setTarget(ArrayList<GameObject> gameObjects){
@@ -31,8 +33,8 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
 				// give the switch the correesponding target object
 				target = gObj;				
-	
-				
+
+
 				return;
 			} 
 		}
@@ -50,7 +52,7 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 			// only draw if the switch is not weighed down
 			im.draw(rect.getX()-mapX,rect.getY()-mapY);
 		}
-				
+
 	}
 
 	public boolean canCollide(){
@@ -60,7 +62,7 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 	public void update(int mouseX, int mouseY){
 		// if switch was not weighed down
 		if(state){
-//			check if it became weighed down
+			//check if it became weighed down
 			if (!isWeighedDown()){			
 				toggle();
 			}
@@ -70,7 +72,7 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 				toggle();
 			}
 		}
-		
+
 	};
 
 	public void toggle(){
@@ -79,7 +81,7 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 		target.toggle();
 	}
 
-	
+
 	private boolean isWeighedDown(){
 
 		boolean answer =  collisionHandler.isCollidedWithPlayer(rect);

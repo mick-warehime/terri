@@ -91,8 +91,7 @@ public class Status {
 	}
 
 	public void setDying(boolean b) {
-		this.isDying = b;
-		
+		this.isDying = b;		
 	}
 	
 	public boolean isDying(){

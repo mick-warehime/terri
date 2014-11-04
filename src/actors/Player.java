@@ -1,7 +1,10 @@
 package actors;
 
 
+import java.util.ArrayList;
+
 import main.CollisionHandler;
+import main.Level;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -16,8 +19,9 @@ public class Player extends Actor {
 	private Gun gun;
 	
 
-	public Player(TiledMap map, CollisionHandler collisionHandler) throws SlickException {
+	public Player(Level level, CollisionHandler collisionHandler) throws SlickException {
 
+ 		
 		sprite = new Image("data/head.png");		
 		
 		keyboard = new KeyboardInputListener();
@@ -27,7 +31,7 @@ public class Player extends Actor {
 		
 		// GETS starting position from map
 		// shifts initial y position by 1 pixel upwards otherwise dude gets stuck
-		setStatus(map, collisionHandler);
+		setStatus( level, collisionHandler);
 
 		collisionHandler.addPlayerRect(status.getRect());
 
@@ -35,31 +39,14 @@ public class Player extends Actor {
 		engine = new PlayerActionEngine(listener,status, gun);
 	}
 
-	private void setStatus(TiledMap map, CollisionHandler collisionHandler){
+	private void setStatus(Level level, CollisionHandler collisionHandler){
+		
+		TiledMap map = level.getMap();
 		
 		//loop over all objects, find the start position object
-		int px = 0;
-		int py = 0;
-		
-		int objectGroupCount = map.getObjectGroupCount();
-		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
-		{
-			int objectCount = map.getObjectCount(gi);
-			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
-			{
-				String type = map.getObjectType(gi, oi);
+		int px = level.getProgressX();
+		int py = level.getProgressY();
 				
-				if(type.equals("start")){
-					px = map.getObjectX(gi, oi);
-					py = map.getObjectY(gi, oi);					
-				}
-			}
-		}
-		
-		if(px == 0 && py == 0){
-			System.out.println("STARTING POSITION OBJECT NOT FOUND!");
-		}
-		
 		float h = sprite.getHeight();
 		float w = sprite.getWidth();
 		status = new Status((float) px, (float) py-1, collisionHandler, w, h);
@@ -78,6 +65,7 @@ public class Player extends Actor {
 	public KeyboardInputListener getListener() {
 		return keyboard;
 	}
+
 
 
 }

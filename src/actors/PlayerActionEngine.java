@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.command.Command;
 
-import commands.GenericCommand;
 import commands.GlobalInputListener;
 import commands.JumpCommand;
 import commands.MoveCommand;

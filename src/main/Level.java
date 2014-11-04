@@ -9,6 +9,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
 import etherable.GameObject;
+import etherable.ProgressPoint;
 
 
 // TODO
@@ -25,6 +26,7 @@ public class Level {
 	private int tol = 18; // number of tiles away from edge
 	private int tolX;
 	private int tolY;
+	private ProgressPoint progress;
 	private int tileSizeWidth;
 	private int tileSizeHeight;
 	private TiledMap map;
@@ -54,15 +56,12 @@ public class Level {
 		this.enemies = new ArrayList<Enemy>();
 
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
-		
+
 		// set start position and load enemies
 		initializeLevelObjects();
-		
-		
 
 	}
-
-
+	
 
 	public void initializeLevelObjects() throws SlickException{
 		int objectGroupCount = map.getObjectGroupCount();
@@ -176,6 +175,43 @@ public class Level {
 			tolY = tol*tileSize;
 		}
 	}
+
+	public ProgressPoint getProgressPoint(){
+
+		int curIndex = -1;
+		ProgressPoint pPoint = null;
+		
+		// loop over all progress points in the game
+		for(GameObject gObj: tileData.getGameObjects()){
+			// see if any progress points are active
+			if(gObj instanceof ProgressPoint){
+				// make sure the progress point has been activated
+				if(((ProgressPoint) gObj).isActive()){
+					// make sure you only take the farthest progress point
+					if( ((ProgressPoint) gObj).getIndex() > curIndex){
+
+						curIndex = ((ProgressPoint) gObj).getIndex();
+						pPoint = (ProgressPoint) gObj;
+					}
+				}
+			}
+		}
+
+		return pPoint;
+	}
+
+	public int getProgressX(){
+		return progress.getPX();
+	}
+	
+	public int getProgressY(){
+		return progress.getPY();
+	}
+	
+	public void setProgressPoint(ProgressPoint progress){
+		this.progress = progress;
+	}
+
 
 	public TiledMap getMap(){
 		return map;

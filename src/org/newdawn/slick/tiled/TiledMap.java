@@ -168,7 +168,7 @@ public class TiledMap {
 	 * @return The index of the layer or -1 if there is no layer with given name
 	 */
 	public int getLayerIndex(String name) {
-//		int idx = 0;
+		//		int idx = 0;
 
 		for (int i = 0; i < layers.size(); i++) {
 			Layer layer = (Layer) layers.get(i);
@@ -196,7 +196,7 @@ public class TiledMap {
 	 */
 	public Image getTileImage(int x, int y, int layerIndex) {
 		Layer layer = (Layer) layers.get(layerIndex);
-		
+
 		int tileSetIndex = layer.data[x][y][0];
 		if ((tileSetIndex >= 0) && (tileSetIndex < tileSets.size())) {
 			TileSet tileSet = (TileSet) tileSets.get(tileSetIndex);
@@ -975,7 +975,7 @@ public class TiledMap {
 		}
 		return def;
 	}
-	
+
 	/**
 	 * Looks a given object and returns all it's properties.
 	 * If no properties are defined returns null.
@@ -984,7 +984,7 @@ public class TiledMap {
 	 *            Index of a group
 	 * @param objectID
 	 *            Index of an object
-	 
+
 	 * @return All the objects properties, or null.
 	 */
 	public Properties getObjectProperties(int groupID, int objectID	) {
@@ -1115,14 +1115,18 @@ public class TiledMap {
 		public GroupObject(Element element) throws SlickException {
 			name = element.getAttribute("name");
 			type = element.getAttribute("type");
+			int tH = getTileHeight();
+
 			x = (int) Float.parseFloat(element.getAttribute("x"));
 			y = (int) Float.parseFloat(element.getAttribute("y"));
+
+			if(type.isEmpty()){
+				System.out.println("EMPTY OBJECT ON TILEDMAP @ ("+x/tH+","+y/tH+")");
+			}
+
 			width = (int) Float.parseFloat(element.getAttribute("width"));
 			height = (int) Float.parseFloat(element.getAttribute("height"));
-//			x = Integer.parseInt(element.getAttribute("x"));
-//			y = Integer.parseInt(element.getAttribute("y"));
-//			width = Integer.parseInt(element.getAttribute("width"));
-//			height = Integer.parseInt(element.getAttribute("height"));
+
 
 			Element imageElement = (Element) element.getElementsByTagName(
 					"image").item(0);
@@ -1148,6 +1152,25 @@ public class TiledMap {
 				}
 			}
 		}
+	}
+
+	public int getObjectLayerIndex(String groupName){
+
+		
+		int objectGroupCount = getObjectGroupCount();
+		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
+		{
+			ObjectGroup grp = (ObjectGroup) objectGroups.get(gi);
+			if(grp.name.equals(groupName)){
+				return gi;
+			}
+			
+		}
+		
+		return -1;
+
+		
+		
 	}
 
 }

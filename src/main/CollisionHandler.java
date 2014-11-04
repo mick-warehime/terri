@@ -192,7 +192,7 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 	public boolean isCollidedWithPlayer(Rectangle rect){
-
+		
 		return playerRect.intersects(rect);
 	}
 

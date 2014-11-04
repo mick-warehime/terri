@@ -57,13 +57,6 @@
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
-  <properties>
-   <property name="h" value="4"/>
-   <property name="type" value="door"/>
-   <property name="w" value="1"/>
-   <property name="x" value="43"/>
-   <property name="y" value="3"/>
-  </properties>
   <object name="Timed Pl" type="timedPlatform" x="16" y="352" width="112" height="16">
    <properties>
     <property name="duration" value="2"/>
@@ -102,11 +95,18 @@
    </properties>
   </object>
   <object name="Lava" type="deadly" x="944" y="432" width="1744" height="32"/>
-  <object name="St" type="start" x="80" y="304" width="16" height="16">
+  <object type="progressPoint" x="384" y="32" width="16" height="160">
    <properties>
-    <property name="type" value="start"/>
-    <property name="x" value="3"/>
-    <property name="y" value="25"/>
+    <property name="index" value="1"/>
+    <property name="x" value="24"/>
+    <property name="y" value="10"/>
+   </properties>
+  </object>
+  <object name="St" type="progressPoint" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="index" value="0"/>
+    <property name="x" value="5"/>
+    <property name="y" value="19"/>
    </properties>
   </object>
  </objectgroup>
