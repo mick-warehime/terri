@@ -145,7 +145,7 @@ public class TileData {
 
 		//Construct enemies
 		if (objectType.equals("enemy")){
-			enemies.add(new Enemy(x*tileSize,y*tileSize));
+			enemies.add(new Enemy(x*tileSize,y*tileSize, null));
 		}
 		
 		//Construct gameObjects

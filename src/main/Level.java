@@ -54,19 +54,32 @@ public class Level {
 		tileSizeHeight = height/tileSize;
 		tileLayerId = map.getLayerIndex("tiles");
 
+		
+		
+		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.enemies = tileData.getEnemies();
-
-		
-		initializeCollisionHandler(tileData.getBlocks());
+		incorporateCollisionHandler(); 
+	
 
 	}
 	
 
-	private void initializeCollisionHandler(ArrayList<Rectangle> blocks) throws SlickException{
+	private void incorporateCollisionHandler() throws SlickException{
+		
+		//Give the objects to the collisionHandler
+		collisionHandler.receiveObjects(gameObjects, enemies);
+		
+		//Give the CollisionHandler to enemies and gameObjects
+		
+		for(GameObject gObj: gameObjects){
+			
+			gObj.setCollisionHandler(collisionHandler);
+		
+			
+		}
 		
 		
-		collisionHandler = new CollisionHandler(blocks,gameObjects, enemies);
 		for (Enemy nme: enemies){
 			nme.incorporateCollisionHandler(collisionHandler);
 			

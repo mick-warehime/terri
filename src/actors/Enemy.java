@@ -1,5 +1,7 @@
 package actors;
 
+import java.util.Properties;
+
 import main.CollisionHandler;
 
 import org.newdawn.slick.Image;
@@ -17,7 +19,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	private int x;
 	private int y;
 	
-	public Enemy(int x, int y ) throws SlickException {
+	public Enemy(int x, int y, Properties args ) throws SlickException {
 		super();
 		
 		this.x = x;
