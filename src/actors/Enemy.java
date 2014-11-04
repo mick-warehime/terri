@@ -14,29 +14,28 @@ import etherable.InteractiveCollideable;
 public class Enemy extends Actor implements InteractiveCollideable{
 
 	private Behavior behavior;
+	private int x;
+	private int y;
 	
-	public Enemy(int x, int y, CollisionHandler collisionHandler ) throws SlickException {
+	public Enemy(int x, int y ) throws SlickException {
 		super();
 		
+		this.x = x;
+		this.y = y; //These shouldn't be necessary. Fix later
 		
 		
-		status = new Status((float) x, (float) y, collisionHandler,25,41 );
 		
 		listener = new GlobalInputListener();
-		
-		engine = new EnemyActionEngine(listener, status);
-		
 		sprite = new Image("data/lemming.png");
 		
-		behavior = new Behavior(status, collisionHandler);
 		
-		listener.addProvider(behavior);
 		
 	}
 	
 	public void update(){
 		behavior.determine();
 		super.update();
+		assert (status != null) : "Error! Collision Handler not incorporated!";
 		
 	}
 
@@ -59,6 +58,17 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		}
 	}
 	
+	public void incorporateCollisionHandler(CollisionHandler collisionHandler){
+		
+		status = new Status((float) x, (float) y, collisionHandler,25,41 );
+		engine = new EnemyActionEngine(listener, status);
+		
+		
+		
+		behavior = new Behavior(status, collisionHandler);
+		
+		listener.addProvider(behavior);
+	}
 	
 
 	
