@@ -975,6 +975,36 @@ public class TiledMap {
 		}
 		return def;
 	}
+	
+	/**
+	 * Looks a given object and returns all it's properties.
+	 * If no properties are defined returns null.
+	 * 
+	 * @param groupID
+	 *            Index of a group
+	 * @param objectID
+	 *            Index of an object
+	 
+	 * @return All the objects properties, or null.
+	 */
+	public Properties getObjectProperties(int groupID, int objectID	) {
+		if (groupID >= 0 && groupID < objectGroups.size()) {
+			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			if (objectID >= 0 && objectID < grp.objects.size()) {
+				GroupObject object = (GroupObject) grp.objects.get(objectID);
+
+				if (object == null) {
+					return null;
+				}
+				if (object.props == null) {
+					return null;
+				}
+
+				return object.props;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * A group of objects on the map (objects layer)

@@ -3,6 +3,8 @@ package etherable;
 
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
+import java.util.Properties;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
@@ -25,14 +27,14 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 
 
 
-	public TimedElevator(int x, int y, int w, int h, int range,int duration, TiledMap map) throws SlickException {
-		super(x, y, w, h, map);
+	public TimedElevator(int x, int y, int w, int h, TiledMap map,Properties args) throws SlickException {
+		super(x, y, w, h, map,args);
 
 		// set y position to initial y positiondaad
 		yPos = y*tileSize;	
 		
-		this.range = range*tileSize;
-		this.duration = duration*1000;
+		this.range = Integer.parseInt((String) args.get("range"))*tileSize;
+		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
 
 	}
 

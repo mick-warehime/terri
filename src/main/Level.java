@@ -40,7 +40,6 @@ public class Level {
 		// load map
 		String fileData = "data/Level" + levelNumber + ".tmx";
 		map = new TiledMap(fileData);
-		// map = new TiledMap("data/gametiles.tmx");
 		tileData = new TileData(map);
 
 		// used for drawing (allows the dude to be outside the center of the screen)
@@ -56,7 +55,6 @@ public class Level {
 
 		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
 		
-		tileData.setCollisionHandler(collisionHandler);
 		// set start position and load enemies
 		initializeLevelObjects();
 		

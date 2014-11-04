@@ -1,6 +1,7 @@
 package etherable;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -13,18 +14,18 @@ public class Switch extends GameObject implements Interactive, SwitchObject{
 	private int targetX;
 	private int targetY;
 
-	public Switch(int x, int y, int w, int h, int tx, int ty, int prox, TiledMap map) throws SlickException {		
-		super(x, y, w, h, map);
+	public Switch(int x, int y, int w, int h, TiledMap map, Properties args) throws SlickException {		
+		super(x, y, w, h, map,args);
 
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
 
 		// default proximity (how close in pixels to switch) is set to 5
-		this.proximity = prox;
+		this.proximity = Integer.parseInt((String) args.get("prox"));
 
 		// location of the target
-		this.targetX= tx*tileSize;
-		this.targetY= ty*tileSize;
+		this.targetX= Integer.parseInt((String) args.get("tx"))*tileSize;
+		this.targetY= Integer.parseInt((String) args.get("ty"))*tileSize;
 
 	}
 
