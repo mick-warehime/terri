@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
@@ -55,7 +54,7 @@ public class Level {
 		tileLayerId = map.getLayerIndex("tiles");
 
 		
-		
+		//Creates the collisionHandler with just game blocks
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.enemies = tileData.getEnemies();
