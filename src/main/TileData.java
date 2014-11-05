@@ -33,7 +33,8 @@ public class TileData {
 
 	private ArrayList<Rectangle> blocks = new ArrayList<Rectangle>(); 	
 	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	
 	// This will keep a list of Tiles that are blocked
 	private int tileSize;
 
@@ -51,6 +52,9 @@ public class TileData {
 		initializeObjects(map);
 	}
 
+	public ArrayList<Enemy> getEnemies(){
+		return enemies;
+	}
 
 	private void initializeParserDictionary() {
 
@@ -124,7 +128,7 @@ public class TileData {
 	}
 
 	//Make a new instance of a gameobject based on map data
-	private void constructFromData(TiledMap map, int gi,int oi){
+	private void constructFromData(TiledMap map, int gi,int oi) throws SlickException{
 
 		// Define input arguments for constructor
 		int x = map.getObjectX(gi,oi)/tileSize;
@@ -138,7 +142,12 @@ public class TileData {
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
 
-
+		//Construct enemies
+		if (objectType.equals("enemy")){
+			enemies.add(new Enemy(x*tileSize,y*tileSize, null));
+		}
+		
+		//Construct gameObjects
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
@@ -170,3 +179,5 @@ public class TileData {
 
 	}
 }
+
+

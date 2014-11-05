@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
@@ -33,8 +34,9 @@ public class Level {
 
 	private int tileLayerId;
 	private CollisionHandler collisionHandler;
-	private TileData tileData;
-
+	
+//	private TileData tileData;
+	private ArrayList<GameObject> gameObjects;
 	private ArrayList<Enemy> enemies;
 
 	public Level(int levelNumber) throws SlickException {
@@ -42,7 +44,7 @@ public class Level {
 		// load map
 		String fileData = "data/Level" + levelNumber + ".tmx";
 		map = new TiledMap(fileData);
-		tileData = new TileData(map);
+		TileData tileData = new TileData(map);
 
 		// used for drawing (allows the dude to be outside the center of the screen)
 		tileSize = map.getTileHeight();
@@ -52,46 +54,47 @@ public class Level {
 		tileSizeHeight = height/tileSize;
 		tileLayerId = map.getLayerIndex("tiles");
 
-
-		this.enemies = new ArrayList<Enemy>();
-
-		collisionHandler = new CollisionHandler(tileData.getBlocks(),tileData.getGameObjects(), enemies);
-
-		// set start position and load enemies
-		initializeLevelObjects();
+		
+		
+		collisionHandler = new CollisionHandler(tileData.getBlocks());
+		this.gameObjects = tileData.getGameObjects();
+		this.enemies = tileData.getEnemies();
+		incorporateCollisionHandler(); 
+	
 
 	}
 	
 
-	public void initializeLevelObjects() throws SlickException{
-		int objectGroupCount = map.getObjectGroupCount();
-		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
-		{
-			int objectCount = map.getObjectCount(gi);
-			for( int oi=0; oi < objectCount; oi++ ) // oi = object index
-			{
-				String objectType = map.getObjectType(gi, oi);
-				int x = map.getObjectX(gi, oi);
-				int y = map.getObjectY(gi, oi);				
-
-				if(objectType.equals("enemy")){
-					enemies.add(new Enemy(x,y, collisionHandler));	
-				}				
-			}
+	private void incorporateCollisionHandler() throws SlickException{
+		
+		//Give the objects to the collisionHandler
+		collisionHandler.receiveObjects(gameObjects, enemies);
+		
+		//Give the CollisionHandler to enemies and gameObjects
+		
+		for(GameObject gObj: gameObjects){
+			
+			gObj.setCollisionHandler(collisionHandler);
+		
+			
+		}
+		
+		
+		for (Enemy nme: enemies){
+			nme.incorporateCollisionHandler(collisionHandler);
+			
 		}
 	};
 
 
 
 
-	public void addEnemy(Enemy nme){
-		enemies.add(nme);
-	}
+	
 
 
 
 	public void update(int mouseX, int mouseY){
-		for(GameObject gObj: tileData.getGameObjects()){
+		for(GameObject gObj: gameObjects){
 			gObj.update(mouseX,mouseY);
 		}
 
@@ -140,7 +143,7 @@ public class Level {
 		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight+1,tileLayerId,false);
 
 
-		for(GameObject gObj: tileData.getGameObjects()){		
+		for(GameObject gObj: gameObjects){		
 			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 
@@ -182,7 +185,7 @@ public class Level {
 		ProgressPoint pPoint = null;
 		
 		// loop over all progress points in the game
-		for(GameObject gObj: tileData.getGameObjects()){
+		for(GameObject gObj: gameObjects){
 			// see if any progress points are active
 			if(gObj instanceof ProgressPoint){
 				// make sure the progress point has been activated

@@ -27,25 +27,23 @@ public class CollisionHandler implements CommandProvider {
 	// Objects that do something on collision
 	private ArrayList <InteractiveCollideable> interactiveGameObjects;
 
-	public CollisionHandler(ArrayList<Rectangle> blockedList, ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
+	public CollisionHandler(ArrayList<Rectangle> blockedList){
 		this.blocks = blockedList;
-		this.gameObjects = gameObjects;
-		this.enemies = enemies;
-
-		// add the collisionHandler to the ether objects that need it
-
-		for(GameObject gObj: gameObjects){
-			
-				gObj.setCollisionHandler(this);
-			
-				
-		}
 		
-		populateInteractiveObjects();
 		
 
 	}
 
+	
+	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
+		
+		this.gameObjects = gameObjects;
+		this.enemies = enemies;
+	
+		
+		populateInteractiveObjects();
+		
+	}
 	
 	private void populateInteractiveObjects() {
 		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
