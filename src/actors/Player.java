@@ -1,7 +1,6 @@
 package actors;
 
 
-import java.util.ArrayList;
 
 import main.CollisionHandler;
 import main.Level;
@@ -39,7 +38,7 @@ public class Player extends Actor {
 		engine = new PlayerActionEngine(listener,status, gun);
 	}
 
-	private void setStatus(Level level, CollisionHandler collisionHandler){
+	public void setStatus(Level level, CollisionHandler collisionHandler){
 		
 		TiledMap map = level.getMap();
 		

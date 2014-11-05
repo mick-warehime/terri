@@ -38,22 +38,14 @@
    </properties>
   </tile>
  </tileset>
- <layer name="meta" width="170" height="30">
-  <properties>
-   <property name="blocked" value="&quot;false&quot;"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Yaw6DIBAGPUAv7c37y4SQXXkI8i3OJKSUAMLuBGnP33GcTnmCNyeFUlMsj1pdG+Ukju+z59H7aPH0qb/euN75R+19xrNmsNK31eu25lJjZQ7e8K+XlrUp7uNpPtRQPivgXZTzh6dwoZy/CJ6qrGN3lOMWwVMYj5Uj5fzhaT2zYlUbL6uvN7Y0J55q7nMHrrimn72OW3Xl/OGpPpZjd9+vNquet1nzKOYPT7Wpjafn6d29wBrzRv56noGn2rTEsvRet/quOE/xFDysu0Jex1OIAJ7CKEbEuHRn/YqnMI/W+2re/y5Hyp7mY/FUGyvOXj3vX8pPBE/T8TiqT62naXspP1E8zefBUT2889TLQ9q2y3kK+7Hb/RQAT6GWlXetr3mqsAZoB0/Xwe+9eiJ4OuI/KVyIDZ5CBPAUIoCnEIHRDlAoM8sfAsJwXrBPAAA=
-  </data>
- </layer>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2bTW6DMBCFUaIqvVku0Duxb+7Qq7DOrukt+pN2WyhYsqyxPWOMPS7vSaMQY4wNHw//JP2h614f57iN8eaJnwdemLJCYc7DzRcLX96bs+2Wy21TSrh1iuWT1E1zO6S8xKI/LnHgX48QI24+Dn++8750c7j5qftp8nIi1p419zJULuf5l9RNczvW+pwbw3GOzwCn3GfHcMm9DrZKckqd13dvJM9qDv9IrZvGduSsk/HSFE5z3hNKEvbWchp7Bmtckxx1q9mOnHUawKmqgGiBUzDZguz+qTa1wClnHsIXEF92/1SbWuAUfppfzwSLAzhVFala4+s5fH9iy+WL4i2UHtq/d061qHWPNWzZnzEe7WPtvNQ2ONWhVjmlGAt9N2nUtptm75sYHcAplCCuZ/o4DfUL3H0Tp6cC4/3rGBfhMeBUt7jvdTdvqp+eC3D6tIRE4HQf4vRPJ077ApxOXgpOoVT99U/hp1AGGV+U9AeoMiiV4nTy06vwGDDalqT9VWp85StjUOynRuC0DVF+Ghoz2fljPnwqtL6fMt63BUbbkWRsb9JjXnwuxOkaP7UFRvXK56c+v7TTYqz2hThNGe9D/1ui/mnB9z44hVL1sayZtvLeh+qp5u9rNc+fbiH0VdtUyXkp6fzpFtLEKX7jz1epealLlz4vhbl+qOR7P9VPwSm0t/UocNqmWliP2pLT2v+Hwn/7eLLXo8wc1dcY7873+xjfnrS7Jz+njK3Os9U5alyjWBma25G7vF/+FswKsE8AAA==
+   H4sIAAAAAAAAA+2bTW6DMBCFUaIqvVku0Duxb+7Qq7DOrukt+pN2WyhYsqyxPWOMPS7vSaMQY4wNHw//JP2h614f57iN8eaJnwdemLJCYc7DzRcLX96bs+2Wy21TSrh1iuWT1E1zO6S8xKI/LnHgX48QI24+Dn++8750c7j5qftp8nIi1p419zJULuf5l9RNczvW+pwbw3GOzwCn3GfHcMm9DrZKckqd13dvJM9qDv9IrZvGduSsk/HSFE5z3hNKEvbWchp7Bmtckxx1q9mOnHUawKmqgGiBUzDZguz+qTa1wClnHsIXEF92/1SbWuAUfppfzwSLAzhVFala4+s5fH9iy+WL4i2UHtq/d061qHWPNWzZnzEe7WPtvNQ2ONWhVjmlGAt9N2nUtptm75sYHcAplCCuZ/o4DfUL3H0Tp6cC4/3rGBfhMeBUt7jvdTdvqp+eC3D6tIRE4HQf4vRPJ077ApxOXgpOoVT99U/hp1AGGV+U9AeoMiiV4nTy06vwGDDalqT9VWp85StjUOynRuC0DVF+Ghoz2fljPnwqtL6fMt63BUbbkWRsb9JjXnwuxOkaP7UFRvXK56c+v7TTYqz2hThNGe9D/1ui/mnB9z44hVL1sayZtvLeh+qp5u9rNc+fbiH0V9tUyXkp6fzpFtLEKX7jz1epealLlz4vhfl+qOR7P9VPwSm0t/UocNqmWliP2pLT2v+Hwn/7eLLXo8wc1dcY7873+xjfnrS7Jz+njK3Os9U5alyjWBma25G7vF+WE9NVsE8AAA==
   </data>
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SQQoCMQwF0EDbGzlrT+lFRI/iTZy9A65mIbZIa8X3IPxFICSQCAAAAAAAAAAAAAAAgPmc8r5gRreyLwD4ZcfyuoDPncuzYGb+FPg3lxRxTfUJ33Dffm9NbTnDDq1Z2xuxS89b1g7zRvzAO4ccseS2nGGH1qztjdil5y1Lh3kjfgB6egDyaFApsE8AAA==
+   H4sIAAAAAAAAA+3SQQoCMQwF0ELbGzlrT+lFRI/iTZy9A65mobRIasX3IPxFICSQlAAAAAAAAAAAAAAAAOZzKvuCGd3qvgDglx3r6wI+d67Pgpn5U+DfXHJK19ye8A337ffW3JcRenfozdZe5A4jblkD5o36gXcOJaWl9GWE3h16s7UXucOIW5aAeaN+AKI8AColP9KwTwAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -94,8 +86,8 @@
     <property name="range" value="12"/>
    </properties>
   </object>
-  <object name="Lava" type="deadly" x="944" y="432" width="1744" height="32"/>
-  <object type="progressPoint" x="384" y="32" width="16" height="160">
+  <object name="Lava" type="deadly" x="960" y="432" width="1728" height="32"/>
+  <object type="progressPoint" x="640" y="240" width="16" height="160">
    <properties>
     <property name="index" value="1"/>
     <property name="x" value="24"/>
@@ -107,6 +99,20 @@
     <property name="index" value="0"/>
     <property name="x" value="5"/>
     <property name="y" value="19"/>
+   </properties>
+  </object>
+  <object type="progressPoint" x="944" y="208" width="16" height="160">
+   <properties>
+    <property name="index" value="2"/>
+    <property name="x" value="59"/>
+    <property name="y" value="21"/>
+   </properties>
+  </object>
+  <object type="progressPoint" x="1824" y="48" width="16" height="80">
+   <properties>
+    <property name="index" value="3"/>
+    <property name="x" value="114"/>
+    <property name="y" value="6"/>
    </properties>
   </object>
  </objectgroup>

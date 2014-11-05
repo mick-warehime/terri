@@ -1115,6 +1115,7 @@ public class TiledMap {
 		public GroupObject(Element element) throws SlickException {
 			name = element.getAttribute("name");
 			type = element.getAttribute("type");
+
 			int tH = getTileHeight();
 
 			x = (int) Float.parseFloat(element.getAttribute("x"));
@@ -1123,6 +1124,7 @@ public class TiledMap {
 			if(type.isEmpty()){
 				System.out.println("EMPTY OBJECT ON TILEDMAP @ ("+x/tH+","+y/tH+")");
 			}
+
 
 			width = (int) Float.parseFloat(element.getAttribute("width"));
 			height = (int) Float.parseFloat(element.getAttribute("height"));
@@ -1156,7 +1158,7 @@ public class TiledMap {
 
 	public int getObjectLayerIndex(String groupName){
 
-		
+
 		int objectGroupCount = getObjectGroupCount();
 		for( int gi=0; gi < objectGroupCount; gi++ ) // gi = object group index
 		{
@@ -1164,13 +1166,24 @@ public class TiledMap {
 			if(grp.name.equals(groupName)){
 				return gi;
 			}
-			
-		}
-		
-		return -1;
 
+		}
+
+		return -1;		
+
+	}
+
+	public int getObjectIndex(String objectName, int groupId){
 		
-		
+		int objectCount = getObjectCount(groupId);
+		for( int oi = 0; oi < objectCount; oi++ ) // oi = object index
+		{
+			if(getObjectName(groupId, oi).equals(objectName)){
+				System.out.println(oi);
+			}
+		}
+
+		return -1;
 	}
 
 }

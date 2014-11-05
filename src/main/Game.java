@@ -15,26 +15,23 @@ import etherable.ProgressPoint;
 import actors.Player;
 
 
-// features to add
-//
-//  
-
-//  PROGRESS POINTS
+//  To doo to doo to do to do do do to doooooo
  
-//  ENEMY CANNON 
-// dont remove timed platforms from the active objects list in the gun
+//   enemy canon   
+//   platforms that have a limited number of times you can be on them?
+//   platform timers
+//   enemy only platforms?
+//  multiple weight sensitive switchs to open a door
 
-//  Timed platforms dont restore correctly (collided with themselves)
+//  refactor the way .tmx's are parsed. dont need meta and blocks used map.gettileimage(i,j,layerid)
+//  instead of checking to see if the meta tile blocked property 
 
-// TODO: 
-//
-// Refactor Level, TileData?
-// refactor timed switch, elevator, platform etc to extend the untimed ones
+//  Platform is an empty class. You can just make an etherObject directly instead.
 
-// Fix issue with etherobjects restoring on enemies.--> make canRestore
-// an etherObject method and use it in gun.
-// Platform is an empty class. You can just make an etherObject directly instead.
+//  find a way to skip empty objects on .tmx
 
+//  weird bug when you jump ether objects tend to lag behind in drawing?? 
+//  maybe check the order things are drawn
 
 public class Game extends BasicGame {
 
@@ -49,7 +46,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 1;
+	private int currentLevel = 2;
 	private ProgressPoint progress;
 
 	//	private Ether activeEtherObject = null; 

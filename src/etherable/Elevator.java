@@ -24,8 +24,8 @@ public class Elevator extends EtherObject implements InteractiveCollideable {
 	private boolean isMoving = true;
 
 
-	public Elevator(int x, int y, int w, int h, TiledMap map, Properties args) throws SlickException {
-		super(x, y, w, h, map,args);
+	public Elevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
+		super(x, y, w, h, name, map,args);
 		
 		// set y position to initial y position 
 		yPos = y*tileSize;

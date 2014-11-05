@@ -1,45 +1,20 @@
 package etherable;
 
-import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WeightedSwitch extends GameObject implements SwitchObject {
-	// state  = false for up and state = true for down
-	private boolean state = false;
-	private GameObject target;
-	private int targetX;
-	private int targetY;
-
-
-
-	public WeightedSwitch(int x, int y, int w, int h, TiledMap map,Properties args) throws SlickException {		
-		super(x, y, w, h, map,args);
+public class WeightedSwitch extends SwitchObject {
+	
+	public WeightedSwitch(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
+		super(x, y, w, h, name, map, args);
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
-
-		// location of the target
-		this.targetX = Integer.parseInt((String) args.get("tx"))*tileSize;
-		this.targetY = Integer.parseInt((String) args.get("ty"))*tileSize;
-
+		
 	}
 
-	public void setTarget(ArrayList<GameObject> gameObjects){
-
-		for(GameObject gObj : gameObjects) {
-			if(gObj.getTileX()==targetX && gObj.getTileY()==targetY){	
-				// give the switch the correesponding target object
-				target = gObj;				
-
-
-				return;
-			} 
-		}
-		target = null;
-	}
 
 	protected void getSprites(TiledMap map) throws SlickException{
 		sprites.add(new Image("data/lever_left.png"));
@@ -53,10 +28,6 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 			im.draw(rect.getX()-mapX,rect.getY()-mapY);
 		}
 
-	}
-
-	public boolean canCollide(){
-		return false;
 	}
 
 	public void update(int mouseX, int mouseY){
@@ -74,12 +45,6 @@ public class WeightedSwitch extends GameObject implements SwitchObject {
 		}
 
 	};
-
-	public void toggle(){
-
-		state = !state;		
-		target.toggle();
-	}
 
 
 	private boolean isWeighedDown(){

@@ -27,8 +27,8 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 
 
 
-	public TimedElevator(int x, int y, int w, int h, TiledMap map,Properties args) throws SlickException {
-		super(x, y, w, h, map,args);
+	public TimedElevator(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {
+		super(x, y, w, h, name,map,args);
 
 		// set y position to initial y positiondaad
 		yPos = y*tileSize;	

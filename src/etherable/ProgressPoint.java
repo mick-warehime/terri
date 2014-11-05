@@ -12,8 +12,8 @@ public class ProgressPoint extends EtherObject{
 	private int py;
 	private int index;
 
-	public ProgressPoint(int x, int y, int w, int h, TiledMap map, Properties args) throws SlickException {
-		super(x, y, w, h, map, args);
+	public ProgressPoint(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
+		super(x, y, w, h, name, map, args);
 		// TODO Auto-generated constructor stub
 
 
