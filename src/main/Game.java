@@ -18,7 +18,7 @@ import actors.Player;
 //  To doo to doo to do to do do do to doooooo
  
 //   platforms that have a limited number of times you can be on them?
-//   platform timers
+//   drawing platform timers
 //   enemy only platforms?
 //   multiple weight sensitive switchs to open a door
 
@@ -29,6 +29,13 @@ import actors.Player;
 
 //  when do we want level to reset and when do we want to transport terri???!?
 
+//  a float option when holding space after jumping? like a little parachute or booster pack or wings
+
+//  ladders
+
+//  gravity gun for enemies?
+
+//  mario bullets canon
 
 public class Game extends BasicGame {
 
@@ -65,8 +72,12 @@ public class Game extends BasicGame {
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-			level.setProgressPoint(progress);
-			terri.resetPlayer(level);
+//			set player to latest progress point target
+//			level.setProgressPoint(progress);
+//			terri.resetPlayer(level);
+			initializeLevel(currentLevel);
+//			Command shoot = new FireCommand(gc.getInput(),level);
+//			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
 			
 		}
 		
@@ -82,6 +93,7 @@ public class Game extends BasicGame {
 
 		Command shoot = new FireCommand(gc.getInput(),level);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+		
 	}
 
 	private void initializeLevel(int levelNumber) throws SlickException{
@@ -98,6 +110,7 @@ public class Game extends BasicGame {
 		terri = new Player(level,collisionHandler);
 
 		keyboardInputProvider.addListener(terri.getListener());
+		
 	}
 	
 	private void initializeKeyBindings(GameContainer gc){
