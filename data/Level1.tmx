@@ -40,15 +40,15 @@
  </tileset>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2bTW6DMBCFUaIqvVku0Duxb+7Qq7DOrukt+pN2WyhYsqyxPWOMPS7vSaMQY4wNHw//JP2h614f57iN8eaJnwdemLJCYc7DzRcLX96bs+2Wy21TSrh1iuWT1E1zO6S8xKI/LnHgX48QI24+Dn++8750c7j5qftp8nIi1p419zJULuf5l9RNczvW+pwbw3GOzwCn3GfHcMm9DrZKckqd13dvJM9qDv9IrZvGduSsk/HSFE5z3hNKEvbWchp7Bmtckxx1q9mOnHUawKmqgGiBUzDZguz+qTa1wClnHsIXEF92/1SbWuAUfppfzwSLAzhVFala4+s5fH9iy+WL4i2UHtq/d061qHWPNWzZnzEe7WPtvNQ2ONWhVjmlGAt9N2nUtptm75sYHcAplCCuZ/o4DfUL3H0Tp6cC4/3rGBfhMeBUt7jvdTdvqp+eC3D6tIRE4HQf4vRPJ077ApxOXgpOoVT99U/hp1AGGV+U9AeoMiiV4nTy06vwGDDalqT9VWp85StjUOynRuC0DVF+Ghoz2fljPnwqtL6fMt63BUbbkWRsb9JjXnwuxOkaP7UFRvXK56c+v7TTYqz2hThNGe9D/1ui/mnB9z44hVL1sayZtvLeh+qp5u9rNc+fbiH0V9tUyXkp6fzpFtLEKX7jz1epealLlz4vhfl+qOR7P9VPwSm0t/UocNqmWliP2pLT2v+Hwn/7eLLXo8wc1dcY7873+xjfnrS7Jz+njK3Os9U5alyjWBma25G7vF+WE9NVsE8AAA==
+   H4sIAAAAAAAAA+2aS26DMBCGUaMqvVku0Duxb+6Qq7DOLvQWfaTdFjdYskZ+zPiFnfyfNApxjLHh02BMxqdhuLzcYl7i3RG/z7zQbflCH4dbLxSuujPZpu1yxxQTtE+hepK+tTwOqS+hGHdrLJ664PhinueZlIf8c3Fag9a3Xc/TwI/QeFKupa9d3/njnmvJ8bYYh24jNc/RmHa3+PJ46vOX9vni8Y5eixClPPX1iY6He+2ob7kJ9a3lceTok86lMZ6WRuJeqqcUet5aQtK3FscR06cJnoIOgKegB1Lmp6XpwVPOOkTtuew9gvkpaI03i4u4798HKXk9R95XblG/bL75yn2/w1OQA+2W+Rny0dzXrGvbhqcgBZtjvu+6zLZNy8zflKMTPAURcHOmy1PfvID+pjzdV3jePy9xFO4DT9uGe1+ndWPz6aGCp69rSICnjwFnfqo8HSt4qnIpPAWx/M9PkU9BBnRelMwHbG3YqOWpyqdn4T5wtC+k81Xb85WrjanhfKqBp31gy6e+ZyazfigP7yu934953jeBo/0gebbX5aFcfKjkaUo+NYGj7eLKp658aZaFXB0reRrzvA/uG9H8tOJ9H56CWD7Xd6a93PfBdmz5/9qW109LgPlqn9Rcl5Kun5agJU/xH38+tdaljkP8uhTW+0HN+35sPoWn4NHeR8HTPunhfRQ8Beb7KL1G9b3EB/l+XeLHUXZ11Oe0Ueo4pY6xxTkKtdHyOHK39wfXjgFgsE8AAA==
   </data>
  </layer>
- <layer name="ether" width="170" height="30" opacity="0.3">
+ <layer name="ether" width="170" height="30" visible="0" opacity="0.3">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3SQQoCMQwF0ELbGzlrT+lFRI/iTZy9A65mobRIasX3IPxFICSQlAAAAAAAAAAAAAAAAOZzKvuCGd3qvgDglx3r6wI+d67Pgpn5U+DfXHJK19ye8A337ffW3JcRenfozdZe5A4jblkD5o36gXcOJaWl9GWE3h16s7UXucOIW5aAeaN+AKI8AColP9KwTwAA
   </data>
  </layer>
- <objectgroup name="objects" opacity="0.58">
+ <objectgroup name="objects" visible="0" opacity="0.58">
   <object name="Timed Pl" type="timedPlatform" x="16" y="352" width="112" height="16">
    <properties>
     <property name="duration" value="2"/>
