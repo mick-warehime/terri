@@ -54,7 +54,7 @@ public class Level {
 		tileLayerId = map.getLayerIndex("tiles");
 
 		
-		
+		//Creates the collisionHandler with just game blocks
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.enemies = tileData.getEnemies();

@@ -52,6 +52,7 @@ public class Game extends BasicGame {
 	private Level level;
 	private int currentLevel = 1;
 	private ProgressPoint progress;
+	private FireCommand shootCommand;
 
 	//	private Ether activeEtherObject = null; 
 
@@ -72,12 +73,8 @@ public class Game extends BasicGame {
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-//			set player to latest progress point target
-//			level.setProgressPoint(progress);
-//			terri.resetPlayer(level);
 			initializeLevel(currentLevel);
-//			Command shoot = new FireCommand(gc.getInput(),level);
-//			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+			
 			
 		}
 		
@@ -91,8 +88,6 @@ public class Game extends BasicGame {
 
 		initializeLevel(currentLevel);
 
-		Command shoot = new FireCommand(gc.getInput(),level);
-		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
 		
 	}
 
@@ -104,13 +99,17 @@ public class Game extends BasicGame {
 		}
 		
 		level.setProgressPoint(progress);
+		
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
 		terri = new Player(level,collisionHandler);
 
-		keyboardInputProvider.addListener(terri.getListener());
 		
+		//Keyboard stuff
+		
+		keyboardInputProvider.addListener(terri.getListener());
+		shootCommand.setLevel(level);
 	}
 	
 	private void initializeKeyBindings(GameContainer gc){
@@ -118,22 +117,23 @@ public class Game extends BasicGame {
 		keyboardInputProvider = new InputProvider(gc.getInput());
 		//The listener is linked to the provider
 
-
+		
+		
 		//Define action commands for provider
 		Command jump = new JumpCommand();
 		//Command moveDown = new MoveCommand("move down", 0 ,8);
 		Command moveLeft = new MoveCommand( -1);
 		Command moveRight = new MoveCommand( 1);
-		
+		shootCommand = new FireCommand(gc.getInput());
 		Command restore = new RestoreCommand();
 		Command interact = new InteractCommand();
-
+		
 		//Bind commands to keys
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_E), interact);
-		
+		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shootCommand);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(1), restore);
 	}
 

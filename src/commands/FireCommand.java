@@ -13,9 +13,9 @@ public class FireCommand extends BasicCommand implements GenericCommand {
 	private Level level;
 	private Input input;
 
-	public FireCommand(Input input, Level level) {
+	public FireCommand(Input input) {
 		super("Shoot gun");
-		this.level  =level;
+		
 		this.input = input;
 		// TODO Auto-generated constructor stub
 	}
@@ -25,6 +25,10 @@ public class FireCommand extends BasicCommand implements GenericCommand {
 		int mouseX = input.getMouseX()+level.getMapX();
 		int mouseY = input.getMouseY()+level.getMapY();
 		((PlayerActionEngine) engine).attemptShoot(mouseX, mouseY);
+	}
+	
+	public void setLevel(Level level){
+		this.level = level;
 	}
 
 	
