@@ -94,8 +94,9 @@ public class Status {
 	}
 	
 	public void setY(float y){
-		this.y = y;
-		this.rect.setY(y);
+		// the -1 makes sure he doesnt start stuck in anything
+		this.y = y-1;
+		this.rect.setY(y-1);
 	}
 	
 	public void setDying(boolean b) {
