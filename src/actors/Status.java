@@ -25,14 +25,7 @@ public class Status {
 		this.x = x;
 		this.y = y;
 		
-		rect = new Rectangle(0,0,width, height);
-		
-//		System.out.println("Crahs here???");
-		
-		rect.setX((int) x);
-		rect.setY((int) y);
-		
-//		System.out.println("Crahs here???");
+		rect = new Rectangle((int) x,(int) y,width, height);
 		
 		this.collisionHandler = collisionHandler;
 		
@@ -90,6 +83,21 @@ public class Status {
 		throw new UnsupportedOperationException("Improper input arguments!");
 	}
 
+	
+	public void setAlive(){
+		this.isDying = false;
+	}
+	
+	public void setX(float x){
+		this.x = x;
+		this.rect.setX(x);
+	}
+	
+	public void setY(float y){
+		this.y = y;
+		this.rect.setY(y);
+	}
+	
 	public void setDying(boolean b) {
 		this.isDying = b;		
 	}

@@ -17,21 +17,18 @@ import actors.Player;
 
 //  To doo to doo to do to do do do to doooooo
  
-//   enemy canon   
 //   platforms that have a limited number of times you can be on them?
 //   platform timers
 //   enemy only platforms?
-//  multiple weight sensitive switchs to open a door
-
-//  refactor the way .tmx's are parsed. dont need meta and blocks used map.gettileimage(i,j,layerid)
-//  instead of checking to see if the meta tile blocked property 
-
-//  Platform is an empty class. You can just make an etherObject directly instead.
+//   multiple weight sensitive switchs to open a door
 
 //  find a way to skip empty objects on .tmx
 
 //  weird bug when you jump ether objects tend to lag behind in drawing?? 
 //  maybe check the order things are drawn
+
+//  when do we want level to reset and when do we want to transport terri???!?
+
 
 public class Game extends BasicGame {
 
@@ -68,14 +65,8 @@ public class Game extends BasicGame {
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-			
-			initializeLevel(currentLevel);
-			
-			//This is a stupid kludge that should be fixed
-			//It should be defined once, but I need to pass it
-			// a new level when initializeLevel runs.
-			Command shoot = new FireCommand(gc.getInput(),level);
-			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+			level.setProgressPoint(progress);
+			terri.resetPlayer(level);
 			
 		}
 		

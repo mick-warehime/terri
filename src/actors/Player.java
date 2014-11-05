@@ -1,14 +1,10 @@
 package actors;
 
 
-
-import main.CollisionHandler;
 import main.Level;
-
+import main.CollisionHandler;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
-
 import commands.GlobalInputListener;
 import commands.KeyboardInputListener;
 
@@ -39,9 +35,7 @@ public class Player extends Actor {
 	}
 
 	public void setStatus(Level level, CollisionHandler collisionHandler){
-		
-		TiledMap map = level.getMap();
-		
+				
 		//loop over all objects, find the start position object
 		int px = level.getProgressX();
 		int py = level.getProgressY();
@@ -49,7 +43,7 @@ public class Player extends Actor {
 		float h = sprite.getHeight();
 		float w = sprite.getWidth();
 		status = new Status((float) px, (float) py-1, collisionHandler, w, h);
-
+		
 	}
 
 	public Gun getGun() {
@@ -63,6 +57,12 @@ public class Player extends Actor {
 
 	public KeyboardInputListener getListener() {
 		return keyboard;
+	}
+	
+	public void resetPlayer(Level level){
+		status.setAlive();
+		status.setX(level.getProgressX());
+		status.setY(level.getProgressY());
 	}
 
 

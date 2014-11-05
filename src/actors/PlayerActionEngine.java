@@ -1,11 +1,8 @@
 package actors;
 
 import java.util.ArrayList;
-
 import org.newdawn.slick.command.Command;
-
 import commands.GlobalInputListener;
-import commands.JumpCommand;
 import commands.MoveCommand;
 import etherable.GameObject;
 
@@ -18,7 +15,7 @@ public class PlayerActionEngine extends ActionEngine {
 //	private ArrayList <Action> actions;
 
 	private float ups = 20;
-	private float wallUps = 15;
+//	private float wallUps = 15;
 	private int jumpTimer= 0;
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
@@ -75,47 +72,38 @@ public class PlayerActionEngine extends ActionEngine {
 
 	}
 
-	////////////////
+//	public void attemptWallJump(){
+//
+//		if (canWallJump()){
+//
+//			vy -= wallUps;
+//			jumpTimer += jumpTimerIncrement;
+//			vx = - vx;
+//		}
+//		return;
+//	}
 
-
-	
-
-
-
-	public void attemptWallJump(){
-
-		if (canWallJump()){
-
-			vy -= wallUps;
-			jumpTimer += jumpTimerIncrement;
-			vx = - vx;
-		}
-
-
-		return;
-	}
-
-
-	private boolean canWallJump(){
-		boolean answer = false;
-
-		//Check that I am touching a wall in the direction
-		//that I'm moving	
-		if (vx<0){
-			status.displace(-1,'X');
-			answer = status.isCollided();
-			status.displace(1,'X');
-		}else{
-			status.displace(1,'X');
-			answer = status.isCollided();
-			status.displace(-1,'X');
-		}
-		//Check that jumpTimer is 0;
-		answer = answer && (jumpTimer == 0); 
-
-
-		return answer;
-	}
+//
+//	private boolean canWallJump(){
+//		boolean answer = false;
+//
+//		//Check that I am touching a wall in the direction
+//		//that I'm moving	
+//		if (vx<0){
+//			status.displace(-1,'X');
+//			answer = status.isCollided();
+//			status.displace(1,'X');
+//		}else{
+//			status.displace(1,'X');
+//			answer = status.isCollided();
+//			status.displace(-1,'X');
+//		}
+//		//Check that jumpTimer is 0;
+//		answer = answer && (jumpTimer == 0); 
+//
+//
+//		return answer;
+//	}
 
 	private boolean canJump(){
 		return (status.isTouchingGround() && (jumpTimer==0)) ;
@@ -143,13 +131,13 @@ public class PlayerActionEngine extends ActionEngine {
 //		System.out.println(currentActionCommands);
 		
 		boolean triedMove = false;
-		boolean triedJump = false;
+//		boolean triedJump = false;
 
 		//Check which actions are done (There is a better what to do this)
 		for (Command cmd : currentActionCommands){
-			if (cmd instanceof JumpCommand){
-				triedJump = true;
-			}
+//			if (cmd instanceof JumpCommand){
+//				triedJump = true;
+//			}
 			if (cmd instanceof MoveCommand){
 				triedMove = true;
 			}

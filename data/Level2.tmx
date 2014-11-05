@@ -10,7 +10,7 @@
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OKw7CQBSF4UvajmEHrAM0eHaABPYBHsVTsBnwKJ6C1XDEINpCmkLSDuT/kj/T3JpjBgAAAAAAAAAAAAAAAAAAAABAOU3/3mtdUazv31aj1hmFZv4dBL7z4N9t4DsBYJiYjdQ4SX+H5ld2Av9gHpkt1FKt1FptorpX5R216aTO6qKu6hbgTgBAOV1XXT33+c6Jq67pFzt3Ll07NuvE+dvz/u5/9vbqvs/sfAAwK3+6oEEAAA==
+   H4sIAAAAAAAAA+3OKw7CYBCF0Z+Q1rADNgOeHSCBfYBH8RRsCcVTsBpG1ACiAdGW5pzky4y8KQEAAAAAAAAAAAAAwHd6xX3UuqLcqLj9Tq0zSi2LO274zmNxDw3fCTDJUppGs+z1b5p/2QltsOqmtI420TbaRftu3as+nWLTObpE1+gW3Ru4E4B2GuTVNcx/3znPq2vxtvMJJx+z5aBBAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -21,7 +21,7 @@
     <property name="y" value="91"/>
    </properties>
   </object>
-  <object name="lava" type="deadly" x="176" y="1552" width="448" height="48"/>
+  <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
   <object type="enemy" x="576" y="1344" width="16" height="16"/>
   <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
   <object type="progressPoint" x="640" y="1120" width="16" height="64">
@@ -32,7 +32,7 @@
    </properties>
   </object>
   <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
-  <object name="Sw" type="switch" x="48" y="1504" width="18" height="17">
+  <object name="Sw" type="weightedSwitch" x="48" y="1504" width="18" height="17">
    <properties>
     <property name="prox" value="5"/>
     <property name="target" value="door1"/>

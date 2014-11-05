@@ -5,6 +5,7 @@ package main;
 import etherable.DeadlyObject;
 import etherable.Door;
 import etherable.Elevator;
+import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.ProgressPoint;
@@ -60,7 +61,7 @@ public class TileData {
 
 		parserDict = new HashMap<String,Class<?>>();
 
-		parserDict.put("platform", Platform.class);
+		parserDict.put("platform", EtherObject.class);
 		parserDict.put("deadly", DeadlyObject.class);
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
@@ -151,6 +152,7 @@ public class TileData {
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
+			@SuppressWarnings("rawtypes")
 			Constructor construct = test[0];
 
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));

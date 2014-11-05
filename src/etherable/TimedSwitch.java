@@ -18,7 +18,6 @@ public class TimedSwitch extends SwitchObject{
 		// how long the switch stays on in milliseconds
 		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
 		
-
 	}
 
 	public void update(int mouseX, int mouseY){
