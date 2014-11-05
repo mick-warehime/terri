@@ -15,25 +15,19 @@ import etherable.ProgressPoint;
 import actors.Player;
 
 
-// features to add
-//
-//  
-
-//  PROGRESS POINTS
+//  To doo to doo to do to do do do to doooooo
  
-//  ENEMY CANNON 
-// dont remove timed platforms from the active objects list in the gun
+//   platforms that have a limited number of times you can be on them?
+//   platform timers
+//   enemy only platforms?
+//   multiple weight sensitive switchs to open a door
 
-//  Timed platforms dont restore correctly (collided with themselves)
+//  find a way to skip empty objects on .tmx
 
-// TODO: 
-//
-// Refactor Level, TileData?
-// refactor timed switch, elevator, platform etc to extend the untimed ones
+//  weird bug when you jump ether objects tend to lag behind in drawing?? 
+//  maybe check the order things are drawn
 
-// Fix issue with etherobjects restoring on enemies.--> make canRestore
-// an etherObject method and use it in gun.
-// Platform is an empty class. You can just make an etherObject directly instead.
+//  when do we want level to reset and when do we want to transport terri???!?
 
 
 public class Game extends BasicGame {
@@ -71,14 +65,8 @@ public class Game extends BasicGame {
 		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-			
-			initializeLevel(currentLevel);
-			
-			//This is a stupid kludge that should be fixed
-			//It should be defined once, but I need to pass it
-			// a new level when initializeLevel runs.
-			Command shoot = new FireCommand(gc.getInput(),level);
-			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+			level.setProgressPoint(progress);
+			terri.resetPlayer(level);
 			
 		}
 		

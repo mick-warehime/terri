@@ -5,6 +5,7 @@ package main;
 import etherable.DeadlyObject;
 import etherable.Door;
 import etherable.Elevator;
+import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Platform;
 import etherable.ProgressPoint;
@@ -15,7 +16,6 @@ import etherable.TimedPlatform;
 import etherable.TimedSwitch;
 import etherable.WeightedSwitch;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class TileData {
 
 		parserDict = new HashMap<String,Class<?>>();
 
-		parserDict.put("platform", Platform.class);
+		parserDict.put("platform", EtherObject.class);
 		parserDict.put("deadly", DeadlyObject.class);
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
@@ -76,7 +76,7 @@ public class TileData {
 
 
 	private void initializeObjects(TiledMap map) throws NumberFormatException, SlickException{
-		
+
 		// only load items in the objects layer
 		int grpID = map.getObjectLayerIndex("objects");
 
@@ -92,24 +92,22 @@ public class TileData {
 				gObj.setTarget(gameObjects);
 			}
 		}
-		
+
 	}
 
 	//Create the permanently blocked tiles that don't interact with anything.
 	private void initializeMeta(TiledMap map){
 
-		int metaIndex = map.getLayerIndex("meta");
+		int tileIndex = map.getLayerIndex("tiles");
 
 		// load the permanently blocked walls
 		for(int i = 0; i < map.getWidth(); i++) {
 			for(int j = 0; j < map.getHeight(); j++) {
 
-				// Read a Tile
-				int tileID = map.getTileId(i, j, metaIndex);
+				// Read a Tile				
 
 				// Get the value of the Property named "blocked"
-				String blockedValue = map.getTileProperty(tileID, "blocked", "false");
-				if(blockedValue.equals("true")) {
+				if(!(map.getTileImage(i,j,tileIndex)==null)) {
 					// keep a list of all the rects of the permanently blocked tiles
 					blocks.add(new Rectangle(i * tileSize,j * tileSize, tileSize, tileSize));
 				}	
@@ -138,6 +136,8 @@ public class TileData {
 		int y = map.getObjectY(gi,oi)/tileSize;
 		int h = map.getObjectHeight(gi,oi)/tileSize;
 		int w = map.getObjectWidth(gi,oi)/tileSize;
+		String name = map.getObjectName(gi, oi);
+		
 		Properties args = map.getObjectProperties(gi,oi);
 
 		//Get object type
@@ -152,11 +152,12 @@ public class TileData {
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
+			@SuppressWarnings("rawtypes")
 			Constructor construct = test[0];
 
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
 			try {
-				GameObject gObj = (GameObject) construct.newInstance(x, y, w, h, map,args);
+				GameObject gObj = (GameObject) construct.newInstance(x, y, w, h, name, map,args);
 				gameObjects.add(gObj );
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block

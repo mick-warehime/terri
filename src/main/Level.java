@@ -139,7 +139,7 @@ public class Level {
 		mapYCheck();		
 
 		// map.render(-mapX,-mapY);
-		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight,tileLayerId,false);
+		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight+1,tileLayerId,false);
 
 
 		for(GameObject gObj: gameObjects){		

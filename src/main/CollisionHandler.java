@@ -8,7 +8,6 @@ import org.newdawn.slick.geom.Rectangle;
 
 import actors.Enemy;
 import commands.CommandProvider;
-import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
 import etherable.Interactive;

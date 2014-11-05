@@ -6,9 +6,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WeightedSwitch extends SwitchObject {
+public class MultipleSwitch extends SwitchObject {
 	
-	public WeightedSwitch(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
+	public MultipleSwitch(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
 		super(x, y, w, h, name, map, args);
 		// override the default game object call to get sprites and load the same sprites for every switch
 		getSprites(map);
@@ -21,8 +21,6 @@ public class WeightedSwitch extends SwitchObject {
 		sprites.add(new Image("data/switch_down.png"));
 	}
 
-
- 
 
 	public void update(int mouseX, int mouseY){
 		// if switch was not weighed down
