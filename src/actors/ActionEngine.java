@@ -31,12 +31,9 @@ public class ActionEngine {
 
 	public void update() {
 		
-
 		doActions();
 		movePhysics();
-		updateTimers();
-		
-		
+		updateTimers();	
 	}
 
 	public void attemptRunTo(int direction) {
@@ -170,6 +167,12 @@ public class ActionEngine {
 		return (Math.abs(lastValid)>0); //Success if any displacement occurred
 
 
+	}
+
+	public void Teleport(int destX, int destY) {
+		// TODO Auto-generated method stub
+		status.setX(destX);
+		status.setY(destY);
 	}
 
 }

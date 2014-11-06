@@ -35,7 +35,7 @@ import actors.Player;
 
 //  gravity gun for enemies?
 
-//  mario bullets canon or auto-turret aims at player
+//  mario bullets canon
 
 public class Game extends BasicGame {
 
@@ -68,21 +68,26 @@ public class Game extends BasicGame {
 
 		terri.update();
 		level.update(mouseX, mouseY);
-		
 		progress = level.getProgressPoint();
 		
+		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 
 		if (terri.isDying()){
-			initializeLevel(currentLevel);
-			
-//			// to teleport
+<<<<<<< HEAD
+//			set player to latest progress point target
 //			level.setProgressPoint(progress);
 //			terri.resetPlayer(level);
+			initializeLevel(currentLevel);
+//			Command shoot = new FireCommand(gc.getInput(),level);
+//			keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+=======
+			initializeLevel(currentLevel);
+			
+>>>>>>> 5bb0958f62d1a46d311487bfa2582945173a0cb9
 			
 		}
 		
 		
-		if( gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){gc.exit();}
 	}
 
 	@Override
@@ -92,6 +97,11 @@ public class Game extends BasicGame {
 
 		initializeLevel(currentLevel);
 
+<<<<<<< HEAD
+		Command shoot = new FireCommand(gc.getInput(),level);
+		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shoot);
+=======
+>>>>>>> 5bb0958f62d1a46d311487bfa2582945173a0cb9
 		
 	}
 
@@ -113,7 +123,11 @@ public class Game extends BasicGame {
 		//Keyboard stuff
 		
 		keyboardInputProvider.addListener(terri.getListener());
+<<<<<<< HEAD
+		
+=======
 		shootCommand.setLevel(level);
+>>>>>>> 5bb0958f62d1a46d311487bfa2582945173a0cb9
 	}
 	
 	private void initializeKeyBindings(GameContainer gc){

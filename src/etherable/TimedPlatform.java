@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TimedPlatform extends EtherObject implements Timed {
+public class TimedPlatform extends EtherObject  implements Timed{
 
 	private int duration;
 	private long putTime;

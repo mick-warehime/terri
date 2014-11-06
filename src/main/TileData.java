@@ -7,10 +7,10 @@ import etherable.Door;
 import etherable.Elevator;
 import etherable.EtherObject;
 import etherable.GameObject;
-import etherable.Platform;
 import etherable.ProgressPoint;
 import etherable.Switch;
 import etherable.SwitchObject;
+import etherable.Teleporter;
 import etherable.TimedElevator;
 import etherable.TimedPlatform;
 import etherable.TimedSwitch;
@@ -71,6 +71,7 @@ public class TileData {
 		parserDict.put("timedSwitch", TimedSwitch.class);
 		parserDict.put("weightedSwitch", WeightedSwitch.class);
 		parserDict.put("progressPoint", ProgressPoint.class);
+		parserDict.put("teleporter", Teleporter.class);
 
 	}
 

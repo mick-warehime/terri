@@ -3,14 +3,14 @@
  <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
   <image source="metroidtiles.png" width="1024" height="800"/>
  </tileset>
- <layer name="tiles" width="42" height="100" opacity="0.5">
+ <layer name="tiles" width="42" height="100" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aYQ6CMAxG6xH0Znozvdk8kfywiRabIX5A1fcS00kW0rV5GxjNzNrwuVo9Yl77ndlht1U2OTGv4zA+Fcwz5nUexpeCeca82jC+Fswz5oVHn4FHWvBICx5pwSMteKQFj7TgkZaYV9W+R4+q9j16VLXvsc9V98/Y56r7Jx5pwSMteKQFj7TgkRY80oJHWvBICx5pGf3OYDXzjH0u67s916+q77F+VX0feVTUdzzSgkda8EgLHmnBIy14pAWPtOCRFjzS8mse+Xo8+rx4/d15U+/zWL9muUe+Ho8+L15/d97k+9zX0zp1r+pXpKpfEeo5j8y/rc9T962F75mXW/Et/6/j3NTC86cWnj+14JEWPNKylEe994i50VF51HuPmBsdPPqMf/dIDeeRlsyjXsz2taXIPOrFbF9bLE977dHU/XYtMo96cW0yj3pxbR7rcwMAv/K1oEEAAA==
+   H4sIAAAAAAAAA+2aAQrCMAxF4xH0ZnozvVk9kUMMaDR0078t6nsgqaOMNOG1m2hm1obP2eoR89puzHabtbLJiXnth/GhYJ4xr+MwPhXMM+bVhvG5YJ4xLzz6DDzSgkda8EgLHmnBIy14pAWPtMS8qvY9elS179Gjqn2Pfa66f8Y+V90/8UgLHmnBIy14pAWPtOCRFjzSgkda8EjL0+8MVjPP2Oeyvttj/ar6HutX1fcnj4r6jkda8EgLHmnBIy14pAWPtOCRFjzSgkdafs0jX49HnxevT5039j739WuWe+Tr8ejz4vWp80bf57ae1ql7Vb8iVf2KUM/pXD1K/Fv7PHXfWvieebkW3/L/Os5NLTx/auH5UwseacEjLXN51HuPeDc6Ko967xHvRgePPuPfPVLDeaQl86gXs31tLjKPejHb12bL0157NHa/XYrMo15cmsyjXlya+/pcAE/qoBigQQAA
   </data>
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OKw7CYBCF0Z+Q1rADNgOeHSCBfYBH8RRsCcVTsBpG1ACiAdGW5pzky4y8KQEAAAAAAAAAAAAAwHd6xX3UuqLcqLj9Tq0zSi2LO274zmNxDw3fCTDJUppGs+z1b5p/2QltsOqmtI420TbaRftu3as+nWLTObpE1+gW3Ru4E4B2GuTVNcx/3znPq2vxtvMJJx+z5aBBAAA=
+   H4sIAAAAAAAAA+3SsU7CUBiG4ZM0bdJwUbI23IVyH7o2TCp6PazGCQSuh3/oAg4Vh562eZ7ky3/GdzgpAQAAAAAAAAAAAADAfRbdrbNW9Ft1t8la0W/T3TZrRb/v7n5lrWDM4m/scjf8RTuRzmYinfUIOx/LlJ5i6/L6PTZT6YQ5eC1Seou9x7axj9hnkbvqt300HWI/sWPsFDuPsBOAeXqohtuy+n/nczXcXm46L5eMYpOgQQAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -24,24 +24,28 @@
   <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
   <object type="enemy" x="576" y="1344" width="16" height="16"/>
   <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
-  <object type="progressPoint" x="640" y="1120" width="16" height="64">
-   <properties>
-    <property name="index" value="1"/>
-    <property name="x" value="1"/>
-    <property name="y" value="72"/>
-   </properties>
-  </object>
   <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
-  <object name="Sw" type="weightedSwitch" x="48" y="1504" width="18" height="17">
+  <object name="Sw" type="switch" x="48" y="1504" width="18" height="17">
    <properties>
     <property name="prox" value="5"/>
     <property name="target" value="door1"/>
    </properties>
   </object>
-  <object type="deadly" x="656" y="1120" width="16" height="64"/>
+  <object type="teleporter" x="656" y="1120" width="16" height="64">
+   <properties>
+    <property name="x" value="5"/>
+    <property name="y" value="79"/>
+   </properties>
+  </object>
   <object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
    <properties>
     <property name="duration" value="10"/>
+   </properties>
+  </object>
+  <object type="teleporter" x="128" y="1232" width="16" height="64">
+   <properties>
+    <property name="x" value="39"/>
+    <property name="y" value="72"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,9 +1,6 @@
 package etherable;
 
-
-//An object the player can interact with
 public interface Timed {
+	// this is used by the gun to see if it should remove the current etherable platform/elevator from its active list
 	
-	public void update(int mouseX, int mouseY);
-
 }
