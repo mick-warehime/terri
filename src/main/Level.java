@@ -147,7 +147,7 @@ public class Level {
 		}
 
 		for (Enemy nme: enemies){
-			nme.render(g,mapX,mapY);
+			nme.render(mapX,mapY);
 		}
 
 	}

@@ -17,6 +17,9 @@ public class DeadlyObject extends EtherObject implements InteractiveCollideable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean canCollide(){
+		return false;
+	}
 	@Override
 	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub

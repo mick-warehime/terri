@@ -1,5 +1,6 @@
 package etherable;
 
+
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -8,6 +9,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class EtherObject extends GameObject {
 
+	
+	
 	protected int putX;
 	protected int putY;
 
@@ -72,6 +75,8 @@ public class EtherObject extends GameObject {
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
 
+		
+		
 		if(isEther){ //If ether
 			//Draw ether tile
 			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);

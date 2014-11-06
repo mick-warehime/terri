@@ -11,6 +11,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class GameObject {
+	
+	
 	protected int x; // (x,y) top left in pixels
 	protected int y; 
 
@@ -40,6 +42,8 @@ public class GameObject {
 		//x y position, height and width, in pixels
 		this.x = x*tileSize;
 		this.y = y*tileSize;
+		
+		
 		this.h = h*tileSize;
 		this.w = w*tileSize;			
 		this.name = name; 
@@ -51,6 +55,8 @@ public class GameObject {
 		setRect();
 
 	}
+	
+	
 
 	protected void setRect(){
 		rect = new Rectangle(x,y,w,h);

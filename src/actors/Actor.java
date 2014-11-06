@@ -1,6 +1,5 @@
 package actors;
 
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -24,7 +23,7 @@ public class Actor {
 
 	public float getY() {return status.getY();}
 
-	public void render(Graphics g, int mapX, int mapY) {
+	public void render( int mapX, int mapY) {
 		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
 	}
 
@@ -45,11 +44,6 @@ public class Actor {
 
 	
 
-//	public Status getStatus() {
-//	
-//		// TODO Auto-generated method stub
-//		return status;
-//	}
 
 	public Rectangle getRect() {
 		return status.getRect();

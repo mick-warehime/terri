@@ -14,7 +14,8 @@ import commands.LegalDisplaceCommand;
 
 public class Elevator extends EtherObject implements InteractiveCollideable {
 
-
+	
+	
 	private int yPos;
 	private int speed = 1;
 	private int range;
