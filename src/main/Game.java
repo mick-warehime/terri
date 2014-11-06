@@ -18,7 +18,7 @@ import actors.Player;
 //  To doo to doo to do to do do do to doooooo
  
 //   platforms that have a limited number of times you can be on them?
-//   platform timers
+//   drawing platform timers
 //   enemy only platforms?
 //   multiple weight sensitive switchs to open a door
 
@@ -29,6 +29,13 @@ import actors.Player;
 
 //  when do we want level to reset and when do we want to transport terri???!?
 
+//  a float option when holding space after jumping? like a little parachute or booster pack or wings
+
+//  ladders
+
+//  gravity gun for enemies?
+
+//  mario bullets canon
 
 public class Game extends BasicGame {
 
