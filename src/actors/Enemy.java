@@ -66,7 +66,6 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		engine = new EnemyActionEngine(listener, status);
 		
 		
-		
 		behavior = new Behavior(status, collisionHandler);
 		
 		listener.addProvider(behavior);

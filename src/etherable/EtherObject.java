@@ -1,5 +1,6 @@
 package etherable;
 
+
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -8,6 +9,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class EtherObject extends GameObject {
 
+	
+	
 	protected int putX;
 	protected int putY;
 
@@ -27,7 +30,7 @@ public class EtherObject extends GameObject {
 	}
 
 	protected void setEtherRect(){
-		etherRect = new Rectangle(x,y,w,h);
+		etherRect = new Rectangle(pixelX,pixelY,pixelWidth,pixelHeight);
 	}
 
 
@@ -41,8 +44,8 @@ public class EtherObject extends GameObject {
 
 		if(isActive && !isPut){
 			this.isPut = true;
-			putX = mouseX-w/2;
-			putY = mouseY-h/2;
+			putX = mouseX-pixelWidth/2;
+			putY = mouseY-pixelHeight/2;
 
 			rect.setLocation(putX,putY);
 
@@ -56,7 +59,7 @@ public class EtherObject extends GameObject {
 			isEther = false;
 			isPut = false;
 			isActive = false;
-			rect.setLocation(x,y);
+			rect.setLocation(pixelX,pixelY);
 		}
 	}
 
@@ -64,14 +67,16 @@ public class EtherObject extends GameObject {
 	public void update(int mouseX, int mouseY){
 		if(isActive && !isPut){
 			//		eventually used to update doors/elevators etc;
-			int hoverX = (mouseX-w/2);
-			int hoverY = (mouseY-h/2);
+			int hoverX = (mouseX-pixelWidth/2);
+			int hoverY = (mouseY-pixelHeight/2);
 			rect.setLocation(hoverX,hoverY);			
 		}		
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
 
+		
+		
 		if(isEther){ //If ether
 			//Draw ether tile
 			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
@@ -79,8 +84,8 @@ public class EtherObject extends GameObject {
 			if(isPut){			
 				drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);	
 			}else{ //Otherwise
-				int hoverX = (mouseX-w/2+mapX);
-				int hoverY = (mouseY-h/2+mapY);
+				int hoverX = (mouseX-pixelWidth/2+mapX);
+				int hoverY = (mouseY-pixelHeight/2+mapY);
 				// if the dude cant see the location he cant put it there... dont draw it there
 				if(canPut()){
 					drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);

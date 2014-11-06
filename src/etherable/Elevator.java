@@ -14,7 +14,8 @@ import commands.LegalDisplaceCommand;
 
 public class Elevator extends EtherObject implements InteractiveCollideable {
 
-
+	
+	
 	private int yPos;
 	private int speed = 1;
 	private int range;
@@ -78,7 +79,7 @@ public class Elevator extends EtherObject implements InteractiveCollideable {
 		// the ether variables simply hold the pre-put state to make it easy to restore
 		etherElevation = elevation;
 		etherSpeed = speed;
-		etherRect.setY(y+etherElevation);
+		etherRect.setY(pixelY+etherElevation);
 		
 		// reset the range counter for the put elevator
 		elevation = 0;
@@ -91,11 +92,11 @@ public class Elevator extends EtherObject implements InteractiveCollideable {
 		// setting isMoving true catches the case where it was held but not put
 		isMoving = true;
 
-		yPos = y;
+		yPos = pixelY;
 		
 		elevation = etherElevation;
 		speed = etherSpeed;
-		rect.setLocation(x,yPos+elevation);
+		rect.setLocation(pixelX,yPos+elevation);
 	}
 
 	public void toggle(){

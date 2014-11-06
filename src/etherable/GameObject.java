@@ -1,5 +1,7 @@
 package etherable;
 
+import graphics.TileDrawer;
+
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -11,14 +13,18 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class GameObject {
-	protected int x; // (x,y) top left in pixels
-	protected int y; 
+	
+	
+	private TileDrawer drawer;
+	
+	protected int pixelX; // (x,y) top left in pixels
+	protected int pixelY; 
 
-	protected int I; // (I,J) top left in tiles
-	protected int J;
+	protected int tileX; // (I,J) top left in tiles
+	protected int tileY;
 
-	protected int h; // (height,width) in pixels 
-	protected int w;
+	protected int pixelHeight; // (height,width) in pixels 
+	protected int pixelWidth;
 
 	protected int tileSize;
 	protected int proximity;
@@ -34,14 +40,16 @@ public class GameObject {
 		tileSize = map.getTileHeight();				
 
 		//Position in tile index
-		this.I = x;
-		this.J = y;
+		this.tileX = x;
+		this.tileY = y;
 
 		//x y position, height and width, in pixels
-		this.x = x*tileSize;
-		this.y = y*tileSize;
-		this.h = h*tileSize;
-		this.w = w*tileSize;			
+		this.pixelX = x*tileSize;
+		this.pixelY = y*tileSize;
+		
+		
+		this.pixelHeight = h*tileSize;
+		this.pixelWidth = w*tileSize;			
 		this.name = name; 
 
 
@@ -49,11 +57,16 @@ public class GameObject {
 
 		// used for collision detection		
 		setRect();
+		
+
+		this.drawer = new TileDrawer(rect, map, x,y,w,h);
 
 	}
+	
+	
 
 	protected void setRect(){
-		rect = new Rectangle(x,y,w,h);
+		rect = new Rectangle(pixelX,pixelY,pixelWidth,pixelHeight);
 	}
 
 	public Rectangle getRect(){
@@ -64,8 +77,8 @@ public class GameObject {
 		throw new UnsupportedOperationException(); 
 	}
 
-	public void draw(int i, int j, int mouseX, int mouseY){
-		throw new UnsupportedOperationException(); 
+	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+		drawer.render(mapX, mapY, 1); 
 	}
 
 	public boolean canCollide(){
@@ -77,14 +90,14 @@ public class GameObject {
 	}
 
 	public void update(int mouseX, int mouseY){
-		throw new UnsupportedOperationException(); 
+//		throw new UnsupportedOperationException(); 
 	}
 
 	public int getTileX(){
-		return x;		
+		return pixelX;		
 	}
 	public int getTileY(){
-		return y;
+		return pixelY;
 	}
 
 	public void toggle() {
@@ -111,8 +124,8 @@ public class GameObject {
 
 		int etherIndex = map.getLayerIndex("ether");
 
-		for(int i = I; i < (I+w/tileSize); i++){
-			for(int j = J; j < (J+h/tileSize); j++){
+		for(int i = tileX; i < (tileX+pixelWidth/tileSize); i++){
+			for(int j = tileY; j < (tileY+pixelHeight/tileSize); j++){
 				sprites.add(map.getTileImage(i,j,etherIndex));
 			}
 		}
@@ -124,8 +137,8 @@ public class GameObject {
 					+" "+ drawX/tileSize+" "+drawY/tileSize+"\n");
 		}
 		int count = 0;
-		for(int xi = drawX; xi < drawX+w; xi += tileSize){
-			for(int yi = drawY; yi < drawY+h; yi += tileSize){
+		for(int xi = drawX; xi < drawX+pixelWidth; xi += tileSize){
+			for(int yi = drawY; yi < drawY+pixelHeight; yi += tileSize){
 				//		
 				Image im = sprites.get(count);
 				im.setAlpha(opacity);

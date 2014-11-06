@@ -14,7 +14,7 @@ public class Player extends Actor {
 	private Gun gun;
 	
 
-	public Player(Level level, CollisionHandler collisionHandler) throws SlickException {
+	public Player(int x, int y, CollisionHandler collisionHandler) throws SlickException {
 
  		
 		sprite = new Image("data/head.png");		
@@ -26,7 +26,7 @@ public class Player extends Actor {
 		
 		// GETS starting position from map
 		// shifts initial y position by 1 pixel upwards otherwise dude gets stuck
-		setStatus( level, collisionHandler);
+		setStatus( x,y, collisionHandler);
 
 		collisionHandler.addPlayerRect(status.getRect());
 
@@ -34,11 +34,11 @@ public class Player extends Actor {
 		engine = new PlayerActionEngine(listener,status, gun);
 	}
 
-	public void setStatus(Level level, CollisionHandler collisionHandler){
+	public void setStatus(int x, int y, CollisionHandler collisionHandler){
 				
 		//loop over all objects, find the start position object
-		int px = level.getProgressX();
-		int py = level.getProgressY();
+		int px = x;
+		int py = y;
 				
 		float h = sprite.getHeight();
 		float w = sprite.getWidth();
