@@ -16,7 +16,6 @@ public class Actor {
 	public Actor() throws SlickException {
 		
 		
-		
 	}
 
 	public float getX() {return status.getX();}

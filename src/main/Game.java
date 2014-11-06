@@ -7,6 +7,7 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
 import commands.FireCommand;
+import commands.GenericCommand;
 import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
@@ -103,7 +104,7 @@ public class Game extends BasicGame {
 		// i dont like this initialization
 		collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(level,collisionHandler);
+		terri = new Player(level.getProgressX(),level.getProgressY(),collisionHandler);
 
 		
 		//Keyboard stuff

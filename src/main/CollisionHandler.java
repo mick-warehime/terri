@@ -29,7 +29,6 @@ public class CollisionHandler implements CommandProvider {
 	public CollisionHandler(ArrayList<Rectangle> blockedList){
 		this.blocks = blockedList;
 		
-		
 
 	}
 
@@ -40,11 +39,11 @@ public class CollisionHandler implements CommandProvider {
 		this.enemies = enemies;
 	
 		
-		populateInteractiveObjects();
+		populateInteractiveCollideables();
 		
 	}
 	
-	private void populateInteractiveObjects() {
+	private void populateInteractiveCollideables() {
 		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
 		
 		for (GameObject gObj: gameObjects){
@@ -60,9 +59,6 @@ public class CollisionHandler implements CommandProvider {
 	public void addPlayerRect(Rectangle playerRect){
 		this.playerRect = playerRect;		
 	}
-
-
-
 
 
 

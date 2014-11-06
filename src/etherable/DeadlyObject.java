@@ -8,7 +8,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
 
-public class DeadlyObject extends EtherObject implements InteractiveCollideable{
+public class DeadlyObject extends GameObject implements InteractiveCollideable{
 		
 		 
 	
