@@ -11,7 +11,6 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DisplaceCommand;
-import commands.LegalDisplaceCommand;
 
 public class XElevator extends EtherObject implements InteractiveCollideable {
 
@@ -109,11 +108,7 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 	@Override
 	public Command onCollisionBroadcast(String collidingObjectClass) {
 
-
 		return new DisplaceCommand(speed,'x');
-
-
-
 
 	}
 

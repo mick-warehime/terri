@@ -1,6 +1,8 @@
 package gameobjects;
 
 
+import graphics.EtherGraphics;
+
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -19,6 +21,7 @@ public class EtherObject extends GameObject {
 	protected boolean isPut = false;
 	protected boolean isActive = false;
 	protected boolean isTimed = false;
+	protected EtherGraphics etherGraphics;
 
 
 	public EtherObject(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {
@@ -26,7 +29,8 @@ public class EtherObject extends GameObject {
 
 		// used for collision detection		
 		setEtherRect();
-
+		
+		this.etherGraphics = new EtherGraphics(rect,etherRect,map,x, y, w, h);
 	}
 
 	protected void setEtherRect(){
@@ -74,23 +78,9 @@ public class EtherObject extends GameObject {
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-
-		if(isEther){ //If ether
-			//Draw ether tile
-			drawer.render((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
-			//If it's placed:
-			if(isPut){			
-				drawer.render((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
-			}else{ //Otherwise
-				int hoverX = (mouseX-pixelWidth/2+mapX);
-				int hoverY = (mouseY-pixelHeight/2+mapY);
-				if(canPut()){
-					drawer.render(hoverX,hoverY,mapX,mapY,(float) 0.5);
-				}
-			}
-		}else{
-			drawer.render((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
-		}		
+		
+		etherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut());
+		 
 	}
 
 
