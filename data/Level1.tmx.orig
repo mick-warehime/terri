@@ -40,12 +40,20 @@
  </tileset>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
+<<<<<<< HEAD
+   H4sIAAAAAAAAA+2aS27CMBCGI1BFb8YFeqfs4Q5cJWt2pLfog3bbpMTCGtkej1+x4f+kEcE4jp18mjgO/abrLq+3GKd4t8Tvi1+otlyhjuNbjwtb3ZFs03Z9xxQStE9cPUnfah6H1Bcu+u0Sk6c2fHzRz/NIyjn/bJyWoPVN1/PU+Qc3nphr6WrXdf58z7XkeGuMQ7URm+doDNtbfDk8dflL+3xxeEevBUcuT119ouPxvXbUt9Rwfat5HCn6pHJpiKe5kbgX6ymFnreakPStxnHY+qTKTQzwFFQCPIWnrRMzP81NC576rEOUnss+Ipifgto4GFzEff8xiMnrKfL+7Bb1y+Sbq9z1OzwFKVBu6Z+cj/q+h839OUrfT23DUxAD9ZH7rspM27RM/212dICnIADfnGnz1DUvoL/Nnu4KPO+fpzgK94GndeN7X6d1Q/PpvoCnb0tIgKfPgWmuQLdnT/sCns65FJ6CUP7np8inIAEqL0rmA6Y2TJTydM6nZ+E+cLQtpPNV0/OVrY2h4nyqgKdtYMqnrmcmvT6Xh3eF3u+HPO/rwNF2kDzbq3IuF+8LeRqTT3XgaL3Y8qktX+plnKt9IU9DnvfBYyOanxa878NTEMrn8s60lfs+WI81/19b8/ppDjBfbZOS61LS9dMc1OQp/uPvT6l1qWMXvi6F9X5Q8r4fmk/hKXi291HwtE1aeB8FT4H+PkqtUX1P8UG+X6f4sZRdLfV92sh1nFzHWOMccW3UPI7U7f0BRSvzZrBPAAA=
+=======
    H4sIAAAAAAAAA+2ZS26DMBCGUaMqvVku0Duxb+6Qq7DOLukt+ki7LW6wsEZ+jY3NOPyfNAoxxtjwaTCmf+q6y8s9rmO8O+L3OS50W77Q54mtFwpX3SvZpu3GjiklaJ9C9Th9kzwOri+h6HdTjJ66iPHFvM5XUh7yz8VpClrfdj9PXXyExpNzL33t+q5f7LXmnG+Nceg2cvMcjWF3jy+Ppz5/aZ8vHu/ovQhRylNfn+h4Yu8d9W1pQn2TPI4l+qRzaYqnpeG4l+sphV43SXD6JnEcKX0a4CloAHgKWiBnflqaFjyNWYeoPZd9RDA/zQOeLs+bxUU89/OQ4mlOP5bop3KL+mXzzVfu2w9P85Di6dpot8zfkI/msWZd2zY8zWPrntoc8/3XZbZtWmbuU44O8DSZLXsamzNdnvrmBXSf8nRf4X3/PMaReQw8lU3sc53WTc2nhwqevk7BAZ5ug5j5qfK0r+CpyqXwFJ6m8j8/RT5NBp7O6LzImQ/Y2rBRy1OVT8/MY6Q7qoCnM9z5qu39ytXGIDifaiR7CmZs+dT3zmTWD+XhfaXv+ynv+yZwtB047/a6PJSLD5U8zcmnJnBULq586sqXZlnI1b6Spynv++CxYc1PKz734SlI5XP6ZtrKcx+sx5rrGZLXT0uA+Wqb1FyX4q6flkCSp1tYU12KWutSxy59XaqF9X5QlprP/dR8Ck/B1r5HwdM2aeF7FDwF5vcovUb1PcYH+X8b48dRdnPUj2mj1HlKnWONaxRqQ/I4lm7vD+309a2wTwAA
+>>>>>>> 01e8a38ed9c0816779a8f96b13f2a0c0a868b0a5
   </data>
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SMWrDMBSAYYHtoYHcppkzt5CDJdCxF+ktEsjYm9R7hyxOIPCEkZ8D3wcPCQTiF6gUAACA9dhkB0DAZ3YABJyyAyDgkh2wEtvsAAg4ZAdAwFd2AARcswMAAAAA4AV99/cDa/Q73A8AvLL98HyA+X6G28Ca+afM9ZYdAAEf2QEQcJzs/7pSxq5ubaG2oXaNnrVsWOItY4P7lvoDj86T/Xtfyq6vW1uobahdo2ctG5Z4y67BfUv9AWjlH52zslKwTwAA
+<<<<<<< HEAD
+   H4sIAAAAAAAAA+3bwQnCQBAF0IUkB/vRs2dLswAbES3CAuzE3BW8JIKwS5jdBN6DYQ4Dy1+Y66QEAAAAbMmudQDIcGodADKcWweADI/WAQAAAAAAABq79POCNXoO8wKALTsO/wtY7jp8C9bMnrKUuxe2YHr3cutSunf5HWqZ3r28Prs3dmU9QmmG0p47i8xQ4y9jwHu1duDX9O5l36d06Mt6hNIMpT13Fpmhxl8OAe/V2gGI8gbsvI+tsE8AAA==
+=======
+   H4sIAAAAAAAAA+3SsQnDQAwFUIHvNorrTJlFsos3ifsUqVwkWBgdF3gPPioEQgJFAAAAAAAAAAAAAAAAzOfRjoEZbf0YAPhn9/49wHXP/gnMzJ8CwHxeS8S+5GqF7A7ZerZXucOIW/aCeaN+4Jdbi1hbrlbI7pCtZ3uVO4y4ZS2YN+oHoMoblTdsS7BPAAA=
+>>>>>>> 01e8a38ed9c0816779a8f96b13f2a0c0a868b0a5
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -117,22 +125,15 @@
   </object>
   <object name="teleporter" type="teleporter" x="368" y="400" width="16" height="64">
    <properties>
-    <property name="x" value="130"/>
-    <property name="y" value="6"/>
+    <property name="x" value="159"/>
+    <property name="y" value="7"/>
    </properties>
   </object>
-  <object name="teleporter" type="teleporter" x="2064" y="64" width="16" height="64">
+  <object name="teleporter" type="teleporter" x="2576" y="80" width="16" height="64">
    <properties>
     <property name="x" value="21"/>
     <property name="y" value="25"/>
    </properties>
   </object>
-  <object type="switch" x="192" y="448" width="16" height="16">
-   <properties>
-    <property name="prox" value="8"/>
-    <property name="target" value="door1"/>
-   </properties>
-  </object>
-  <object name="door1" type="door" x="400" y="128" width="16" height="64"/>
  </objectgroup>
 </map>

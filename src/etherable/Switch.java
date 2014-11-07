@@ -13,4 +13,5 @@ public class Switch extends SwitchObject{
 		// how close you need to be to use the switch
 		this.proximity = Integer.parseInt((String) args.get("prox"));
 	}
+	
 }

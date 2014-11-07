@@ -7,18 +7,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TileDrawer {
+public class TileGraphics{
 
-	private ArrayList<Image> tileImages;
-	private Rectangle rect;
-	private int tileHeightInPixels;
-	private int tileWidthInPixels;
-	private int tileX;
-	private int tileY;
-	private int numberOfXTiles;
-	private int numberOfYTiles;
+	protected ArrayList<Image> tileImages;
+	protected Rectangle rect;
+	protected int tileHeightInPixels;
+	protected int tileWidthInPixels;
+	protected int tileX;
+	protected int tileY;
+	protected int numberOfXTiles;
+	protected int numberOfYTiles;
 	
-	public TileDrawer(Rectangle rect,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
+	public TileGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
 		this.rect = rect;
 		
 		this.tileX = tileX;
@@ -46,11 +46,10 @@ public class TileDrawer {
 		}
 	}
 	
-	public void render( int mapX, int mapY, float opacity) {
-		
+	public void render(int mapX, int mapY, float opacity) {
+		System.out.println(this);
 		assert (tileImages.get(0)!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. " +" "+ tileX+" "+tileY+"\n";
 					
-		
 		int count = 0;
 		for(int i = 0; i < numberOfXTiles; i++){
 			for(int j = 0; j < numberOfYTiles; j++){
@@ -63,5 +62,24 @@ public class TileDrawer {
 			}
 		}
 	}
+	
+	public void render(int topLeftX, int topLeftY, int mapX, int mapY, float opacity) {
+		
+		assert (tileImages.get(0)!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. " +" "+ tileX+" "+tileY+"\n";
+					
+		int count = 0;
+		for(int i = 0; i < numberOfXTiles; i++){
+			for(int j = 0; j < numberOfYTiles; j++){
+				//		
+				Image im = tileImages.get(count);
+				im.setAlpha(opacity);
+				im.draw(topLeftX + i*tileWidthInPixels -mapX,
+						topLeftY + j*tileHeightInPixels-mapY);
+				count ++;			
+			}
+		}
+	}
+
+ 
 
 }

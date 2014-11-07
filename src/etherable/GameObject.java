@@ -1,6 +1,6 @@
 package etherable;
 
-import graphics.TileDrawer;
+import graphics.TileGraphics;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -15,7 +15,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class GameObject {
 	
 	
-	private TileDrawer drawer;
+	protected TileGraphics drawer;
 	
 	protected int pixelX; // (x,y) top left in pixels
 	protected int pixelY; 
@@ -59,7 +59,7 @@ public class GameObject {
 		setRect();
 		
 
-		this.drawer = new TileDrawer(rect, map, x,y,w,h);
+		this.drawer = new TileGraphics(rect, map, x,y,w,h);
 
 	}
 	
@@ -78,7 +78,7 @@ public class GameObject {
 	}
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
-		drawer.render(mapX, mapY, 1); 
+		drawer.render((int) rect.getX() ,(int) rect.getY(), mapX, mapY, 1); 
 	}
 
 	public boolean canCollide(){
@@ -131,22 +131,7 @@ public class GameObject {
 		}
 	}
 
-	protected void drawTiles(int drawX, int drawY, int mapX, int mapY, float opacity) {
-		if(sprites.get(0)==null){
-			System.out.println("\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. "
-					+" "+ drawX/tileSize+" "+drawY/tileSize+"\n");
-		}
-		int count = 0;
-		for(int xi = drawX; xi < drawX+pixelWidth; xi += tileSize){
-			for(int yi = drawY; yi < drawY+pixelHeight; yi += tileSize){
-				//		
-				Image im = sprites.get(count);
-				im.setAlpha(opacity);
-				im.draw(xi-mapX,yi-mapY);
-				count ++;			
-			}
-		}
-	}
+ 
 
 	protected long getTime() {
 		return System.currentTimeMillis() ;

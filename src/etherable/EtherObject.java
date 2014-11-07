@@ -75,24 +75,21 @@ public class EtherObject extends GameObject {
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){
 
-		
-		
 		if(isEther){ //If ether
 			//Draw ether tile
-			drawTiles((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
+			drawer.render((int)etherRect.getX(),(int)etherRect.getY(),mapX,mapY,(float) 0.5);
 			//If it's placed:
 			if(isPut){			
-				drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);	
+				drawer.render((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
 			}else{ //Otherwise
 				int hoverX = (mouseX-pixelWidth/2+mapX);
 				int hoverY = (mouseY-pixelHeight/2+mapY);
-				// if the dude cant see the location he cant put it there... dont draw it there
 				if(canPut()){
-					drawTiles(hoverX,hoverY,mapX,mapY,(float) 0.5);
+					drawer.render(hoverX,hoverY,mapX,mapY,(float) 0.5);
 				}
 			}
 		}else{
-			drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
+			drawer.render((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
 		}		
 	}
 

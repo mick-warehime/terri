@@ -23,7 +23,7 @@ public class Door extends GameObject{
 
 	public void draw(int mapX, int mapY, int mouseX, int mouseY){			
 		if(!open){
-			drawTiles((int)rect.getX(),(int)rect.getY(),mapX,mapY,1);
+			drawer.render((int)rect.getX(),(int)rect.getY(),mapX,mapY,1);
 		}
 	}
 	

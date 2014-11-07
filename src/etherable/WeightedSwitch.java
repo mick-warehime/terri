@@ -1,8 +1,10 @@
 package etherable;
 
+import graphics.AnimatedGraphics;
+
+import java.util.ArrayList;
 import java.util.Properties;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -10,16 +12,16 @@ public class WeightedSwitch extends SwitchObject {
 	
 	public WeightedSwitch(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
 		super(x, y, w, h, name, map, args);
-		// override the default game object call to get sprites and load the same sprites for every switch
-		getSprites(map);
+		
+		ArrayList<String> fileNames = new ArrayList<String>();
+		
+		fileNames.add("data/switch_up.png");
+		fileNames.add("data/switch_down.png");
+	
+		this.animatedDrawer = new AnimatedGraphics(rect,map,tileX,tileY,fileNames);
 		
 	}
 
-
-	protected void getSprites(TiledMap map) throws SlickException{
-		sprites.add(new Image("data/switch_up.png"));
-		sprites.add(new Image("data/switch_down.png"));
-	}
 
 
  

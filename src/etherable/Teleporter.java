@@ -6,11 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
-
-import commands.DieCommand;
 import commands.TeleportCommand;
 
-public class Teleporter extends EtherObject implements InteractiveCollideable{
+public class Teleporter extends GameObject implements InteractiveCollideable{
 	private int destX;
 	private int destY;
 		 
@@ -36,6 +34,6 @@ public class Teleporter extends EtherObject implements InteractiveCollideable{
 	protected void setRect(){
 //		make the rect smaller so you dont collide with it immediately after transport
 		int shrink = 2;
-		rect = new Rectangle(x+shrink,y+shrink,w-2*shrink,h-2*shrink);
+		rect = new Rectangle(pixelX+shrink,pixelY+shrink,pixelWidth-2*shrink,pixelHeight-2*shrink);
 	}
 }

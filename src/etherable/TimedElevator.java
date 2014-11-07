@@ -64,15 +64,7 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 			rect.setY(yPos+elevation);
 		}
 
-//		//Check for collision with player and displace player accordingly
-//		if (collisionHandler.isCollidedWithPlayer(this)){
-//			if (speed>0){
-//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("+y",speed));
-//			}
-//			if (speed<0){
-//				collisionHandler.addToCommandStack((Command) new LegalDisplaceCommand("-y",-speed)) ;
-//			}
-//		}
+ 
 		
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
