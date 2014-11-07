@@ -248,16 +248,16 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedWithLadder() {
-		for(GameObject gObj: gameObjects){
-			if(gObj instanceof Ladder){
-				if(playerRect.intersects(gObj.getRect())){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public boolean isCollidedWithLadder() {
+//		for(GameObject gObj: gameObjects){
+//			if(gObj instanceof Ladder){
+//				if(playerRect.intersects(gObj.getRect())){
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
 
 
 

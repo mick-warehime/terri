@@ -30,7 +30,7 @@ public class Actor {
 	
 		//Note: The order of these calls is important!
 		//Update status
-		status.update();
+		status.updateEffects();
 		
 		//Receive all command inputs (some depend on status)
 		listener.update();

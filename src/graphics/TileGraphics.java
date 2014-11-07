@@ -47,7 +47,7 @@ public class TileGraphics{
 	}
 	
 	public void render(int mapX, int mapY, float opacity) {
-		System.out.println(this);
+		
 		assert (tileImages.get(0)!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. " +" "+ tileX+" "+tileY+"\n";
 					
 		int count = 0;

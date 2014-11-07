@@ -6,8 +6,7 @@ import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
-import commands.AscendCommand;
-import commands.DescendCommand;
+import commands.ClimbCommand;
 import commands.FireCommand;
 import commands.InteractCommand;
 import commands.JumpCommand;
@@ -128,8 +127,8 @@ public class Game extends BasicGame {
 		shootCommand = new FireCommand(gc.getInput());
 		Command restore = new RestoreCommand();
 		Command interact = new InteractCommand();
-		Command ascend = new AscendCommand();
-		Command descend = new DescendCommand();
+		Command ascend = new ClimbCommand(-1);
+		Command descend = new ClimbCommand(+1);
 		
 		//Bind commands to keys
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);

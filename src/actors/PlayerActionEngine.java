@@ -22,8 +22,7 @@ public class PlayerActionEngine extends ActionEngine {
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
 	private int interactTimerIncrement = 20;
-	private float ascendSpeed = (float) 1.5;
-	private float descendSpeed = (float) 1.5;
+	
 	
 	private float runDec = 1;
 	
@@ -36,7 +35,7 @@ public class PlayerActionEngine extends ActionEngine {
 		this.gun = gun;
 		this.runAcc = 2;
 		this.maxSpeed = 5;
-
+		this.climbSpeed = (float) 1.5;
 	}
 
 	public void attemptShoot(int mouseX, int mouseY){
@@ -70,25 +69,14 @@ public class PlayerActionEngine extends ActionEngine {
 		if (canJump()){
 			this.vy -=ups;
 			jumpTimer += jumpTimerIncrement;
+			status.loseEffect("climbing");
 		}
 		return;
 	}
 	
-	public void attemptAscend() {		
-		//Check that player is on solid ground
-		if (status.isTouchingLadder()){
-			this.vy -=ascendSpeed;			
-		}
-		return;
-	}
 	
-	public void attemptDescend() {
-		//Check that player is on solid ground
-		if (status.isTouchingLadder()){
-			this.vy +=descendSpeed;			
-		}
-		return;
-	}
+	
+	
 
 //	public void attemptWallJump(){
 //
@@ -124,7 +112,9 @@ public class PlayerActionEngine extends ActionEngine {
 //	}
 
 	private boolean canJump(){
-		return (status.isTouchingGround() && (jumpTimer==0)) ;
+		boolean answer = status.isTouchingGround() || status.hasEffect("climbing");
+		answer = answer && (jumpTimer==0);
+		return answer ;
 	}
 
 	protected void updateTimers(){
@@ -177,11 +167,20 @@ public class PlayerActionEngine extends ActionEngine {
 
 	//////////////////////////
 	
-	protected void decelerate() {
+	private void decelerate() {
 		
 		if (vx>0){ vx = Math.max(vx-runDec,(float) 0);}
 		if (vx<0){ vx = Math.min(vx+runDec,(float) 0);}
 		
+	}
+
+	public void attemptClimb(int direction) {		
+	
+		if (status.hasEffect("touching ladder") && jumpTimer==0){
+			this.vy =direction*climbSpeed;	
+			status.gainEffect("climbing", 10000);
+		}
+		return;
 	}
 	
 
