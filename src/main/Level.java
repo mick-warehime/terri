@@ -8,8 +8,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Enemy;
-import etherable.GameObject;
-import etherable.ProgressPoint;
+import gameobjects.GameObject;
+import gameobjects.ProgressPoint;
 
 
 // TODO

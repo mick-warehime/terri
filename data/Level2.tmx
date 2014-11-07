@@ -5,20 +5,20 @@
  </tileset>
  <layer name="tiles" width="42" height="100" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aAQrCMAxF4xH0ZnozvVk9kUMMaDR0078t6nsgqaOMNOG1m2hm1obP2eoR89puzHabtbLJiXnth/GhYJ4xr+MwPhXMM+bVhvG5YJ4xLzz6DDzSgkda8EgLHmnBIy14pAWPtMS8qvY9elS179Gjqn2Pfa66f8Y+V90/8UgLHmnBIy14pAWPtOCRFjzSgkda8EjL0+8MVjPP2Oeyvttj/ar6HutX1fcnj4r6jkda8EgLHmnBIy14pAWPtOCRFjzSgkdafs0jX49HnxevT5039j739WuWe+Tr8ejz4vWp80bf57ae1ql7Vb8iVf2KUM/pXD1K/Fv7PHXfWvieebkW3/L/Os5NLTx/auH5UwseacEjLXN51HuPeDc6Ko967xHvRgePPuPfPVLDeaQl86gXs31tLjKPejHb12bL0157NHa/XYrMo15cmsyjXlya+/pcAE/qoBigQQAA
+   H4sIAAAAAAAAA+2aAW7CMAxFzRG2m42bjZuFE61CswRmVlz47TfsPwm5VFHlOn2OGtXMbCy/s/Uj5vVxMPs8sLLJiXl9LcfHhnnGvL6X41PDPGNeYzk+N8wz5iWPnkMeYZFHWOQRFnmERR5hkUdY5BGWmFfXeY8edZ336FHXeY/z3LV/xnnu2j/lERZ5hEUeYZFHWOQRFnmERR5hkUdY5BGWu30G65lnnOe2vttt/br6HuvX1fc7j5r6Lo+wvJtH7DpXPWLXueoRu55Vj9j1rHrErmfVI3Y9qx6x16mqR+x1quoR+/msesR+PrUeYdF6hKXqEbt/Vj1i98+qR34/Hn1cPL92XPU61/UbltfN78ejj4vn144rX+f3fsak7mzfq7B9r6J6rufiUeIfu3+6byP8z7xk8Srf173bfggb7Sti0b4iFnmERR5h2cqj2XvEo9FBeTR7j3g0OvLoOf67R2i0HmHJPJrFrK9tRebRLGZ9bbM87W+Pqv12LzKPZnFvMo9mcW+u6/MD6TPxbaBBAAA=
   </data>
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SsU7CUBiG4ZM0bdJwUbI23IVyH7o2TCp6PazGCQSuh3/oAg4Vh562eZ7ky3/GdzgpAQAAAAAAAAAAAADAfRbdrbNW9Ft1t8la0W/T3TZrRb/v7n5lrWDM4m/scjf8RTuRzmYinfUIOx/LlJ5i6/L6PTZT6YQ5eC1Seou9x7axj9hnkbvqt300HWI/sWPsFDuPsBOAeXqohtuy+n/nczXcXm46L5eMYpOgQQAA
+   H4sIAAAAAAAAA+3ST0pCURzF8R+IDx9uxWwJOQ13kQ5Tl5BTcWSpq0jdwptKo+zPKiy30HlwRSweQVx8v+T7gcPvDg+XYwYAAAAAAAAAAAAAAODXbc2sp/SVQa3sNsUe1W2hLJWV455bdftQPpWd456N1OxCaSqXadltirHPuNhnXOwzLvYZF/uMi33GxT7jYp9xrM2y/HrbZz3c/ZeNQk9v+2yHe324WX697XMc7ijcNPT0ts+ncNeltgCA391UzTpKt3r89ua/9ATOwaRidq88KFNlpswrZbf66VmdNsqL8qq8Ke8OewIAztNVcrq0kr/3vEtOl+G3nl/98V53oEEAAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
-  <object type="progressPoint" x="128" y="1456" width="16" height="48">
+  <object type="progressPoint" x="80" y="1472" width="16" height="48">
    <properties>
     <property name="index" value="0"/>
     <property name="x" value="5"/>
-    <property name="y" value="91"/>
+    <property name="y" value="93"/>
    </properties>
   </object>
   <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
@@ -33,8 +33,8 @@
   </object>
   <object type="teleporter" x="656" y="1120" width="16" height="64">
    <properties>
-    <property name="x" value="5"/>
-    <property name="y" value="79"/>
+    <property name="x" value="1"/>
+    <property name="y" value="72"/>
    </properties>
   </object>
   <object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
@@ -42,9 +42,10 @@
     <property name="duration" value="10"/>
    </properties>
   </object>
-  <object type="teleporter" x="128" y="1232" width="16" height="64">
+  <object type="ladder" x="48" y="800" width="64" height="384"/>
+  <object type="teleporter" x="16" y="1120" width="16" height="64">
    <properties>
-    <property name="x" value="39"/>
+    <property name="x" value="40"/>
     <property name="y" value="72"/>
    </properties>
   </object>

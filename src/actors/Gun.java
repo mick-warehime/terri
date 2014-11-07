@@ -1,8 +1,8 @@
 package actors;
 
 import main.CollisionHandler;
-import etherable.EtherObject;
-import etherable.Timed;
+import gameobjects.EtherObject;
+import gameobjects.Timed;
 
 
 

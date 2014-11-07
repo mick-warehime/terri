@@ -98,7 +98,6 @@ public class ActionEngine {
 		//Get all player commands
 		ArrayList<Command> currentActionCommands = listener.getCurrentActionCommands();
 		
-
 		//Do the associated actions
 		for (Command cmd : currentActionCommands){
 			((GenericCommand)cmd).execute(this);

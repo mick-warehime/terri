@@ -8,10 +8,11 @@ import org.newdawn.slick.geom.Rectangle;
 
 import actors.Enemy;
 import commands.CommandProvider;
-import etherable.EtherObject;
-import etherable.GameObject;
-import etherable.Interactive;
-import etherable.InteractiveCollideable;
+import gameobjects.EtherObject;
+import gameobjects.GameObject;
+import gameobjects.Interactive;
+import gameobjects.InteractiveCollideable;
+import gameobjects.Ladder;
 
 
 public class CollisionHandler implements CommandProvider {
@@ -28,31 +29,31 @@ public class CollisionHandler implements CommandProvider {
 
 	public CollisionHandler(ArrayList<Rectangle> blockedList){
 		this.blocks = blockedList;
-		
+
 
 	}
 
-	
+
 	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
-		
+
 		this.gameObjects = gameObjects;
 		this.enemies = enemies;
-	
-		
+
+
 		populateInteractiveCollideables();
-		
+
 	}
-	
+
 	private void populateInteractiveCollideables() {
 		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
-		
+
 		for (GameObject gObj: gameObjects){
 			if (gObj instanceof InteractiveCollideable){
 				interactiveGameObjects.add((InteractiveCollideable) gObj);
 			}
 		}
-		
-		
+
+
 	}
 
 
@@ -113,8 +114,8 @@ public class CollisionHandler implements CommandProvider {
 
 		return true;
 	}
-	
-	
+
+
 	//Checks for collisions with blocks and game Objects
 	public boolean isCollided(Rectangle rect){	
 		boolean answer = false;
@@ -125,7 +126,7 @@ public class CollisionHandler implements CommandProvider {
 
 		return answer;
 	}
-	
+
 	public boolean isCollidedWithBlocks(Rectangle rect){
 		for(Rectangle r: blocks ){
 			if(rect.intersects(r)){
@@ -134,7 +135,7 @@ public class CollisionHandler implements CommandProvider {
 		}
 		return false;
 	}
-	
+
 	public boolean isCollidedWithObjects(Rectangle rect){
 		for(GameObject gObj: gameObjects){
 			if(gObj.canCollide()){
@@ -145,20 +146,20 @@ public class CollisionHandler implements CommandProvider {
 		}
 		return false;
 	}
-	
+
 
 	public boolean isCollided(GameObject gameObject){
 		boolean answer = false;
-		
+
 		// check if collided with permanent solid blocks	
 		answer = answer || isCollidedWithBlocks(gameObject);
-		
+
 		// check if collided with gameOjbects that arent the input variable
 		answer = answer || isCollidedWithObjects(gameObject);
 
 		return answer;
 	}
-	
+
 	public boolean isCollidedWithBlocks(GameObject gameObject){
 		for(Rectangle r: blocks ){
 			if(r.intersects(gameObject.getRect())){
@@ -185,7 +186,7 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 	public boolean isCollidedWithPlayer(Rectangle rect){
-		
+
 		return playerRect.intersects(rect);
 	}
 
@@ -194,16 +195,16 @@ public class CollisionHandler implements CommandProvider {
 		return playerRect.intersects(gObj.getRect());
 	}
 
-//	public void addToCommandStack(Command cmd){
-//		collisionCommandStack.add(cmd);
-//
-//	}
+	//	public void addToCommandStack(Command cmd){
+	//		collisionCommandStack.add(cmd);
+	//
+	//	}
 
 	public ArrayList<Command> getCommands(){
-//		@SuppressWarnings("unchecked")
-//		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
-//		collisionCommandStack.clear();
-//		return answer;
+		//		@SuppressWarnings("unchecked")
+		//		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
+		//		collisionCommandStack.clear();
+		//		return answer;
 		return resolveInteractiveCollisions(playerRect, "Player");
 	}
 
@@ -247,8 +248,19 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	
-	
+	public boolean isCollidedWithLadder() {
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof Ladder){
+				if(playerRect.intersects(gObj.getRect())){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+
+
 	//Checks a rect for collisions with interactive collideables
 	// outputs a list of commands for an actor with the rect to do,
 	// and does the interactive's inherent collision command
@@ -256,12 +268,12 @@ public class CollisionHandler implements CommandProvider {
 	// collidingObjectClass.
 	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect, String collidingObjectClass ){
 		ArrayList<Command> output = new  ArrayList <Command>();
-		
+
 		//Make a slightly bigger rectangle because physics don't 
 		// allow you to actually move into another object
 		int proximity = 1;
 		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
-		
+
 		//
 		for (InteractiveCollideable interObj : interactiveGameObjects){
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
@@ -269,18 +281,20 @@ public class CollisionHandler implements CommandProvider {
 				output.add(interObj.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
-		
+
 		for (Enemy nme: enemies){
 			if (slightlyBiggerRect.intersects(nme.getRect())){
 				nme.onCollisionDo(collidingObjectClass);
 				output.add(nme.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
-		
-		
-		
+
+
+
 		return output;
 	}
+
+
 
 
 }

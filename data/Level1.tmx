@@ -45,7 +45,7 @@
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SMWrDMBSAYYHtoYHcppkzt5CDJdCxF+ktEsjYm9R7hyxOIPCEkZ8D3wcPCQTiF6gUAACA9dhkB0DAZ3YABJyyAyDgkh2wEtvsAAg4ZAdAwFd2AARcswMAAAAA4AV99/cDa/Q73A8AvLL98HyA+X6G28Ca+afM9ZYdAAEf2QEQcJzs/7pSxq5ubaG2oXaNnrVsWOItY4P7lvoDj86T/Xtfyq6vW1uobahdo2ctG5Z4y67BfUv9AWjlH52zslKwTwAA
+   H4sIAAAAAAAAA+3bz0rDQBDH8YEm0Pguag/27FnfRe1r6N3H8A++hd59jGoP9u4UCbRjilnc7c4m3w8MSwiECfzYTGkiEu5qKnKtdaO1mP4+Bjx40Cw+aj1pPZNTOGFzuNT60PrUWpFTOGFzeNyInGidas0acgof2E+H7Sh3A5Gwnw7bZe4GImE/Hba73A1Ewn46bG+5G4iEnKIE5BQlIKcogc3hgt9RcMjmcPNfKfspvLE5XLGfwiGbwxnzKRzqyinvS8Gbrpzy3Ic3PPdRgq6cjul9/vtqt+DT2OfT93q34BPzKUrAfAoPzuv9tTH2+RRl8DyfvtQ/BdjvoD3Np+QULfudSd/5tMnXMkbor/dN9+X0Il/LGCGbUzsH2OPW7dY1viYi60nYmkJoD6Fr33MpezjEvawTXO+/GbA5tXOAPW69bl3jrBKZV2FrCqE9hK59z6Xs4RD3Mk9wvdgZsLm1x0Bs3+rIo6awTwAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -80,12 +80,6 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Timed El" type="timedElevator" x="1168" y="288" width="64" height="32">
-   <properties>
-    <property name="duration" value="2"/>
-    <property name="range" value="12"/>
-   </properties>
-  </object>
   <object name="Lava" type="deadly" x="960" y="432" width="1728" height="32"/>
   <object type="progressPoint" x="640" y="240" width="16" height="160">
    <properties>
@@ -97,8 +91,8 @@
   <object name="St" type="progressPoint" x="80" y="304" width="16" height="16">
    <properties>
     <property name="index" value="0"/>
-    <property name="x" value="5"/>
-    <property name="y" value="19"/>
+    <property name="x" value="59"/>
+    <property name="y" value="21"/>
    </properties>
   </object>
   <object type="progressPoint" x="944" y="208" width="16" height="160">
@@ -127,12 +121,11 @@
     <property name="y" value="25"/>
    </properties>
   </object>
-  <object type="switch" x="192" y="448" width="16" height="16">
+  <object type="ladder" x="144" y="64" width="192" height="400"/>
+  <object type="xElevator" x="1168" y="288" width="64" height="32">
    <properties>
-    <property name="prox" value="8"/>
-    <property name="target" value="door1"/>
+    <property name="range" value="200"/>
    </properties>
   </object>
-  <object name="door1" type="door" x="400" y="128" width="16" height="64"/>
  </objectgroup>
 </map>

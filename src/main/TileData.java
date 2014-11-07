@@ -2,19 +2,21 @@
 package main;
 //import etherable.Platform;
 //import etherable.Elevator;
-import etherable.DeadlyObject;
-import etherable.Door;
-import etherable.Elevator;
-import etherable.EtherObject;
-import etherable.GameObject;
-import etherable.ProgressPoint;
-import etherable.Switch;
-import etherable.SwitchObject;
-import etherable.Teleporter;
-import etherable.TimedElevator;
-import etherable.TimedPlatform;
-import etherable.TimedSwitch;
-import etherable.WeightedSwitch;
+import gameobjects.DeadlyObject;
+import gameobjects.Door;
+import gameobjects.YElevator;
+import gameobjects.XElevator;
+import gameobjects.EtherObject;
+import gameobjects.GameObject;
+import gameobjects.Ladder;
+import gameobjects.ProgressPoint;
+import gameobjects.Switch;
+import gameobjects.SwitchObject;
+import gameobjects.Teleporter;
+import gameobjects.TimedElevator;
+import gameobjects.TimedPlatform;
+import gameobjects.TimedSwitch;
+import gameobjects.WeightedSwitch;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -65,13 +67,16 @@ public class TileData {
 		parserDict.put("deadly", DeadlyObject.class);
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
-		parserDict.put("elevator", Elevator.class);
+		parserDict.put("xElevator", XElevator.class);
+		parserDict.put("yElevator", YElevator.class);
 		parserDict.put("timedElevator", TimedElevator.class);
 		parserDict.put("switch", Switch.class);
 		parserDict.put("timedSwitch", TimedSwitch.class);
 		parserDict.put("weightedSwitch", WeightedSwitch.class);
 		parserDict.put("progressPoint", ProgressPoint.class);
 		parserDict.put("teleporter", Teleporter.class);
+		parserDict.put("ladder", Ladder.class);
+
 
 	}
 

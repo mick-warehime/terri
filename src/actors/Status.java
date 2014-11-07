@@ -6,7 +6,7 @@ import main.CollisionHandler;
 
 import org.newdawn.slick.geom.Rectangle;
 
-import etherable.GameObject;
+import gameobjects.GameObject;
 
 public class Status {
 
@@ -44,6 +44,10 @@ public class Status {
 		displace(-2,'Y');
 		
 		return answer;
+	}
+	
+	public boolean isTouchingLadder() {
+		return collisionHandler.isCollidedWithLadder();
 	}
 	
 	public ArrayList<GameObject> nearbyInteractives(){

@@ -6,13 +6,14 @@ import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.command.MouseButtonControl;
 
+import commands.AscendCommand;
+import commands.DescendCommand;
 import commands.FireCommand;
-import commands.GenericCommand;
 import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
-import etherable.ProgressPoint;
+import gameobjects.ProgressPoint;
 import actors.Player;
 
 
@@ -20,15 +21,12 @@ import actors.Player;
  
 //   platforms that have a limited number of times you can be on them?
 //   drawing platform timers
-//   enemy only platforms?
 //   multiple weight sensitive switchs to open a door
 
 //  find a way to skip empty objects on .tmx
 
 //  weird bug when you jump ether objects tend to lag behind in drawing?? 
 //  maybe check the order things are drawn
-
-//  when do we want level to reset and when do we want to transport terri???!?
 
 //  a float option when holding space after jumping? like a little parachute or booster pack or wings
 
@@ -120,9 +118,7 @@ public class Game extends BasicGame {
 	private void initializeKeyBindings(GameContainer gc){
 		//This translates keyboard/mouse inputs into commands, for the appropriate listeners
 		keyboardInputProvider = new InputProvider(gc.getInput());
-		//The listener is linked to the provider
-
-		
+		//The listener is linked to the provider		
 		
 		//Define action commands for provider
 		Command jump = new JumpCommand();
@@ -132,11 +128,15 @@ public class Game extends BasicGame {
 		shootCommand = new FireCommand(gc.getInput());
 		Command restore = new RestoreCommand();
 		Command interact = new InteractCommand();
+		Command ascend = new AscendCommand();
+		Command descend = new DescendCommand();
 		
 		//Bind commands to keys
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_A), moveLeft);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
+		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_W), ascend);
+		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_S), descend);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_E), interact);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shootCommand);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(1), restore);

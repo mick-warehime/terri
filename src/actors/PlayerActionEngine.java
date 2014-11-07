@@ -1,10 +1,12 @@
 package actors;
 
 import java.util.ArrayList;
+
 import org.newdawn.slick.command.Command;
+
 import commands.GlobalInputListener;
 import commands.MoveCommand;
-import etherable.GameObject;
+import gameobjects.GameObject;
 
 
 //Takes in command inputs and implements corresponding actions
@@ -20,6 +22,8 @@ public class PlayerActionEngine extends ActionEngine {
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
 	private int interactTimerIncrement = 20;
+	private float ascendSpeed = (float) 1.5;
+	private float descendSpeed = (float) 1.5;
 	
 	private float runDec = 1;
 	
@@ -67,9 +71,23 @@ public class PlayerActionEngine extends ActionEngine {
 			this.vy -=ups;
 			jumpTimer += jumpTimerIncrement;
 		}
-
 		return;
-
+	}
+	
+	public void attemptAscend() {		
+		//Check that player is on solid ground
+		if (status.isTouchingLadder()){
+			this.vy -=ascendSpeed;			
+		}
+		return;
+	}
+	
+	public void attemptDescend() {
+		//Check that player is on solid ground
+		if (status.isTouchingLadder()){
+			this.vy +=descendSpeed;			
+		}
+		return;
 	}
 
 //	public void attemptWallJump(){
@@ -119,6 +137,7 @@ public class PlayerActionEngine extends ActionEngine {
 		
 		
 	}
+	
 	
 	
 	protected void doActions() {
