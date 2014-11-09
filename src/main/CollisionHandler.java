@@ -264,6 +264,7 @@ public class CollisionHandler implements CommandProvider {
 
 		//
 		for (InteractiveCollideable interObj : interactiveGameObjects){
+			
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
 				interObj.onCollisionDo(collidingObjectClass);
 				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass));
