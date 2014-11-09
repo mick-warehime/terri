@@ -1,11 +1,14 @@
 package gameobjects;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
+
+import commands.GainEffectCommand;
 import commands.TeleportCommand;
 
 public class Teleporter extends GameObject implements InteractiveCollideable{
@@ -26,9 +29,11 @@ public class Teleporter extends GameObject implements InteractiveCollideable{
 	}
 
 	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
-		// TODO Auto-generated method stub
-		return new TeleportCommand(destX, destY);
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+		ArrayList<Command> list = new ArrayList<Command>();
+		list.add(new TeleportCommand(destX, destY));
+		return list;
+		
 	}
 
 	protected void setRect(){

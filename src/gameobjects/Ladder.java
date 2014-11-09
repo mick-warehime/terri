@@ -1,5 +1,6 @@
 package gameobjects;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -28,9 +29,10 @@ public class Ladder extends GameObject implements InteractiveCollideable{
 	}
 
 	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
-		// TODO Auto-generated method stub
-		return new GainEffectCommand("touching ladder", 1);
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+		ArrayList<Command> list = new ArrayList<Command>();
+		list.add(new GainEffectCommand("touching ladder", 1));
+		return list;
 	}
 
 

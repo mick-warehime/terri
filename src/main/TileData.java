@@ -4,6 +4,7 @@ package main;
 //import etherable.Elevator;
 import gameobjects.DeadlyObject;
 import gameobjects.Door;
+import gameobjects.MovingPlatform;
 import gameobjects.YElevator;
 import gameobjects.XElevator;
 import gameobjects.EtherObject;
@@ -76,6 +77,7 @@ public class TileData {
 		parserDict.put("progressPoint", ProgressPoint.class);
 		parserDict.put("teleporter", Teleporter.class);
 		parserDict.put("ladder", Ladder.class);
+		parserDict.put("movingPlatform", MovingPlatform.class);
 
 
 	}

@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -10,6 +12,6 @@ import org.newdawn.slick.geom.Rectangle;
 public interface InteractiveCollideable {
 
 	public void onCollisionDo(String collidingObjectClass);
-	public Command onCollisionBroadcast(String collidingObjectClass);
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass);
 	public Rectangle getRect();
 }

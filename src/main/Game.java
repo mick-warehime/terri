@@ -35,6 +35,8 @@ import actors.Player;
 
 //  mario bullets canon or auto-turret aims at player
 
+// refactor action engine a bit (w.r.t. jump timers, etc.)
+
 public class Game extends BasicGame {
 
 	static int width = 640;

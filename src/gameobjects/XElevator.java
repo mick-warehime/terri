@@ -4,6 +4,7 @@ package gameobjects;
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -11,6 +12,7 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DisplaceCommand;
+import commands.MinimumDisplaceCommand;
 
 public class XElevator extends EtherObject implements InteractiveCollideable {
 
@@ -33,6 +35,9 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 
 		// 		
 		this.range = Integer.parseInt((String)args.get("range"))*tileSize;
+		
+		
+		
 	}
 
 	private boolean cantMove(){
@@ -105,10 +110,16 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 
 
 
-	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
+	
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
 
-		return new DisplaceCommand(speed,'x');
+		ArrayList<Command> list = new ArrayList<Command>();
+		list.add(new DisplaceCommand(speed, 'x'));
+		return list;
+
+
+
+
 
 	}
 

@@ -248,18 +248,6 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-//	public boolean isCollidedWithLadder() {
-//		for(GameObject gObj: gameObjects){
-//			if(gObj instanceof Ladder){
-//				if(playerRect.intersects(gObj.getRect())){
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
-//	}
-
-
 
 	//Checks a rect for collisions with interactive collideables
 	// outputs a list of commands for an actor with the rect to do,
@@ -278,14 +266,14 @@ public class CollisionHandler implements CommandProvider {
 		for (InteractiveCollideable interObj : interactiveGameObjects){
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
 				interObj.onCollisionDo(collidingObjectClass);
-				output.add(interObj.onCollisionBroadcast(collidingObjectClass));
+				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
 
 		for (Enemy nme: enemies){
 			if (slightlyBiggerRect.intersects(nme.getRect())){
 				nme.onCollisionDo(collidingObjectClass);
-				output.add(nme.onCollisionBroadcast(collidingObjectClass));
+				output.addAll(nme.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
 
