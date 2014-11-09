@@ -28,8 +28,8 @@ public class Level {
 	private int tolX;
 	private int tolY;
 	private ProgressPoint progress;
-	private int tileSizeWidth;
-	private int tileSizeHeight;
+	private int mapWidthInTiles;
+	private int mapHeightInTiles;
 	private TiledMap map;
 
 	private int tileLayerId;
@@ -50,8 +50,10 @@ public class Level {
 		tileSize = map.getTileHeight();
 		tolX = tol*tileSize;
 		tolY = tol*tileSize;
-		tileSizeWidth = width/tileSize;
-		tileSizeHeight = height/tileSize;
+		mapWidthInTiles = map.getWidth();
+		mapHeightInTiles = map.getHeight();
+//		width = mapWidthInTiles*map.getTileWidth();
+//		height = mapHeightInTiles*map.getTileHeight;
 		tileLayerId = map.getLayerIndex("tiles");
 
 		
@@ -137,7 +139,7 @@ public class Level {
 		mapYCheck();		
 
 		// map.render(-mapX,-mapY);
-		map.render(-dX,-dY,tXmin,tYmin,tileSizeWidth,tileSizeHeight+1,tileLayerId,false);
+		map.render(-dX,-dY,tXmin,tYmin,mapWidthInTiles,mapHeightInTiles+1,tileLayerId,false);
 
 
 		for(GameObject gObj: gameObjects){		
