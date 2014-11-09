@@ -2,6 +2,7 @@ package main;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.*;
@@ -99,20 +100,17 @@ public class Level {
 			gObj.update(mouseX,mouseY);
 		}
 
-		List<Enemy> toKill = new ArrayList<Enemy>();
-		if (enemies != null){
-			for (Enemy nme: enemies){
-				nme.update();
-				if(nme.isDying()){
-					toKill.add(nme);
-				}	
-			}
-		}
-
-		//Removes dead things from the level lists
-		for (Enemy nme : toKill){
-			enemies.remove(nme);
-		}
+		
+		for (Iterator<Enemy> iterator = enemies.iterator(); iterator.hasNext();) {
+		    Enemy nme = iterator.next();
+		    nme.update();
+		    
+		    if (nme.isDying()) {
+		        // Remove the current element from the iterator and the list.
+		        iterator.remove();
+		    }
+		}			
+	
 
 	}
 

@@ -1,5 +1,6 @@
 package actors;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import main.CollisionHandler;
@@ -50,14 +51,15 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 
 	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
-		// TODO Auto-generated method stub
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+		ArrayList<Command> list = new ArrayList<Command>();
 		if (collidingObjectClass == "Player"){
-			return new DieCommand();
+			list.add( new DieCommand());
 		}
-		else{
-			return new NullCommand();
-		}
+//		else{
+//			list.add( new NullCommand());
+//		}
+		return list;
 	}
 	
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){

@@ -3,13 +3,14 @@ package gameobjects;
 
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
-import commands.LegalDisplaceCommand;
+import commands.MinimumDisplaceCommand;
 
 public class TimedElevator extends EtherObject implements Timed,InteractiveCollideable {
 
@@ -32,7 +33,7 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 
 		// set y position to initial y positiondaad
 		yPos = y*tileSize;	
-		
+
 		this.range = Integer.parseInt((String) args.get("range"))*tileSize;
 		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
 
@@ -64,8 +65,8 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 			rect.setY(yPos+elevation);
 		}
 
- 
-		
+
+
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
 			if(timeElapsed > duration){
@@ -81,7 +82,7 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 		elevation = 0;
 		isMoving = true;
 
-		
+
 		putTime = getTime();
 
 	}
@@ -124,20 +125,23 @@ public class TimedElevator extends EtherObject implements Timed,InteractiveColli
 	@Override
 	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 
 
 	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
-		if (speed>=0){
-			return new LegalDisplaceCommand("+y",speed);
-		}
-		else{
-			return new LegalDisplaceCommand("-y",-speed) ;
-		}
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+
+		ArrayList<Command> list = new ArrayList<Command>();
+		list.add(new MinimumDisplaceCommand(2*speed, 'y'));
+		return list;
+
+
+
+
+
 	}
 
 

@@ -58,7 +58,7 @@ public class Behavior implements CommandProvider{
 	
 	private void decideMovement(){
 		
-		if (status.hasEffect("X collision")){
+		if (status.hasEffect("x collision")){
 			moveDirection = -moveDirection;
 		}
 		

@@ -4,6 +4,7 @@ package gameobjects;
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -11,19 +12,21 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DisplaceCommand;
+import commands.MinimumDisplaceCommand;
 
 public class XElevator extends EtherObject implements InteractiveCollideable {
 
 
 
 	private int xPos;
-	private int speed = 1;
+	private int speed;
 	private int range;
 	private int displacement = 0;
 	private int etherDisplacement = 0;
 	private int etherSpeed = 0;
 	private boolean isMoving = true;
-
+	private int initialDirection;
+	
 
 	public XElevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);
@@ -33,13 +36,26 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 
 		// 		
 		this.range = Integer.parseInt((String)args.get("range"))*tileSize;
+		
+		if (args.containsKey("initialDirection")){
+			this.initialDirection = Integer.parseInt((String)args.get("initialDirection"));
+		}else{
+			initialDirection = 1;
+		}
+		
+		initializeMovement();
+		
+		
+		
 	}
 
 	private boolean cantMove(){
 
-		boolean answer = Math.abs(displacement)>range || displacement>0;
-
+		boolean answer = Math.abs(displacement)>range || displacement<0;
+		
 		answer = answer || collisionHandler.isCollided(this);
+		
+//		if (answer){System.out.println("Cant move!" + this);}
 		return answer;
 	}
 
@@ -55,7 +71,7 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 			}
 			displacement = displacement + speed;
 
-			rect.setX(xPos+displacement);
+			rect.setX(rect.getX() + speed);//xPos+displacement
 		}
 
 
@@ -65,7 +81,8 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 		super.put(x, y);
 
 		xPos = putX;
-		displacement = 0;
+		initializeMovement();
+		
 		isMoving = true;
 
 
@@ -105,10 +122,14 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 
 
 
-	@Override
-	public Command onCollisionBroadcast(String collidingObjectClass) {
+	
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
 
-		return new DisplaceCommand(speed,'x');
+		ArrayList<Command> list = new ArrayList<Command>();
+		list.add(new DisplaceCommand(speed, 'x'));
+		return list;
+
+
 
 	}
 
@@ -119,6 +140,16 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 	}
 
 
+	private void initializeMovement(){
+		if (initialDirection >0){
+			displacement = 0;
+			speed = 1;
+		}else
+		{
+			displacement = range;
+			speed = -1;
+		}
+	}
 
 
 
