@@ -1,6 +1,7 @@
 package actors;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import main.CollisionHandler;
 
@@ -111,31 +112,59 @@ public class Status {
 
 	public void updateEffects(){
 
-		ArrayList <Effect> toRemove = new ArrayList<Effect>();
-
-		//Count down effects and see if they've reached the end of their lifetimes
-		for (Effect eff : effects){
-			//			System.out.println(eff.name + ", " + eff.timer);
-			if (eff.countDown()){
-				toRemove.add(eff);
-			}
+		
+		boolean touchingLadder = false;
+		
+		//count down on each effect, remove ones that have run down
+		for (Iterator<Effect> iterator = effects.iterator(); iterator.hasNext();) {
+		    Effect eff = iterator.next();
+		    if (eff.name.equals("touching ladder")){ touchingLadder = true;}	
+		    
+		    if (eff.countDown()){
+		        // Remove the current element from the iterator and the list.
+		        iterator.remove();
+		    }
 		}
+		
+		if (!touchingLadder){removeEffect("climbing");}
+		
+//		ArrayList <Effect> toRemove = new ArrayList<Effect>();
 
-		//Account for climbing not being possible without touching ladders
-		if (!hasEffect("touching ladder")){
-			for (Effect eff: effects){
-				if(eff.name.equals("climbing")){toRemove.add(eff);}
-			}
-		}
+//		//Count down effects and see if they've reached the end of their lifetimes
+//		for (Effect eff : effects){
+//			//			System.out.println(eff.name + ", " + eff.timer);
+//			if (eff.countDown()){
+//				toRemove.add(eff);
+//			}
+//		}
 
-		//Remove dead effects
-		for (Effect eff: toRemove){
-			effects.remove(eff);
-		}
+//		//Account for climbing not being possible without touching ladders
+//		if (!hasEffect("touching ladder")){
+//			for (Effect eff: effects){
+//				if(eff.name.equals("climbing")){toRemove.add(eff);}
+//			}
+//		}
+
+//		//Remove dead effects
+//		for (Effect eff: toRemove){
+//			effects.remove(eff);
+//		}
 
 		return;
 	}
 
+	
+	private void removeEffect(String name){
+		//Iterate over all effect's elements and remove
+		for (Iterator<Effect> iterator = effects.iterator(); iterator.hasNext();) {
+		    Effect eff = iterator.next();
+		    if(eff.name.equals(name)){
+		        // Remove the current element from the iterator and the list.
+		        iterator.remove();
+		    }
+		}
+	}
+	
 	public void gainEffect(String name, int duration){
 		effects.add(new Effect(name,duration));
 	}
