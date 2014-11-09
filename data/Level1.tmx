@@ -40,12 +40,12 @@
  </tileset>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aW07DMBBFIypUdtYNsKcsoHvoVvLdv4Zd8Cj8EtNYiqb4OZnJJL1HGgkq168cxo5N+9Q0l5db9EO8BeLnOS98XbHw7eSWS0WobE9+pvXmjqkmaJ9S5Ur6Znkcpb6kot2NMXgaIseX6Tz35POUfyFOY9Dy/z3PU5MfqfFwnmWs3tj85c51SXtLjMPXwc1zNLrdLT4jnsb8pX2+RLyjzyKFlKexPtHx5D476huHnLUjli+sjMMzR598Lq3xVJoS97ieUui8acLx1NI4QtT0qYOn5pjT060AT+0BT+/h7E+lWYOnEi7B03uwP+UBT3XAus9jS55y2pX+G4GnPLbkqWXgKQ94qoNztIOn1cBTHZyne4X3/fMQx8LvPKqnnLa2ivP0oODp6xglwNPy9raK87RV8NTlUngKT2v5258in1azxB4Snsrh8um58DvWHXXgPUqHznA+9cBTeLpXut+ved+fYtFRx9KePgoHJU85+XSKJUcdEvkOnt7TKnla876/BuCpDlr/1+fW/S16CnT4GO9M17LuA/tIrDGWz08lkN6vAhk0z6VKz08lWMpTzlkTzqn0zqWOTf251BrO+4Esmut+bT6Fp+DR7qPg6TpZw30UPAXT+yh/RvU1xDv5/TrEd+Cza6B8Th1S7Ui1scQcpeqwPI656/sF7e/j6LBPAAA=
+   H4sIAAAAAAAAA+2aW27CMBBFo6KK7owNdE9ZAHtgK/nmj7CLPmh/G5dYikz8HM/ENvdII0Hk+JWD7dj0L113ebvHOMXVEr+vYaHzcoUuJzSdL2xpR+OzmW9om1LCrJMvXUzdSm5HrC++6HdzTJ7aCPFl2c+jcd3nn43THGb6ted56sLD1x7Ks3Tl6+q/0L6OKW+Ldug8qOOcGcPuHl8OT13+mnW+OLwzn4UPLk9ddTLbE/rsTN8ohMwdrvGilHZoctRJj6UpnnIT4x7VUxOz3ySheFpSO2yk1GmAp8WR09NWgKflAU8foaxPuanB05wuUfxs3VOsT2nAUxkw79PgcCmnpzncL+E3Ak9p1OBpC8BTGvBUBuXoAE+TgacyKE/3Au/75ymOkfc8q6eUstbuaQHl6UHA0/c5YoCn8eWtpW8B5Wkv4KkaS+EpPE3lf32K8TQZaU99Za6lbQEpT9V4eo68p3RHFXiPkmEoeDzVwFN4uhc63095319SoqOKrT0NyasFDkKeUsbTJSU5quBYm8LTR3ohT1Pe92sAnsog9b8+Ne+36CmQ4XM+M61l3gflwzHHlLx/ygH3ehXwILkvFbt/ysFWnlL2mnLuU9WK1L7UsUvfl6phvx/wIjnvp46n8BQ823kUPK2TGs6j4ClYnkfpParvKT6M77cpfizXbpb0IXlwlcNVxhZ95Muj5Hbkzu8PlYxHZLBPAAA=
   </data>
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3bQUrDQBQG4IEmtD2M2oVZu6w30wt4ES9hL9CbmH0DropUZmAmr4nfBz+PMDD8A2+blABgHT77n8A9s6cAAAAAALBO2+gCkOEYXQAyvEUXgAxf0QUAKvrorgP36NxfB4A4u+gCkOE1usAKvPS3Qx3v0QUItZR/i07RBQi1lD0FgP/ke5PSuCmbLZR2KJ25Zy07zPGWscF9c+3AX567lIaubLZQ2qF05p617DDHW4YG99XegYd9So9TnqYc9r+/obYLIv7S+rBPAAA=
+   H4sIAAAAAAAAA+3aTwqCQBSA8QFHysP0h8h1y9p3qLpAZ6oLdJPcNyAhkoQvnTcz+v3gIeHgjPC1CDIGAAAAABqHvB4gZnQKAAD+sSvqAWJGp0gBnSIFdIoQFsL1dIoQjsL1dIoQLsL1dIoQ7sL1dNo4dwziQKfzdbPtiRmdztczb0/M6BQpoFMMsVTah04xxElpnyl3+vmfbtdgHFelfabcacpS+T49lPah0zil0ikAAHPyyoypMtnVB+kZpNe+93yeQeNdKg/P02rgl701prSyqw/SM0ivfe/5PIPGu5Qenjd2Ayv3e3LtZuNmW3x/Bsb2BhJMwzCwTwAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -55,7 +55,7 @@
    </properties>
   </object>
   <object name="Lava" type="deadly" x="416" y="432" width="208" height="32"/>
-  <object name="P" type="platform" x="768" y="368" width="32" height="32">
+  <object name="P" type="timedPlatform" x="768" y="368" width="32" height="32">
    <properties>
     <property name="duration" value="2"/>
    </properties>
@@ -84,15 +84,15 @@
   <object type="progressPoint" x="640" y="240" width="16" height="160">
    <properties>
     <property name="index" value="1"/>
-    <property name="x" value="24"/>
-    <property name="y" value="10"/>
+    <property name="x" value="40"/>
+    <property name="y" value="23"/>
    </properties>
   </object>
   <object name="St" type="progressPoint" x="80" y="304" width="16" height="16">
    <properties>
     <property name="index" value="0"/>
-    <property name="x" value="84"/>
-    <property name="y" value="3"/>
+    <property name="x" value="5"/>
+    <property name="y" value="19"/>
    </properties>
   </object>
   <object type="progressPoint" x="944" y="208" width="16" height="160">
@@ -157,7 +157,7 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="P" type="platform" x="1552" y="32" width="32" height="32">
+  <object name="P" type="timedPlatform" x="1552" y="64" width="32" height="32">
    <properties>
     <property name="duration" value="2"/>
    </properties>
@@ -167,5 +167,6 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
+  <object name="Ladder" type="ladder" x="1856" y="128" width="32" height="256"/>
  </objectgroup>
 </map>
