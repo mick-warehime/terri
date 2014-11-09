@@ -30,30 +30,28 @@ import actors.Player;
 
 //  a float option when holding space after jumping? like a little parachute or booster pack or wings
 
-//  ladders
-
 //  gravity gun for enemies?
 
 //  mario bullets canon or auto-turret aims at player
+
+//  get rid of the fact that 640,480 are hardcoded
+
+//  game object takes a name to make it so switches
 
 public class Game extends BasicGame {
 
 	static int width = 640;
 	static int height = 480;
-	static int pixel = 16;
 	static boolean fullscreen = false;
 	static boolean showFPS = true;
-	static String title = "Monkey Head";
+	static String title = "Dvir is the woooorst.";
 	static int fpslimit = 59;
-	private CollisionHandler collisionHandler;     
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 1;
+	private int currentLevel = 2;
 	private ProgressPoint progress;
 	private FireCommand shootCommand;
-
-	//	private Ether activeEtherObject = null; 
 
 	public Game() {
 		super("Monkey Head");
@@ -73,11 +71,6 @@ public class Game extends BasicGame {
 
 		if (terri.isDying()){
 			initializeLevel(currentLevel);
-			
-//			// to teleport
-//			level.setProgressPoint(progress);
-//			terri.resetPlayer(level);
-			
 		}
 		
 		
@@ -104,7 +97,7 @@ public class Game extends BasicGame {
 		level.setProgressPoint(progress);
 		
 		// i dont like this initialization
-		collisionHandler = level.getCollisionHandler();
+		CollisionHandler collisionHandler = level.getCollisionHandler();
 
 		terri = new Player(level.getProgressX(),level.getProgressY(),collisionHandler);
 

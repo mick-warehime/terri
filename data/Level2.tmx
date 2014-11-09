@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
   <image source="metroidtiles.png" width="1024" height="800"/>
  </tileset>
- <layer name="tiles" width="42" height="100" visible="0" opacity="0.5">
+ <layer name="tiles" width="42" height="100" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2aAW7CMAxFzRG2m42bjZuFE61CswRmVlz47TfsPwm5VFHlOn2OGtXMbCy/s/Uj5vVxMPs8sLLJiXl9LcfHhnnGvL6X41PDPGNeYzk+N8wz5iWPnkMeYZFHWOQRFnmERR5hkUdY5BGWmFfXeY8edZ336FHXeY/z3LV/xnnu2j/lERZ5hEUeYZFHWOQRFnmERR5hkUdY5BGWu30G65lnnOe2vttt/br6HuvX1fc7j5r6Lo+wvJtH7DpXPWLXueoRu55Vj9j1rHrErmfVI3Y9qx6x16mqR+x1quoR+/msesR+PrUeYdF6hKXqEbt/Vj1i98+qR34/Hn1cPL92XPU61/UbltfN78ejj4vn144rX+f3fsak7mzfq7B9r6J6rufiUeIfu3+6byP8z7xk8Srf173bfggb7Sti0b4iFnmERR5h2cqj2XvEo9FBeTR7j3g0OvLoOf67R2i0HmHJPJrFrK9tRebRLGZ9bbM87W+Pqv12LzKPZnFvMo9mcW+u6/MD6TPxbaBBAAA=
   </data>
@@ -47,6 +47,13 @@
    <properties>
     <property name="x" value="40"/>
     <property name="y" value="72"/>
+   </properties>
+  </object>
+  <object type="turret" x="320" y="1120" width="48" height="16">
+   <properties>
+    <property name="angle" value="90"/>
+    <property name="maxAngle" value="180"/>
+    <property name="minAngle" value="0"/>
    </properties>
   </object>
  </objectgroup>

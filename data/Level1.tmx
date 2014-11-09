@@ -45,7 +45,7 @@
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3bz0rDQBDH8YEm0Pguag/27FnfRe1r6N3H8A++hd59jGoP9u4UCbRjilnc7c4m3w8MSwiECfzYTGkiEu5qKnKtdaO1mP4+Bjx40Cw+aj1pPZNTOGFzuNT60PrUWpFTOGFzeNyInGidas0acgof2E+H7Sh3A5Gwnw7bZe4GImE/Hba73A1Ewn46bG+5G4iEnKIE5BQlIKcogc3hgt9RcMjmcPNfKfspvLE5XLGfwiGbwxnzKRzqyinvS8Gbrpzy3Ic3PPdRgq6cjul9/vtqt+DT2OfT93q34BPzKUrAfAoPzuv9tTH2+RRl8DyfvtQ/BdjvoD3Np+QULfudSd/5tMnXMkbor/dN9+X0Il/LGCGbUzsH2OPW7dY1viYi60nYmkJoD6Fr33MpezjEvawTXO+/GbA5tXOAPW69bl3jrBKZV2FrCqE9hK59z6Xs4RD3Mk9wvdgZsLm1x0Bs3+rIo6awTwAA
+   H4sIAAAAAAAAA+3bz0rDQBDH8YE20Pguag/27FnfRe1r6N3H8A++hd59jGoP9u4UCbRjilnc7c5uvx8YlhAIE/ixmdJEJNzVRORa60ZrPvl9DHjwoFl81HrSeiancMLmcKH1ofWptSSncMLm8LgVOdE61Zq25BQ+sJ/W7Sh3A5Gwn9btMncDkbCf1u0udwORsJ/W7S13A5GQU5SAnKIE5BQlsDmc8zsKDtkcrv8rZT+FNzaHS/ZTOGRzOGU+hUN9OeV9KXjTl1Oe+/CG5z5K0JfTGt7nvx9vF8pW63z63mwXysZ8ihIwn8KD82Z3rdU6n6IunufTl+anAPsdtKf5lJyiY78zGTqftvlaxgH6633TXTm9yNcyDpDNqZ0D7HHnduMaXyOR1ShsTSG0h9B16LmUPezjXlYJrvffDNic2jnAHndeN65xNhaZjcPWFEJ7CF2HnkvZwz7uZZbgerEzYHNrj4HYvgEU3CihsE8AAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -122,9 +122,9 @@
    </properties>
   </object>
   <object type="ladder" x="144" y="64" width="192" height="400"/>
-  <object type="xElevator" x="1168" y="288" width="64" height="32">
+  <object type="yElevator" x="1008" y="288" width="64" height="32">
    <properties>
-    <property name="range" value="200"/>
+    <property name="range" value="350"/>
    </properties>
   </object>
  </objectgroup>

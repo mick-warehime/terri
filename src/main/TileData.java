@@ -16,6 +16,7 @@ import gameobjects.Teleporter;
 import gameobjects.TimedElevator;
 import gameobjects.TimedPlatform;
 import gameobjects.TimedSwitch;
+import gameobjects.Turret;
 import gameobjects.WeightedSwitch;
 
 import java.lang.reflect.Constructor;
@@ -76,8 +77,8 @@ public class TileData {
 		parserDict.put("progressPoint", ProgressPoint.class);
 		parserDict.put("teleporter", Teleporter.class);
 		parserDict.put("ladder", Ladder.class);
-
-
+		parserDict.put("turret", Turret.class);
+		
 	}
 
 
@@ -136,7 +137,9 @@ public class TileData {
 
 	//Make a new instance of a gameobject based on map data
 	private void constructFromData(TiledMap map, int gi,int oi) throws SlickException{
-
+		
+		
+		
 		// Define input arguments for constructor
 		int x = map.getObjectX(gi,oi)/tileSize;
 		int y = map.getObjectY(gi,oi)/tileSize;
@@ -148,7 +151,7 @@ public class TileData {
 
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
-
+ 		
 		//Construct enemies
 		if (objectType.equals("enemy")){
 			enemies.add(new Enemy(x*tileSize,y*tileSize, null));

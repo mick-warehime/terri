@@ -43,7 +43,8 @@ public class AnimatedGraphics {
 					
 		Image im = imagesFromFile.get(imageIndex);
 
-		im.draw(rect.getX()-mapX,rect.getY()-mapY);		
+		im.draw(rect.getX()-mapX,rect.getY()-mapY);	
+		
 	}
 
 
