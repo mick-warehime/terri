@@ -1,60 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="100" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
-  <image source="metroidtiles.png" width="1024" height="800"/>
- </tileset>
- <layer name="tiles" width="42" height="100" opacity="0.5">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aAW7CMAxFzRG2m42bjZuFE61CswRmVlz47TfsPwm5VFHlOn2OGtXMbCy/s/Uj5vVxMPs8sLLJiXl9LcfHhnnGvL6X41PDPGNeYzk+N8wz5iWPnkMeYZFHWOQRFnmERR5hkUdY5BGWmFfXeY8edZ336FHXeY/z3LV/xnnu2j/lERZ5hEUeYZFHWOQRFnmERR5hkUdY5BGWu30G65lnnOe2vttt/br6HuvX1fc7j5r6Lo+wvJtH7DpXPWLXueoRu55Vj9j1rHrErmfVI3Y9qx6x16mqR+x1quoR+/msesR+PrUeYdF6hKXqEbt/Vj1i98+qR34/Hn1cPL92XPU61/UbltfN78ejj4vn144rX+f3fsak7mzfq7B9r6J6rufiUeIfu3+6byP8z7xk8Srf173bfggb7Sti0b4iFnmERR5h2cqj2XvEo9FBeTR7j3g0OvLoOf67R2i0HmHJPJrFrK9tRebRLGZ9bbM87W+Pqv12LzKPZnFvMo9mcW+u6/MD6TPxbaBBAAA=
-  </data>
- </layer>
- <layer name="ether" width="42" height="100" opacity="0.3">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3ST0pCURzF8R+IDx9uxWwJOQ13kQ5Tl5BTcWSpq0jdwptKo+zPKiy30HlwRSweQVx8v+T7gcPvDg+XYwYAAAAAAAAAAAAAAODXbc2sp/SVQa3sNsUe1W2hLJWV455bdftQPpWd456N1OxCaSqXadltirHPuNhnXOwzLvYZF/uMi33GxT7jYp9xrM2y/HrbZz3c/ZeNQk9v+2yHe324WX697XMc7ijcNPT0ts+ncNeltgCA391UzTpKt3r89ua/9ATOwaRidq88KFNlpswrZbf66VmdNsqL8qq8Ke8OewIAztNVcrq0kr/3vEtOl+G3nl/98V53oEEAAA==
-  </data>
- </layer>
- <objectgroup name="objects" opacity="0.58">
-  <object type="progressPoint" x="80" y="1472" width="16" height="48">
-   <properties>
-    <property name="index" value="0"/>
-    <property name="x" value="5"/>
-    <property name="y" value="93"/>
-   </properties>
-  </object>
-  <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
-  <object type="enemy" x="576" y="1344" width="16" height="16"/>
-  <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
-  <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
-  <object name="Sw" type="switch" x="48" y="1504" width="18" height="17">
-   <properties>
-    <property name="prox" value="5"/>
-    <property name="target" value="door1"/>
-   </properties>
-  </object>
-  <object type="teleporter" x="656" y="1120" width="16" height="64">
-   <properties>
-    <property name="x" value="1"/>
-    <property name="y" value="72"/>
-   </properties>
-  </object>
-  <object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
-   <properties>
-    <property name="duration" value="10"/>
-   </properties>
-  </object>
-  <object type="ladder" x="48" y="800" width="64" height="384"/>
-  <object type="teleporter" x="16" y="1120" width="16" height="64">
-   <properties>
-    <property name="x" value="40"/>
-    <property name="y" value="72"/>
-   </properties>
-  </object>
-  <object type="turret" x="320" y="1120" width="48" height="16">
-   <properties>
-    <property name="angle" value="90"/>
-    <property name="maxAngle" value="180"/>
-    <property name="minAngle" value="0"/>
-   </properties>
-  </object>
- </objectgroup>
+<tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
+<image source="metroidtiles.png" width="1024" height="800"/>
+</tileset>
+<layer name="tiles" width="42" height="100" opacity="0.5">
+<data encoding="base64" compression="gzip">
+H4sIAAAAAAAAA+2aAW7CMAxFzRG2m42bjZuFE61CswRmVlz47TfsPwm5VFHlOn2OGtXMbCy/s/Uj5vVxMPs8sLLJiXl9LcfHhnnGvL6X41PDPGNeYzk+N8wz5iWPnkMeYZFHWOQRFnmERR5hkUdY5BGWmFfXeY8edZ336FHXeY/z3LV/xnnu2j/lERZ5hEUeYZFHWOQRFnmERR5hkUdY5BGWu30G65lnnOe2vttt/br6HuvX1fc7j5r6Lo+wvJtH7DpXPWLXueoRu55Vj9j1rHrErmfVI3Y9qx6x16mqR+x1quoR+/msesR+PrUeYdF6hKXqEbt/Vj1i98+qR34/Hn1cPL92XPU61/UbltfN78ejj4vn144rX+f3fsak7mzfq7B9r6J6rufiUeIfu3+6byP8z7xk8Srf173bfggb7Sti0b4iFnmERR5h2cqj2XvEo9FBeTR7j3g0OvLoOf67R2i0HmHJPJrFrK9tRebRLGZ9bbM87W+Pqv12LzKPZnFvMo9mcW+u6/MD6TPxbaBBAAA=
+</data>
+</layer>
+<layer name="ether" width="42" height="100" opacity="0.3">
+<data encoding="base64" compression="gzip">
+H4sIAAAAAAAAA+3ST0pCURzF8R+IDx9uxWwJOQ13kQ5Tl5BTcWSpq0jdwptKo+zPKiy30HlwRSweQVx8v+T7gcPvDg+XYwYAAAAAAAAAAAAAAODXbc2sp/SVQa3sNsUe1W2hLJWV455bdftQPpWd456N1OxCaSqXadltirHPuNhnXOwzLvYZF/uMi33GxT7jYp9xrM2y/HrbZz3c/ZeNQk9v+2yHe324WX697XMc7ijcNPT0ts+ncNeltgCA391UzTpKt3r89ua/9ATOwaRidq88KFNlpswrZbf66VmdNsqL8qq8Ke8OewIAztNVcrq0kr/3vEtOl+G3nl/98V53oEEAAA==
+</data>
+</layer>
+<objectgroup name="objects" opacity="0.58">
+<object type="progressPoint" x="80" y="1472" width="16" height="48">
+<properties>
+<property name="index" value="0"/>
+<property name="x" value="5"/>
+<property name="y" value="93"/>
+</properties>
+</object>
+<object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
+<object type="enemy" x="576" y="1344" width="16" height="16"/>
+<object name="door1" type="multiDoor" x="624" y="1120" width="16" height="64">
+<properties>
+<property name="numberOfLocks" value="2"/>
+</properties>
+</object>
+<object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
+<object name="Sw" type="multiWeightedSwitch" x="48" y="1504" width="18" height="17">
+<properties>
+<property name="index" value="0"/>
+<property name="prox" value="5"/>
+<property name="target" value="door1"/>
+</properties>
+</object>
+<object type="teleporter" x="656" y="1120" width="16" height="64">
+<properties>
+<property name="x" value="2"/>
+<property name="y" value="72"/>
+</properties>
+</object>
+<object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
+<properties>
+<property name="duration" value="10"/>
+</properties>
+</object>
+<object type="ladder" x="48" y="800" width="64" height="384"/>
+<object type="teleporter" x="16" y="1120" width="16" height="64">
+<properties>
+<property name="x" value="40"/>
+<property name="y" value="72"/>
+</properties>
+</object>
+<object type="turret" x="320" y="1120" width="48" height="16">
+<properties>
+<property name="angle" value="90"/>
+<property name="chargeTime" value="100"/>
+<property name="maxAngle" value="180"/>
+<property name="minAngle" value="0"/>
+</properties>
+</object>
+<object name="Sw" type="multiWeightedSwitch" x="352" y="1376" width="18" height="17">
+<properties>
+<property name="index" value="1"/>
+<property name="prox" value="5"/>
+<property name="target" value="door1"/>
+</properties>
+</object>
+</objectgroup>
 </map>

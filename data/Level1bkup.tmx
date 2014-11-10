@@ -45,15 +45,7 @@
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-<<<<<<< HEAD
    H4sIAAAAAAAAA+3aTwqCQBSA8QFHysP0h8h1y9p3qLpAZ6oLdJPcNyAhkoQvnTcz+v3gIeHgjPC1CDIGAAAAABqHvB4gZnQKAAD+sSvqAWJGp0gBnSIFdIoQFsL1dIoQjsL1dIoQLsL1dIoQ7sL1dNo4dwziQKfzdbPtiRmdztczb0/M6BQpoFMMsVTah04xxElpnyl3+vmfbtdgHFelfabcacpS+T49lPah0zil0ikAAHPyyoypMtnVB+kZpNe+93yeQeNdKg/P02rgl701prSyqw/SM0ivfe/5PIPGu5Qenjd2Ayv3e3LtZuNmW3x/Bsb2BhJMwzCwTwAA
-=======
-<<<<<<< HEAD
-   H4sIAAAAAAAAA+3bz0rDQBDH8YE20Pguag/27FnfRe1r6N3H8A++hd59jGoP9u4UCbRjilnc7c5uvx8YlhAIE/ixmdJEJNzVRORa60ZrPvl9DHjwoFl81HrSeiancMLmcKH1ofWptSSncMLm8LgVOdE61Zq25BQ+sJ/W7Sh3A5Gwn9btMncDkbCf1u0udwORsJ/W7S13A5GQU5SAnKIE5BQlsDmc8zsKDtkcrv8rZT+FNzaHS/ZTOGRzOGU+hUN9OeV9KXjTl1Oe+/CG5z5K0JfTGt7nvx9vF8pW63z63mwXysZ8ihIwn8KD82Z3rdU6n6IunufTl+anAPsdtKf5lJyiY78zGTqftvlaxgH6633TXTm9yNcyDpDNqZ0D7HHnduMaXyOR1ShsTSG0h9B16LmUPezjXlYJrvffDNic2jnAHndeN65xNhaZjcPWFEJ7CF2HnkvZwz7uZZbgerEzYHNrj4HYvgEU3CihsE8AAA==
-=======
-   H4sIAAAAAAAAA+3bQUrDQBQG4IEmtD2M2oVZu6w30wt4ES9hL9CbmH0DropUZmAmr4nfBz+PMDD8A2+blABgHT77n8A9s6cAAAAAALBO2+gCkOEYXQAyvEUXgAxf0QUAKvrorgP36NxfB4A4u+gCkOE1usAKvPS3Qx3v0QUItZR/i07RBQi1lD0FgP/ke5PSuCmbLZR2KJ25Zy07zPGWscF9c+3AX567lIaubLZQ2qF05p617DDHW4YG99XegYd9So9TnqYc9r+/obYLIv7S+rBPAAA=
->>>>>>> 73d3eb4cdfaebe8207550b1b67702432db05deaf
->>>>>>> d1eeec406eff08cf59d8b42db191759d84b0782b
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -148,12 +140,6 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
-<<<<<<< HEAD
-  <object type="ladder" x="144" y="64" width="192" height="400"/>
-  <object type="yElevator" x="1008" y="288" width="64" height="32">
-   <properties>
-    <property name="range" value="350"/>
-=======
   <object name="E" type="enemy" x="1472" y="336" width="16" height="16">
    <properties>
     <property name="type" value="enemy"/>
@@ -179,7 +165,6 @@
   <object name="E" type="enemy" x="1552" y="224" width="16" height="16">
    <properties>
     <property name="type" value="enemy"/>
->>>>>>> 73d3eb4cdfaebe8207550b1b67702432db05deaf
    </properties>
   </object>
   <object name="Ladder" type="ladder" x="1856" y="128" width="32" height="256"/>
