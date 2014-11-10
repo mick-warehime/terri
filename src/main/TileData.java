@@ -4,6 +4,7 @@ package main;
 //import etherable.Elevator;
 import gameobjects.DeadlyObject;
 import gameobjects.Door;
+import gameobjects.EtherableMovingPlatform;
 import gameobjects.MovingPlatform;
 import gameobjects.MultiDoor;
 import gameobjects.MultiWeightedSwitch;
@@ -82,7 +83,7 @@ public class TileData {
 		parserDict.put("ladder", Ladder.class);
 		parserDict.put("turret", Turret.class);
 		parserDict.put("movingPlatform", MovingPlatform.class);
-
+		parserDict.put("etherableMovingPlatform", EtherableMovingPlatform.class);
 
 	}
 

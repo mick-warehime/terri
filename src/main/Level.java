@@ -99,7 +99,7 @@ public class Level {
 			gObj.update(mouseX,mouseY);
 		}
 
-		
+		//Update enemies and remove dead ones
 		for (Iterator<Enemy> iterator = enemies.iterator(); iterator.hasNext();) {
 		    Enemy nme = iterator.next();
 		    nme.update();

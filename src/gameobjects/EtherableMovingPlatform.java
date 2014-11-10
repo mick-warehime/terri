@@ -14,11 +14,12 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DisplaceCommand;
 import commands.MinimumDisplaceCommand;
 
-public class XElevator extends EtherObject implements InteractiveCollideable {
+public class EtherableMovingPlatform extends EtherObject implements InteractiveCollideable {
 
 
 
 	private int xPos;
+	private int yPos;
 	private int speed;
 	private int range;
 	private int displacement = 0;
@@ -26,13 +27,15 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 	private int etherSpeed = 0;
 	private boolean isMoving = true;
 	private int initialDirection;
+	private char xOrY;
 	
 
-	public XElevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
+	public EtherableMovingPlatform(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);
 
 		// set y position to initial y position 
 		xPos = x*tileSize;
+		yPos = y*tileSize;
 
 		// 		
 		this.range = Integer.parseInt((String)args.get("range"))*tileSize;
@@ -42,6 +45,13 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 		}else{
 			initialDirection = 1;
 		}
+		
+		if (args.containsKey("xOrY")){
+			this.xOrY = ((String)args.get("xOrY")).charAt(0);
+		}else{
+			this.xOrY = 'x';
+		}
+		
 		
 		initializeMovement();
 		
@@ -71,7 +81,12 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 			}
 			displacement = displacement + speed;
 
-			rect.setX(rect.getX() + speed);//xPos+displacement
+			if(xOrY == 'x'){
+				rect.setX(rect.getX() + speed);//xPos+displacement
+			}
+			else{
+				rect.setY(rect.getY() + speed);
+			}
 		}
 
 
@@ -79,8 +94,9 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 
 	public void put(int x, int y){
 		super.put(x, y);
-
-		xPos = putX;
+		if(xOrY == 'x'){xPos = putX;}
+		else{ yPos = putY;}
+		
 		initializeMovement();
 		
 		isMoving = true;
@@ -96,8 +112,11 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 		// the ether variables simply hold the pre-put state to make it easy to restore
 		etherDisplacement = displacement;
 		etherSpeed = speed;
-		etherRect.setX(pixelX+etherDisplacement);
-
+		if (xOrY == 'x'){
+			etherRect.setX(pixelX+etherDisplacement);
+		}else{
+			etherRect.setY(pixelY+etherDisplacement);
+		}
 		// reset the range counter for the put elevator
 		displacement = 0;
 	}
@@ -109,11 +128,22 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 		// setting isMoving true catches the case where it was held but not put
 		isMoving = true;
 
-		xPos = pixelX;
-
 		displacement = etherDisplacement;
 		speed = etherSpeed;
-		rect.setLocation(xPos+displacement,pixelY);
+		
+		if (xOrY == 'x'){
+			xPos = pixelX;
+			rect.setLocation(xPos+displacement,pixelY);
+		}else{
+			yPos = pixelY;
+			rect.setLocation(pixelX,yPos+displacement);
+		}
+		
+		
+
+		
+		
+		
 	}
 
 	public void toggle(){
@@ -126,7 +156,12 @@ public class XElevator extends EtherObject implements InteractiveCollideable {
 	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
 
 		ArrayList<Command> list = new ArrayList<Command>();
-		list.add(new DisplaceCommand(speed, 'x'));
+		if (xOrY == 'x'){
+			list.add(new DisplaceCommand(speed, 'x'));
+		}else{
+			list.add(new MinimumDisplaceCommand(2*speed, 'y'));
+		}
+		
 		return list;
 
 
