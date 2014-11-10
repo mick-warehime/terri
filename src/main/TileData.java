@@ -32,6 +32,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
+import actors.Actor;
 import actors.Enemy;
 
 
@@ -39,7 +40,7 @@ public class TileData {
 
 	private ArrayList<Rectangle> blocks = new ArrayList<Rectangle>(); 	
 	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	private ArrayList<Actor> actors = new ArrayList<Actor>();
 	
 	// This will keep a list of Tiles that are blocked
 	private int tileSize;
@@ -58,8 +59,8 @@ public class TileData {
 		initializeObjects(map);
 	}
 
-	public ArrayList<Enemy> getEnemies(){
-		return enemies;
+	public ArrayList<Actor> getActors(){
+		return actors;
 	}
 
 	private void initializeParserDictionary() {
@@ -158,9 +159,9 @@ public class TileData {
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
  		
-		//Construct enemies
+		//Construct actors
 		if (objectType.equals("enemy")){
-			enemies.add(new Enemy(x*tileSize,y*tileSize, null));
+			actors.add(new Enemy(x*tileSize,y*tileSize, null));
 		}
 		
 		//Construct gameObjects

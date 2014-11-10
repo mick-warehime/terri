@@ -6,6 +6,7 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
+import actors.Actor;
 import actors.Enemy;
 import commands.CommandProvider;
 import gameobjects.EtherObject;
@@ -18,7 +19,7 @@ public class CollisionHandler implements CommandProvider {
 
 	private ArrayList<Rectangle> blocks;
 	private ArrayList<GameObject> gameObjects;
-	private ArrayList<Enemy> enemies;
+	private ArrayList<Actor> actors;
 	
 	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
@@ -33,10 +34,10 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 
-	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Enemy> enemies){
+	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Actor> actors){
 
 		this.gameObjects = gameObjects;
-		this.enemies = enemies;
+		this.actors = actors;
 
 
 		populateInteractiveCollideables();
@@ -51,6 +52,14 @@ public class CollisionHandler implements CommandProvider {
 				interactiveGameObjects.add((InteractiveCollideable) gObj);
 			}
 		}
+		
+		for (Actor actor: actors){
+			if (actor instanceof InteractiveCollideable){
+				interactiveGameObjects.add((InteractiveCollideable) actor);
+			}
+		}
+		
+		
 
 
 	}
@@ -107,7 +116,7 @@ public class CollisionHandler implements CommandProvider {
 		}
 
 		//Check for collisions with actors
-		if(isCollidedWithEnemy(etherObject.getRect())){
+		if(isCollidedWithActor(etherObject.getRect())){
 			return false;
 		}
 
@@ -238,8 +247,8 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedWithEnemy(Rectangle rect){
-		for (Enemy nme: enemies){
+	public boolean isCollidedWithActor(Rectangle rect){
+		for (Actor nme: actors){
 			if(nme.getRect().intersects(rect)){
 				return true;
 			}
@@ -270,12 +279,12 @@ public class CollisionHandler implements CommandProvider {
 			}
 		}
 
-		for (Enemy nme: enemies){
-			if (slightlyBiggerRect.intersects(nme.getRect())){
-				nme.onCollisionDo(collidingObjectClass);
-				output.addAll(nme.onCollisionBroadcast(collidingObjectClass));
-			}
-		}
+//		for (Actor nme: actors){
+//			if (slightlyBiggerRect.intersects(nme.getRect())){
+//				nme.onCollisionDo(collidingObjectClass);
+//				output.addAll(nme.onCollisionBroadcast(collidingObjectClass));
+//			}
+//		}
 
 
 

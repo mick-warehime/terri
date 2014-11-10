@@ -153,6 +153,6 @@ public class Turret extends GameObject implements InteractiveCollideable{
 	@Override
 	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Command>();
 	};
 }

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
+import actors.Actor;
 import actors.Enemy;
 import gameobjects.GameObject;
 import gameobjects.ProgressPoint;
@@ -36,7 +37,7 @@ public class Level {
 	
 //	private TileData tileData;
 	private ArrayList<GameObject> gameObjects;
-	private ArrayList<Enemy> enemies;
+	private ArrayList<Actor> actors;
 
 	public Level(int levelNumber) throws SlickException {
 
@@ -59,7 +60,7 @@ public class Level {
 		//Creates the collisionHandler with just game blocks
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
-		this.enemies = tileData.getEnemies();
+		this.actors = tileData.getActors();
 		incorporateCollisionHandler(); 
 	
 
@@ -69,9 +70,9 @@ public class Level {
 	private void incorporateCollisionHandler() throws SlickException{
 		
 		//Give the objects to the collisionHandler
-		collisionHandler.receiveObjects(gameObjects, enemies);
+		collisionHandler.receiveObjects(gameObjects, actors);
 		
-		//Give the CollisionHandler to enemies and gameObjects
+		//Give the CollisionHandler to actors and gameObjects
 		
 		for(GameObject gObj: gameObjects){
 			
@@ -81,7 +82,7 @@ public class Level {
 		}
 		
 		
-		for (Enemy nme: enemies){
+		for (Actor nme: actors){
 			nme.incorporateCollisionHandler(collisionHandler);
 			
 		}
@@ -99,9 +100,9 @@ public class Level {
 			gObj.update(mouseX,mouseY);
 		}
 
-		//Update enemies and remove dead ones
-		for (Iterator<Enemy> iterator = enemies.iterator(); iterator.hasNext();) {
-		    Enemy nme = iterator.next();
+		//Update actors and remove dead ones
+		for (Iterator<Actor> iterator = actors.iterator(); iterator.hasNext();) {
+		    Actor nme = iterator.next();
 		    nme.update();
 		    
 		    if (nme.isDying()) {
@@ -145,7 +146,7 @@ public class Level {
 			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 
-		for (Enemy nme: enemies){
+		for (Actor nme: actors){
 			nme.render(mapX,mapY);
 		}
 
