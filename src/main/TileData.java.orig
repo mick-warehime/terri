@@ -2,18 +2,29 @@
 package main;
 //import etherable.Platform;
 //import etherable.Elevator;
-import etherable.DeadlyObject;
-import etherable.Door;
-import etherable.Elevator;
-import etherable.GameObject;
-import etherable.Platform;
-import etherable.ProgressPoint;
-import etherable.Switch;
-import etherable.SwitchObject;
-import etherable.TimedElevator;
-import etherable.TimedPlatform;
-import etherable.TimedSwitch;
-import etherable.WeightedSwitch;
+import gameobjects.DeadlyObject;
+import gameobjects.Door;
+import gameobjects.EtherableMovingPlatform;
+import gameobjects.MovingPlatform;
+<<<<<<< HEAD
+import gameobjects.MultiDoor;
+import gameobjects.MultiWeightedSwitch;
+import gameobjects.YElevator;
+import gameobjects.XElevator;
+=======
+>>>>>>> c583094d701752ade8b2093964e1e0221296df71
+import gameobjects.EtherObject;
+import gameobjects.GameObject;
+import gameobjects.Ladder;
+import gameobjects.ProgressPoint;
+import gameobjects.Switch;
+import gameobjects.SwitchObject;
+import gameobjects.Teleporter;
+import gameobjects.TimedElevator;
+import gameobjects.TimedPlatform;
+import gameobjects.TimedSwitch;
+import gameobjects.Turret;
+import gameobjects.WeightedSwitch;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -60,16 +71,25 @@ public class TileData {
 
 		parserDict = new HashMap<String,Class<?>>();
 
-		parserDict.put("platform", Platform.class);
+		parserDict.put("platform", EtherObject.class);
 		parserDict.put("deadly", DeadlyObject.class);
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
-		parserDict.put("elevator", Elevator.class);
+<<<<<<< HEAD
+		parserDict.put("multiDoor", MultiDoor.class);
+=======
+>>>>>>> c583094d701752ade8b2093964e1e0221296df71
 		parserDict.put("timedElevator", TimedElevator.class);
 		parserDict.put("switch", Switch.class);
 		parserDict.put("timedSwitch", TimedSwitch.class);
 		parserDict.put("weightedSwitch", WeightedSwitch.class);
+		parserDict.put("multiWeightedSwitch", MultiWeightedSwitch.class);
 		parserDict.put("progressPoint", ProgressPoint.class);
+		parserDict.put("teleporter", Teleporter.class);
+		parserDict.put("ladder", Ladder.class);
+		parserDict.put("turret", Turret.class);
+		parserDict.put("movingPlatform", MovingPlatform.class);
+		parserDict.put("etherableMovingPlatform", EtherableMovingPlatform.class);
 
 	}
 
@@ -88,9 +108,11 @@ public class TileData {
 		// Add swtich targets
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof SwitchObject ){
+				
 				gObj.setTarget(gameObjects);
 			}
 		}
+		
 
 	}
 
@@ -129,7 +151,9 @@ public class TileData {
 
 	//Make a new instance of a gameobject based on map data
 	private void constructFromData(TiledMap map, int gi,int oi) throws SlickException{
-
+		
+		
+		
 		// Define input arguments for constructor
 		int x = map.getObjectX(gi,oi)/tileSize;
 		int y = map.getObjectY(gi,oi)/tileSize;
@@ -141,20 +165,17 @@ public class TileData {
 
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
-
-<<<<<<< HEAD
-
-=======
+ 		
 		//Construct enemies
 		if (objectType.equals("enemy")){
 			enemies.add(new Enemy(x*tileSize,y*tileSize, null));
 		}
 		
 		//Construct gameObjects
->>>>>>> 173c49f0095239ac7210425cda475a72a9d2bdfc
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
+			@SuppressWarnings("rawtypes")
 			Constructor construct = test[0];
 
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));

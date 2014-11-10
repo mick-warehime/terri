@@ -3,7 +3,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;

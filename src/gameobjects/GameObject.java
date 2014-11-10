@@ -102,7 +102,10 @@ public class GameObject {
 
 	public void toggle() {
 		throw new UnsupportedOperationException(); 
-
+	}
+	
+	public void toggle(int switchNumber) {
+		throw new UnsupportedOperationException(); 
 	}
 
 	public void setTarget(ArrayList<GameObject> gameObjects) {

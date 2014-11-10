@@ -11,7 +11,6 @@ import org.newdawn.slick.command.Command;
 
 import commands.DieCommand;
 import commands.GlobalInputListener;
-import commands.NullCommand;
 import gameobjects.InteractiveCollideable;
 
 public class Enemy extends Actor implements InteractiveCollideable{

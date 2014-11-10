@@ -12,15 +12,14 @@ import gameobjects.EtherObject;
 import gameobjects.GameObject;
 import gameobjects.Interactive;
 import gameobjects.InteractiveCollideable;
-import gameobjects.Ladder;
 
 
 public class CollisionHandler implements CommandProvider {
 
-
 	private ArrayList<Rectangle> blocks;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<Enemy> enemies;
+	
 	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
 
@@ -210,20 +209,20 @@ public class CollisionHandler implements CommandProvider {
 
 	//Returns if the line of sight from the player to an EtherObject
 	// is collided with any game objects
-	public boolean lineOfSightCollision(EtherObject eObj){
+	public boolean lineOfSightCollision(GameObject gameObject){
 
 		//Make a line from centers of player and object
 		float playerX = playerRect.getCenterX();
 		float playerY = playerRect.getCenterY();
-		float objectX = eObj.getRect().getCenterX();
-		float objectY = eObj.getRect().getCenterY();
+		float objectX = gameObject.getRect().getCenterX();
+		float objectY = gameObject.getRect().getCenterY();
 
 		Line line = new Line(playerX, playerY, objectX, objectY);
 
 		//Check if collideable Game objects are intersecting 
 		// this line, other than the one from eObj
 		for(GameObject gObj: gameObjects){
-			if(gObj != eObj && gObj.canCollide()){
+			if(gObj != gameObject && gObj.canCollide()){
 				if(line.intersects(gObj.getRect())){
 					return true;
 				}

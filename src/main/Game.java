@@ -15,25 +15,26 @@ import commands.RestoreCommand;
 import gameobjects.ProgressPoint;
 import actors.Player;
 
-
 //  To doo to doo to do to do do do to doooooo
  
 //   platforms that have a limited number of times you can be on them?
-//   drawing platform timers
-//   multiple weight sensitive switchs to open a door
 
 //  find a way to skip empty objects on .tmx
 
 //  weird bug when you jump ether objects tend to lag behind in drawing?? 
-//  maybe check the order things are drawn
+//  maybe check the order things are drawn check int vs float
 
-//  a float option when holding space after jumping? like a little parachute or booster pack or wings
-
-//  gravity gun for enemies?
-
-//  mario bullets canon or auto-turret aims at player
+//  what happens when a timed door needs to come back and there is an ether object that was put in the way?
 
 // refactor action engine a bit (w.r.t. jump timers, etc.)
+
+// TO DO 
+// 0) daveers mom (shots fired)
+// 1) drawing ether timers, turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
+// 2) etherable enemies, start menu, lemming types
+// 3) dog
+// 4) item upgrades, doors to other areas, save points, map travel
+// 0/5) graphics/ animations/particl effects
 
 public class Game extends BasicGame {
 
