@@ -8,7 +8,6 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-import commands.GainEffectCommand;
 import commands.TeleportCommand;
 
 public class Teleporter extends GameObject implements InteractiveCollideable{

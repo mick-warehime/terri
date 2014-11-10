@@ -24,6 +24,8 @@ import actors.Player;
 //  weird bug when you jump ether objects tend to lag behind in drawing?? 
 //  maybe check the order things are drawn check int vs float
 
+//  what happens when a timed door needs to come back and there is an ether object that was put in the way?
+
 // refactor action engine a bit (w.r.t. jump timers, etc.)
 
 // TO DO 

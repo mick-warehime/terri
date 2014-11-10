@@ -8,8 +8,6 @@ import gameobjects.EtherableMovingPlatform;
 import gameobjects.MovingPlatform;
 import gameobjects.MultiDoor;
 import gameobjects.MultiWeightedSwitch;
-import gameobjects.YElevator;
-import gameobjects.XElevator;
 import gameobjects.EtherObject;
 import gameobjects.GameObject;
 import gameobjects.Ladder;

@@ -57,7 +57,7 @@
   <object type="turret" x="320" y="1120" width="48" height="16">
    <properties>
     <property name="angle" value="90"/>
-    <property name="chargeTime" value="200"/>
+    <property name="chargeTime" value="100"/>
     <property name="maxAngle" value="180"/>
     <property name="minAngle" value="0"/>
    </properties>
