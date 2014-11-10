@@ -5,6 +5,8 @@ package main;
 import gameobjects.DeadlyObject;
 import gameobjects.Door;
 import gameobjects.MovingPlatform;
+import gameobjects.MultiDoor;
+import gameobjects.MultiWeightedSwitch;
 import gameobjects.YElevator;
 import gameobjects.XElevator;
 import gameobjects.EtherObject;
@@ -69,17 +71,16 @@ public class TileData {
 		parserDict.put("deadly", DeadlyObject.class);
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
-		parserDict.put("xElevator", XElevator.class);
-		parserDict.put("yElevator", YElevator.class);
+		parserDict.put("multiDoor", MultiDoor.class);
 		parserDict.put("timedElevator", TimedElevator.class);
 		parserDict.put("switch", Switch.class);
 		parserDict.put("timedSwitch", TimedSwitch.class);
 		parserDict.put("weightedSwitch", WeightedSwitch.class);
+		parserDict.put("multiWeightedSwitch", MultiWeightedSwitch.class);
 		parserDict.put("progressPoint", ProgressPoint.class);
 		parserDict.put("teleporter", Teleporter.class);
 		parserDict.put("ladder", Ladder.class);
 		parserDict.put("turret", Turret.class);
-		
 		parserDict.put("movingPlatform", MovingPlatform.class);
 
 
@@ -100,9 +101,11 @@ public class TileData {
 		// Add swtich targets
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof SwitchObject ){
+				
 				gObj.setTarget(gameObjects);
 			}
 		}
+		
 
 	}
 

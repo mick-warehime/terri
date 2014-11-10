@@ -40,20 +40,16 @@
  </tileset>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-<<<<<<< HEAD
-   H4sIAAAAAAAAA+2aS27CMBCGI1BFb8YFeqfs4Q5cJWt2pLfog3bbpMTCGtkej1+x4f+kEcE4jp18mjgO/abrLq+3GKd4t8Tvi1+otlyhjuNbjwtb3ZFs03Z9xxQStE9cPUnfah6H1Bcu+u0Sk6c2fHzRz/NIyjn/bJyWoPVN1/PU+Qc3nphr6WrXdf58z7XkeGuMQ7URm+doDNtbfDk8dflL+3xxeEevBUcuT119ouPxvXbUt9Rwfat5HCn6pHJpiKe5kbgX6ymFnreakPStxnHY+qTKTQzwFFQCPIWnrRMzP81NC576rEOUnss+Ipifgto4GFzEff8xiMnrKfL+7Bb1y+Sbq9z1OzwFKVBu6Z+cj/q+h839OUrfT23DUxAD9ZH7rspM27RM/212dICnIADfnGnz1DUvoL/Nnu4KPO+fpzgK94GndeN7X6d1Q/PpvoCnb0tIgKfPgWmuQLdnT/sCns65FJ6CUP7np8inIAEqL0rmA6Y2TJTydM6nZ+E+cLQtpPNV0/OVrY2h4nyqgKdtYMqnrmcmvT6Xh3eF3u+HPO/rwNF2kDzbq3IuF+8LeRqTT3XgaL3Y8qktX+plnKt9IU9DnvfBYyOanxa878NTEMrn8s60lfs+WI81/19b8/ppDjBfbZOS61LS9dMc1OQp/uPvT6l1qWMXvi6F9X5Q8r4fmk/hKXi291HwtE1aeB8FT4H+PkqtUX1P8UG+X6f4sZRdLfV92sh1nFzHWOMccW3UPI7U7f0BRSvzZrBPAAA=
-=======
-   H4sIAAAAAAAAA+2ZS26DMBCGUaMqvVku0Duxb+6Qq7DOLukt+ki7LW6wsEZ+jY3NOPyfNAoxxtjwaTCmf+q6y8s9rmO8O+L3OS50W77Q54mtFwpX3SvZpu3GjiklaJ9C9Th9kzwOri+h6HdTjJ66iPHFvM5XUh7yz8VpClrfdj9PXXyExpNzL33t+q5f7LXmnG+Nceg2cvMcjWF3jy+Ppz5/aZ8vHu/ovQhRylNfn+h4Yu8d9W1pQn2TPI4l+qRzaYqnpeG4l+sphV43SXD6JnEcKX0a4CloAHgKWiBnflqaFjyNWYeoPZd9RDA/zQOeLs+bxUU89/OQ4mlOP5bop3KL+mXzzVfu2w9P85Di6dpot8zfkI/msWZd2zY8zWPrntoc8/3XZbZtWmbuU44O8DSZLXsamzNdnvrmBXSf8nRf4X3/PMaReQw8lU3sc53WTc2nhwqevk7BAZ5ug5j5qfK0r+CpyqXwFJ6m8j8/RT5NBp7O6LzImQ/Y2rBRy1OVT8/MY6Q7qoCnM9z5qu39ytXGIDifaiR7CmZs+dT3zmTWD+XhfaXv+ynv+yZwtB047/a6PJSLD5U8zcmnJnBULq586sqXZlnI1b6Spynv++CxYc1PKz734SlI5XP6ZtrKcx+sx5rrGZLXT0uA+Wqb1FyX4q6flkCSp1tYU12KWutSxy59XaqF9X5QlprP/dR8Ck/B1r5HwdM2aeF7FDwF5vcovUb1PcYH+X8b48dRdnPUj2mj1HlKnWONaxRqQ/I4lm7vD+309a2wTwAA
->>>>>>> 01e8a38ed9c0816779a8f96b13f2a0c0a868b0a5
+   H4sIAAAAAAAAA+2aW07DMBBFIypUdtYNsKcsoHvoVvLdv4Zd8Cj8EtNYiqb4OZnJJL1HGgkq168cxo5N+9Q0l5db9EO8BeLnOS98XbHw7eSWS0WobE9+pvXmjqkmaJ9S5Ur6Znkcpb6kot2NMXgaIseX6Tz35POUfyFOY9Dy/z3PU5MfqfFwnmWs3tj85c51SXtLjMPXwc1zNLrdLT4jnsb8pX2+RLyjzyKFlKexPtHx5D476huHnLUjli+sjMMzR598Lq3xVJoS97ieUui8acLx1NI4QtT0qYOn5pjT060AT+0BT+/h7E+lWYOnEi7B03uwP+UBT3XAus9jS55y2pX+G4GnPLbkqWXgKQ94qoNztIOn1cBTHZyne4X3/fMQx8LvPKqnnLa2ivP0oODp6xglwNPy9raK87RV8NTlUngKT2v5258in1azxB4Snsrh8um58DvWHXXgPUqHznA+9cBTeLpXut+ved+fYtFRx9KePgoHJU85+XSKJUcdEvkOnt7TKnla876/BuCpDlr/1+fW/S16CnT4GO9M17LuA/tIrDGWz08lkN6vAhk0z6VKz08lWMpTzlkTzqn0zqWOTf251BrO+4Esmut+bT6Fp+DR7qPg6TpZw30UPAXT+yh/RvU1xDv5/TrEd+Cza6B8Th1S7Ui1scQcpeqwPI656/sF7e/j6LBPAAA=
   </data>
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
 <<<<<<< HEAD
-   H4sIAAAAAAAAA+3bwQnCQBAF0IUkB/vRs2dLswAbES3CAuzE3BW8JIKwS5jdBN6DYQ4Dy1+Y66QEAAAAbMmudQDIcGodADKcWweADI/WAQAAAAAAABq79POCNXoO8wKALTsO/wtY7jp8C9bMnrKUuxe2YHr3cutSunf5HWqZ3r28Prs3dmU9QmmG0p47i8xQ4y9jwHu1duDX9O5l36d06Mt6hNIMpT13Fpmhxl8OAe/V2gGI8gbsvI+tsE8AAA==
+   H4sIAAAAAAAAA+3bz0rDQBDH8YE20Pguag/27FnfRe1r6N3H8A++hd59jGoP9u4UCbRjilnc7c5uvx8YlhAIE/ixmdJEJNzVRORa60ZrPvl9DHjwoFl81HrSeiancMLmcKH1ofWptSSncMLm8LgVOdE61Zq25BQ+sJ/W7Sh3A5Gwn9btMncDkbCf1u0udwORsJ/W7S13A5GQU5SAnKIE5BQlsDmc8zsKDtkcrv8rZT+FNzaHS/ZTOGRzOGU+hUN9OeV9KXjTl1Oe+/CG5z5K0JfTGt7nvx9vF8pW63z63mwXysZ8ihIwn8KD82Z3rdU6n6IunufTl+anAPsdtKf5lJyiY78zGTqftvlaxgH6633TXTm9yNcyDpDNqZ0D7HHnduMaXyOR1ShsTSG0h9B16LmUPezjXlYJrvffDNic2jnAHndeN65xNhaZjcPWFEJ7CF2HnkvZwz7uZZbgerEzYHNrj4HYvgEU3CihsE8AAA==
 =======
-   H4sIAAAAAAAAA+3SsQnDQAwFUIHvNorrTJlFsos3ifsUqVwkWBgdF3gPPioEQgJFAAAAAAAAAAAAAAAAzOfRjoEZbf0YAPhn9/49wHXP/gnMzJ8CwHxeS8S+5GqF7A7ZerZXucOIW/aCeaN+4Jdbi1hbrlbI7pCtZ3uVO4y4ZS2YN+oHoMoblTdsS7BPAAA=
->>>>>>> 01e8a38ed9c0816779a8f96b13f2a0c0a868b0a5
+   H4sIAAAAAAAAA+3bQUrDQBQG4IEmtD2M2oVZu6w30wt4ES9hL9CbmH0DropUZmAmr4nfBz+PMDD8A2+blABgHT77n8A9s6cAAAAAALBO2+gCkOEYXQAyvEUXgAxf0QUAKvrorgP36NxfB4A4u+gCkOE1usAKvPS3Qx3v0QUItZR/i07RBQi1lD0FgP/ke5PSuCmbLZR2KJ25Zy07zPGWscF9c+3AX567lIaubLZQ2qF05p617DDHW4YG99XegYd9So9TnqYc9r+/obYLIv7S+rBPAAA=
+>>>>>>> 73d3eb4cdfaebe8207550b1b67702432db05deaf
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -88,12 +84,6 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Timed El" type="timedElevator" x="1168" y="288" width="64" height="32">
-   <properties>
-    <property name="duration" value="2"/>
-    <property name="range" value="12"/>
-   </properties>
-  </object>
   <object name="Lava" type="deadly" x="960" y="432" width="1728" height="32"/>
   <object type="progressPoint" x="640" y="240" width="16" height="160">
    <properties>
@@ -105,8 +95,8 @@
   <object name="St" type="progressPoint" x="80" y="304" width="16" height="16">
    <properties>
     <property name="index" value="0"/>
-    <property name="x" value="5"/>
-    <property name="y" value="19"/>
+    <property name="x" value="84"/>
+    <property name="y" value="3"/>
    </properties>
   </object>
   <object type="progressPoint" x="944" y="208" width="16" height="160">
@@ -116,23 +106,76 @@
     <property name="y" value="21"/>
    </properties>
   </object>
-  <object type="progressPoint" x="1824" y="48" width="16" height="80">
+  <object type="progressPoint" x="1328" y="32" width="16" height="64">
    <properties>
     <property name="index" value="3"/>
-    <property name="x" value="114"/>
-    <property name="y" value="6"/>
+    <property name="x" value="83"/>
+    <property name="y" value="4"/>
    </properties>
   </object>
-  <object name="teleporter" type="teleporter" x="368" y="400" width="16" height="64">
+  <object type="progressPoint" x="2080" y="48" width="16" height="80">
    <properties>
-    <property name="x" value="159"/>
-    <property name="y" value="7"/>
+    <property name="index" value="4"/>
+    <property name="x" value="130"/>
+    <property name="y" value="5"/>
    </properties>
   </object>
-  <object name="teleporter" type="teleporter" x="2576" y="80" width="16" height="64">
+  <object name="T" type="teleporter" x="1664" y="192" width="16" height="64">
    <properties>
-    <property name="x" value="21"/>
-    <property name="y" value="25"/>
+    <property name="type" value="enemy"/>
+    <property name="x" value="91"/>
+    <property name="y" value="20"/>
+   </properties>
+  </object>
+  <object name="T" type="teleporter" x="1440" y="320" width="16" height="64">
+   <properties>
+    <property name="type" value="enemy"/>
+    <property name="x" value="102"/>
+    <property name="y" value="13"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="1536" y="336" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="1504" y="336" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+<<<<<<< HEAD
+  <object type="ladder" x="144" y="64" width="192" height="400"/>
+  <object type="yElevator" x="1008" y="288" width="64" height="32">
+   <properties>
+    <property name="range" value="350"/>
+=======
+  <object name="E" type="enemy" x="1472" y="336" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="Elevat" type="movingPlatform" x="1168" y="272" width="64" height="32">
+   <properties>
+    <property name="switchTime" value="130"/>
+    <property name="vx" value="0"/>
+    <property name="vy" value="-1"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="1634" y="213" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="P" type="platform" x="1552" y="32" width="32" height="32">
+   <properties>
+    <property name="duration" value="2"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="1552" y="224" width="16" height="16">
+   <properties>
+    <property name="type" value="enemy"/>
+>>>>>>> 73d3eb4cdfaebe8207550b1b67702432db05deaf
    </properties>
   </object>
  </objectgroup>

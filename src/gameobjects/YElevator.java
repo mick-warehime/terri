@@ -16,8 +16,6 @@ import commands.MinimumDisplaceCommand;
 
 public class YElevator extends EtherObject implements InteractiveCollideable {
 
-	
-	
 	private int yPos;
 	private int speed = 1;
 	private int range;
@@ -25,7 +23,6 @@ public class YElevator extends EtherObject implements InteractiveCollideable {
 	private int etherElevation = 0;
 	private int etherSpeed = 0;
 	private boolean isMoving = true;
-
 
 	public YElevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);

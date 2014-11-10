@@ -23,17 +23,22 @@
   </object>
   <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
   <object type="enemy" x="576" y="1344" width="16" height="16"/>
-  <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
-  <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
-  <object name="Sw" type="switch" x="48" y="1504" width="18" height="17">
+  <object name="door1" type="multiDoor" x="624" y="1120" width="16" height="64">
    <properties>
+    <property name="numberOfLocks" value="2"/>
+   </properties>
+  </object>
+  <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
+  <object name="Sw" type="multiWeightedSwitch" x="48" y="1504" width="18" height="17">
+   <properties>
+    <property name="index" value="0"/>
     <property name="prox" value="5"/>
     <property name="target" value="door1"/>
    </properties>
   </object>
   <object type="teleporter" x="656" y="1120" width="16" height="64">
    <properties>
-    <property name="x" value="1"/>
+    <property name="x" value="2"/>
     <property name="y" value="72"/>
    </properties>
   </object>
@@ -52,8 +57,16 @@
   <object type="turret" x="320" y="1120" width="48" height="16">
    <properties>
     <property name="angle" value="90"/>
+    <property name="chargeTime" value="200"/>
     <property name="maxAngle" value="180"/>
     <property name="minAngle" value="0"/>
+   </properties>
+  </object>
+  <object name="Sw" type="multiWeightedSwitch" x="352" y="1376" width="18" height="17">
+   <properties>
+    <property name="index" value="1"/>
+    <property name="prox" value="5"/>
+    <property name="target" value="door1"/>
    </properties>
   </object>
  </objectgroup>

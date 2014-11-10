@@ -22,10 +22,6 @@ public class WeightedSwitch extends SwitchObject {
 		
 	}
 
-
-
- 
-
 	public void update(int mouseX, int mouseY){
 		// if switch was not weighed down
 		if(state){
@@ -43,7 +39,7 @@ public class WeightedSwitch extends SwitchObject {
 	};
 
 
-	private boolean isWeighedDown(){
+	protected boolean isWeighedDown(){
 
 		boolean answer =  collisionHandler.isCollidedWithPlayer(rect);
 		answer = answer || collisionHandler. isCollidedWithEnemy(rect);

@@ -44,9 +44,6 @@ public class Behavior implements CommandProvider{
 		
 		decideMovement();
 			
-		
-		
-		
 	}
 	
 	

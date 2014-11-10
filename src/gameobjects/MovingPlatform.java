@@ -10,7 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DisplaceCommand;
 import commands.MinimumDisplaceCommand;
 
-public class MovingPlatform extends GameObject implements InteractiveCollideable{
+public class MovingPlatform extends EtherObject implements InteractiveCollideable{
 
 
 	private float initialX;
