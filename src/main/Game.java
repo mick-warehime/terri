@@ -29,12 +29,12 @@ import actors.Player;
 // refactor action engine a bit (w.r.t. jump timers, etc.)
 
 // TO DO 
-//
-// 1) drawing ether timers, turret lazers, multi switch platform, jetpacks
+// 0) daveers mom (shots fired)
+// 1) drawing ether timers, turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
 // 2) etherable enemies, start menu, lemming types
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel
-// 0/5) graphics/ animations
+// 0/5) graphics/ animations/particl effects
 
 public class Game extends BasicGame {
 

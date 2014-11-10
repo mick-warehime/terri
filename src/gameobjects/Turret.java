@@ -11,9 +11,11 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Turret extends GameObject implements InteractiveCollideable{
 	// state  = false for left/not active and state = 1 for right/active
-	protected float angle;
-	protected float restingAngle;
-	protected float angleToPlayer;
+	private float angle;
+	private float restingAngle;
+	private float angleToPlayer;
+	private float speed;
+
 	protected float[] rotationRange = new float[2];// [ minAngle, maxAngle]
 	private TurretGraphics graphics;
 	private float centerOfHubX;
@@ -31,13 +33,16 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 		// initial angle of the gun measure from the right (90 is down 270 is up)
 		this.angle = Float.parseFloat((String) args.get("angle"));
-		
+
 		// allows the turret to return to its initial position
 		this.restingAngle = angle;
-		
+
 		// if angle-angleToPlayer < tolerance then i call that 'locked on'
 		this.lockedOn = false;
 		
+		// how quickly the turret tracks the player; meausred in degrees/frame
+		this.speed = 2;
+
 		this.rotationRange[0] = Float.parseFloat((String) args.get("minAngle"));
 		this.rotationRange[1] = Float.parseFloat((String) args.get("maxAngle"));
 		this.chargeTime = Integer.parseInt((String) args.get("chargeTime"));
@@ -88,17 +93,22 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 	}
 
-	
+
 	private void setNewAngle(float targetAngle){
-		float speed = 1;
 		// slowly move the turret towards the target angle	
 		if(Math.abs(targetAngle-angle)>1){
+			lockedOn = false;
+			
 			if(targetAngle>angle){
 				angle+=speed;
 			}else
 				angle-=speed;
+			
+		}else{
+			lockedOn = true;
+			
 		}
-		
+
 		// dont let the angle go beyond the threshold angles
 		if(angle > rotationRange[1]){
 			angle = rotationRange[1];
@@ -107,11 +117,13 @@ public class Turret extends GameObject implements InteractiveCollideable{
 		}
 
 	}
-	
+
 	public void tryToKillTarget(){
-		
+
 		if(chargeTimer > chargeTime){
-			System.out.println("PEW PEW PEW");
+			if(lockedOn){
+				System.out.println("PEW PEW PEW");
+			}
 		}
 	}
 
@@ -127,7 +139,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 		}else {
 			setNewAngle(restingAngle);
 		}
-		
+
 		tryToKillTarget();
 
 	}
@@ -135,7 +147,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 	@Override
 	public void onCollisionDo(String collidingObjectClass) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
