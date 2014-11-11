@@ -4,7 +4,7 @@ package main;
 //import etherable.Elevator;
 import gameobjects.DeadlyObject;
 import gameobjects.Door;
-import gameobjects.EtherableMovingPlatform;
+import gameobjects.EtherElevator;
 import gameobjects.MovingPlatform;
 import gameobjects.MultiDoor;
 import gameobjects.MultiWeightedSwitch;
@@ -15,7 +15,7 @@ import gameobjects.ProgressPoint;
 import gameobjects.Switch;
 import gameobjects.SwitchObject;
 import gameobjects.Teleporter;
-import gameobjects.TimedElevator;
+import gameobjects.TimedEtherElevator;
 import gameobjects.TimedPlatform;
 import gameobjects.TimedSwitch;
 import gameobjects.Turret;
@@ -72,7 +72,7 @@ public class TileData {
 		parserDict.put("timedPlatform", TimedPlatform.class);
 		parserDict.put("door", Door.class);
 		parserDict.put("multiDoor", MultiDoor.class);
-		parserDict.put("timedElevator", TimedElevator.class);
+		parserDict.put("timedEtherElevator", TimedEtherElevator.class);
 		parserDict.put("switch", Switch.class);
 		parserDict.put("timedSwitch", TimedSwitch.class);
 		parserDict.put("weightedSwitch", WeightedSwitch.class);
@@ -84,6 +84,8 @@ public class TileData {
 		parserDict.put("movingPlatform", MovingPlatform.class);
 		parserDict.put("etherableMovingPlatform", EtherableMovingPlatform.class);
 		parserDict.put("enemy", Enemy.class);
+		parserDict.put("etherElevator", EtherElevator.class);
+
 	}
 
 

@@ -120,11 +120,10 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 	public void tryToKillTarget(){
 
-		if(chargeTimer > chargeTime){
-			if(lockedOn){
-				System.out.println("PEW PEW PEW");
-			}
-		}
+//		if(chargeTimer > chargeTime){
+//			if(lockedOn){
+//			}
+//		}
 	}
 
 	public void update(int mouseX, int mouseY){
