@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class EtherObject extends GameObject {
+public class EtherObject extends GameObject implements Etherable {
 
 	
 	
@@ -38,12 +38,20 @@ public class EtherObject extends GameObject {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#setObjectToEther()
+	 */
+	@Override
 	public void setObjectToEther(){
 		isEther = true;	
 		isActive = true;
 		isPut = false;
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#put(int, int)
+	 */
+	@Override
 	public void put(int mouseX, int mouseY){
 
 		if(isActive && !isPut){
@@ -56,6 +64,10 @@ public class EtherObject extends GameObject {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#restore()
+	 */
+	@Override
 	public void restore() {
 		
 		if(canRestore()){
@@ -84,13 +96,21 @@ public class EtherObject extends GameObject {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#canPut()
+	 */
+	@Override
 	public boolean canPut(){
-		boolean answer = !collisionHandler.lineOfSightCollision(this);
+		boolean answer = !collisionHandler.lineOfSightCollision((Etherable) this);
 		answer = answer && collisionHandler.canPlaceEtherAt(this);
 		return answer;
 	}
 
 	// check if anything is at the original position  (ether Rect) before restoring 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#canRestore()
+	 */
+	@Override
 	public boolean canRestore(){
 		boolean answer = !collisionHandler.isCollidedWithObjects(this);
 		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
@@ -98,17 +118,16 @@ public class EtherObject extends GameObject {
 		return answer;
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobjects.Etherable#getEtherRect()
+	 */
+	@Override
 	public Rectangle getEtherRect(){
 		return etherRect;
 	}
 
-	public boolean isActive(){
-		return isActive;
-	}
 
-	public boolean isPut(){
-		return isPut;
-	}
+
 
 	public boolean canCollide(){
 		return isPut || !isActive;

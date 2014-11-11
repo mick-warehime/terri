@@ -31,7 +31,6 @@ import actors.Player;
 // TO DO 
 // 0) daveers mom (shots fired)
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
-//    timeElevator --> timedEtherableMovingPlatform
 // 2) etherable enemies, start menu, lemming types
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel
@@ -48,7 +47,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 1;
+	private int currentLevel = 2;
 	private ProgressPoint progress;
 	private FireCommand shootCommand;
 

@@ -2,6 +2,7 @@ package actors;
 
 import main.CollisionHandler;
 import gameobjects.EtherObject;
+import gameobjects.Etherable;
 import gameobjects.Timed;
 
 
@@ -13,7 +14,7 @@ public class Gun {
 	private String status = "idle";
 	private int busyTime = 0;
 	private int busyTimeIncrement = 30;
-	private EtherObject activeObject = null;
+	private Etherable activeObject = null;
 	private CollisionHandler collisionHandler;
 	
 	public Gun(CollisionHandler collisionHandler) {
@@ -25,7 +26,7 @@ public class Gun {
 	public void shootEtherBeam(int mouseX, int mouseY){
 		if (status == "idle"){ //Fire gun to turn things ether, if something is there
 			
-			EtherObject testObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
+			Etherable testObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
 			
 			if(canEtherize(testObject)){
 				activeObject = testObject;
@@ -92,7 +93,7 @@ public class Gun {
 	}
 	
 	
-	private boolean canEtherize(EtherObject testObject){
+	private boolean canEtherize(Etherable testObject){
 		if (testObject==null){
 			return false;
 		}

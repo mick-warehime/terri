@@ -143,7 +143,7 @@ public class Level {
 
 
 		for(GameObject gObj: gameObjects){		
-			gObj.draw(mapX, mapY, mouseX, mouseY);
+ 			gObj.draw(mapX, mapY, mouseX, mouseY);
 		}
 
 		for (Actor nme: actors){

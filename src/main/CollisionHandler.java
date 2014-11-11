@@ -9,7 +9,9 @@ import org.newdawn.slick.geom.Rectangle;
 import actors.Actor;
 import actors.Enemy;
 import commands.CommandProvider;
+import gameobjects.Door;
 import gameobjects.EtherObject;
+import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.Interactive;
 import gameobjects.InteractiveCollideable;
@@ -73,12 +75,12 @@ public class CollisionHandler implements CommandProvider {
 
 
 
-	public EtherObject isAtEtherObject(int x, int y){
+	public Etherable isAtEtherObject(int x, int y){
 
 		for(GameObject gObj: gameObjects){
-			if(gObj instanceof EtherObject){
+			if(gObj instanceof Etherable){
 				if(gObj.getRect().contains(x,y)){
-					return (EtherObject) gObj;
+					return (Etherable) gObj;
 				}
 			}
 		}
@@ -108,19 +110,11 @@ public class CollisionHandler implements CommandProvider {
 
 
 	public boolean canPlaceEtherAt(EtherObject etherObject){
-
-		if (isCollided(etherObject)){return false;}
-
-		if(playerRect.intersects(etherObject.getRect())){
-			return false;
-		}
-
-		//Check for collisions with actors
-		if(isCollidedWithActor(etherObject.getRect())){
-			return false;
-		}
-
-		return true;
+		boolean answer = !isCollided(etherObject);
+		answer = answer && !playerRect.intersects(etherObject.getRect());
+		answer = answer && !isCollidedWithActor(etherObject.getRect());
+		answer = answer && !isCollidedWithDoor(etherObject.getRect());
+		return answer;
 	}
 
 
@@ -150,7 +144,22 @@ public class CollisionHandler implements CommandProvider {
 				if(rect.intersects(gObj.getRect())){
 					return true;
 				}
+			
 			}
+			
+		}
+		return false;
+	}
+	
+	public boolean isCollidedWithDoor(Rectangle rect){
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof Door){
+				if(rect.intersects(gObj.getRect())){
+					return true;
+				}
+			
+			}
+			
 		}
 		return false;
 	}
@@ -216,22 +225,26 @@ public class CollisionHandler implements CommandProvider {
 		return resolveInteractiveCollisions(playerRect, "Player");
 	}
 
+	public boolean lineOfSightCollision(GameObject testObject){
+		return lineOfSightCollision((Etherable) testObject);
+	}
+	
 	//Returns if the line of sight from the player to an EtherObject
 	// is collided with any game objects
-	public boolean lineOfSightCollision(GameObject gameObject){
+	public boolean lineOfSightCollision(Etherable testObject){
 
 		//Make a line from centers of player and object
 		float playerX = playerRect.getCenterX();
 		float playerY = playerRect.getCenterY();
-		float objectX = gameObject.getRect().getCenterX();
-		float objectY = gameObject.getRect().getCenterY();
+		float objectX = testObject.getRect().getCenterX();
+		float objectY = testObject.getRect().getCenterY();
 
 		Line line = new Line(playerX, playerY, objectX, objectY);
 
 		//Check if collideable Game objects are intersecting 
 		// this line, other than the one from eObj
 		for(GameObject gObj: gameObjects){
-			if(gObj != gameObject && gObj.canCollide()){
+			if(gObj != testObject && gObj.canCollide()){
 				if(line.intersects(gObj.getRect())){
 					return true;
 				}

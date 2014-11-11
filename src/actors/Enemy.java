@@ -25,13 +25,8 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		this.x = x;
 		this.y = y; //These shouldn't be necessary. Fix later
 		
-		
-		
 		listener = new GlobalInputListener();
 		sprite = new Image("data/lemming.png");
-		
-		
-		
 	}
 	
 	public void update(){

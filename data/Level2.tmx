@@ -5,12 +5,12 @@
  </tileset>
  <layer name="tiles" width="42" height="100" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aAW7CMAxFzRG2m42bjZuFE61CswRmVlz47TfsPwm5VFHlOn2OGtXMbCy/s/Uj5vVxMPs8sLLJiXl9LcfHhnnGvL6X41PDPGNeYzk+N8wz5iWPnkMeYZFHWOQRFnmERR5hkUdY5BGWmFfXeY8edZ336FHXeY/z3LV/xnnu2j/lERZ5hEUeYZFHWOQRFnmERR5hkUdY5BGWu30G65lnnOe2vttt/br6HuvX1fc7j5r6Lo+wvJtH7DpXPWLXueoRu55Vj9j1rHrErmfVI3Y9qx6x16mqR+x1quoR+/msesR+PrUeYdF6hKXqEbt/Vj1i98+qR34/Hn1cPL92XPU61/UbltfN78ejj4vn144rX+f3fsak7mzfq7B9r6J6rufiUeIfu3+6byP8z7xk8Srf173bfggb7Sti0b4iFnmERR5h2cqj2XvEo9FBeTR7j3g0OvLoOf67R2i0HmHJPJrFrK9tRebRLGZ9bbM87W+Pqv12LzKPZnFvMo9mcW+u6/MD6TPxbaBBAAA=
+   H4sIAAAAAAAAA+2YaWoDMQyFlb9JF9pzdaE9Vxfac3UhOVFFQWWijBmLvlgivAdCk2BmnmV/tmdERLYaO6kn7+tqJXK9ynLTlvf1oNePBX16X296/V7Qp/e11etdQZ/eFzn6n8gRVuQIK3KEFTnCihxhRY6wIkdYeV9Vx91zVHXcPUdVx92Pc9X1049z1fWTHGFFjrAiR1iRI6zIEVbkCCtyhBU5woocYXXwnUFq+vTjXJZ32a9fVd59/aryfsBRUd7JEVbkCCtyhBU5wirKkfVjdH+iHFm/Rs+PKEdZ9YxyZO1Hr19Rjqz96PUrylHW/IxylDU/oxxl1TPKURrvEuMoq56nvh9ZO19fn5fa9d5nWr+t9O9H1s7X1+eldt33sf2ls/5L/Y7mY2mp39F8LLGe/frlqMGf/W/coXOPNzv/TH+3uPTnOlTu9Wkavc/06lTf47IU3TezFD1/Zil6/swSOcKKHMWev5SzOereXyWXo14esjnqfV42R70+q3C0pGyOoudkEzma17E4Qs8L83mzFrnVuNO4X7fb/fmU/e/FPqPnhT3/Sb09a7xovM74bHE06r3bfH6ot0+NL43vOZ8yz9Go7xhWp7ONyLnGhcbl5rBdi6NqucVRtTzl6AeRbOd5oEEAAA==
   </data>
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SS2rCUBjF8Q/EYHArti5Bp+IutENbl6BT6cjnKmy7hUyDoz5X4WMLHuEWUchEbpIr/H9w+O4sh3DMAAAAAAAAAAAAAAAAwjWomT0rL8qwVnabbGt1e1PelY+Ae27VbafslUPAPRux2YPyqDTjsttkY59+sU+/2Kdf7NMv9ukX+/SLffrFPv1IzZLTDW2fdXf/f9nE9Qxtn113O+ebnG5o+3x1d+Ju7HqGts+Nu2mpLQDck2nFbKbMlYWyVFaV/L/bq5r1lafq5TvLpzp9Kd/Kj/Kr/AXYEwAAAMhTKyou7ej2nqOouIyveh4BZvPXO6BBAAA=
+   H4sIAAAAAAAAA+3YW0rDUBSF4Q0lkFBwJFXHEYQOQn30Mo4gCF6fHUCrU+hrEASvo/AyBZd6ShFME+Ek2eL/wWL3IYcswu5DYgYAAAAAAAAAAAAAAODXTmq2q+wp+2nfbapN1G2qXCpXjns+q9uL8qq8Oe45ysxWlTVlPeu7TTX2My72My72My72My72My72My72My72M47SbPYxu9zP+T2XGYY5f2RFONPlfhYNem6EmS/m55ku9zNv0PMgzCLMLJzpcj+zBj2vwyzbrVJrMzHbUraT77+9+Ss9gTYdDcyOlRPlVDlTzgft3/e3/79bdbpT7pUH5VF5ctgTgB83ZheHylhZUfruA+B/cfj54kd5/SUuFPWXuND3uzi+vAOVsdYSoEEAAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -21,14 +21,9 @@
     <property name="y" value="93"/>
    </properties>
   </object>
-  <object name="lava" type="deadly" x="176" y="1568" width="448" height="32"/>
-  <object type="enemy" x="576" y="1344" width="16" height="16"/>
-  <object name="door1" type="multiDoor" x="624" y="1120" width="16" height="64">
-   <properties>
-    <property name="numberOfLocks" value="2"/>
-   </properties>
-  </object>
-  <object type="timedEtherElevator" x="240" y="1280" width="96" height="32">
+  <object type="enemy" x="576" y="1312" width="16" height="16"/>
+  <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
+  <object type="etherElevator" x="240" y="1280" width="96" height="32">
    <properties>
     <property name="duration" value="3"/>
     <property name="initialDirection" value="-1"/>
@@ -36,7 +31,7 @@
     <property name="xOrY" value="y"/>
    </properties>
   </object>
-  <object name="Sw" type="multiWeightedSwitch" x="48" y="1504" width="18" height="17">
+  <object name="Sw" type="weightedSwitch" x="48" y="1504" width="18" height="17">
    <properties>
     <property name="index" value="0"/>
     <property name="prox" value="5"/>
@@ -49,7 +44,7 @@
     <property name="y" value="72"/>
    </properties>
   </object>
-  <object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
+  <object name="3s" type="timedPlatform" x="48" y="1296" width="96" height="32">
    <properties>
     <property name="duration" value="3"/>
    </properties>
@@ -61,19 +56,21 @@
     <property name="y" value="72"/>
    </properties>
   </object>
-  <object type="turret" x="320" y="1120" width="48" height="16">
+  <object type="teleporter" x="448" y="1504" width="16" height="64">
    <properties>
-    <property name="angle" value="90"/>
-    <property name="chargeTime" value="100"/>
-    <property name="maxAngle" value="180"/>
-    <property name="minAngle" value="0"/>
+    <property name="x" value="31"/>
+    <property name="y" value="71"/>
    </properties>
   </object>
-  <object name="Sw" type="multiWeightedSwitch" x="352" y="1376" width="18" height="17">
+  <object type="teleporter" x="480" y="1120" width="16" height="64">
    <properties>
-    <property name="index" value="1"/>
-    <property name="prox" value="5"/>
-    <property name="target" value="door1"/>
+    <property name="x" value="26"/>
+    <property name="y" value="95"/>
+   </properties>
+  </object>
+  <object name="timed 5s" type="timedPlatform" x="496" y="1184" width="96" height="32">
+   <properties>
+    <property name="duration" value="5"/>
    </properties>
   </object>
  </objectgroup>
