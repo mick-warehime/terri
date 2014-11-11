@@ -82,7 +82,6 @@ public class TileData {
 		parserDict.put("ladder", Ladder.class);
 		parserDict.put("turret", Turret.class);
 		parserDict.put("movingPlatform", MovingPlatform.class);
-		parserDict.put("etherableMovingPlatform", EtherableMovingPlatform.class);
 		parserDict.put("enemy", Enemy.class);
 		parserDict.put("etherElevator", EtherElevator.class);
 
