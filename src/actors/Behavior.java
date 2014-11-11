@@ -7,17 +7,13 @@ import main.CollisionHandler;
 import org.newdawn.slick.command.Command;
 
 import commands.CommandProvider;
-import commands.MoveCommand;
 
-//Gives commands to an actor based on world conditions
-public class Behavior implements CommandProvider{
+public class Behavior {
 
-	private Status status;
-	private CollisionHandler collisionHandler;
-	private ArrayList<Command> commandStack;
-	private int moveDirection = -1;
-	
-	
+	protected Status status;
+	protected CollisionHandler collisionHandler;
+	protected ArrayList<Command> commandStack;
+
 	public Behavior(Status status, CollisionHandler collisionHandler) {
 		this.status = status;
 		this.collisionHandler = collisionHandler;
@@ -25,49 +21,13 @@ public class Behavior implements CommandProvider{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public ArrayList<Command> getCommands() {
 		return (ArrayList<Command>) commandStack.clone();
 	}
-	
-	//Determines commands to give to the actor
-	public void determine(){
-		commandStack.clear();
-		
-		
-		if (status.hasEffect("Collided with player")){
-			resolvePlayerCollision();
-		}
-		
-		//Resolve collision with interactives
-		resolveInteractiveCollisions();
-		
-		decideMovement();
-			
-	}
-	
-	
-	//Apply these reactions on Player Collision
-	private void resolvePlayerCollision(){
-//		commandStack.add(new DieCommand());
 
-	}
-	
-	private void decideMovement(){
-		
-		if (status.hasEffect("x collision")){
-			moveDirection = -moveDirection;
-		}
-		
-		commandStack.add(new MoveCommand(moveDirection));
-		
-		return;
-	}
-	
-	private void resolveInteractiveCollisions(){
-		ArrayList<Command> newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect(), "Enemy");
-		commandStack.addAll(newCommands);
-		return;
+	public void determine() {
+		throw new UnsupportedOperationException("Not Implemented");
+			
 	}
 
 }
