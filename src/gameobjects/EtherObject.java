@@ -94,7 +94,7 @@ public class EtherObject extends GameObject {
 	public boolean canRestore(){
 		boolean answer = !collisionHandler.isCollidedWithObjects(this);
 		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
-		answer = answer && !collisionHandler.isCollidedWithEnemy(etherRect);
+		answer = answer && !collisionHandler.isCollidedWithActor(etherRect);
 		return answer;
 	}
 

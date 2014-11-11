@@ -48,7 +48,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 2;
+	private int currentLevel = 1;
 	private ProgressPoint progress;
 	private FireCommand shootCommand;
 

@@ -42,7 +42,7 @@ public class WeightedSwitch extends SwitchObject {
 	protected boolean isWeighedDown(){
 
 		boolean answer =  collisionHandler.isCollidedWithPlayer(rect);
-		answer = answer || collisionHandler. isCollidedWithEnemy(rect);
+		answer = answer || collisionHandler. isCollidedWithActor(rect);
 		return answer;
 	}
 

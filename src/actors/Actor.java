@@ -1,5 +1,7 @@
 package actors;
 
+import main.CollisionHandler;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -50,6 +52,11 @@ public class Actor {
 
 	public boolean isDying(){
 		return status.isDying();
+	}
+
+	public void incorporateCollisionHandler(CollisionHandler collisionHandler) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
