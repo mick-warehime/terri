@@ -10,7 +10,7 @@
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3ST0pCURzF8R+IDx9uxWwJOQ13kQ5Tl5BTcWSpq0jdwptKo+zPKiy30HlwRSweQVx8v+T7gcPvDg+XYwYAAAAAAAAAAAAAAODXbc2sp/SVQa3sNsUe1W2hLJWV455bdftQPpWd456N1OxCaSqXadltirHPuNhnXOwzLvYZF/uMi33GxT7jYp9xrM2y/HrbZz3c/ZeNQk9v+2yHe324WX697XMc7ijcNPT0ts+ncNeltgCA391UzTpKt3r89ua/9ATOwaRidq88KFNlpswrZbf66VmdNsqL8qq8Ke8OewIAztNVcrq0kr/3vEtOl+G3nl/98V53oEEAAA==
+   H4sIAAAAAAAAA+3SS2rCUBjF8Q/EYHArti5Bp+IutENbl6BT6cjnKmy7hUyDoz5X4WMLHuEWUchEbpIr/H9w+O4sh3DMAAAAAAAAAAAAAAAAwjWomT0rL8qwVnabbGt1e1PelY+Ae27VbafslUPAPRux2YPyqDTjsttkY59+sU+/2Kdf7NMv9ukX+/SLffrFPv1IzZLTDW2fdXf/f9nE9Qxtn113O+ebnG5o+3x1d+Ju7HqGts+Nu2mpLQDck2nFbKbMlYWyVFaV/L/bq5r1lafq5TvLpzp9Kd/Kj/Kr/AXYEwAAAMhTKyou7ej2nqOouIyveh4BZvPXO6BBAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -28,7 +28,14 @@
     <property name="numberOfLocks" value="2"/>
    </properties>
   </object>
-  <object name="platform" type="platform" x="208" y="1392" width="96" height="32"/>
+  <object type="timedEtherElevator" x="240" y="1280" width="96" height="32">
+   <properties>
+    <property name="duration" value="3"/>
+    <property name="initialDirection" value="-1"/>
+    <property name="range" value="200"/>
+    <property name="xOrY" value="y"/>
+   </properties>
+  </object>
   <object name="Sw" type="multiWeightedSwitch" x="48" y="1504" width="18" height="17">
    <properties>
     <property name="index" value="0"/>
@@ -44,7 +51,7 @@
   </object>
   <object name="timed 10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
    <properties>
-    <property name="duration" value="10"/>
+    <property name="duration" value="3"/>
    </properties>
   </object>
   <object type="ladder" x="48" y="800" width="64" height="384"/>
