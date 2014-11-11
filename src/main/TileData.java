@@ -82,6 +82,7 @@ public class TileData {
 		parserDict.put("ladder", Ladder.class);
 		parserDict.put("turret", Turret.class);
 		parserDict.put("movingPlatform", MovingPlatform.class);
+		parserDict.put("enemy", Enemy.class);
 		parserDict.put("etherElevator", EtherElevator.class);
 
 	}
@@ -159,10 +160,6 @@ public class TileData {
 		//Get object type
 		String objectType =  map.getObjectType(gi,oi);	
  		
-		//Construct actors
-		if (objectType.equals("enemy")){
-			actors.add(new Enemy(x*tileSize,y*tileSize, null));
-		}
 		
 		//Construct gameObjects
 		//Define constructor from dictionary, if it's in it
@@ -173,8 +170,18 @@ public class TileData {
 
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
 			try {
-				GameObject gObj = (GameObject) construct.newInstance(x, y, w, h, name, map,args);
-				gameObjects.add(gObj );
+				//Populate different lists according to type
+				Object obj = (Object) construct.newInstance(x, y, w, h, name, map,args);
+				
+				if (obj instanceof GameObject){
+					gameObjects.add((GameObject) obj );
+				}else if(obj instanceof Actor){
+					actors.add((Actor) obj);
+				}
+			
+				
+				
+				
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

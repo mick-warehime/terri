@@ -11,9 +11,6 @@ import gameobjects.GameObject;
 
 public class Status {
 
-	//	private Player player;
-	private float x;
-	private float y;
 	private boolean isDying;
 	private ArrayList<Effect> effects;
 
@@ -23,8 +20,6 @@ public class Status {
 	public Status(float x, float y, CollisionHandler collisionHandler, float width, float height) {
 		//		this.player = player;
 		this.isDying = false;
-		this.x = x;
-		this.y = y;
 
 		rect = new Rectangle((int) x,(int) y,width, height);
 
@@ -51,21 +46,17 @@ public class Status {
 
 	public ArrayList<GameObject> nearbyInteractives(){
 
-		return collisionHandler.interactivesNearPlayer();
+		return collisionHandler.interactiveObjectsNearRect(this.rect);
 	}
 
 
-	public float getX (){return x;}
-	public float getY (){return y;}
+	public float getX (){return rect.getX();}
+	public float getY (){return rect.getY();}
 
-	//Fix this. Level is a global variable
+	
 	public boolean isCollided(){
-		//            System.out.println(Level.isBlocked(rect));
-		//        System.out.println(collisionHandler.isCollided(rect));
-
+		
 		boolean answer = collisionHandler.isCollided(rect);
-		//		if (answer){System.out.println("YES");}
-		//		else if (!answer){System.out.println("YES");};
 		return answer;
 	}
 
@@ -74,12 +65,12 @@ public class Status {
 
 
 		if (XorY == 'x' || XorY == 'X'){
-			this.x += disp;
-			rect.setX( this.x);
+			float newX = rect.getX() + disp;
+			rect.setX( newX);
 			return;
 		} else if (XorY == 'y' || XorY == 'Y'){
-			this.y += disp;
-			rect.setY( this.y);
+			float newY = rect.getY() + disp;
+			rect.setY(newY);
 			return;
 		}
 
@@ -92,13 +83,11 @@ public class Status {
 	}
 
 	public void setX(float x){
-		this.x = x;
 		this.rect.setX(x);
 	}
 
 	public void setY(float y){
 		// the -1 makes sure he doesnt start stuck in anything
-		this.y = y-1;
 		this.rect.setY(y-1);
 	}
 
@@ -128,33 +117,12 @@ public class Status {
 		
 		if (!touchingLadder){removeEffect("climbing");}
 		
-//		ArrayList <Effect> toRemove = new ArrayList<Effect>();
-
-//		//Count down effects and see if they've reached the end of their lifetimes
-//		for (Effect eff : effects){
-//			//			System.out.println(eff.name + ", " + eff.timer);
-//			if (eff.countDown()){
-//				toRemove.add(eff);
-//			}
-//		}
-
-//		//Account for climbing not being possible without touching ladders
-//		if (!hasEffect("touching ladder")){
-//			for (Effect eff: effects){
-//				if(eff.name.equals("climbing")){toRemove.add(eff);}
-//			}
-//		}
-
-//		//Remove dead effects
-//		for (Effect eff: toRemove){
-//			effects.remove(eff);
-//		}
 
 		return;
 	}
 
 	
-	private void removeEffect(String name){
+	void removeEffect(String name){
 		//Iterate over all effect's elements and remove
 		for (Iterator<Effect> iterator = effects.iterator(); iterator.hasNext();) {
 		    Effect eff = iterator.next();
@@ -199,25 +167,6 @@ public class Status {
 			return (timer <= 0);
 		}
 
-
-	}
-
-
-
-	public void loseEffect(String string) {
-
-		ArrayList <Effect> toRemove = new ArrayList<Effect>();
-		//Count down effects and see if they've reached the end of their lifetimes
-		for (Effect eff : effects){
-			if (eff.name.equals(string)){
-				toRemove.add(eff);
-			}
-		}
-
-		//Remove dead effects
-		for (Effect eff: toRemove){
-			effects.remove(eff);
-		}
 
 	}
 

@@ -69,7 +69,7 @@ public class PlayerActionEngine extends ActionEngine {
 		if (canJump()){
 			this.vy -=ups;
 			jumpTimer += jumpTimerIncrement;
-			status.loseEffect("climbing");
+			status.removeEffect("climbing");
 		}
 		return;
 	}

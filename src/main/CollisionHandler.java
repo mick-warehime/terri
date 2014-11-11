@@ -90,13 +90,13 @@ public class CollisionHandler implements CommandProvider {
 
 
 	//Returns a list of interactive game objects near the player
-	public ArrayList<GameObject> interactivesNearPlayer(){
+	public ArrayList<GameObject> interactiveObjectsNearRect(Rectangle rect){
 
 		ArrayList<GameObject> output = new ArrayList<GameObject>();
 
 		for(GameObject gObj: gameObjects){
 			if (gObj instanceof Interactive){
-				if (gObj.isNear(playerRect)){
+				if (gObj.isNear(rect)){
 					output.add(gObj);
 				}
 

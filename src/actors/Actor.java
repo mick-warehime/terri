@@ -55,7 +55,7 @@ public class Actor {
 	}
 
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler) {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented!");
 		
 	}
 
