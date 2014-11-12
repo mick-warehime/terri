@@ -109,8 +109,8 @@ public class EtherEnemy extends Enemy implements Etherable{
 		
 		if(isEther && !isPut){
 			//		eventually used to update doors/elevators etc;
-			int hoverX = (mousePos[0]-pixelWidth/2);
-			int hoverY = (mousePos[1]-pixelHeight/2);
+			int hoverX = (int) (mousePos[0]-rect.getWidth()/2);
+			int hoverY = (int) (mousePos[1]-rect.getHeight()/2);
 			rect.setLocation(hoverX,hoverY);		
 		}else{
 			super.update(); //Normal enemy update

@@ -128,11 +128,6 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 		displacement = etherDisplacement;
 		speed = etherSpeed;
 		
-		if (xOrY == 'x'){
-			xPos = pixelX;			
-		}else{
-			yPos = pixelY;		
-		}
 
 		rect.setLocation(etherRect.getX(),etherRect.getY());
 	}

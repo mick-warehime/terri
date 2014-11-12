@@ -10,7 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DisplaceCommand;
 import commands.MinimumDisplaceCommand;
 
-public class MovingPlatform extends EtherObject implements InteractiveCollideable{
+public class MovingPlatform extends GameObject implements InteractiveCollideable{
 
 
 	private float initialX;
@@ -32,8 +32,8 @@ public class MovingPlatform extends EtherObject implements InteractiveCollideabl
 		this.switchTime = Integer.parseInt((String)args.get("switchTime"));
 
 		
-		this.initialX = this.pixelX;
-		this.initialY = this.pixelY;
+		this.initialX = this.rect.getX();
+		this.initialY = this.rect.getY();
 
 
 		// TODO Auto-generated constructor stub
