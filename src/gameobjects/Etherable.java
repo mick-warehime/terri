@@ -6,7 +6,7 @@ public interface Etherable {
 
 	public abstract void setObjectToEther();
 
-	public abstract void put(int mouseX, int mouseY);
+	public abstract void put();
 
 	public abstract void restore();
 
@@ -18,5 +18,7 @@ public interface Etherable {
 	public abstract Rectangle getEtherRect();
 
 	public abstract Rectangle getRect();
+
+	public abstract void setMousePosition(int[] mousePos);
 
 }

@@ -38,10 +38,10 @@ public class PlayerActionEngine extends ActionEngine {
 		this.climbSpeed = (float) 1.5;
 	}
 
-	public void attemptShoot(int mouseX, int mouseY){
+	public void attemptShoot(){
 
-		if (gun.canShoot(mouseX,mouseY)){
-			gun.shootEtherBeam(mouseX, mouseY);
+		if (gun.canShoot()){
+			gun.shootEtherBeam();
 		}
 		return;
 	}

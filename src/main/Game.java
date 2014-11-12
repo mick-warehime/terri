@@ -28,6 +28,9 @@ import actors.Player;
 
 // refactor action engine a bit (w.r.t. jump timers, etc.)
 
+// refactor collisionahandler, storage of enemies as actors super interface for actor and game object
+//  ether object and ether enemy should have the same functionality in collisionhandler
+
 // TO DO 
 // 0) daveers mom (shots fired)
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
@@ -49,7 +52,8 @@ public class Game extends BasicGame {
 	private Level level;
 	private int currentLevel = 2;
 	private ProgressPoint progress;
-	private FireCommand shootCommand;
+	
+	private int[] mousePos = new int[2];
 
 	public Game() {
 		super("Monkey Head");
@@ -58,11 +62,11 @@ public class Game extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int t) throws SlickException {
 
-		int mouseX = gc.getInput().getMouseX()+level.getMapX();
-		int mouseY = gc.getInput().getMouseY()+level.getMapY();
+		mousePos[0] = gc.getInput().getMouseX()+level.getMapX();
+		mousePos[1] = gc.getInput().getMouseY()+level.getMapY();
 
 		terri.update();
-		level.update(mouseX, mouseY);
+		level.update();
 		
 		progress = level.getProgressPoint();
 		
@@ -93,17 +97,17 @@ public class Game extends BasicGame {
 		}
 		
 		level.setProgressPoint(progress);
-		
+		level.setMousePosition(mousePos);
 		// i dont like this initialization
 		CollisionHandler collisionHandler = level.getCollisionHandler();
 
-		terri = new Player(level.getProgressX(),level.getProgressY(),collisionHandler);
+		terri = new Player(level.getProgressX(),level.getProgressY(),collisionHandler, mousePos);
 
 		
 		//Keyboard stuff
 		
 		keyboardInputProvider.addListener(terri.getListener());
-		shootCommand.setLevel(level);
+		
 	}
 	
 	private void initializeKeyBindings(GameContainer gc){
@@ -116,7 +120,7 @@ public class Game extends BasicGame {
 		//Command moveDown = new MoveCommand("move down", 0 ,8);
 		Command moveLeft = new MoveCommand( -1);
 		Command moveRight = new MoveCommand( 1);
-		shootCommand = new FireCommand(gc.getInput());
+		Command shootCommand = new FireCommand();
 		Command restore = new RestoreCommand();
 		Command interact = new InteractCommand();
 		Command ascend = new ClimbCommand(-1);

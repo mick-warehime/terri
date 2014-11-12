@@ -20,7 +20,7 @@ public class TimedSwitch extends SwitchObject{
 		
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 		// if the switch is on check if it has expired
 		if(state){
 			long timeElapsed = getTime()-toggleTime; 

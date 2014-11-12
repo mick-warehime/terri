@@ -67,8 +67,8 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 
 
-	public void update(int mouseX, int mouseY){
-		super.update(mouseX, mouseY);
+	public void update(){
+		super.update();
 
 		if(isMoving){
 			//Check for direction change
@@ -87,8 +87,8 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 	}
 
-	public void put(int x, int y){
-		super.put(x, y);
+	public void put(){
+		super.put();
 		
 		
 		if(xOrY == 'x'){xPos = putX;}

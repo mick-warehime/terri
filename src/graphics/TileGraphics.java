@@ -44,6 +44,7 @@ public class TileGraphics{
 				tileImages.add(map.getTileImage(i + tileX,j + tileY,etherIndex));
 			}
 		}
+		
 	}
 	
 	public void render(int mapX, int mapY, float opacity) {

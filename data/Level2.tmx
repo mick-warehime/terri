@@ -3,14 +3,17 @@
  <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
   <image source="metroidtiles.png" width="1024" height="800"/>
  </tileset>
+ <tileset firstgid="3201" name="lemmings" tilewidth="32" tileheight="48">
+  <image source="lemmings.png" width="384" height="384"/>
+ </tileset>
  <layer name="tiles" width="42" height="100" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YaWoDMQyFlb9JF9pzdaE9Vxfac3UhOVFFQWWijBmLvlgivAdCk2BmnmV/tmdERLYaO6kn7+tqJXK9ynLTlvf1oNePBX16X296/V7Qp/e11etdQZ/eFzn6n8gRVuQIK3KEFTnCihxhRY6wIkdYeV9Vx91zVHXcPUdVx92Pc9X1049z1fWTHGFFjrAiR1iRI6zIEVbkCCtyhBU5woocYXXwnUFq+vTjXJZ32a9fVd59/aryfsBRUd7JEVbkCCtyhBU5wirKkfVjdH+iHFm/Rs+PKEdZ9YxyZO1Hr19Rjqz96PUrylHW/IxylDU/oxxl1TPKURrvEuMoq56nvh9ZO19fn5fa9d5nWr+t9O9H1s7X1+eldt33sf2ls/5L/Y7mY2mp39F8LLGe/frlqMGf/W/coXOPNzv/TH+3uPTnOlTu9Wkavc/06lTf47IU3TezFD1/Zil6/swSOcKKHMWev5SzOereXyWXo14esjnqfV42R70+q3C0pGyOoudkEzma17E4Qs8L83mzFrnVuNO4X7fb/fmU/e/FPqPnhT3/Sb09a7xovM74bHE06r3bfH6ot0+NL43vOZ8yz9Go7xhWp7ONyLnGhcbl5rBdi6NqucVRtTzl6AeRbOd5oEEAAA==
+   H4sIAAAAAAAAA+2Y62rDMAyF1b/tLmzPtQvbc+3C+ly7kD7RxJhGqsREYoolyjkglBaTHMv+bCdERAPHgepJ+7raEF1vsty0pX098PVjQZ/a1xtf7wv61L4Gvj4U9Kl9gaP/CRzFChzFChzFChzFChzFChzFChzFSvuqOu6ao6rjrjmqOu56nKuun3qcq66f4ChW4ChW4ChW4ChW4ChW4ChW4ChW4ChW4ChWk+8MVNOnHueyvNNx/aryrutXlfcJR0V5B0exAkexAkexAkex8nIk/ejdHy9H0q/e88PLUVY9vRxJ+97rl5cjad97/fJylDU/vRxlzU8vR1n19HKUxjv5OMqq56nvR9JO11fnpXbW+4zrN5B9P5J2ur46L7Uz30f2F2P9l/rtzWtpqd/evJZQT7t+OGrwJ/8Ld9HZ4k3OP+PfLS71uS4qW32Keu8zVp3qe1yWvPtmlrznzyx5z59ZAkexAkdt7X+fOTj21WyOzPsr5XJk5SGbI+vzsjmy+szej8znz2SOvOdkETia11ocRc8L8XmzJbrluOO437bb/fmk4+/FOkfPC3n+E3t75njheJ3x2eKo13u3+Hxnbx8cnxxfcz5pnqNe3zGkTmc7onOOC47L3bRdi6NqucVRtTzm6BvXd6rnoEEAAA==
   </data>
  </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3YW0rDUBSF4Q0lkFBwJFXHEYQOQn30Mo4gCF6fHUCrU+hrEASvo/AyBZd6ShFME+Ek2eL/wWL3IYcswu5DYgYAAAAAAAAAAAAAAODXTmq2q+wp+2nfbapN1G2qXCpXjns+q9uL8qq8Oe45ysxWlTVlPeu7TTX2My72My72My72My72My72My72My72M47SbPYxu9zP+T2XGYY5f2RFONPlfhYNem6EmS/m55ku9zNv0PMgzCLMLJzpcj+zBj2vwyzbrVJrMzHbUraT77+9+Ss9gTYdDcyOlRPlVDlTzgft3/e3/79bdbpT7pUH5VF5ctgTgB83ZheHylhZUfruA+B/cfj54kd5/SUuFPWXuND3uzi+vAOVsdYSoEEAAA==
+   H4sIAAAAAAAAA+3YW0pCURTG8QUieCgcSdk4DkGDyB67jOMQCHZ7dgBdptCrBEE3R6E1hb5sSwTZ2crynB39f/CxfNjb8yHLBzUDAAAAAAAAAAAAAABI137L7EA5VI5adbeZ71LdrpRr5SbhnmN1myivylvCPTcys02lo2xldbeZj/30xX76Yj99sZ++2E9f7Kcv9tMX++ljaHb7Mavcz9kzf7MW5uwjK8KdKveziOi5HWb+Nad3qtzPPKLncZhFmFm4U+V+ZhE978IcrrZKqd2mWVfZa35/nZq/0hNYpX7D7EQ5Vc6Uc+Wisfz79dbjzi36/XtQp0flSXlWXpRRZM/YTh49AaTj3mzQU3aUtlJ3HwD/S4J/X/woLz+ShKL8SBLq/i2OT+9HgF6voEEAAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -21,7 +24,6 @@
     <property name="y" value="93"/>
    </properties>
   </object>
-  <object type="enemy" x="576" y="1312" width="16" height="16"/>
   <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
   <object type="etherElevator" x="240" y="1280" width="96" height="32">
    <properties>
@@ -68,10 +70,11 @@
     <property name="y" value="95"/>
    </properties>
   </object>
-  <object name="timed 5s" type="timedPlatform" x="496" y="1184" width="96" height="32">
+  <object name="timed 5s" type="platform" x="496" y="1184" width="96" height="32">
    <properties>
     <property name="duration" value="5"/>
    </properties>
   </object>
+  <object type="etherEnemy" x="480" y="1264" width="32" height="48"/>
  </objectgroup>
 </map>

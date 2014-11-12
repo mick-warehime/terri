@@ -17,13 +17,12 @@ public class Status {
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
 
-	public Status(float x, float y, CollisionHandler collisionHandler, float width, float height) {
+	public Status(float x, float y, float width, float height) {
 		//		this.player = player;
 		this.isDying = false;
 
 		rect = new Rectangle((int) x,(int) y,width, height);
 
-		this.collisionHandler = collisionHandler;
 
 		effects = new ArrayList<Effect>();
 
@@ -33,11 +32,18 @@ public class Status {
 		return rect;
 	}
 
+	public void setCollisionHandler(CollisionHandler collisionHandler){
+		this.collisionHandler = collisionHandler;
+	}
+
+
+
 	public boolean isTouchingGround() {
 		boolean answer = false;
 		displace(2,'Y');
 		answer = isCollided();
 		displace(-2,'Y');
+
 
 		return answer;
 	}
@@ -53,28 +59,29 @@ public class Status {
 	public float getX (){return rect.getX();}
 	public float getY (){return rect.getY();}
 
-	
+
 	public boolean isCollided(){
-		
-		boolean answer = collisionHandler.isCollided(rect);
-		return answer;
+		if(!hasEffect("ethered")){
+			return collisionHandler.isCollided(rect);
+		}
+		return false;
 	}
 
 	//Displaces the player 
 	public void displace(float disp, char XorY){
 
-
-		if (XorY == 'x' || XorY == 'X'){
-			float newX = rect.getX() + disp;
-			rect.setX( newX);
-			return;
-		} else if (XorY == 'y' || XorY == 'Y'){
-			float newY = rect.getY() + disp;
-			rect.setY(newY);
-			return;
+		if(!hasEffect("ethered")){
+			if (XorY == 'x' || XorY == 'X'){
+				float newX = rect.getX() + disp;
+				rect.setX( newX);
+				return;
+			} else if (XorY == 'y' || XorY == 'Y'){
+				float newY = rect.getY() + disp;
+				rect.setY(newY);
+				return;
+			}
 		}
-
-		throw new UnsupportedOperationException("Improper input arguments!");
+//		throw new UnsupportedOperationException("Improper input arguments!");
 	}
 
 
@@ -101,38 +108,38 @@ public class Status {
 
 	public void updateEffects(){
 
-		
+
 		boolean touchingLadder = false;
-		
+
 		//count down on each effect, remove ones that have run down
 		for (Iterator<Effect> iterator = effects.iterator(); iterator.hasNext();) {
-		    Effect eff = iterator.next();
-		    if (eff.name.equals("touching ladder")){ touchingLadder = true;}	
-		    
-		    if (eff.countDown()){
-		        // Remove the current element from the iterator and the list.
-		        iterator.remove();
-		    }
+			Effect eff = iterator.next();
+			if (eff.name.equals("touching ladder")){ touchingLadder = true;}	
+
+			if (eff.countDown()){
+				// Remove the current element from the iterator and the list.
+				iterator.remove();
+			}
 		}
-		
+
 		if (!touchingLadder){removeEffect("climbing");}
-		
+
 
 		return;
 	}
 
-	
+
 	void removeEffect(String name){
 		//Iterate over all effect's elements and remove
 		for (Iterator<Effect> iterator = effects.iterator(); iterator.hasNext();) {
-		    Effect eff = iterator.next();
-		    if(eff.name.equals(name)){
-		        // Remove the current element from the iterator and the list.
-		        iterator.remove();
-		    }
+			Effect eff = iterator.next();
+			if(eff.name.equals(name)){
+				// Remove the current element from the iterator and the list.
+				iterator.remove();
+			}
 		}
 	}
-	
+
 	public void gainEffect(String name, int duration){
 		effects.add(new Effect(name,duration));
 	}

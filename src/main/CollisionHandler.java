@@ -22,7 +22,7 @@ public class CollisionHandler implements CommandProvider {
 	private ArrayList<Rectangle> blocks;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<Actor> actors;
-	
+
 	//	private ArrayList<GameObject> gameObjects2;
 	private Rectangle playerRect;
 
@@ -54,14 +54,14 @@ public class CollisionHandler implements CommandProvider {
 				interactiveGameObjects.add((InteractiveCollideable) gObj);
 			}
 		}
-		
+
 		for (Actor actor: actors){
 			if (actor instanceof InteractiveCollideable){
 				interactiveGameObjects.add((InteractiveCollideable) actor);
 			}
 		}
-		
-		
+
+
 
 
 	}
@@ -88,6 +88,27 @@ public class CollisionHandler implements CommandProvider {
 		return null;
 	}
 
+	public Etherable isAtEtherEnemy(int x, int y){
+
+		for(GameObject gObj: gameObjects){
+			if(gObj instanceof Etherable){
+				if(gObj.getRect().contains(x,y)){
+					return (Etherable) gObj;
+				}
+			}
+		}
+		for (Actor nme: actors){
+			if(nme instanceof Etherable){
+				if(nme.getRect().contains(x,y)){
+					return (Etherable) nme;
+				}
+			}
+		}
+
+		return null;
+	}
+
+
 
 	//Returns a list of interactive game objects near the player
 	public ArrayList<GameObject> interactiveObjectsNearRect(Rectangle rect){
@@ -110,10 +131,18 @@ public class CollisionHandler implements CommandProvider {
 
 
 	public boolean canPlaceEtherAt(EtherObject etherObject){
-		boolean answer = !isCollided(etherObject);
+		boolean answer = !isCollided((GameObject) etherObject);
 		answer = answer && !playerRect.intersects(etherObject.getRect());
 		answer = answer && !isCollidedWithActor(etherObject.getRect());
 		answer = answer && !isCollidedWithDoor(etherObject.getRect());
+		return answer;
+	}
+
+	public boolean canPlaceEtherAt(Actor actor){
+		boolean answer = !isCollided(actor.getRect());
+		answer = answer && !playerRect.intersects(actor.getRect());
+		answer = answer && !isCollidedWithActor(actor);
+		answer = answer && !isCollidedWithDoor(actor.getRect());
 		return answer;
 	}
 
@@ -144,22 +173,22 @@ public class CollisionHandler implements CommandProvider {
 				if(rect.intersects(gObj.getRect())){
 					return true;
 				}
-			
+
 			}
-			
+
 		}
 		return false;
 	}
-	
+
 	public boolean isCollidedWithDoor(Rectangle rect){
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Door){
 				if(rect.intersects(gObj.getRect())){
 					return true;
 				}
-			
+
 			}
-			
+
 		}
 		return false;
 	}
@@ -187,7 +216,6 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 	public boolean isCollidedWithObjects(GameObject gameObject){
-
 		// check if collided with solid etherable Objects
 		for(GameObject gObj: gameObjects){
 			// don't check with its own rect and dont check with objects that are currently being held
@@ -212,23 +240,14 @@ public class CollisionHandler implements CommandProvider {
 		return playerRect.intersects(gObj.getRect());
 	}
 
-	//	public void addToCommandStack(Command cmd){
-	//		collisionCommandStack.add(cmd);
-	//
-	//	}
-
 	public ArrayList<Command> getCommands(){
-		//		@SuppressWarnings("unchecked")
-		//		ArrayList<Command> answer = (ArrayList<Command>) collisionCommandStack.clone();
-		//		collisionCommandStack.clear();
-		//		return answer;
 		return resolveInteractiveCollisions(playerRect, "Player");
 	}
 
 	public boolean lineOfSightCollision(GameObject testObject){
 		return lineOfSightCollision((Etherable) testObject);
 	}
-	
+
 	//Returns if the line of sight from the player to an EtherObject
 	// is collided with any game objects
 	public boolean lineOfSightCollision(Etherable testObject){
@@ -250,6 +269,15 @@ public class CollisionHandler implements CommandProvider {
 				}
 			}
 		}
+
+		for (Actor nme: actors){
+			if(nme.canCollide() && nme != testObject){
+				if(line.intersects(nme.getRect())){
+					return true;
+				}
+			}
+		} 
+		
 		//Also check the basic game tiles
 		for(Rectangle block :blocks){
 			if(line.intersects(block)){
@@ -262,12 +290,26 @@ public class CollisionHandler implements CommandProvider {
 
 	public boolean isCollidedWithActor(Rectangle rect){
 		for (Actor nme: actors){
-			if(nme.getRect().intersects(rect)){
-				return true;
+			if(nme.canCollide()){
+				if(nme.getRect().intersects(rect)){
+					return true;
+				}
 			}
 		}
 		return false;
 	}
+
+	public boolean isCollidedWithActor(Actor actor){
+		for (Actor nme: actors){
+			if(nme.canCollide() && nme != actor){
+				if(nme.getRect().intersects(actor.getRect())){
+					return true;
+				}
+			}
+		} 
+		return false;
+	}
+
 
 
 	//Checks a rect for collisions with interactive collideables
@@ -285,26 +327,26 @@ public class CollisionHandler implements CommandProvider {
 
 		//
 		for (InteractiveCollideable interObj : interactiveGameObjects){
-			
+
 			if (slightlyBiggerRect.intersects(interObj.getRect())){
 				interObj.onCollisionDo(collidingObjectClass);
 				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass));
 			}
 		}
 
-//		for (Actor nme: actors){
-//			if (slightlyBiggerRect.intersects(nme.getRect())){
-//				nme.onCollisionDo(collidingObjectClass);
-//				output.addAll(nme.onCollisionBroadcast(collidingObjectClass));
-//			}
-//		}
+		//		for (Actor nme: actors){
+		//			if (slightlyBiggerRect.intersects(nme.getRect())){
+		//				nme.onCollisionDo(collidingObjectClass);
+		//				output.addAll(nme.onCollisionBroadcast(collidingObjectClass));
+		//			}
+		//		}
 
 
 
 		return output;
 	}
 
-	
+
 	public float getPlayerCenterX(){
 		return playerRect.getX()+playerRect.getWidth()/2;
 	}

@@ -30,7 +30,7 @@ public class MultiDoor extends Door{
 
 	
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 		// loop over all switches if one is locked then keep door closed 
 		open = false;
 		for(Boolean isOpen: switchStates){

@@ -47,8 +47,8 @@ public class MovingPlatform extends EtherObject implements InteractiveCollideabl
 		return answer;
 	}
 
-	public void update(int mouseX, int mouseY){
-		super.update(mouseX, mouseY);
+	public void update(){
+		super.update();
 
 		switchTimer +=1;
 		//Check for direction change

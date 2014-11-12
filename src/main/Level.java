@@ -9,6 +9,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
 import actors.Enemy;
+import actors.EtherEnemy;
+import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.ProgressPoint;
 
@@ -34,10 +36,11 @@ public class Level {
 
 	private int tileLayerId;
 	private CollisionHandler collisionHandler;
-	
-//	private TileData tileData;
+
+	//	private TileData tileData;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<Actor> actors;
+	private int[] mousePos;
 
 	public Level(int levelNumber) throws SlickException {
 
@@ -52,65 +55,72 @@ public class Level {
 		tolY = tol*tileSize;
 		mapWidthInTiles = map.getWidth();
 		mapHeightInTiles = map.getHeight();
-//		width = mapWidthInTiles*map.getTileWidth();
-//		height = mapHeightInTiles*map.getTileHeight;
+		//		width = mapWidthInTiles*map.getTileWidth();
+		//		height = mapHeightInTiles*map.getTileHeight;
 		tileLayerId = map.getLayerIndex("tiles");
 
-		
+
 		//Creates the collisionHandler with just game blocks
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.actors = tileData.getActors();
 		incorporateCollisionHandler(); 
-	
+
 
 	}
-	
+
 
 	private void incorporateCollisionHandler() throws SlickException{
-		
+
 		//Give the objects to the collisionHandler
 		collisionHandler.receiveObjects(gameObjects, actors);
-		
+
 		//Give the CollisionHandler to actors and gameObjects
-		
+
 		for(GameObject gObj: gameObjects){
-			
+
 			gObj.setCollisionHandler(collisionHandler);
-		
-			
+
+
 		}
-		
-		
+
+
 		for (Actor nme: actors){
 			nme.incorporateCollisionHandler(collisionHandler);
-			
+
 		}
 	};
 
 
 
 
-	
 
 
 
-	public void update(int mouseX, int mouseY){
+
+	public void update(){
 		for(GameObject gObj: gameObjects){
-			gObj.update(mouseX,mouseY);
+			gObj.update();
 		}
+
+		//		for(Actor nme: actors){		
+		//			nme.update(mouseX,mouseY);
+		//		}
 
 		//Update actors and remove dead ones
 		for (Iterator<Actor> iterator = actors.iterator(); iterator.hasNext();) {
-		    Actor nme = iterator.next();
-		    nme.update();
-		    
-		    if (nme.isDying()) {
-		        // Remove the current element from the iterator and the list.
-		        iterator.remove();
-		    }
+			Actor nme = iterator.next();
+			
+			nme.update();
+		
+
+
+			if (nme.isDying()) {
+				// Remove the current element from the iterator and the list.
+				iterator.remove();
+			}
 		}			
-	
+
 
 	}
 
@@ -143,11 +153,11 @@ public class Level {
 
 
 		for(GameObject gObj: gameObjects){		
- 			gObj.draw(mapX, mapY, mouseX, mouseY);
+			gObj.render(mapX, mapY, mouseX, mouseY);
 		}
 
 		for (Actor nme: actors){
-			nme.render(mapX,mapY);
+			nme.render(mapX,mapY,mouseX,mouseY);
 		}
 
 	}
@@ -182,7 +192,7 @@ public class Level {
 
 		int curIndex = -1;
 		ProgressPoint pPoint = null;
-		
+
 		// loop over all progress points in the game
 		for(GameObject gObj: gameObjects){
 			// see if any progress points are active
@@ -205,11 +215,11 @@ public class Level {
 	public int getProgressX(){
 		return progress.getPX();
 	}
-	
+
 	public int getProgressY(){
 		return progress.getPY();
 	}
-	
+
 	public void setProgressPoint(ProgressPoint progress){
 		this.progress = progress;
 	}
@@ -225,6 +235,26 @@ public class Level {
 
 	public CollisionHandler getCollisionHandler(){
 		return collisionHandler;
+	}
+
+
+	public void setMousePosition(int[] mousePos) {
+		this.mousePos = mousePos;
+
+		//Give the mouse position to etherables
+		for (GameObject obj: gameObjects){
+			if(obj instanceof Etherable){
+				((Etherable)obj).setMousePosition(mousePos);
+			}
+		}
+		//Give the mouse position to etherables
+		for (Actor actor: actors){
+			if(actor instanceof Etherable){
+				((Etherable)actor).setMousePosition(mousePos);
+			}
+		}
+
+
 	}
 
 }

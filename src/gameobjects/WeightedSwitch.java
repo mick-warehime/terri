@@ -22,7 +22,7 @@ public class WeightedSwitch extends SwitchObject {
 		
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 		// if switch was not weighed down
 		if(state){
 			//check if it became weighed down

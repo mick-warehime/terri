@@ -19,77 +19,64 @@ public class EtherObject extends GameObject implements Etherable {
 	protected Rectangle etherRect;
 	protected boolean isEther = false;
 	protected boolean isPut = false;
-	protected boolean isActive = false;
 	protected boolean isTimed = false;
 	protected EtherGraphics etherGraphics;
+	private int[] mousePos;
 
 
 	public EtherObject(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);
 
 		// used for collision detection		
-		setEtherRect();
+		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		
 		this.etherGraphics = new EtherGraphics(rect,etherRect,map,x, y, w, h);
 	}
 
-	protected void setEtherRect(){
-		etherRect = new Rectangle(pixelX,pixelY,pixelWidth,pixelHeight);
-	}
 
 
-	/* (non-Javadoc)
-	 * @see gameobjects.Etherable#setObjectToEther()
-	 */
+	 
 	@Override
 	public void setObjectToEther(){
-		isEther = true;	
-		isActive = true;
+		isEther = true;
 		isPut = false;
 	}
 
-	/* (non-Javadoc)
-	 * @see gameobjects.Etherable#put(int, int)
-	 */
+ 
 	@Override
-	public void put(int mouseX, int mouseY){
+	public void put(){
 
-		if(isActive && !isPut){
+		if(isEther && !isPut){
 			this.isPut = true;
-			putX = mouseX-pixelWidth/2;
-			putY = mouseY-pixelHeight/2;
-
+			putX = (int) (mousePos[0]-rect.getWidth()/2);
+			putY = (int) (mousePos[1]-rect.getHeight()/2);
 			rect.setLocation(putX,putY);
-
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see gameobjects.Etherable#restore()
-	 */
+ 
 	@Override
 	public void restore() {
 		
 		if(canRestore()){
 			// TODO Auto-generated method stub
-			isEther = false;
 			isPut = false;
-			isActive = false;
-			rect.setLocation(pixelX,pixelY);
+			isEther = false;
+			rect.setLocation(etherRect.getX(),etherRect.getY());
 		}
 	}
 
 
-	public void update(int mouseX, int mouseY){
-		if(isActive && !isPut){
+	public void update(){
+		if(isEther && !isPut){
 			//		eventually used to update doors/elevators etc;
-			int hoverX = (mouseX-pixelWidth/2);
-			int hoverY = (mouseY-pixelHeight/2);
+			int hoverX = (mousePos[0]-pixelWidth/2);
+			int hoverY = (mousePos[1]-pixelHeight/2);
 			rect.setLocation(hoverX,hoverY);			
 		}		
 	}
 
-	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
 		
 		etherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut());
 		 
@@ -130,7 +117,15 @@ public class EtherObject extends GameObject implements Etherable {
 
 
 	public boolean canCollide(){
-		return isPut || !isActive;
+		return isPut || !isEther;
+	}
+
+
+
+
+	@Override
+	public void setMousePosition(int[] mousePos) {
+		this.mousePos = mousePos;
 	}
 
 }

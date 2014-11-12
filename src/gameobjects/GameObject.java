@@ -77,7 +77,7 @@ public class GameObject {
 		throw new UnsupportedOperationException(); 
 	}
 
-	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
 		drawer.render((int) rect.getX() ,(int) rect.getY(), mapX, mapY, 1); 
 	}
 
@@ -89,7 +89,7 @@ public class GameObject {
 		this.collisionHandler = collisionHandler;
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 //		throw new UnsupportedOperationException(); 
 	}
 
