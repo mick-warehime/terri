@@ -34,6 +34,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
 import actors.Enemy;
+import actors.Turret2;
 
 
 public class TileData {
@@ -84,6 +85,7 @@ public class TileData {
 		parserDict.put("movingPlatform", MovingPlatform.class);
 		parserDict.put("enemy", Enemy.class);
 		parserDict.put("etherElevator", EtherElevator.class);
+		parserDict.put("turret2", Turret2.class);
 
 	}
 

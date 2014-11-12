@@ -45,7 +45,7 @@
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aTwqCQBSA8QFHysP0h8h1y9p3qLpAZ6oLdJPcNyAhkoQvnTcz+v3gIeHgjPC1CDIGAAAAABqHvB4gZnQKAAD+sSvqAWJGp0gBnSIFdIoQFsL1dIoQjsL1dIoQLsL1dIoQ7sL1dNo4dwziQKfzdbPtiRmdztczb0/M6BQpoFMMsVTah04xxElpnyl3+vmfbtdgHFelfabcacpS+T49lPah0zil0ikAAHPyyoypMtnVB+kZpNe+93yeQeNdKg/P02rgl701prSyqw/SM0ivfe/5PIPGu5Qenjd2Ayv3e3LtZuNmW3x/Bsb2BhJMwzCwTwAA
+   H4sIAAAAAAAAA+3aXQqCQBRA4QGVcjH9EPncY+2sNtCaagPtJN8TJEKM8KZzZ65zPrhIODgjnB6CnAMAAACAj0PRDhAzOgUAAP/Yle0AMaNTWECnsIBOEcJCuJ5OEcJRuJ5OEcJZuJ5OEcJNuJ5OYQGdpuuadydmdJquR9GdmNEpLKBTjLFU2odOMcZJaZ85d/r+n+63wTQuSvvMuVPLrHyf7kr70GmcrHQKAEBKnplzdSa7+iA9g/Q69J7PM2i8S+3heVoN/LLPnaty2dUH6Rmk16H3fJ5B410qD8+buoFV83ty3cymmW3Z/wxM7QUYKlbnsE8AAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -168,5 +168,7 @@
    </properties>
   </object>
   <object name="Ladder" type="ladder" x="1856" y="128" width="32" height="256"/>
+  <object name="E" type="enemy" x="208" y="176" width="16" height="16"/>
+  <object name="T" type="turret2" x="240" y="224" width="16" height="16"/>
  </objectgroup>
 </map>
