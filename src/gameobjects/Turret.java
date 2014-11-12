@@ -66,7 +66,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 		this.graphics = new TurretGraphics(rect,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
 	}
 
-	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
 
 		graphics.render(mapX, mapY,-25,-18,angle);
 
@@ -126,7 +126,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 //		}
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 
 		//		System.out.println(chargeTimer);
 		updateChargeTimer();

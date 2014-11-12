@@ -21,6 +21,7 @@ public class LemmingBehavior extends Behavior implements CommandProvider{
 	}
 
 	public void determine(){
+		
 		commandStack.clear();
 
 

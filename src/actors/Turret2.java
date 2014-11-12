@@ -26,13 +26,14 @@ public class Turret2 extends Actor {
 		
 		listener = new GlobalInputListener();
 		sprite = new Image("data/turret.png");
+		status = new Status((float) x, (float) y, sprite.getWidth(),sprite.getHeight() );
+
 		
 	}
 	
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler) {
 		
-		
-		status = new Status((float) x, (float) y, collisionHandler,sprite.getWidth(),sprite.getHeight() );
+		status.setCollisionHandler(collisionHandler);
 		
 		behavior = new TurretBehavior(status, collisionHandler);
 		

@@ -32,7 +32,7 @@ public class ProgressPoint extends EtherObject{
 
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 		if(!isActive){
 			if(collisionHandler.isCollidedWithPlayer(this)){
 				isActive = true;
@@ -64,7 +64,7 @@ public class ProgressPoint extends EtherObject{
 
 	}
 
-	public void draw(int i, int j, int mouseX, int mouseY){
+	public void render(int i, int j, int mouseX, int mouseY){
 	}
 
 }

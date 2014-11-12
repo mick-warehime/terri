@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import main.CollisionHandler;
 
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
@@ -12,39 +13,46 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DieCommand;
 import commands.GlobalInputListener;
 import gameobjects.InteractiveCollideable;
-import graphics.EnemyGraphics;
 
 public class Enemy extends Actor implements InteractiveCollideable{
 
 	private LemmingBehavior behavior;
 	private int x;
 	private int y;
-	private EnemyGraphics graphics;
 
 	public Enemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
 		super();
+<<<<<<< HEAD
+		
+		this.x = x;
+		this.y = y; //These shouldn't be necessary. Fix later
+		
+		listener = new GlobalInputListener();
+		sprite = new Image("data/lemming.png");
+=======
 
 		this.x = x*map.getTileWidth();
 		this.y = y*map.getTileHeight(); //These shouldn't be necessary. Fix later
 
-		listener = new GlobalInputListener();
-		
-		status = new Status((float) this.x, (float) this.y, 32, 48);
 
- 		graphics = new EnemyGraphics(status.getRect(),map,x,y,w,h);
- 	}
+
+		listener = new GlobalInputListener();
+		sprite = new Image("data/lemming.png");
+
+
+
+>>>>>>> 3746e8430c8833612d054f3050d371baf649322c
+	}
 
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){
 
-		// status = new Status((float) x, (float) y, collisionHandler,sprite.getWidth(),sprite.getHeight() );
-		status.setCollisionHandler(collisionHandler);
-
+		status = new Status((float) x, (float) y, collisionHandler,sprite.getWidth(),sprite.getHeight() );
 		engine = new EnemyActionEngine(listener, status);
+
 
 		behavior = new LemmingBehavior(status, collisionHandler);
 
 		listener.addProvider(behavior);
-		
 	}
 
 	public void update(){
@@ -68,11 +76,10 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		if (collidingObjectClass == "Player"){
 			list.add( new DieCommand());
 		}
+		//		else{
+		//			list.add( new NullCommand());
+		//		}
 		return list;
-	}
-	
-	public void render( int mapX, int mapY, int mouseX, int mouseY) {
-		graphics.render(mapX, mapY); 
 	}
 
 

@@ -2,6 +2,7 @@ package actors;
 
 import main.CollisionHandler;
 import gameobjects.EtherObject;
+import gameobjects.Etherable;
 import gameobjects.Timed;
 
 
@@ -13,22 +14,25 @@ public class Gun {
 	private String status = "idle";
 	private int busyTime = 0;
 	private int busyTimeIncrement = 30;
-	private EtherObject activeObject = null;
+	private Etherable activeObject = null;
 	private CollisionHandler collisionHandler;
+	private int[] mousePos;
 	
-	public Gun(CollisionHandler collisionHandler) {
+	
+	
+	public Gun(CollisionHandler collisionHandler, int[] mousePos) {
 		this.collisionHandler = collisionHandler;
-		
+		this.mousePos = mousePos;
 	}
 	
 	
-	public void shootEtherBeam(int mouseX, int mouseY){
+	public void shootEtherBeam(){
 		if (status == "idle"){ //Fire gun to turn things ether, if something is there
 			
-			EtherObject testObject = collisionHandler.isAtEtherObject(mouseX,mouseY);
-			
-			if(canEtherize(testObject)){
-				activeObject = testObject;
+			Etherable etherableObject = checkForEtherableObject();
+						
+			if(canEtherize(etherableObject)){
+				activeObject = etherableObject;
 				activeObject.setObjectToEther();
 				busyTime += busyTimeIncrement;
 				status = "holding object";
@@ -37,7 +41,7 @@ public class Gun {
 			
 			if (canPut()){
 
-				activeObject.put(mouseX,mouseY);
+				activeObject.put();
 				busyTime += busyTimeIncrement;
 				status = "object placed";
 				if(activeObject instanceof Timed){
@@ -49,10 +53,17 @@ public class Gun {
 			
 		}
 			
-		
 		return;
 	}
 	
+	public Etherable checkForEtherableObject(){
+		Etherable etherableObject = collisionHandler.isAtEtherObject(mousePos[0],mousePos[1]);
+		if(etherableObject==null){
+			etherableObject = collisionHandler.isAtEtherEnemy(mousePos[0],mousePos[1]);
+			
+		}
+		return etherableObject;
+	}
 	
 	public void restoreActiveObject(){
 		
@@ -74,8 +85,7 @@ public class Gun {
 	
 	
 	//Determines whether the gun can trigger
-	public boolean canShoot(int x, int y){
-		
+	public boolean canShoot(){
 		
 		
 		return busyTime==0;
@@ -92,7 +102,7 @@ public class Gun {
 	}
 	
 	
-	private boolean canEtherize(EtherObject testObject){
+	private boolean canEtherize(Etherable testObject){
 		if (testObject==null){
 			return false;
 		}

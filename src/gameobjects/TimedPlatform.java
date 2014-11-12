@@ -22,7 +22,7 @@ public class TimedPlatform extends EtherObject  implements Timed{
 
 	}
 
-	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
 		long timeElapsed = getTime()-putTime; 
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
@@ -32,8 +32,8 @@ public class TimedPlatform extends EtherObject  implements Timed{
 	}
 
 	@Override
-	public void update(int mouseX, int mouseY){
-		super.update(mouseX, mouseY);
+	public void update(){
+		super.update();
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
 			if(timeElapsed > duration){
@@ -42,8 +42,8 @@ public class TimedPlatform extends EtherObject  implements Timed{
 		}
 	}
 
-	public void put(int x, int y){
-		super.put(x, y);
+	public void put(){
+		super.put();
 
 		putTime = getTime();
 	}

@@ -17,14 +17,9 @@ public class GameObject {
 	
 	protected TileGraphics drawer;
 	
-	protected int pixelX; // (x,y) top left in pixels
-	protected int pixelY; 
 
 	protected int tileX; // (I,J) top left in tiles
 	protected int tileY;
-
-	protected int pixelHeight; // (height,width) in pixels 
-	protected int pixelWidth;
 
 	protected int tileSize;
 	protected int proximity;
@@ -43,31 +38,19 @@ public class GameObject {
 		this.tileX = x;
 		this.tileY = y;
 
-		//x y position, height and width, in pixels
-		this.pixelX = x*tileSize;
-		this.pixelY = y*tileSize;
-		
-		
-		this.pixelHeight = h*tileSize;
-		this.pixelWidth = w*tileSize;			
 		this.name = name; 
 
 
-		getSprites(map);
 
 		// used for collision detection		
-		setRect();
+		rect = new Rectangle(x*tileSize,y*tileSize,w*tileSize,h*tileSize);
 		
 
 		this.drawer = new TileGraphics(rect, map, x,y,w,h);
-
+		System.out.println(name);
 	}
 	
-	
 
-	protected void setRect(){
-		rect = new Rectangle(pixelX,pixelY,pixelWidth,pixelHeight);
-	}
 
 	public Rectangle getRect(){
 		return rect;
@@ -77,7 +60,7 @@ public class GameObject {
 		throw new UnsupportedOperationException(); 
 	}
 
-	public void draw(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
 		drawer.render((int) rect.getX() ,(int) rect.getY(), mapX, mapY, 1); 
 	}
 
@@ -89,16 +72,10 @@ public class GameObject {
 		this.collisionHandler = collisionHandler;
 	}
 
-	public void update(int mouseX, int mouseY){
+	public void update(){
 //		throw new UnsupportedOperationException(); 
 	}
 
-	public int getTileX(){
-		return pixelX;		
-	}
-	public int getTileY(){
-		return pixelY;
-	}
 
 	public void toggle() {
 		throw new UnsupportedOperationException(); 
@@ -122,19 +99,6 @@ public class GameObject {
 		return slightlyBiggerRect.intersects(rectTest);
 	}
 
-
-	protected void getSprites(TiledMap map) throws SlickException{
-
-		int etherIndex = map.getLayerIndex("ether");
-
-		for(int i = tileX; i < (tileX+pixelWidth/tileSize); i++){
-			for(int j = tileY; j < (tileY+pixelHeight/tileSize); j++){
-				sprites.add(map.getTileImage(i,j,etherIndex));
-			}
-		}
-	}
-
- 
 
 	protected long getTime() {
 		return System.currentTimeMillis() ;
