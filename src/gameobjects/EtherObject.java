@@ -88,8 +88,8 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public boolean canPut(){
-		boolean answer = !collisionHandler.lineOfSightCollision((Etherable) this);
-		answer = answer && collisionHandler.canPlaceEtherAt(this);
+		boolean answer = !collisionHandler.lineOfSightCollision(rect);
+		answer = answer && collisionHandler.canPlaceEtherAt(rect);
 		return answer;
 	}
 
@@ -99,7 +99,7 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public boolean canRestore(){
-		boolean answer = !collisionHandler.isCollidedWithObjects(this);
+		boolean answer = !collisionHandler.isCollidedWithObjects(rect);
 		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
 		answer = answer && !collisionHandler.isCollidedWithActor(etherRect);
 		return answer;

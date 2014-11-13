@@ -85,7 +85,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 	private void updateChargeTimer(){
 		// if the turret can see terri increment its charge timer
-		if(!collisionHandler.lineOfSightCollision(this)){
+		if(!collisionHandler.lineOfSightCollision(rect)){
 			chargeTimer += 1;			
 		} else{
 			chargeTimer = 0;
@@ -133,7 +133,7 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 		getAngleToPlayer();
 
-		if(!collisionHandler.lineOfSightCollision(this)){
+		if(!collisionHandler.lineOfSightCollision(rect)){
 			setNewAngle(angleToPlayer);
 		}else {
 			setNewAngle(restingAngle);

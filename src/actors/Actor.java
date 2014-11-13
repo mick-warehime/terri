@@ -1,6 +1,5 @@
 package actors;
 
-import graphics.EnemyGraphics;
 import main.CollisionHandler;
 
 import org.newdawn.slick.Image;

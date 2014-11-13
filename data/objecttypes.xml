@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="timedEtherElevator" color="#0de405"/>
+ <objecttype name="switch" color="#a40306"/>
+ <objecttype name="platform" color="#222fa4"/>
+ <objecttype name="timedPlatform" color="#1b73e3"/>
+ <objecttype name="elevator" color="#145c00"/>
+ <objecttype name="door" color="#910e7f"/>
+ <objecttype name="enemy" color="#e9d62e"/>
+ <objecttype name="start" color="#00a4a4"/>
+ <objecttype name="end" color="#13a8c6"/>
+ <objecttype name="timedSwitch" color="#c60d61"/>
+ <objecttype name="cameraStart" color="#000000"/>
+ <objecttype name="deadly" color="#ff0c00"/>
+ <objecttype name="weightedSwitch" color="#39a400"/>
+ <objecttype name="progressPoint" color="#fffb07"/>
+ <objecttype name="teleporter" color="#02e2f3"/>
+ <objecttype name="ladder" color="#100ba4"/>
+ <objecttype name="turret" color="#a40201"/>
+ <objecttype name="multiWeightedSwitch" color="#a4080b"/>
+ <objecttype name="multiDoor" color="#20a42c"/>
+ <objecttype name="etherEnemy" color="#9220a4"/>
+</objecttypes>

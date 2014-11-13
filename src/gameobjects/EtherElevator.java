@@ -60,7 +60,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 		boolean answer = Math.abs(displacement)>range || displacement<0;
 		
-		answer = answer || collisionHandler.isCollided(this);
+		answer = answer || collisionHandler.isCollided(rect);
 		
 		return answer;
 	}

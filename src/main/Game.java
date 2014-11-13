@@ -28,12 +28,10 @@ import actors.Player;
 
 // refactor action engine a bit (w.r.t. jump timers, etc.)
 
-// refactor collisionahandler, storage of enemies as actors super interface for actor and game object
-//  ether object and ether enemy should have the same functionality in collisionhandler
 
 // TO DO 
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
-// 2) etherable enemies, start menu, lemming types
+// 2) start menu, lemming types
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel
 // 0/5) graphics/ animations/particl effects
