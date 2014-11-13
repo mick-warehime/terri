@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class ProgressPoint extends EtherObject{
+public class ProgressPoint extends GameObject{
 
 	private boolean isActive;
 	private int px;
@@ -34,7 +34,7 @@ public class ProgressPoint extends EtherObject{
 
 	public void update(){
 		if(!isActive){
-			if(collisionHandler.isCollidedWithPlayer(this)){
+			if(collisionHandler.isCollidedWithPlayer(rect)){
 				isActive = true;
 			}
 		}

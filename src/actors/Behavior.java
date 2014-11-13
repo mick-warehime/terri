@@ -6,8 +6,6 @@ import main.CollisionHandler;
 
 import org.newdawn.slick.command.Command;
 
-import commands.CommandProvider;
-
 public class Behavior {
 
 	protected Status status;

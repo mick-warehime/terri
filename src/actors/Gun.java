@@ -1,7 +1,6 @@
 package actors;
 
 import main.CollisionHandler;
-import gameobjects.EtherObject;
 import gameobjects.Etherable;
 import gameobjects.Timed;
 
@@ -107,7 +106,7 @@ public class Gun {
 			return false;
 		}
 		
-		return !collisionHandler.lineOfSightCollision(testObject);
+		return !collisionHandler.lineOfSightCollision(testObject.getRect());
 	}
 	
 	//Tests whether a held object can be put in a given place.

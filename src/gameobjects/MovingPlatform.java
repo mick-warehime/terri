@@ -43,7 +43,7 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 
 		boolean answer = switchTimer>=switchTime;
 
-		answer = answer || collisionHandler.isCollided(this);
+		answer = answer || collisionHandler.isCollided(rect);
 		return answer;
 	}
 
