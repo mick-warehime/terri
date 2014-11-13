@@ -8,7 +8,7 @@ import org.newdawn.slick.command.Command;
 
 import commands.CommandProvider;
 
-public class Behavior {
+public class Behavior implements CommandProvider{
 
 	protected Status status;
 	protected CollisionHandler collisionHandler;

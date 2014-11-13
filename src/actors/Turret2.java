@@ -1,5 +1,8 @@
 package actors;
 
+import graphics.TurretGraphics;
+
+import java.util.ArrayList;
 import java.util.Properties;
 
 import main.CollisionHandler;
@@ -15,19 +18,31 @@ public class Turret2 extends Actor {
 
 //	private Image sprite;
 	private TurretBehavior behavior;
-	private float x;
-	private float y;
+	private TurretGraphics graphics;
+	
+//	private float x;
+//	private float y;
 	
 	public Turret2(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
 		
-		this.x = x*map.getTileWidth();
-		this.y = y*map.getTileHeight(); //These shouldn't be necessary. Fix later
+	
+		listener = new GlobalInputListener();
+		status = new Status((float) x*map.getTileWidth(), (float) y*map.getTileHeight(), 20,20 );
 
 		
-		listener = new GlobalInputListener();
-		sprite = new Image("data/turret.png");
-		status = new Status((float) x, (float) y, sprite.getWidth(),sprite.getHeight() );
+		
+		//Initialize graphics
+		ArrayList<String> fileNames = new ArrayList<String>();
 
+		// Image files to load;mount first!
+		fileNames.add("data/mount.png");
+		fileNames.add("data/turret.png");
+		
+		// define the relative location of the point of rotation from top left in pixels
+		int centerRotateX = 20;
+		int centerRotateY = 20;
+		
+		this.graphics = new TurretGraphics(status.getRect(),map,x,y,centerRotateX,centerRotateY,fileNames);
 		
 	}
 	
@@ -42,6 +57,14 @@ public class Turret2 extends Actor {
 		
 		listener.addProvider((CommandProvider)behavior);
 		
+	}
+	
+	
+	//This shouldn't be necessary...? All render commands should be graphics dependent
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
+
+		graphics.render(mapX, mapY,-25,-18,9);
+
 	}
 
 }

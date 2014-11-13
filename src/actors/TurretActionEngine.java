@@ -9,7 +9,8 @@ public class TurretActionEngine extends ActionEngine{
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	//No gravity or movement;
+	protected void movePhysics(){};
 	
 
 }

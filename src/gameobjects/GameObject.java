@@ -47,7 +47,7 @@ public class GameObject {
 		
 
 		this.drawer = new TileGraphics(rect, map, x,y,w,h);
-		System.out.println(name);
+//		System.out.println(name);
 	}
 	
 

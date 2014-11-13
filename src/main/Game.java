@@ -32,7 +32,6 @@ import actors.Player;
 //  ether object and ether enemy should have the same functionality in collisionhandler
 
 // TO DO 
-// 0) daveers mom (shots fired)
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
 // 2) etherable enemies, start menu, lemming types
 // 3) dog
@@ -50,7 +49,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 2;
+	private int currentLevel = 1;
 	private ProgressPoint progress;
 	
 	private int[] mousePos = new int[2];

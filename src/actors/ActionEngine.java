@@ -57,7 +57,7 @@ public class ActionEngine {
 
 	//////////////////////////
 
-	private void movePhysics() {        
+	protected void movePhysics() {        
 
 
 		//Horizontal movement and collision checking

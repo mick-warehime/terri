@@ -3,6 +3,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Properties;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
@@ -10,6 +11,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import actors.Actor;
 import actors.Enemy;
 import actors.EtherEnemy;
+import actors.Turret2;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.ProgressPoint;
@@ -66,6 +68,8 @@ public class Level {
 		this.actors = tileData.getActors();
 		incorporateCollisionHandler(); 
 
+//		new Turret2( 10, 16, 2, 3, "turret2", map, null);
+		
 
 	}
 
