@@ -26,6 +26,7 @@ public class EtherObject extends GameObject implements Etherable {
 
 	public EtherObject(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);
+		
 		// used for collision detection		
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		
