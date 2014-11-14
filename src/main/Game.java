@@ -48,13 +48,13 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 2;
+	private int currentLevel = 4;
 	private ProgressPoint progress;
 	
 	private int[] mousePos = new int[2];
 
 	public Game() {
-		super("Monkey Head");
+		super("Dvirs little nipple");
 	}
 
 	@Override

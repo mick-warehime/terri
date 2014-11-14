@@ -8,7 +8,6 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
-import commands.MinimumDisplaceCommand;
 
 public class DeadlyObject extends GameObject implements InteractiveCollideable{
 		

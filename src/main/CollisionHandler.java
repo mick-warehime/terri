@@ -7,10 +7,8 @@ import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
 import actors.Actor;
-import actors.Enemy;
 import commands.CommandProvider;
 import gameobjects.Door;
-import gameobjects.EtherObject;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.Interactive;

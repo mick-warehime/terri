@@ -3,6 +3,7 @@ package gameobjects;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class ProgressPoint extends GameObject{
@@ -31,7 +32,12 @@ public class ProgressPoint extends GameObject{
 		}
 
 	}
-
+	@Override
+	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
+		return;
+	}
+	
+	
 	public void update(){
 		if(!isActive){
 			if(collisionHandler.isCollidedWithPlayer(rect)){
@@ -59,12 +65,14 @@ public class ProgressPoint extends GameObject{
 	public int getIndex(){
 		return index;
 	}
-
-	protected void getSprites(TiledMap map) {
-
+	
+	@Override
+	public void render(int mapX, int mapY, int mouseX, int mouseY){
+		return;
+		
 	}
 
-	public void render(int i, int j, int mouseX, int mouseY){
+	public void render(int i, int j){
 	}
 
 }

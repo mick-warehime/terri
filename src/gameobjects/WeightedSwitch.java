@@ -14,9 +14,9 @@ public class WeightedSwitch extends SwitchObject {
 		super(x, y, w, h, name, map, args);
 		
 		ArrayList<String> fileNames = new ArrayList<String>();
-		
-		fileNames.add("data/switch_up.png");
 		fileNames.add("data/switch_down.png");
+
+		fileNames.add("data/switch_up.png");
 	
 		this.animatedDrawer = new AnimatedGraphics(rect,map,tileX,tileY,fileNames);
 		

@@ -15,7 +15,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class GameObject {
 	
 	
-	protected TileGraphics drawer;
+	protected TileGraphics graphics;
 	
 
 	protected int tileX; // (I,J) top left in tiles
@@ -45,11 +45,13 @@ public class GameObject {
 		// used for collision detection		
 		rect = new Rectangle(x*tileSize,y*tileSize,w*tileSize,h*tileSize);
 		
-
-		this.drawer = new TileGraphics(rect, map, x,y,w,h);
+		setGraphics(rect,map,x,y,w,h);
+		
 	}
 	
-
+	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
+		graphics = new TileGraphics(rect, map, x,y,w,h);
+	}
 
 	public Rectangle getRect(){
 		return rect;
@@ -60,7 +62,8 @@ public class GameObject {
 	}
 
 	public void render(int mapX, int mapY, int mouseX, int mouseY){
-		drawer.render((int) rect.getX() ,(int) rect.getY(), mapX, mapY, 1); 
+		graphics.render(mapX, mapY); 
+		
 	}
 
 	public boolean canCollide(){
