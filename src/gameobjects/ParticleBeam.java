@@ -22,7 +22,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 		super("Beam");
 		
 		this.angle = angle;
-		this.rect = new Rectangle( pixelX, pixelY, pixelLength, pixelWidth);
+		this.shape = new Rectangle( pixelX, pixelY, pixelLength, pixelWidth);
 		
 		
 //		rotate shape to angle
@@ -33,7 +33,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 //						Transform.createTranslateTransform(pixelX, pixelY));
 		
 //		this.rect =  shape.transform(Transform.createRotateTransform(angleInRadians,pixelX,pixelY));
-		Shape newRect = new Rectangle(rect.getX(), rect.getY(),rect.getWidth(),rect.getHeight());
+		Shape newRect = new Rectangle(shape.getX(), shape.getY(),shape.getWidth(),shape.getHeight());
 		System.out.println(newRect.getMinX() + "," + newRect.getMinY() + "|" + newRect.getMaxX() + "," + newRect.getMaxY());
 		
 //		newRect = (Shape) newRect.transform(
@@ -74,7 +74,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 		beamImage.setRotation(angle);
 		
 		
-		beamImage.draw(rect.getX()-mapX,rect.getY()-mapY);
+		beamImage.draw(shape.getX()-mapX,shape.getY()-mapY);
 
 		
 	}
@@ -96,7 +96,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	@Override
 	public Shape getRect() {
 		// TODO Auto-generated method stub
-		return rect;
+		return shape;
 	}
 	
 	public boolean isDying(){

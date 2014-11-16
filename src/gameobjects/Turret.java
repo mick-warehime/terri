@@ -43,8 +43,8 @@ public class Turret extends GameObject implements ObjectCreator {
 		this.chargeTime = Integer.parseInt((String) args.get("chargeTime"));
 
 		// relative location of the hub of the turret mount from top left in pixels
-		centerOfHubX = rect.getX()+50;
-		centerOfHubY = rect.getY()+35;
+		centerOfHubX = shape.getX()+50;
+		centerOfHubY = shape.getY()+35;
 
 		// define the relative location of the point of rotation from top left in pixels
 		int centerRotateX = 20;
@@ -58,7 +58,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 
 
-		this.graphics = new TurretGraphics(rect,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
+		this.graphics = new TurretGraphics(shape,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
 	}
 
 	public void render(int mapX, int mapY, int mouseX, int mouseY){
@@ -148,7 +148,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	}
 	
 	private boolean canTarget(){
-		return !collisionHandler.lineOfSightCollision(rect);
+		return !collisionHandler.lineOfSightCollision(shape);
 	}
 
 	@Override

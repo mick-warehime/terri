@@ -38,7 +38,7 @@ public class Teleporter extends GameObject implements InteractiveCollideable{
 	protected void setRect(){
 		//	make the shape smaller so you dont collide with it immediately after transport
 		int shrink = 2;
-		rect = new Rectangle(rect.getX()+shrink,rect.getY()+shrink,rect.getWidth()-2*shrink,rect.getHeight()-2*shrink);		
+		shape = new Rectangle(shape.getX()+shrink,shape.getY()+shrink,shape.getWidth()-2*shrink,shape.getHeight()-2*shrink);		
 	}
 	
 	

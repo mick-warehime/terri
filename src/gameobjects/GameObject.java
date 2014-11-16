@@ -27,7 +27,7 @@ public class GameObject {
 
 	protected String name;
 
-	protected Shape rect;
+	protected Shape shape;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
@@ -44,9 +44,9 @@ public class GameObject {
 
 
 		// used for collision detection		
-		rect = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
+		shape = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
 		
-		setGraphics(rect,map,tileX,tileY,widthInTiles,heightInTiles);
+		setGraphics(shape,map,tileX,tileY,widthInTiles,heightInTiles);
 		
 	}
 	
@@ -65,7 +65,7 @@ public class GameObject {
 	}
 
 	public Shape getRect(){
-		return rect;
+		return shape;
 	}
 
 	protected void setObjectDimensions(){
@@ -106,7 +106,7 @@ public class GameObject {
 	//Checks if an input shape is near the object's shape
 	public boolean isNear(Rectangle rectTest) {
 
-		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
+		Rectangle slightlyBiggerRect = new Rectangle(shape.getX()-proximity,shape.getY()-proximity,shape.getWidth()+2*proximity,shape.getHeight()+2*proximity);
 
 
 		return slightlyBiggerRect.intersects(rectTest);

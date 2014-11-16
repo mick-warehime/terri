@@ -17,7 +17,7 @@ public class EtherObject extends GameObject implements Etherable {
 	protected int putX;
 	protected int putY;
 
-	protected Shape etherRect;
+	protected Shape etherShape;
 	protected boolean isEther = false;
 	protected boolean isPut = false;
 	protected boolean isTimed = false;
@@ -29,9 +29,9 @@ public class EtherObject extends GameObject implements Etherable {
 		super(x, y, w, h, name, map,args);
 		
 		// used for collision detection		
-		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+		etherShape = new Rectangle(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
 		
-		this.etherGraphics = new EtherGraphics(rect,etherRect,map,x, y, w, h);
+		this.etherGraphics = new EtherGraphics(shape,etherShape,map,x, y, w, h);
 	}
 
 
@@ -49,9 +49,9 @@ public class EtherObject extends GameObject implements Etherable {
 
 		if(isEther && !isPut){
 			this.isPut = true;
-			putX = (int) (mousePos[0]-rect.getWidth()/2);
-			putY = (int) (mousePos[1]-rect.getHeight()/2);
-			rect.setLocation(putX,putY);
+			putX = (int) (mousePos[0]-shape.getWidth()/2);
+			putY = (int) (mousePos[1]-shape.getHeight()/2);
+			shape.setLocation(putX,putY);
 		}
 	}
 
@@ -63,7 +63,7 @@ public class EtherObject extends GameObject implements Etherable {
 			// TODO Auto-generated method stub
 			isPut = false;
 			isEther = false;
-			rect.setLocation(etherRect.getX(),etherRect.getY());
+			shape.setLocation(etherShape.getX(),etherShape.getY());
 		}
 	}
 
@@ -71,9 +71,9 @@ public class EtherObject extends GameObject implements Etherable {
 	public void update(){
 		if(isEther && !isPut){
 			//		eventually used to update doors/elevators etc;
-			int hoverX = (int) (mousePos[0]-rect.getWidth()/2);
-			int hoverY =(int) (mousePos[1]-rect.getHeight()/2);
-			rect.setLocation(hoverX,hoverY);			
+			int hoverX = (int) (mousePos[0]-shape.getWidth()/2);
+			int hoverY =(int) (mousePos[1]-shape.getHeight()/2);
+			shape.setLocation(hoverX,hoverY);			
 		}		
 	}
 
@@ -89,8 +89,8 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public boolean canPut(){
-		boolean answer = !collisionHandler.lineOfSightCollision(rect);
-		answer = answer && collisionHandler.canPlaceEtherAt(rect);
+		boolean answer = !collisionHandler.lineOfSightCollision(shape);
+		answer = answer && collisionHandler.canPlaceEtherAt(shape);
 		return answer;
 	}
 
@@ -100,9 +100,9 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public boolean canRestore(){
-		boolean answer = !collisionHandler.isCollidedWithObjects(rect);
-		answer = answer && !collisionHandler.isCollidedWithPlayer(etherRect);
-		answer = answer && !collisionHandler.isCollidedWithActor(etherRect);
+		boolean answer = !collisionHandler.isCollidedWithObjects(shape);
+		answer = answer && !collisionHandler.isCollidedWithPlayer(etherShape);
+		answer = answer && !collisionHandler.isCollidedWithActor(etherShape);
 		return answer;
 	}
 
@@ -111,7 +111,7 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public Shape getEtherRect(){
-		return etherRect;
+		return etherShape;
 	}
 
 

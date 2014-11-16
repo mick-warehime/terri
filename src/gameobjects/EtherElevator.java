@@ -60,7 +60,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 		boolean answer = Math.abs(displacement)>range || displacement<0;
 		
-		answer = answer || collisionHandler.isCollided(rect);
+		answer = answer || collisionHandler.isCollided(shape);
 		
 		return answer;
 	}
@@ -78,10 +78,10 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 			displacement = displacement + speed;
 
 			if(xOrY == 'x'){
-				rect.setX(rect.getX() + speed);//xPos+displacement
+				shape.setX(shape.getX() + speed);//xPos+displacement
 			}
 			else{
-				rect.setY(rect.getY() + speed);
+				shape.setY(shape.getY() + speed);
 			}
 		}
 
@@ -110,9 +110,9 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 		etherDisplacement = displacement;
 		etherSpeed = speed;
 		if (xOrY == 'x'){
-			etherRect.setX(rect.getX());
+			etherShape.setX(shape.getX());
 		}else{
-			etherRect.setY(rect.getY());
+			etherShape.setY(shape.getY());
 		}
 		// reset the range counter for the put elevator
 		displacement = 0;
@@ -129,7 +129,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 		speed = etherSpeed;
 		
 
-		rect.setLocation(etherRect.getX(),etherRect.getY());
+		shape.setLocation(etherShape.getX(),etherShape.getY());
 	}
 
 	public void toggle(){

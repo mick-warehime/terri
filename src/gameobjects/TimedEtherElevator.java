@@ -18,7 +18,7 @@ public class TimedEtherElevator extends EtherElevator  implements Timed{
 
 		// default duration is set to 1000 milliseconds	
 		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
-		this.timedEtherGraphics = new TimedEtherGraphics(rect,etherRect,map,x, y, w, h);
+		this.timedEtherGraphics = new TimedEtherGraphics(shape,etherShape,map,x, y, w, h);
 
 	}
 

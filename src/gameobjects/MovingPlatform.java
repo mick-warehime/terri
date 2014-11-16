@@ -32,8 +32,8 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 		this.switchTime = Integer.parseInt((String)args.get("switchTime"));
 
 		
-		this.initialX = this.rect.getX();
-		this.initialY = this.rect.getY();
+		this.initialX = this.shape.getX();
+		this.initialY = this.shape.getY();
 
 
 		// TODO Auto-generated constructor stub
@@ -43,7 +43,7 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 
 		boolean answer = switchTimer>=switchTime;
 
-		answer = answer || collisionHandler.isCollided(rect);
+		answer = answer || collisionHandler.isCollided(shape);
 		return answer;
 	}
 
@@ -59,8 +59,8 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 		}
 
 		//displace
-		rect.setX(rect.getX()+velocity[0]);
-		rect.setY(rect.getY()+velocity[1]);
+		shape.setX(shape.getX()+velocity[0]);
+		shape.setY(shape.getY()+velocity[1]);
 
 
 

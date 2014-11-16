@@ -41,7 +41,7 @@ public class ProgressPoint extends GameObject{
 	
 	public void update(){
 		if(!isActive){
-			if(collisionHandler.isCollidedWithPlayer(rect)){
+			if(collisionHandler.isCollidedWithPlayer(shape)){
 				isActive = true;
 			}
 		}
