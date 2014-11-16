@@ -18,6 +18,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	private TurretGraphics graphics;
 	private float centerOfHubX; //Center of rotation X
 	private float centerOfHubY; //Center of rotation Y
+	private float lengthOfMuzzle = 63;
 	private int chargeTime;
 	private int chargeTimer;
 	private boolean isShooting;
@@ -119,7 +120,6 @@ public class Turret extends GameObject implements ObjectCreator {
 		chargeTimer +=1;
 
 		if(chargeTimer > chargeTime){
-			System.out.println("Pew!");
 			isShooting = true;
 			chargeTimer = 0;
 		}
@@ -161,7 +161,12 @@ public class Turret extends GameObject implements ObjectCreator {
 	public Object getObject() throws SlickException {
 		isShooting = false;
 		
-		return new ParticleBeam((int) centerOfHubX, (int) centerOfHubY, 30, 5, angle);
+		//Determine position of turret muzzle
+		float angleInRadians = (float) (Math.PI*angle/180);
+		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
+		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
+		
+		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy), 500, 5, angle);
 	}
 	
 	

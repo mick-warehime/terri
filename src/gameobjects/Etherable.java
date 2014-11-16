@@ -1,6 +1,7 @@
 package gameobjects;
 
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 public interface Etherable {
 

@@ -14,10 +14,10 @@ public class EtherGraphics extends TileGraphics{
 	protected int objectHeightInPixels;
 	
 
-	public EtherGraphics(Rectangle rect,Rectangle etherRect, TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
+	public EtherGraphics(Rectangle rect,Rectangle etherRect2, TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
 		super(rect,map,tileX,tileY,numberOfXTiles,numberOfYTiles);
 		
-		this.etherRect = etherRect;
+		this.etherRect = etherRect2;
 
 		this.objectWidthInPixels = numberOfXTiles*map.getTileWidth();
 		this.objectHeightInPixels = numberOfYTiles*map.getTileHeight();

@@ -54,7 +54,7 @@ public class Game extends BasicGame {
 	private int[] mousePos = new int[2];
 
 	public Game() {
-		super("Dvirs little nipple");
+		super("Mick is a dick");
 	}
 
 	@Override

@@ -2,15 +2,10 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Properties;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
-import actors.Enemy;
-import actors.EtherEnemy;
-import actors.Turret2;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.InteractiveCollideable;
@@ -71,7 +66,7 @@ public class Level {
 		this.actors = tileData.getActors();
 		
 
-		//Add object creators and interactive Collideables
+		//Add object creators 
 		this.creators = new ArrayList<ObjectCreator>();
 		for (GameObject gObj:gameObjects){
 			if(gObj instanceof ObjectCreator){
@@ -84,7 +79,7 @@ public class Level {
 			}
 		}
 
-		//Add object creators and interactive Collideables
+		//Add interactive Collideables
 		this.collideables = new ArrayList<InteractiveCollideable>();
 		for (GameObject gObj:gameObjects){
 			if(gObj instanceof InteractiveCollideable){

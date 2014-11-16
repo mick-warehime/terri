@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class TileGraphics{
 
 	public ArrayList<Image> tileImages;
-	protected Rectangle rect;
+	protected Shape rect;
 	protected int tileHeightInPixels;
 	protected int tileWidthInPixels;
 	protected int tileX;
@@ -18,8 +19,8 @@ public class TileGraphics{
 	protected int numberOfXTiles;
 	protected int numberOfYTiles;
 	
-	public TileGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
-		this.rect = rect;
+	public TileGraphics(Shape rect2,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
+		this.rect = rect2;
 		
 		this.tileX = tileX;
 		this.tileY = tileY;
