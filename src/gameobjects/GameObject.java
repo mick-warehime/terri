@@ -30,27 +30,37 @@ public class GameObject {
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
-	public GameObject(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException{
+	public GameObject(int tileX, int tileY, int widthInTiles, int heightInTiles, String name, TiledMap map, Properties args) throws SlickException{
 
 		tileSize = map.getTileHeight();				
 
 		//Position in tile index
-		this.tileX = x;
-		this.tileY = y;
+		this.tileX = tileX;
+		this.tileY = tileY;
 
 		this.name = name; 
 
 
 
 		// used for collision detection		
-		rect = new Rectangle(x*tileSize,y*tileSize,w*tileSize,h*tileSize);
+		rect = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
 		
-		setGraphics(rect,map,x,y,w,h);
+		setGraphics(rect,map,tileX,tileY,widthInTiles,heightInTiles);
 		
 	}
 	
+	//constructor for objects not constructed from data
+	public GameObject(String name) {
+		this.name = name; 
+		
+	}
 	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
 		graphics = new TileGraphics(rect, map, x,y,w,h);
+	}
+
+	//For removal of objects by level
+	public boolean isDying(){
+		return false;
 	}
 
 	public Rectangle getRect(){

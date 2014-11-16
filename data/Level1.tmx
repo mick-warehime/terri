@@ -38,14 +38,17 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="3207" name="lemmings" tilewidth="32" tileheight="48">
+  <image source="lemmings.png" width="384" height="384"/>
+ </tileset>
  <layer name="tiles" width="170" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aW27CMBBFo6KK7owNdE9ZAHtgK/nmj7CLPmh/G5dYikz8HM/ENvdII0Hk+JWD7dj0L113ebvHOMXVEr+vYaHzcoUuJzSdL2xpR+OzmW9om1LCrJMvXUzdSm5HrC++6HdzTJ7aCPFl2c+jcd3nn43THGb6ted56sLD1x7Ks3Tl6+q/0L6OKW+Ldug8qOOcGcPuHl8OT13+mnW+OLwzn4UPLk9ddTLbE/rsTN8ohMwdrvGilHZoctRJj6UpnnIT4x7VUxOz3ySheFpSO2yk1GmAp8WR09NWgKflAU8foaxPuanB05wuUfxs3VOsT2nAUxkw79PgcCmnpzncL+E3Ak9p1OBpC8BTGvBUBuXoAE+TgacyKE/3Au/75ymOkfc8q6eUstbuaQHl6UHA0/c5YoCn8eWtpW8B5Wkv4KkaS+EpPE3lf32K8TQZaU99Za6lbQEpT9V4eo68p3RHFXiPkmEoeDzVwFN4uhc63095319SoqOKrT0NyasFDkKeUsbTJSU5quBYm8LTR3ohT1Pe92sAnsog9b8+Ne+36CmQ4XM+M61l3gflwzHHlLx/ygH3ehXwILkvFbt/ysFWnlL2mnLuU9WK1L7UsUvfl6phvx/wIjnvp46n8BQ823kUPK2TGs6j4ClYnkfpParvKT6M77cpfizXbpb0IXlwlcNVxhZ95Muj5Hbkzu8PlYxHZLBPAAA=
+   H4sIAAAAAAAAA+2aWW7CMBCGo6KK3owL9E45AHfgKnnmDbhFF9rXxiWWoiFex57Yzv9JI1HkeMuH1/YvXXd5e8R1jJshfl/9QudlC12ObzpXmNJeyWear2+bYoLWyZUupG4ltyPUF1f0uylGT034+DLv5yv53uWfidMUNP3S+zx1/uFqD+dd2vK19Z9vX4eUt0Y7dB7ccY7GsHvEl8VTm7+0zheLd/RduMjlqa1OtD2+7476xsFn7rCNF6W0Q5OiTnosjfE0NyHucT2l0H6ThONpSe0wEVOnAZ4WR0pPWwGelgc8fYazPs1NDZ6mdInjZ+ueYn3KA57KgHmfRw6XUnqawv0SfiPwlEcNnrYAPOUBT2VQjg7wNBp4KoPydC+w3z+PcQx8ZquecspaeqYFlKcHAU/fpwgBnoaXt5S+BZSnvYCnaiyFp/A0lv/1KcbTaKQ9dZW5lLYFpDxV4+k58JnSHVVgHyXDUPB4qoGn8HQvdL8fs9+fU6KjirU99cmrBQ5CnnLG0zklOarIsTaFp8/0Qp7G7PdrQHoPtVWk/q9Pzfstegpk+JzuTGuZ90H55JhjSj4/zUHu9SrIg+S5VOj5aQ7W8pRz1pTynKpWpM6ljl38uVQN5/0gL5Lzfux4Ck/B1u6j4Gmd1HAfBU/B/D5Kn1F9j/FB/r6P8WP47m5I75NHrnJylbFGH7nyKLkdqfP7A+XD2+ewTwAA
   </data>
  </layer>
  <layer name="ether" width="170" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aXQqCQBRA4QGVcjH9EPncY+2sNtCaagPtJN8TJEKM8KZzZ65zPrhIODgjnB6CnAMAAACAj0PRDhAzOgUAAP/Yle0AMaNTWECnsIBOEcJCuJ5OEcJRuJ5OEcJZuJ5OEcJNuJ5OYQGdpuuadydmdJquR9GdmNEpLKBTjLFU2odOMcZJaZ85d/r+n+63wTQuSvvMuVPLrHyf7kr70GmcrHQKAEBKnplzdSa7+iA9g/Q69J7PM2i8S+3heVoN/LLPnaty2dUH6Rmk16H3fJ5B410qD8+buoFV83ty3cymmW3Z/wxM7QUYKlbnsE8AAA==
+   H4sIAAAAAAAAA+3aXQqCQBSG4QGVCtpKP0Red1k7qw20oi5qA+0k7xNM1IrwNHPGUd8HDkdxdEb4FASNAQAAAIDKLikKCBk5BQAA/9jMigJCRk7RB+QUfUBO0YWJcDw5RRf2wvHkFL5c5tX2UXguOUUXrsLx5BRa6u9PW+R0vM5xs0JGTsfrnjQrZOQUfUBOYWPqaR5yChsHT/MMOaflf7rfCm6cXr38tn/vrgw5p31Wf560M2Dj5mkechom3vsAAITnERmTRbKuQboGaW97THMNPu4lU7ierwz8so2NSWNZ1yBdg7S3Paa5Bh/3kipcz3UGFvn35DKvVV7r2ec+4NoTVqyImrBPAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -60,22 +63,7 @@
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="895" y="336" width="16" height="16">
-   <properties>
-    <property name="type" value="enemy"/>
-   </properties>
-  </object>
-  <object name="E" type="enemy" x="870" y="336" width="16" height="16">
-   <properties>
-    <property name="type" value="enemy"/>
-   </properties>
-  </object>
-  <object name="E" type="enemy" x="820" y="336" width="16" height="16">
-   <properties>
-    <property name="type" value="enemy"/>
-   </properties>
-  </object>
-  <object name="E" type="enemy" x="844" y="336" width="16" height="16">
+  <object name="E" type="enemy" x="816" y="336" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
@@ -130,17 +118,17 @@
     <property name="y" value="13"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1536" y="336" width="16" height="16">
+  <object name="E" type="enemy" x="1536" y="320" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1504" y="336" width="16" height="16">
+  <object name="E" type="enemy" x="1504" y="320" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1472" y="336" width="16" height="16">
+  <object name="E" type="enemy" x="1472" y="320" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
@@ -152,7 +140,7 @@
     <property name="vy" value="-1"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1634" y="213" width="16" height="16">
+  <object name="E" type="enemy" x="1616" y="192" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
@@ -162,13 +150,29 @@
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1552" y="224" width="16" height="16">
+  <object name="E" type="enemy" x="1552" y="224" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
   <object name="Ladder" type="ladder" x="1856" y="128" width="32" height="256"/>
-  <object name="E" type="enemy" x="208" y="176" width="16" height="16"/>
-  <object name="T" type="turret2" x="240" y="224" width="16" height="16"/>
+  <object name="E" type="enemy" x="848" y="336" width="32" height="48">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="880" y="336" width="32" height="48">
+   <properties>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="Turret" type="turret" x="240" y="240" width="48" height="64">
+   <properties>
+    <property name="angle" value="10"/>
+    <property name="chargeTime" value="50"/>
+    <property name="maxAngle" value="170"/>
+    <property name="minAngle" value="10"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

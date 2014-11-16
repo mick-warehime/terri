@@ -6,42 +6,36 @@ import java.util.Properties;
 import graphics.TurretGraphics;
 
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.command.Command;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class Turret extends GameObject implements InteractiveCollideable{
+public class Turret extends GameObject implements ObjectCreator {
 	// state  = false for left/not active and state = 1 for right/active
 	private float angle;
 	private float restingAngle;
-	private float angleToPlayer;
-	private float speed;
+	private float rotationSpeed;
 
 	protected float[] rotationRange = new float[2];// [ minAngle, maxAngle]
 	private TurretGraphics graphics;
-	private float centerOfHubX;
-	private float centerOfHubY;
-	private boolean lockedOn;
+	private float centerOfHubX; //Center of rotation X
+	private float centerOfHubY; //Center of rotation Y
 	private int chargeTime;
 	private int chargeTimer;
-	public boolean onTarget;
+	private boolean isShooting;
 
 
 	public Turret(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
 		super(x, y, w, h, name, map, args);
 
-		// onTarget keeps track of whether or not the gun can see the player
-
+		this.isShooting = false;
+		
 		// initial angle of the gun measure from the right (90 is down 270 is up)
 		this.angle = Float.parseFloat((String) args.get("angle"));
 
 		// allows the turret to return to its initial position
 		this.restingAngle = angle;
 
-		// if angle-angleToPlayer < tolerance then i call that 'locked on'
-		this.lockedOn = false;
-		
 		// how quickly the turret tracks the player; meausred in degrees/frame
-		this.speed = 2;
+		this.rotationSpeed = 2;
 
 		this.rotationRange[0] = Float.parseFloat((String) args.get("minAngle"));
 		this.rotationRange[1] = Float.parseFloat((String) args.get("maxAngle"));
@@ -72,40 +66,42 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 	}
 
-	private void getAngleToPlayer(){
+	private float getAngleToPlayer(){
 		// calculate the angle from the hub of the gun to the center of the player
 		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
 		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
 
-		angleToPlayer = (float) Math.atan2(centerOfPlayerY-centerOfHubY,centerOfPlayerX-centerOfHubX);
-		angleToPlayer = (float) (angleToPlayer*180/Math.PI);
+		float answer = (float) Math.atan2(centerOfPlayerY-centerOfHubY,centerOfPlayerX-centerOfHubX);
+		answer = (float) (answer*180/Math.PI);
 
+		return answer;
 	}
 
 
-	private void updateChargeTimer(){
-		// if the turret can see terri increment its charge timer
-		if(!collisionHandler.lineOfSightCollision(rect)){
-			chargeTimer += 1;			
-		} else{
-			chargeTimer = 0;
-		}
+//	private void updateChargeTimer(){
+//		// if the turret can see terri increment its charge timer
+//		if(lockedOn()){
+//			chargeTimer += 1;			
+//		} else{
+//			chargeTimer = 0;
+//		}
+//	}
 
+
+	private boolean lockedOn() {
+		float angleToPlayer = getAngleToPlayer();
+		
+		return Math.abs(angleToPlayer-angle)<2;
+		
 	}
 
-
-	private void setNewAngle(float targetAngle){
+	private void rotateToAngle(float targetAngle){
 		// slowly move the turret towards the target angle	
 		if(Math.abs(targetAngle-angle)>1){
-			lockedOn = false;
-			
 			if(targetAngle>angle){
-				angle+=speed;
+				angle+=rotationSpeed;
 			}else
-				angle-=speed;
-			
-		}else{
-			lockedOn = true;
+				angle-=rotationSpeed;
 			
 		}
 
@@ -118,40 +114,55 @@ public class Turret extends GameObject implements InteractiveCollideable{
 
 	}
 
-	public void tryToKillTarget(){
+	private void tryToKillTarget(){
+		
+		chargeTimer +=1;
 
-//		if(chargeTimer > chargeTime){
-//			if(lockedOn){
-//			}
-//		}
+		if(chargeTimer > chargeTime){
+			System.out.println("Pew!");
+			isShooting = true;
+			chargeTimer = 0;
+		}
 	}
 
+	
+	
 	public void update(){
 
-		//		System.out.println(chargeTimer);
-		updateChargeTimer();
 
-		getAngleToPlayer();
-
-		if(!collisionHandler.lineOfSightCollision(rect)){
-			setNewAngle(angleToPlayer);
+		//Rotation 
+		if(canTarget()){
+			float angleToPlayer = getAngleToPlayer();
+			rotateToAngle(angleToPlayer);
 		}else {
-			setNewAngle(restingAngle);
+			rotateToAngle(restingAngle);
 		}
 
-		tryToKillTarget();
+		if (lockedOn()){
+			tryToKillTarget();
+		}else{
+			chargeTimer = 0;
+		}
+		
 
+	}
+	
+	private boolean canTarget(){
+		return !collisionHandler.lineOfSightCollision(rect);
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public boolean hasObject() {
 		// TODO Auto-generated method stub
-
+		return isShooting;
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Command>();
-	};
+	public Object getObject() throws SlickException {
+		isShooting = false;
+		
+		return new ParticleBeam((int) centerOfHubX, (int) centerOfHubY, 30, 5, angle);
+	}
+	
+	
 }

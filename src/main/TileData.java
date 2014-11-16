@@ -175,7 +175,7 @@ public class TileData {
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
 			try {
 				//Populate different lists according to type
-				System.out.println(construct);
+				
 				Object obj = (Object) construct.newInstance(x, y, w, h, name, map,args);
 				
 				if (obj instanceof GameObject){
