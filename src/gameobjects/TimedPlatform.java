@@ -22,12 +22,12 @@ public class TimedPlatform extends EtherObject  implements Timed{
 
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		long timeElapsed = getTime()-putTime; 
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 		
-		timedEtherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut(), percentTimeLeft);
+		timedEtherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
 		 
 	}
 

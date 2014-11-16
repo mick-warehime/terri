@@ -22,7 +22,7 @@ public class EtherObject extends GameObject implements Etherable {
 	protected boolean isPut = false;
 	protected boolean isTimed = false;
 	protected EtherGraphics etherGraphics;
-	private int[] mousePos;
+	protected int[] mousePos;
 
 
 	public EtherObject(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {
@@ -77,9 +77,9 @@ public class EtherObject extends GameObject implements Etherable {
 		}		
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		
-		etherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut());
+		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
 		 
 	}
 

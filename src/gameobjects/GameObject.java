@@ -72,7 +72,7 @@ public class GameObject {
 		throw new UnsupportedOperationException(); 
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		graphics.render(mapX, mapY); 
 		
 	}

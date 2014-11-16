@@ -14,7 +14,7 @@ public class TimedEtherGraphics extends EtherGraphics{
 			int tileX, int tileY, int numberOfXTiles, int numberOfYTiles)
 			throws SlickException {
 		super(rect, etherRect2, map, tileX, tileY, numberOfXTiles, numberOfYTiles);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public void render(int mapX, int mapY, int mouseX, int mouseY,  boolean isEther, boolean isPut, boolean canPut, float percentTimeLeft) {

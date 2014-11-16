@@ -52,7 +52,7 @@ public class SwitchObject extends GameObject implements Interactive {
 		target.toggle();
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		
 		int imageIndex = 0;
 		if(state){

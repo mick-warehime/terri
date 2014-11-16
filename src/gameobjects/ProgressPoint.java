@@ -68,12 +68,11 @@ public class ProgressPoint extends GameObject{
 	}
 	
 	@Override
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		return;
 		
 	}
 
-	public void render(int i, int j){
-	}
+	
 
 }

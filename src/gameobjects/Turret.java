@@ -61,7 +61,7 @@ public class Turret extends GameObject implements ObjectCreator {
 		this.graphics = new TurretGraphics(shape,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 
 		graphics.render(mapX, mapY,-25,-18,angle);
 
@@ -78,15 +78,6 @@ public class Turret extends GameObject implements ObjectCreator {
 		return answer;
 	}
 
-
-//	private void updateChargeTimer(){
-//		// if the turret can see terri increment its charge timer
-//		if(lockedOn()){
-//			chargeTimer += 1;			
-//		} else{
-//			chargeTimer = 0;
-//		}
-//	}
 
 
 	private boolean lockedOn() {
@@ -166,7 +157,7 @@ public class Turret extends GameObject implements ObjectCreator {
 		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
 		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
 		
-		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy), 500, 5, angle);
+		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy), 100, 5, angle);
 	}
 	
 	
