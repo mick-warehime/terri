@@ -36,35 +36,33 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 
-	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Actor> actors){
+	public void receiveObjects(ArrayList<GameObject> gameObjects, ArrayList<Actor> actors, ArrayList<InteractiveCollideable> interactiveCollideables){
 
 		this.gameObjects = gameObjects;
 		this.actors = actors;
+		this.interactiveGameObjects = interactiveCollideables;
 
-
-		populateInteractiveCollideables();
-
-	}
-
-	private void populateInteractiveCollideables() {
-		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
-
-		for (GameObject gObj: gameObjects){
-			if (gObj instanceof InteractiveCollideable){
-				interactiveGameObjects.add((InteractiveCollideable) gObj);
-			}
-		}
-
-		for (Actor actor: actors){
-			if (actor instanceof InteractiveCollideable){
-				interactiveGameObjects.add((InteractiveCollideable) actor);
-			}
-		}
-
-
-
+//		populateInteractiveCollideables();
 
 	}
+
+//	private void populateInteractiveCollideables() {
+//		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
+//
+//		for (GameObject gObj: gameObjects){
+//			if (gObj instanceof InteractiveCollideable){
+//				interactiveGameObjects.add((InteractiveCollideable) gObj);
+//			}
+//		}
+//
+//		for (Actor actor: actors){
+//			if (actor instanceof InteractiveCollideable){
+//				interactiveGameObjects.add((InteractiveCollideable) actor);
+//			}
+//		}
+//
+//
+//	}
 
 
 	public void addPlayerRect(Rectangle playerRect){

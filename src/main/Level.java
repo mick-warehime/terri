@@ -14,6 +14,8 @@ import actors.EtherEnemy;
 import actors.Turret2;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
+import gameobjects.InteractiveCollideable;
+import gameobjects.ObjectCreator;
 import gameobjects.ProgressPoint;
 
 
@@ -42,6 +44,8 @@ public class Level {
 	//	private TileData tileData;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<Actor> actors;
+	private ArrayList<ObjectCreator> creators;
+	private ArrayList<InteractiveCollideable> collideables;
 	private int[] mousePos;
 
 	public Level(int levelNumber) throws SlickException {
@@ -66,10 +70,37 @@ public class Level {
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.actors = tileData.getActors();
-		incorporateCollisionHandler(); 
-
-//		new Turret2( 10, 16, 2, 3, "turret2", map, null);
 		
+
+		//Add object creators and interactive Collideables
+		this.creators = new ArrayList<ObjectCreator>();
+		for (GameObject gObj:gameObjects){
+			if(gObj instanceof ObjectCreator){
+				creators.add((ObjectCreator) gObj);
+			}
+		}
+		for (Actor actor:actors){
+			if(actor instanceof ObjectCreator){
+				creators.add((ObjectCreator) actor);
+			}
+		}
+
+		//Add object creators and interactive Collideables
+		this.collideables = new ArrayList<InteractiveCollideable>();
+		for (GameObject gObj:gameObjects){
+			if(gObj instanceof InteractiveCollideable){
+				collideables.add((InteractiveCollideable) gObj);
+			}
+		}
+		for (Actor actor:actors){
+			if(actor instanceof InteractiveCollideable){
+				collideables.add((InteractiveCollideable) actor);
+			}
+		}
+
+		incorporateCollisionHandler(); 
+		
+
 
 	}
 
@@ -77,7 +108,7 @@ public class Level {
 	private void incorporateCollisionHandler() throws SlickException{
 
 		//Give the objects to the collisionHandler
-		collisionHandler.receiveObjects(gameObjects, actors);
+		collisionHandler.receiveObjects(gameObjects, actors, collideables);
 
 		//Give the CollisionHandler to actors and gameObjects
 
@@ -102,29 +133,49 @@ public class Level {
 
 
 
-	public void update(){
-		for(GameObject gObj: gameObjects){
+	public void update() throws SlickException{
+		//Update game Objects and remove 'dead' ones
+		for(Iterator<GameObject> iterator = gameObjects.iterator(); iterator.hasNext(); ){
+			GameObject gObj = iterator.next();
 			gObj.update();
+
+			if (gObj.isDying()){
+				iterator.remove();
+			}
 		}
 
-		//		for(Actor nme: actors){		
-		//			nme.update(mouseX,mouseY);
-		//		}
+
 
 		//Update actors and remove dead ones
 		for (Iterator<Actor> iterator = actors.iterator(); iterator.hasNext();) {
 			Actor nme = iterator.next();
-			
+
 			nme.update();
-		
-
-
 			if (nme.isDying()) {
 				// Remove the current element from the iterator and the list.
 				iterator.remove();
 			}
-		}			
+		}
 
+		//Cycle through object creators and add their outputs 
+		for (ObjectCreator creator : creators){
+			if(creator.hasObject()){
+				Object obj = creator.getObject();
+
+				if(obj instanceof GameObject){
+					gameObjects.add((GameObject)obj);
+				}
+				if(obj instanceof Actor){
+					actors.add((Actor)obj);
+				}
+				if(obj instanceof InteractiveCollideable){
+					collideables.add((InteractiveCollideable)obj);
+				}
+
+
+			}
+
+		}
 
 	}
 
