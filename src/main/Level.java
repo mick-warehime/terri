@@ -81,17 +81,13 @@ public class Level {
 		//Give the CollisionHandler to actors and gameObjects
 
 		for(GameObject gObj: gameObjects){
-
 			gObj.setCollisionHandler(collisionHandler);
-
-
 		}
-
 
 		for (Actor nme: actors){
 			nme.incorporateCollisionHandler(collisionHandler);
-
 		}
+		
 	};
 
 
@@ -105,21 +101,13 @@ public class Level {
 		for(GameObject gObj: gameObjects){
 			gObj.update();
 		}
-
-		//		for(Actor nme: actors){		
-		//			nme.update(mouseX,mouseY);
-		//		}
-
 		//Update actors and remove dead ones
 		for (Iterator<Actor> iterator = actors.iterator(); iterator.hasNext();) {
 			Actor nme = iterator.next();
 			
 			nme.update();
 		
-
-
-			if (nme.isDying()) {
-				// Remove the current element from the iterator and the list.
+			if (nme.isDying()) {				
 				iterator.remove();
 			}
 		}			
@@ -130,7 +118,7 @@ public class Level {
 
 
 
-	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
+	public void draw(Graphics g,int x, int y, int mouseX, int mouseY){		
 
 
 		// min/max sets the submatrix of tiles to draw		
@@ -176,6 +164,7 @@ public class Level {
 			tolX = tol*tileSize;
 		}
 	}
+	
 	private void mapYCheck(){
 
 		if(mapY<0){

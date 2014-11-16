@@ -7,8 +7,6 @@ import java.util.Properties;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-import actors.Enemy;
-
 public class MultiDoor extends Door{
 	
 	// all must be true to open the door
