@@ -107,17 +107,13 @@ public class Level {
 		//Give the CollisionHandler to actors and gameObjects
 
 		for(GameObject gObj: gameObjects){
-
 			gObj.setCollisionHandler(collisionHandler);
-
-
 		}
-
 
 		for (Actor nme: actors){
 			nme.incorporateCollisionHandler(collisionHandler);
-
 		}
+		
 	};
 
 
@@ -176,7 +172,7 @@ public class Level {
 
 
 
-	public void draw( Graphics g,int x, int y, int mouseX, int mouseY){		
+	public void draw(Graphics g,int x, int y, int mouseX, int mouseY){		
 
 
 		// min/max sets the submatrix of tiles to draw		
@@ -222,6 +218,7 @@ public class Level {
 			tolX = tol*tileSize;
 		}
 	}
+	
 	private void mapYCheck(){
 
 		if(mapY<0){
