@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TileGraphics{
+public class ProgressPointGraphics{
 
 	public ArrayList<Image> tileImages;
 	protected Rectangle rect;
@@ -18,7 +18,7 @@ public class TileGraphics{
 	protected int numberOfXTiles;
 	protected int numberOfYTiles;
 	
-	public TileGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
+	public ProgressPointGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
 		this.rect = rect;
 		
 		this.tileX = tileX;
@@ -57,6 +57,7 @@ public class TileGraphics{
 		for(int i = 0; i < numberOfXTiles; i++){
 			for(int j = 0; j < numberOfYTiles; j++){
 				//		
+ 	
 				tileImages.get(count).draw(rect.getX() + i*tileWidthInPixels - mapX,
 									       rect.getY() + j*tileHeightInPixels - mapY);
 				count ++;			

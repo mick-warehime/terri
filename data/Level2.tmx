@@ -6,14 +6,14 @@
  <tileset firstgid="3201" name="lemmings" tilewidth="32" tileheight="48">
   <image source="lemmings.png" width="384" height="384"/>
  </tileset>
- <layer name="tiles" width="42" height="100" opacity="0.5">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YaWoDMQxGlb9JF9pzdaE9Vxfac3VhcqKKgspEGWOJfmOJoAfG02KSz/K8sTNERBO3PeVD57raEF1votK00bke+PoxYU6d642v3xPm1Lkmvt4nzKlzlUf/ozzCUh5hKY+wlEdYyiMs5RGW8giLzpV13bVHWddde5R13fU6Z31+6nXO+vwsj7CUR1jKIyzlEZbyCEt5hKU8wlIeYSmPsBy9Z6CcOfU6p/WdDuuX1Xddv6y+H3mU1PfyCEt5hKU8wlIeYfF6JPMYPR+vRzKv0feH16Ooeno9kvGjn19ej2T86OeX16Oo+9PrUdT96fUoqp5ej8J8J59HUfU89f1Ixun66r43zvo58/pNZN+PZJyur+5748yfI/uLsf69eXv7tejN29uvRdXTzq9HDf/k/+Idurdkk/PP/O+Wl/pch+qtOYXR+4yVU/0dF4V334zCe/6Mwnv+jKI8smHdB6I9su4D0R5Z6xntkXl/pViPrD5k8ahHtEfWnFk86hHtkfecLJRHy6zlEfq+kJw3W6Jbbnfc7rftcX856fB9se7R94V8/xNne+b2wu11IWfLo1G/uyXnB2f75PbF7XspJy17NOo9htTpbEd0zu2C2+XueFzLo2x9y6Ns/dyjH9f2Vw+gQQAA
-  </data>
- </layer>
  <layer name="ether" width="42" height="100" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SuQkCURSF4ZsMzKBYiUshgg1MpoYuhQhTgwW4FCJYiUsLnuAlPphErjM3+D843Jc8OMExAwAAAAAAAAAAAAAAiGtTmm2VnbIv+27T7qRuZ+WiXAP3fKjbU3kp78A9x5XZRJkqs6rvNu3Ypy/26Yt9+mKfvtinL/bpi336Yp8+6nSj7XOQbp3daPucp5v3jLbPQ7p5z2j7vKWb9wSAaJaF2UpZF9/vf2iGv//tsicAX3ezY6MslJHSdx8AANCND4ayvYqgQQAA
+   H4sIAAAAAAAAA+3TyQnCUBSF4bsJGBQrcahDBGsI6tKhjiCkBgtwaCFbEazEoQWP8ERcBEEeeU/8PzhcF1kc4okZAAAAAAAAAAAAAABAvGYNs7myUJaN0G2qbdRtq+yUfcQ9z+p2Ua7KLeKendSsq/SUfhq6TTX26Rf79It9+sU+/WKffrFPv9inX+zTj4NZ+bix7bPp7vOV5a5nbPscujt43fJxY9vnyt3c3dT1jG2fR3cPQVv8Dn0nmTaY6f/N9O6y0H2AfzJOzCbKNHn/Xaei9fmZGHoC+M7JbF0oI6WthO4DAADqcQeD68eDoEEAAA==
+  </data>
+ </layer>
+ <layer name="tiles" width="42" height="100" opacity="0.5">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2aaU4DMQyF3b8ti+BcLIJzsaiciAOwqD0RFsho6pkoMfMmNpWfZHlaRdMXJ1+SGZWIaMexp3jSvi5WRJcrLzdlaV93fH0f0Kf2teXrl4A+ta8dX+8D+tS+kqN5So6wSo6wSo6wSo6wSo6wSo6wSo6w0r6ijrvmKOq4a46ijrse56jrpx7nqOtncoRVcoRVcoRVcoRVcoRVcoRVcoRVcoRVcoTV6D0DxfSpxzks73RYv6i86/pF5X3EUVDekyOskiOskiOskiOsrBxJP3r3x8qR9Kv3/LBy5FVPK0fSvvf6ZeVI2vdev6wcec1PK0de89PKkVc9rRy58U42jrzqeez7kbTT9dW51q71PsP67ah9P5J2ur4619o130f2l8b61/ptzUup1m9rXkpZz3Z9c1TgT74X7lDZ4k3OP8PPJS71uW5uLvmV74ec/4f/1x3rc5yXrPuml6znTy9Zz59e8uZo+7M2vdbaeXPUuh94c/TX/aA3R6319OaoeZ8lf45aeIjCUU3eHLX6jMJRTd4cNfuk5KhFS3GEnhfi82pNdM1xw3G7Lrf79UmH74t1Rs8L+f0H9vbI8cTxPOGzxFGv527x+cbe3jk+OD6nfNI0R7U853l4qk4nG6JTjjOO883YZ4mjaLnEUbQ85OgLi4dPVaBBAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -24,23 +24,15 @@
     <property name="y" value="93"/>
    </properties>
   </object>
-  <object name="door1" type="door" x="624" y="1120" width="16" height="64"/>
-  <object name="Sw" type="weightedSwitch" x="48" y="1504" width="18" height="17">
-   <properties>
-    <property name="index" value="0"/>
-    <property name="prox" value="5"/>
-    <property name="target" value="door1"/>
-   </properties>
-  </object>
   <object type="teleporter" x="656" y="1120" width="16" height="64">
    <properties>
     <property name="x" value="2"/>
     <property name="y" value="72"/>
    </properties>
   </object>
-  <object name="5s" type="timedPlatform" x="48" y="1296" width="96" height="32">
+  <object name="10s" type="timedPlatform" x="48" y="1296" width="96" height="32">
    <properties>
-    <property name="duration" value="5"/>
+    <property name="duration" value="10"/>
    </properties>
   </object>
   <object type="ladder" x="48" y="800" width="64" height="384"/>
@@ -50,6 +42,13 @@
     <property name="y" value="72"/>
    </properties>
   </object>
-  <object type="etherEnemy" x="480" y="1264" width="32" height="48"/>
+  <object type="etherEnemy" x="576" y="1264" width="32" height="48"/>
+  <object name="Sw" type="weightedSwitch" x="432" y="1552" width="18" height="17">
+   <properties>
+    <property name="target" value="door1"/>
+   </properties>
+  </object>
+  <object name="door2" type="door" x="624" y="1120" width="16" height="64"/>
+  <object name="door1" type="door" x="496" y="1200" width="64" height="16"/>
  </objectgroup>
 </map>

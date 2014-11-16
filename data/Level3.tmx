@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
+  <image source="metroidtiles.png" width="1024" height="800"/>
+ </tileset>
+ <tileset firstgid="3201" name="lemmings" tilewidth="32" tileheight="48">
+  <image source="lemmings.png" width="384" height="384"/>
+ </tileset>
+ <layer name="tiles" width="40" height="100" opacity="0.5">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2VMY6DMBBFXZCGjpVysEVKz5WIRJ+jcAWQfJ+dwYxikJNgb5LqPekLk3jw53uQm9q5qXY3VS/6FTWrpoRszn6+3U+7cf/kOfH4p3adqhVdRbNI/hvl+U7GN5X8fmvD3EVzQjZnP9/u593YrkN1Xyc1V96xU4mfrg/e9DqKnPx/GF2nhNy6NmQ3TiG/j61j+Mw62ZOxCdLxYUr9nU958+eQ3dJ/7Yf9ac2l0N83+k/3dij0V9J/OR51ru6tz/R3Ddll958/6M/ew697m+vPvt/c/tMsXmVovvya3VDgz77f3P5bsqjuHlMyX6qS7BTrv/2Zsp4rm7MrrhvWdX31WObrUpidEvXf5kyZgsfN2RXX+XXd8xOZr1JvivWf+cypHaJ8UjJfpd4U21/zmVPro3xS+q83xXKz7yS33p8e6x2U5PZNSnMDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgPfxB2v5ipuAPgAA
+  </data>
+ </layer>
+ <layer name="ether" width="40" height="100" opacity="0.3">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAao3nfFeAPgAA
+  </data>
+ </layer>
+ <objectgroup name="objects" opacity="0.58">
+  <object type="progressPoint" x="80" y="96" width="16" height="48">
+   <properties>
+    <property name="index" value="0"/>
+    <property name="x" value="18"/>
+    <property name="y" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

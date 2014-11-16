@@ -15,7 +15,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class GameObject {
 	
 	
-	protected TileGraphics drawer;
+	protected TileGraphics graphics;
 	
 
 	protected int tileX; // (I,J) top left in tiles
@@ -45,14 +45,17 @@ public class GameObject {
 		// used for collision detection		
 		rect = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
 		
-
-		this.drawer = new TileGraphics(rect, map, tileX,tileY,widthInTiles,heightInTiles);
+		setGraphics(rect,map,x,y,w,h);
+		
 	}
 	
 	//constructor for objects not constructed from data
 	public GameObject(String name) {
 		this.name = name; 
 		
+	}
+	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
+		graphics = new TileGraphics(rect, map, x,y,w,h);
 	}
 
 	//For removal of objects by level
@@ -69,7 +72,8 @@ public class GameObject {
 	}
 
 	public void render(int mapX, int mapY, int mouseX, int mouseY){
-		drawer.render((int) rect.getX() ,(int) rect.getY(), mapX, mapY, 1); 
+		graphics.render(mapX, mapY); 
+		
 	}
 
 	public boolean canCollide(){

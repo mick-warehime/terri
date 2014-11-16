@@ -30,6 +30,7 @@ import actors.Player;
 
 
 // TO DO 
+// 0) daveers mom (shots fired)
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
 // 2) start menu, lemming types
 // 3) dog
@@ -53,7 +54,7 @@ public class Game extends BasicGame {
 	private int[] mousePos = new int[2];
 
 	public Game() {
-		super("Monkey Head");
+		super("Dvirs little nipple");
 	}
 
 	@Override
