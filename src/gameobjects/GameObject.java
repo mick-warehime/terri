@@ -45,7 +45,7 @@ public class GameObject {
 		// used for collision detection		
 		rect = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
 		
-		setGraphics(rect,map,x,y,w,h);
+		setGraphics(rect,map,tileX,tileY,widthInTiles,heightInTiles);
 		
 	}
 	
