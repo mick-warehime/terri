@@ -77,6 +77,17 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		return answer;
 	}
+	
+	private float distanceToPlayerFromHub(){
+		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
+		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
+		
+		float dx = (centerOfHubX-centerOfPlayerX);
+		float dy = (centerOfHubY-centerOfPlayerY);
+		
+		return (float) Math.sqrt(Math.pow(dx,2) + Math.pow(dy, 2));
+	}
+	
 
 
 
@@ -157,7 +168,9 @@ public class Turret extends GameObject implements ObjectCreator {
 		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
 		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
 		
-		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy), 100, 5, angle);
+		int beamLength= (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+		
+		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy),  beamLength, 5, angle);
 	}
 	
 	

@@ -9,6 +9,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Transform;
 
+import commands.DieCommand;
+
 public class ParticleBeam extends GameObject implements InteractiveCollideable {
 
 	private Image beamImage;
@@ -18,29 +20,35 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	private int lifeCounter= 0;
 	private int length;
 	private int width;
+	private int beamStartX;
+	private int beamStartY;
+	
 	
 
-	public ParticleBeam( int pixelX, int pixelY, int pixelLength, int pixelWidth, float angle) throws SlickException{
+	public ParticleBeam( int pixelX, int pixelY, int beamLength, int pixelWidth, float angle) throws SlickException{
 		super("Beam");
 		
 		this.angle = angle;
-		this.length = pixelLength;
+		this.length = beamLength;
 		this.width = pixelWidth;
+		this.beamStartX = pixelX;
+		this.beamStartY = pixelY;
 		
 		float angleInRadians = (float) Math.toRadians(angle);
 		
 		//The last two arguments of createRotateTransform set the rotation 
 		//center in absolute coordinates
-		this.shape = new Rectangle( pixelX, pixelY, pixelLength, pixelWidth).transform(
+		this.shape = new Rectangle( pixelX, pixelY, beamLength, pixelWidth).transform(
 				Transform.createRotateTransform(angleInRadians,pixelX,pixelY)); 
 		
 
 		//Set image as a rotated beam
 		this.beamImage = new Image("data/beam.png");
-//		
-
-		
-		
+	
+		//This is called because the first
+		// Image.draw command does not set the center
+		// of rotation appropriately.
+		render(0,0);
 		
 		
 		
@@ -51,28 +59,33 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	
 	public void render(int mapX, int mapY){
 		
-//		Image im = imagesFromFile.get(1);
-		beamImage.setCenterOfRotation(0,(float) 2.5);
-		beamImage.setRotation(angle);
 		
-		float pixelX = shape.getCenterX();
-		float pixelY = shape.getCenterY();
-		beamImage.draw(pixelX-mapX,pixelY-mapY);
+		
+		//Rotate image to correct angle
+		beamImage.setCenterOfRotation(0,(float) 2.5);
+		beamImage.setRotation(angle); 
+		
+		
+		
+		beamImage.draw(beamStartX-mapX,beamStartY-mapY, length, width);
+		
+		
 
 		
 	}
 
 	@Override
 	public void onCollisionDo(String collidingObjectClass) {
-//		this.isDying = true;
+		this.isDying = true;
 		System.out.println("Collisino!");
 		
 	}
 
 	@Override
 	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Command>();
+		ArrayList <Command> output = new ArrayList<Command>();
+		output.add(new DieCommand());
+		return output;
 	}
 
 
