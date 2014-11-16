@@ -4,17 +4,18 @@ package graphics;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EtherGraphics extends TileGraphics{
 
 
-	protected Rectangle etherRect;
+	protected Shape etherRect;
 	protected int objectWidthInPixels;
 	protected int objectHeightInPixels;
 	
 
-	public EtherGraphics(Rectangle rect,Rectangle etherRect2, TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
+	public EtherGraphics(Shape rect,Shape etherRect2, TiledMap map, int tileX, int tileY, int numberOfXTiles, int numberOfYTiles) throws SlickException {
 		super(rect,map,tileX,tileY,numberOfXTiles,numberOfYTiles);
 		
 		this.etherRect = etherRect2;
@@ -23,6 +24,9 @@ public class EtherGraphics extends TileGraphics{
 		this.objectHeightInPixels = numberOfYTiles*map.getTileHeight();
 		
 	}
+
+
+
 
 
 

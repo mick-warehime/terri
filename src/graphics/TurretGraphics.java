@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class TurretGraphics {
 
 	protected ArrayList<Image> imagesFromFile;
-	protected Rectangle rect;
+	protected Shape shape;
 	protected int tileHeightInPixels;
 	protected int tileWidthInPixels;
 	protected int tileX;
@@ -18,8 +19,8 @@ public class TurretGraphics {
 	private int centerRotateX;
 	private int centerRotateY;
 	
-	public TurretGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, int centerRotateX, int centerRotateY, ArrayList<String> fileNames) throws SlickException {
-		this.rect = rect;
+	public TurretGraphics(Shape rect2,TiledMap map, int tileX, int tileY, int centerRotateX, int centerRotateY, ArrayList<String> fileNames) throws SlickException {
+		this.shape = rect2;
 		
 		this.tileX = tileX;
 		this.tileY = tileY;
@@ -54,7 +55,7 @@ public class TurretGraphics {
 					
 		Image im = imagesFromFile.get(0);
 
-		im.draw(rect.getX()-mapX,rect.getY()-mapY);	
+		im.draw(shape.getX()-mapX,shape.getY()-mapY);	
 		
 	}
 	
@@ -67,7 +68,7 @@ public class TurretGraphics {
 		im.setRotation(angle);
 		im.setCenterOfRotation(centerRotateX,centerRotateY);
 
-		im.draw(rect.getX()-mapX-offCenterX,rect.getY()-mapY-offCenterY);	
+		im.draw(shape.getX()-mapX-offCenterX,shape.getY()-mapY-offCenterY);	
 		
 
 	}

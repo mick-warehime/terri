@@ -10,6 +10,7 @@ import main.CollisionHandler;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class GameObject {
@@ -26,7 +27,7 @@ public class GameObject {
 
 	protected String name;
 
-	protected Rectangle rect;
+	protected Shape rect;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
@@ -54,7 +55,7 @@ public class GameObject {
 		this.name = name; 
 		
 	}
-	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
+	protected void setGraphics(Shape rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
 		graphics = new TileGraphics(rect, map, x,y,w,h);
 	}
 
@@ -63,7 +64,7 @@ public class GameObject {
 		return false;
 	}
 
-	public Rectangle getRect(){
+	public Shape getRect(){
 		return rect;
 	}
 
@@ -102,7 +103,7 @@ public class GameObject {
 	}
 
 
-	//Checks if an input rect is near the object's rect
+	//Checks if an input shape is near the object's shape
 	public boolean isNear(Rectangle rectTest) {
 
 		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);

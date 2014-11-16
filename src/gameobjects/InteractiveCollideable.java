@@ -3,7 +3,7 @@ package gameobjects;
 import java.util.ArrayList;
 
 import org.newdawn.slick.command.Command;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 
 //An object that does something when you collide with it.
@@ -13,5 +13,5 @@ public interface InteractiveCollideable {
 
 	public void onCollisionDo(String collidingObjectClass);
 	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass);
-	public Rectangle getRect();
+	public Shape getRect();
 }

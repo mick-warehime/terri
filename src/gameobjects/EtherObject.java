@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EtherObject extends GameObject implements Etherable {
@@ -16,7 +17,7 @@ public class EtherObject extends GameObject implements Etherable {
 	protected int putX;
 	protected int putY;
 
-	protected Rectangle etherRect;
+	protected Shape etherRect;
 	protected boolean isEther = false;
 	protected boolean isPut = false;
 	protected boolean isTimed = false;
@@ -109,7 +110,7 @@ public class EtherObject extends GameObject implements Etherable {
 	 * @see gameobjects.Etherable#getEtherRect()
 	 */
 	@Override
-	public Rectangle getEtherRect(){
+	public Shape getEtherRect(){
 		return etherRect;
 	}
 

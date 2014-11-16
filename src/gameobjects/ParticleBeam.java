@@ -25,14 +25,14 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 		this.rect = new Rectangle( pixelX, pixelY, pixelLength, pixelWidth);
 		
 		
-//		rotate rect to angle
+//		rotate shape to angle
 		float angleInRadians = (float) Math.toRadians(angle);
-//		Shape newRect = (Shape) rect.transform(
+//		Shape newRect = (Shape) shape.transform(
 //			Transform.createTranslateTransform(-pixelX, -pixelY)).transform(
 //				Transform.createRotateTransform(angleInRadians)).transform(
 //						Transform.createTranslateTransform(pixelX, pixelY));
 		
-//		this.rect =  rect.transform(Transform.createRotateTransform(angleInRadians,pixelX,pixelY));
+//		this.rect =  shape.transform(Transform.createRotateTransform(angleInRadians,pixelX,pixelY));
 		Shape newRect = new Rectangle(rect.getX(), rect.getY(),rect.getWidth(),rect.getHeight());
 		System.out.println(newRect.getMinX() + "," + newRect.getMinY() + "|" + newRect.getMaxX() + "," + newRect.getMaxY());
 		
@@ -94,7 +94,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 
 
 	@Override
-	public Rectangle getRect() {
+	public Shape getRect() {
 		// TODO Auto-generated method stub
 		return rect;
 	}
@@ -105,7 +105,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	
 	public void update(){
 //		System.out.println("Life counter:" + lifeCounter);
-//		System.out.println(rect);
+//		System.out.println(shape);
 		lifeCounter +=1;
 		if (lifeCounter == lifeTime){
 			isDying = true;
