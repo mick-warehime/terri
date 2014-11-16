@@ -202,7 +202,7 @@ public class Level {
 		}
 
 		for (Actor nme: actors){
-			nme.render(mapX,mapY,mouseX,mouseY);
+			nme.render(mapX,mapY);
 		}
 
 	}

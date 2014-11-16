@@ -118,8 +118,8 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
-		etherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut());
+	public void render(int mapX, int mapY){
+		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
 	}
 
 	@Override

@@ -71,7 +71,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		return list;
 	}
 	
-	public void render( int mapX, int mapY, int mouseX, int mouseY) {
+	public void render( int mapX, int mapY) {
 		graphics.render(mapX, mapY); 
 	}
 
