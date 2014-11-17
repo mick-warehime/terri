@@ -123,7 +123,12 @@ public class Level {
 
 
 
-
+	private void removeFromList(Object obj, ArrayList<?> list){
+		
+		if (list.contains(obj)){
+			list.remove(obj);
+		}
+	}
 
 	public void update() throws SlickException{
 		//Update game Objects and remove 'dead' ones
@@ -133,6 +138,8 @@ public class Level {
 
 			if (gObj.isDying()){
 				iterator.remove();
+				removeFromList(gObj,creators);
+				removeFromList(gObj,collideables);
 			}
 		}
 
@@ -146,6 +153,8 @@ public class Level {
 			if (nme.isDying()) {
 				// Remove the current element from the iterator and the list.
 				iterator.remove();
+				removeFromList(nme,creators);
+				removeFromList(nme,collideables);
 			}
 		}
 
