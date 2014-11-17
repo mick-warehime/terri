@@ -34,7 +34,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		
 		rect = new Rectangle(this.x,this.y,32, 48);
 
-		status = new StatusNew(rect);
+		status = new Status(rect);
 
  		graphics = new EnemyGraphics(rect);
  	}
@@ -46,7 +46,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		 
 		listener = new GlobalInputListener();
 				
-		status = new StatusNew(rect);
+		status = new Status(rect);
 
  		graphics = new EnemyGraphics(status.getRect());
  	}

@@ -34,7 +34,6 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
 import actors.Enemy;
-
 import actors.EtherEnemy;
 
 
@@ -172,7 +171,8 @@ public class TileData {
 			Constructor construct = test[0];
 			
 			for (Constructor con : test){
-				if(con.getParameterCount()==7){
+				Class[] types = con.getParameterTypes();
+				if(types.length== 7){
 					construct = con;
 					break;
 				}

@@ -15,7 +15,7 @@ public class LemmingBehavior extends Behavior implements CommandProvider{
 	private int moveDirection = -1;
 	
 	
-	public LemmingBehavior(StatusNew status, CollisionHandler collisionHandler) {
+	public LemmingBehavior(Status status, CollisionHandler collisionHandler) {
 		super(status, collisionHandler);
 
 	}

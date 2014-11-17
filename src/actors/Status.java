@@ -18,11 +18,11 @@ public class Status {
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
 
-	public Status(float x, float y, float width, float height) {
+	public Status(Rectangle rect) {
 		//		this.player = player;
 		this.isDying = false;
 
-		rect = new Rectangle((int) x,(int) y,width, height);
+		this.rect = rect;
 
 
 		effects = new ArrayList<Effect>();

@@ -13,7 +13,7 @@ public class Actor {
 	protected Image sprite;
 	protected GlobalInputListener listener;
 	protected ActionEngine engine;
-	protected StatusNew status;
+	protected Status status;
 
 	public Actor() throws SlickException {
 		

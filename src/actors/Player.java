@@ -53,7 +53,7 @@ public class Player extends Actor {
 		float h = sprite.getHeight();
 		float w = sprite.getWidth();
 		rect = new Rectangle((float) px, (float) py-1, w, h);
-		status = new StatusNew(rect);
+		status = new Status(rect);
 		status.setCollisionHandler(collisionHandler);
 		
 	}
