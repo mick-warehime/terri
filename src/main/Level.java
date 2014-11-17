@@ -7,6 +7,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
+import actors.Enemy;
+import actors.EtherEnemy;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.InteractiveCollideable;

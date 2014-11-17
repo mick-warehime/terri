@@ -10,12 +10,12 @@ import commands.CommandProvider;
 
 public class Behavior implements CommandProvider{
 
-	protected Status status;
+	protected StatusNew status;
 	protected CollisionHandler collisionHandler;
 	protected ArrayList<Command> commandStack;
 
-	public Behavior(Status status, CollisionHandler collisionHandler) {
-		this.status = status;
+	public Behavior(StatusNew status2, CollisionHandler collisionHandler) {
+		this.status = status2;
 		this.collisionHandler = collisionHandler;
 		this.commandStack = new ArrayList<Command>();
 	}

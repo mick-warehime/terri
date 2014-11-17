@@ -8,6 +8,7 @@ import main.CollisionHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
@@ -21,6 +22,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	private int x;
 	private int y;
 	private EnemyGraphics graphics;
+	protected Rectangle rect;
 
 	public Enemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
 		super();
@@ -30,11 +32,25 @@ public class Enemy extends Actor implements InteractiveCollideable{
 
 		listener = new GlobalInputListener();
 		
-		status = new Status((float) this.x, (float) this.y, 32, 48);
+		rect = new Rectangle(this.x,this.y,32, 48);
 
- 		graphics = new EnemyGraphics(status.getRect(),map,x,y,w,h);
+		status = new StatusNew(rect);
+
+ 		graphics = new EnemyGraphics(rect);
  	}
 
+	public Enemy(int xPixels, int yPixels) throws SlickException {
+		super();
+		
+		rect = new Rectangle(xPixels,yPixels,32,48);
+		 
+		listener = new GlobalInputListener();
+				
+		status = new StatusNew(rect);
+
+ 		graphics = new EnemyGraphics(status.getRect());
+ 	}
+	
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){
 
 		// status = new Status((float) x, (float) y, collisionHandler,sprite.getWidth(),sprite.getHeight() );
