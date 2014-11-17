@@ -25,8 +25,8 @@ public class TimedEtherGraphics extends EtherGraphics{
 			if(isPut){			
 				renderTile((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) percentTimeLeft);
 			}else{ //Otherwise
-				int hoverX = (mouseX-objectWidthInPixels/2);
-				int hoverY = (mouseY-objectHeightInPixels/2);
+				int hoverX = (int) (mouseX-rect.getWidth()/2);
+				int hoverY = (int) (mouseY-rect.getHeight()/2);
 				if(canPut){
 					renderTile(hoverX,hoverY,mapX,mapY,(float) 0.5);
 				}
