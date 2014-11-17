@@ -53,7 +53,7 @@ public class Actor {
 		return true;
 	}
 
-	public Rectangle getRect() {
+	public Rectangle getShape() {
 		return status.getRect();
 	}
 	

@@ -76,7 +76,7 @@ public class CollisionHandler implements CommandProvider {
 
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Etherable){
-				if(gObj.getRect().contains(x,y)){
+				if(gObj.getShape().contains(x,y)){
 					return (Etherable) gObj;
 				}
 			}
@@ -89,14 +89,14 @@ public class CollisionHandler implements CommandProvider {
 
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Etherable){
-				if(gObj.getRect().contains(x,y)){
+				if(gObj.getShape().contains(x,y)){
 					return (Etherable) gObj;
 				}
 			}
 		}
 		for (Actor nme: actors){
 			if(nme instanceof Etherable){
-				if(nme.getRect().contains(x,y)){
+				if(nme.getShape().contains(x,y)){
 					return (Etherable) nme;
 				}
 			}
@@ -158,7 +158,7 @@ public class CollisionHandler implements CommandProvider {
 	public boolean isCollidedWithDoor(Shape shape){
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Door){
-				if(shape.intersects(gObj.getRect())){
+				if(shape.intersects(gObj.getShape())){
 					return true;
 				}
 
@@ -171,7 +171,7 @@ public class CollisionHandler implements CommandProvider {
 	public boolean isCollidedWithActor(Shape shape){
 		for (Actor nme: actors){
 			if(nme.canCollide()){
-				if(nme.getRect().intersects(shape)){
+				if(nme.getShape().intersects(shape)){
 					return true;
 				}
 			}
@@ -183,9 +183,9 @@ public class CollisionHandler implements CommandProvider {
 		// check if collided with solid etherable Objects
 		for(GameObject gObj: gameObjects){
 			// don't check with its own shape and dont check with objects that are currently being held
-			if(gObj.getRect() != shape){
+			if(gObj.getShape() != shape){
 				if(gObj.canCollide()){
-					if(shape.intersects(gObj.getRect())){
+					if(shape.intersects(gObj.getShape())){
 						return true;
 					}
 				}
@@ -218,16 +218,16 @@ public class CollisionHandler implements CommandProvider {
 		//Check if collideable Game objects are intersecting 
 		// this line, other than the one from eObj
 		for(GameObject gObj: gameObjects){
-			if(gObj.getRect() != shape && gObj.canCollide()){
-				if(line.intersects(gObj.getRect())){
+			if(gObj.getShape() != shape && gObj.canCollide()){
+				if(line.intersects(gObj.getShape())){
 					return true;
 				}
 			}
 		}
 
 		for (Actor nme: actors){
-			if(nme.canCollide() && nme.getRect() != shape){
-				if(line.intersects(nme.getRect())){
+			if(nme.canCollide() && nme.getShape() != shape){
+				if(line.intersects(nme.getShape())){
 					return true;
 				}
 			}
@@ -260,9 +260,9 @@ public class CollisionHandler implements CommandProvider {
 		//
 		for (InteractiveCollideable interObj : interactiveGameObjects){
 
-			if (slightlyBiggerRect.intersects(interObj.getRect())){
-				interObj.onCollisionDo(collidingObjectClass);
-				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass));
+			if (slightlyBiggerRect.intersects(interObj.getShape())){
+				interObj.onCollisionDo(collidingObjectClass, rect);
+				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass, rect));
 			}
 		}
 

@@ -18,7 +18,7 @@ public interface Etherable {
 
 	public abstract Shape getEtherRect();
 
-	public abstract Shape getRect();
+	public abstract Shape getShape();
 
 	public abstract void setMousePosition(int[] mousePos);
 

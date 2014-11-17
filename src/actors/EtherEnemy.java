@@ -8,10 +8,10 @@ import main.CollisionHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
-
 import gameobjects.Etherable;
 import graphics.EtherEnemyGraphics;
 
@@ -34,7 +34,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 	public EtherEnemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
 		super(x,y,w,h,name,map,args);
 
-		this.rect = getRect();
+		this.rect = getShape();
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
 		this.etherGraphics = new EtherEnemyGraphics(rect,etherRect,map,x, y, w, h);
@@ -123,7 +123,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
 		// TODO Auto-generated method stub
 		 
 		if(canCollide()){
@@ -134,7 +134,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList<Command> list = new ArrayList<Command>();
 		if(canCollide()){
 			if (collidingObjectClass == "Player"){

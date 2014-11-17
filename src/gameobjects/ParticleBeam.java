@@ -66,7 +66,6 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 		beamImage.setRotation(angle); 
 		
 		
-		
 		beamImage.draw(beamStartX-mapX,beamStartY-mapY, length, width);
 		
 		
@@ -75,14 +74,13 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
 		this.isDying = true;
-		System.out.println("Collisino!");
 		
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList <Command> output = new ArrayList<Command>();
 		output.add(new DieCommand());
 		return output;
@@ -90,7 +88,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 
 
 	@Override
-	public Shape getRect() {
+	public Shape getShape() {
 		// TODO Auto-generated method stub
 		return shape;
 	}
@@ -100,8 +98,6 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	}
 	
 	public void update(){
-//		System.out.println("Life counter:" + lifeCounter);
-//		System.out.println(shape);
 		lifeCounter +=1;
 		if (lifeCounter == lifeTime){
 			isDying = true;

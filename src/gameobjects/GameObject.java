@@ -64,7 +64,7 @@ public class GameObject {
 		return false;
 	}
 
-	public Shape getRect(){
+	public Shape getShape(){
 		return shape;
 	}
 

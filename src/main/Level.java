@@ -185,7 +185,7 @@ public class Level {
 
 	public void draw(Graphics g,int x, int y){		
 
-
+		
 		// min/max sets the submatrix of tiles to draw		
 		int tXmin = (int) mapX/tileSize;
 		int tYmin = (int) mapY/tileSize;

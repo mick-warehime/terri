@@ -67,7 +67,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	}
 
-	private float getAngleToPlayer(){
+	private float angleToPlayer(){
 		// calculate the angle from the hub of the gun to the center of the player
 		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
 		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
@@ -92,7 +92,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 
 	private boolean lockedOn() {
-		float angleToPlayer = getAngleToPlayer();
+		float angleToPlayer = angleToPlayer();
 		
 		return Math.abs(angleToPlayer-angle)<2;
 		
@@ -134,8 +134,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		//Rotation 
 		if(canTarget()){
-			float angleToPlayer = getAngleToPlayer();
-			rotateToAngle(angleToPlayer);
+			rotateToAngle(angleToPlayer());
 		}else {
 			rotateToAngle(restingAngle);
 		}

@@ -28,7 +28,7 @@ public class TimedPlatform extends EtherObject  implements Timed{
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 		
 		timedEtherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
-		 
+		
 	}
 
 	@Override
