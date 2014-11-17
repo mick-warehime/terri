@@ -42,8 +42,8 @@ public class EtherGraphics extends TileGraphics{
 			if(isPut){			
 				renderTile((int)rect.getX(),(int)rect.getY(),mapX,mapY,(float) 1);
 			}else{ //Otherwise
-				int hoverX = (mouseX-objectWidthInPixels/2+mapX);
-				int hoverY = (mouseY-objectHeightInPixels/2+mapY);
+				int hoverX = (mouseX-objectWidthInPixels/2);
+				int hoverY = (mouseY-objectHeightInPixels/2);
 				if(canPut){
 					renderTile(hoverX,hoverY,mapX,mapY,(float) 0.5);
 				}
