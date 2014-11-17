@@ -10,7 +10,6 @@ import org.newdawn.slick.tiled.TiledMap;
 import actors.Actor;
 import actors.Enemy;
 import actors.EtherEnemy;
-import actors.Turret2;
 import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.InteractiveCollideable;
@@ -70,7 +69,8 @@ public class Level {
 		this.gameObjects = tileData.getGameObjects();
 		this.actors = tileData.getActors();
 		
-
+		actors.add(new EtherEnemy(300,1300));
+		
 		//Add object creators and interactive Collideables
 		this.creators = new ArrayList<ObjectCreator>();
 		for (GameObject gObj:gameObjects){

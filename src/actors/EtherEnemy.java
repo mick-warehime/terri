@@ -11,8 +11,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
-
 import gameobjects.Etherable;
+import graphics.EtherEnemyGraphics;
 import graphics.EtherEnemyGraphics;
 
 public class EtherEnemy extends Enemy implements Etherable{
@@ -27,20 +27,29 @@ public class EtherEnemy extends Enemy implements Etherable{
 	private int putX;
 	private int putY;
 	protected EtherEnemyGraphics etherGraphics;
-	private Rectangle rect;
+
 	private CollisionHandler collisionHandler;
 	private int[] mousePos; 
 
 	public EtherEnemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
 		super(x,y,w,h,name,map,args);
 
-		this.rect = getRect();
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
-		this.etherGraphics = new EtherEnemyGraphics(rect,etherRect,map,x, y, w, h);
+		this.etherGraphics = new EtherEnemyGraphics(rect,etherRect);
 		
 	}
 
+	public EtherEnemy(int x, int y) throws SlickException {
+		super(x,y);	
+		
+		// dont know why this has to be here!!
+
+		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+
+		etherGraphics = new EtherEnemyGraphics(rect,etherRect);
+		
+	}
 
 
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){

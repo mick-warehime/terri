@@ -34,7 +34,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
 import actors.Enemy;
-import actors.Turret2;
+
 import actors.EtherEnemy;
 
 
@@ -87,7 +87,6 @@ public class TileData {
 		parserDict.put("enemy", Enemy.class);
 		parserDict.put("etherEnemy", EtherEnemy.class);
 		parserDict.put("etherElevator", EtherElevator.class);
-		parserDict.put("turret2", Turret2.class);
 
 	}
 
@@ -102,7 +101,7 @@ public class TileData {
 		{		
 			constructFromData(map,grpID,oi);
 		}
-
+				
 		// Add swtich targets
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof SwitchObject ){
@@ -169,13 +168,20 @@ public class TileData {
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
 			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
-			@SuppressWarnings("rawtypes")
+			
 			Constructor construct = test[0];
+			
+			for (Constructor con : test){
+				if(con.getParameterCount()==7){
+					construct = con;
+					break;
+				}
+			}
 
 			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
 			try {
 				//Populate different lists according to type
-				
+				 
 				Object obj = (Object) construct.newInstance(x, y, w, h, name, map,args);
 				
 				if (obj instanceof GameObject){

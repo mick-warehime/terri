@@ -46,11 +46,15 @@
     <property name="duration" value="5"/>
    </properties>
   </object>
-  <object type="etherEnemy" x="256" y="1216" width="32" height="48"/>
+  <object type="timedPlatform" x="128" y="1424" width="144" height="16">
+   <properties>
+    <property name="duration" value="5"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="ether" width="40" height="100" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UvQkCQRAG0AGTOxBsRDvTWgxtQmsR/y1Ce3ACI9FoPW6C9+ALNtjlgxk2AgAAAAAAAAAAAKhu2UWsurFb/LbNbrvC/R7Z7Vm4n/m2qT7feR+x6Mdu8Zv9a1N9/8y3TbX5zj7O1f6X9cDvb6Zt94fu12r/5/cOk4hj5pQ5Zy6Za+aWub8DAADwzQvuu6I8gD4AAA==
+   H4sIAAAAAAAAA+3UvQkCQRAG0AETDwQb0c60FkOb0FrEf4vQHpzASLhoPW6E9+ALNtjlgxk2AgAAAAAAAAAAAKhuNY1YT8du0W+X3faF+z2z26twP/NtU32+iy5i2Y3dop/9a1N9/8y3TbX5zr/O1f6XzcDvb2dt94fu1+rw4/eOk4hT5py5ZK6ZW+aeeXwCwPD8xwD8ozenk+KQgD4AAA==
   </data>
  </layer>
 </map>

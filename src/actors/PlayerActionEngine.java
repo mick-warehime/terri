@@ -30,7 +30,7 @@ public class PlayerActionEngine extends ActionEngine {
 	
 
 
-	public PlayerActionEngine(GlobalInputListener listener, Status status, Gun gun){
+	public PlayerActionEngine(GlobalInputListener listener, StatusNew status, Gun gun){
 		super(listener,status);
 		this.gun = gun;
 		this.runAcc = 2;

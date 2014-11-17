@@ -3,8 +3,11 @@ package actors;
 
 import main.Level;
 import main.CollisionHandler;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
+
 import commands.GlobalInputListener;
 import commands.KeyboardInputListener;
 
@@ -12,6 +15,7 @@ public class Player extends Actor {
 
 	private KeyboardInputListener keyboard;
 	private Gun gun;
+	private Rectangle rect;
 	
 
 	public Player(int x, int y, CollisionHandler collisionHandler, int[] mousePos) throws SlickException {
@@ -23,6 +27,7 @@ public class Player extends Actor {
 		listener = new GlobalInputListener();
 		listener.addProvider(collisionHandler);
 		listener.addProvider(keyboard);
+		
 		
 		// GETS starting position from map
 		// shifts initial y position by 1 pixel upwards otherwise dude gets stuck
@@ -47,7 +52,8 @@ public class Player extends Actor {
 				
 		float h = sprite.getHeight();
 		float w = sprite.getWidth();
-		status = new Status((float) px, (float) py-1, w, h);
+		rect = new Rectangle((float) px, (float) py-1, w, h);
+		status = new StatusNew(rect);
 		status.setCollisionHandler(collisionHandler);
 		
 	}
