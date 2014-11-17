@@ -39,7 +39,7 @@ public class Player extends Actor {
 		engine = new PlayerActionEngine(listener,status, gun);
 	}
 
-	public void render( int mapX, int mapY, int mouseX, int mouseY) {
+	public void render( int mapX, int mapY) {
 		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
 	}
 

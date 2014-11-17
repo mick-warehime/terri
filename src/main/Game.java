@@ -54,7 +54,7 @@ public class Game extends BasicGame {
 	private int[] mousePos = new int[2];
 
 	public Game() {
-		super("Dvirs little nipple");
+		super("Mick is a dick");
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class Game extends BasicGame {
 		int mouseX = gc.getInput().getMouseX();
 		int mouseY = gc.getInput().getMouseY();
 
-		level.draw(g,(int) terri.getX(),(int)terri.getY(), mouseX,mouseY);
+		level.draw(g,(int) terri.getX(),(int)terri.getY());
 		terri.render(level.getMapX(),level.getMapY());
 	}
 

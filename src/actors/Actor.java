@@ -31,9 +31,7 @@ public class Actor {
 		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
 	}
 	
-	public void render( int mapX, int mapY, int mouseX, int mouseY) {
-		throw new UnsupportedOperationException(); 
-	}
+	
 	
 	public void update() {
 	
@@ -55,7 +53,7 @@ public class Actor {
 		return true;
 	}
 
-	public Rectangle getRect() {
+	public Rectangle getShape() {
 		return status.getRect();
 	}
 	

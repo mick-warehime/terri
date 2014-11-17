@@ -7,13 +7,13 @@ import main.CollisionHandler;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
 import commands.GlobalInputListener;
 import gameobjects.InteractiveCollideable;
-import graphics.EnemyGraphics;
 import graphics.EnemyGraphics;
 
 public class Enemy extends Actor implements InteractiveCollideable{
@@ -72,7 +72,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
 		// TODO Auto-generated method stub
 		if (collidingObjectClass.equals("Player")){
 			status.gainEffect("Collided with player", 1);
@@ -80,7 +80,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList<Command> list = new ArrayList<Command>();
 		if (collidingObjectClass == "Player"){
 			list.add( new DieCommand());
@@ -88,7 +88,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		return list;
 	}
 	
-	public void render( int mapX, int mapY, int mouseX, int mouseY) {
+	public void render( int mapX, int mapY) {
 		graphics.render(mapX, mapY); 
 	}
 

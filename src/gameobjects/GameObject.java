@@ -10,6 +10,7 @@ import main.CollisionHandler;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class GameObject {
@@ -26,7 +27,7 @@ public class GameObject {
 
 	protected String name;
 
-	protected Rectangle rect;
+	protected Shape shape;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
 
@@ -43,9 +44,9 @@ public class GameObject {
 
 
 		// used for collision detection		
-		rect = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
+		shape = new Rectangle(tileX*tileSize,tileY*tileSize,widthInTiles*tileSize,heightInTiles*tileSize);
 		
-		setGraphics(rect,map,tileX,tileY,widthInTiles,heightInTiles);
+		setGraphics(shape,map,tileX,tileY,widthInTiles,heightInTiles);
 		
 	}
 	
@@ -54,7 +55,7 @@ public class GameObject {
 		this.name = name; 
 		
 	}
-	protected void setGraphics(Rectangle rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
+	protected void setGraphics(Shape rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
 		graphics = new TileGraphics(rect, map, x,y,w,h);
 	}
 
@@ -63,15 +64,15 @@ public class GameObject {
 		return false;
 	}
 
-	public Rectangle getRect(){
-		return rect;
+	public Shape getShape(){
+		return shape;
 	}
 
 	protected void setObjectDimensions(){
 		throw new UnsupportedOperationException(); 
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		graphics.render(mapX, mapY); 
 		
 	}
@@ -102,10 +103,10 @@ public class GameObject {
 	}
 
 
-	//Checks if an input rect is near the object's rect
+	//Checks if an input shape is near the object's shape
 	public boolean isNear(Rectangle rectTest) {
 
-		Rectangle slightlyBiggerRect = new Rectangle(rect.getX()-proximity,rect.getY()-proximity,rect.getWidth()+2*proximity,rect.getHeight()+2*proximity);
+		Rectangle slightlyBiggerRect = new Rectangle(shape.getX()-proximity,shape.getY()-proximity,shape.getWidth()+2*proximity,shape.getHeight()+2*proximity);
 
 
 		return slightlyBiggerRect.intersects(rectTest);

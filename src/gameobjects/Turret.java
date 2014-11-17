@@ -18,6 +18,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	private TurretGraphics graphics;
 	private float centerOfHubX; //Center of rotation X
 	private float centerOfHubY; //Center of rotation Y
+	private float lengthOfMuzzle = 63;
 	private int chargeTime;
 	private int chargeTimer;
 	private boolean isShooting;
@@ -42,8 +43,8 @@ public class Turret extends GameObject implements ObjectCreator {
 		this.chargeTime = Integer.parseInt((String) args.get("chargeTime"));
 
 		// relative location of the hub of the turret mount from top left in pixels
-		centerOfHubX = rect.getX()+50;
-		centerOfHubY = rect.getY()+35;
+		centerOfHubX = shape.getX()+50;
+		centerOfHubY = shape.getY()+35;
 
 		// define the relative location of the point of rotation from top left in pixels
 		int centerRotateX = 20;
@@ -57,16 +58,16 @@ public class Turret extends GameObject implements ObjectCreator {
 
 
 
-		this.graphics = new TurretGraphics(rect,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
+		this.graphics = new TurretGraphics(shape,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 
 		graphics.render(mapX, mapY,-25,-18,angle);
 
 	}
 
-	private float getAngleToPlayer(){
+	private float angleToPlayer(){
 		// calculate the angle from the hub of the gun to the center of the player
 		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
 		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
@@ -76,20 +77,22 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		return answer;
 	}
+	
+	private float distanceToPlayerFromHub(){
+		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
+		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
+		
+		float dx = (centerOfHubX-centerOfPlayerX);
+		float dy = (centerOfHubY-centerOfPlayerY);
+		
+		return (float) Math.sqrt(Math.pow(dx,2) + Math.pow(dy, 2));
+	}
+	
 
-
-//	private void updateChargeTimer(){
-//		// if the turret can see terri increment its charge timer
-//		if(lockedOn()){
-//			chargeTimer += 1;			
-//		} else{
-//			chargeTimer = 0;
-//		}
-//	}
 
 
 	private boolean lockedOn() {
-		float angleToPlayer = getAngleToPlayer();
+		float angleToPlayer = angleToPlayer();
 		
 		return Math.abs(angleToPlayer-angle)<2;
 		
@@ -119,7 +122,6 @@ public class Turret extends GameObject implements ObjectCreator {
 		chargeTimer +=1;
 
 		if(chargeTimer > chargeTime){
-			System.out.println("Pew!");
 			isShooting = true;
 			chargeTimer = 0;
 		}
@@ -132,8 +134,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		//Rotation 
 		if(canTarget()){
-			float angleToPlayer = getAngleToPlayer();
-			rotateToAngle(angleToPlayer);
+			rotateToAngle(angleToPlayer());
 		}else {
 			rotateToAngle(restingAngle);
 		}
@@ -148,7 +149,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	}
 	
 	private boolean canTarget(){
-		return !collisionHandler.lineOfSightCollision(rect);
+		return !collisionHandler.lineOfSightCollision(shape);
 	}
 
 	@Override
@@ -161,7 +162,14 @@ public class Turret extends GameObject implements ObjectCreator {
 	public Object getObject() throws SlickException {
 		isShooting = false;
 		
-		return new ParticleBeam((int) centerOfHubX, (int) centerOfHubY, 30, 5, angle);
+		//Determine position of turret muzzle
+		float angleInRadians = (float) (Math.PI*angle/180);
+		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
+		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
+		
+		int beamLength= (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+		
+		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy),  beamLength, 5, angle);
 	}
 	
 	

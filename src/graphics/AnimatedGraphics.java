@@ -5,19 +5,20 @@ import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class AnimatedGraphics {
 
 	protected ArrayList<Image> imagesFromFile;
-	protected Rectangle rect;
+	protected Shape rect;
 	protected int tileHeightInPixels;
 	protected int tileWidthInPixels;
 	protected int tileX;
 	protected int tileY; 
 	
-	public AnimatedGraphics(Rectangle rect,TiledMap map, int tileX, int tileY, ArrayList<String> fileNames) throws SlickException {
-		this.rect = rect;
+	public AnimatedGraphics(Shape rect2,TiledMap map, int tileX, int tileY, ArrayList<String> fileNames) throws SlickException {
+		this.rect = rect2;
 		
 		this.tileX = tileX;
 		this.tileY = tileY;

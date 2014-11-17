@@ -166,7 +166,7 @@
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Turret" type="turret" x="240" y="240" width="48" height="64">
+  <object name="Turret" type="turret" x="240" y="224" width="48" height="64">
    <properties>
     <property name="angle" value="10"/>
     <property name="chargeTime" value="50"/>

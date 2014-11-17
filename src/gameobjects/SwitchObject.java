@@ -25,7 +25,7 @@ public class SwitchObject extends GameObject implements Interactive {
 		fileNames.add("data/lever_left.png");
 		fileNames.add("data/lever_right.png");
 	
-		this.animatedDrawer = new AnimatedGraphics(rect,map,tileX,tileY,fileNames);
+		this.animatedDrawer = new AnimatedGraphics(shape,map,tileX,tileY,fileNames);
 	}
 
 	public void setTarget(ArrayList<GameObject> gameObjects){
@@ -52,7 +52,7 @@ public class SwitchObject extends GameObject implements Interactive {
 		target.toggle();
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		
 		int imageIndex = 0;
 		if(state){

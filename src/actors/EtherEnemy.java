@@ -8,11 +8,11 @@ import main.CollisionHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DieCommand;
 import gameobjects.Etherable;
-import graphics.EtherEnemyGraphics;
 import graphics.EtherEnemyGraphics;
 
 public class EtherEnemy extends Enemy implements Etherable{
@@ -127,12 +127,12 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
-		etherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut());
+	public void render(int mapX, int mapY){
+		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
 		// TODO Auto-generated method stub
 		 
 		if(canCollide()){
@@ -143,7 +143,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList<Command> list = new ArrayList<Command>();
 		if(canCollide()){
 			if (collidingObjectClass == "Player"){

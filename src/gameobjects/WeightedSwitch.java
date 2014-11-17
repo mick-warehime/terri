@@ -18,7 +18,7 @@ public class WeightedSwitch extends SwitchObject {
 
 		fileNames.add("data/switch_up.png");
 	
-		this.animatedDrawer = new AnimatedGraphics(rect,map,tileX,tileY,fileNames);
+		this.animatedDrawer = new AnimatedGraphics(shape,map,tileX,tileY,fileNames);
 		
 	}
 
@@ -41,8 +41,8 @@ public class WeightedSwitch extends SwitchObject {
 
 	protected boolean isWeighedDown(){
 
-		boolean answer =  collisionHandler.isCollidedWithPlayer(rect);
-		answer = answer || collisionHandler. isCollidedWithActor(rect);
+		boolean answer =  collisionHandler.isCollidedWithPlayer(shape);
+		answer = answer || collisionHandler. isCollidedWithActor(shape);
 		return answer;
 	}
 

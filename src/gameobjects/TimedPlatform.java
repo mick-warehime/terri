@@ -18,17 +18,17 @@ public class TimedPlatform extends EtherObject  implements Timed{
 
 		// default duration is set to 1000 milliseconds	
 		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
-		this.timedEtherGraphics = new TimedEtherGraphics(rect,etherRect,map,x, y, w, h);
+		this.timedEtherGraphics = new TimedEtherGraphics(shape,etherShape,map,x, y, w, h);
 
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){
+	public void render(int mapX, int mapY){
 		long timeElapsed = getTime()-putTime; 
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 		
-		timedEtherGraphics.render(mapX, mapY, mouseX, mouseY, isEther, isPut, canPut(), percentTimeLeft);
-		 
+		timedEtherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
+		
 	}
 
 	@Override

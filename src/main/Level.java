@@ -2,7 +2,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Properties;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
@@ -14,6 +13,7 @@ import gameobjects.Etherable;
 import gameobjects.GameObject;
 import gameobjects.InteractiveCollideable;
 import gameobjects.ObjectCreator;
+import gameobjects.ParticleBeam;
 import gameobjects.ProgressPoint;
 
 
@@ -68,10 +68,9 @@ public class Level {
 		collisionHandler = new CollisionHandler(tileData.getBlocks());
 		this.gameObjects = tileData.getGameObjects();
 		this.actors = tileData.getActors();
-		
-		actors.add(new EtherEnemy(300,1300));
-		
-		//Add object creators and interactive Collideables
+
+
+		//Add object creators 
 		this.creators = new ArrayList<ObjectCreator>();
 		for (GameObject gObj:gameObjects){
 			if(gObj instanceof ObjectCreator){
@@ -84,7 +83,7 @@ public class Level {
 			}
 		}
 
-		//Add object creators and interactive Collideables
+		//Add interactive Collideables
 		this.collideables = new ArrayList<InteractiveCollideable>();
 		for (GameObject gObj:gameObjects){
 			if(gObj instanceof InteractiveCollideable){
@@ -98,7 +97,7 @@ public class Level {
 		}
 
 		incorporateCollisionHandler(); 
-		
+
 
 
 	}
@@ -118,7 +117,7 @@ public class Level {
 		for (Actor nme: actors){
 			nme.incorporateCollisionHandler(collisionHandler);
 		}
-		
+
 	};
 
 
@@ -156,17 +155,9 @@ public class Level {
 		for (ObjectCreator creator : creators){
 			if(creator.hasObject()){
 				Object obj = creator.getObject();
-
-				if(obj instanceof GameObject){
-					gameObjects.add((GameObject)obj);
-				}
-				if(obj instanceof Actor){
-					actors.add((Actor)obj);
-				}
-				if(obj instanceof InteractiveCollideable){
-					collideables.add((InteractiveCollideable)obj);
-				}
-
+				
+				incorporateNewObject(obj);	
+				
 
 			}
 
@@ -174,12 +165,29 @@ public class Level {
 
 	}
 
+	//Add a new object to lists and pass it necessary objects from level
+	private void incorporateNewObject(Object obj){
+		
+		if(obj instanceof GameObject){
+			gameObjects.add((GameObject)obj);
+			((GameObject) obj).setCollisionHandler(collisionHandler);
+		}
+		if(obj instanceof Actor){
+			actors.add((Actor)obj);
+			((Actor) obj).incorporateCollisionHandler(collisionHandler);
+		}
+		if(obj instanceof InteractiveCollideable){
+			collideables.add((InteractiveCollideable)obj);
+		}
+		
+		if(obj instanceof Etherable){
+			((Etherable) obj).setMousePosition(mousePos);
+		}
+	}
 
+	public void draw(Graphics g,int x, int y){		
 
-
-	public void draw(Graphics g,int x, int y, int mouseX, int mouseY){		
-
-
+		
 		// min/max sets the submatrix of tiles to draw		
 		int tXmin = (int) mapX/tileSize;
 		int tYmin = (int) mapY/tileSize;
@@ -202,12 +210,12 @@ public class Level {
 		map.render(-dX,-dY,tXmin,tYmin,mapWidthInTiles,mapHeightInTiles+1,tileLayerId,false);
 
 
-		for(GameObject gObj: gameObjects){		
-			gObj.render(mapX, mapY, mouseX, mouseY);
+		for(GameObject gObj: gameObjects){
+			gObj.render(mapX, mapY);
 		}
 
 		for (Actor nme: actors){
-			nme.render(mapX,mapY,mouseX,mouseY);
+			nme.render(mapX,mapY);
 		}
 
 	}
@@ -223,7 +231,7 @@ public class Level {
 			tolX = tol*tileSize;
 		}
 	}
-	
+
 	private void mapYCheck(){
 
 		if(mapY<0){

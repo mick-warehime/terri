@@ -16,10 +16,10 @@ public class Door extends GameObject{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void render(int mapX, int mapY, int mouseX, int mouseY){			
+	public void render(int mapX, int mapY){			
 		
 		if(!open){
-			graphics.render((int) rect.getX(), (int) rect.getY(), mapX,mapY, (float) 1);
+			graphics.render((int) shape.getX(), (int) shape.getY(), mapX,mapY, (float) 1);
 		}
 	}
 	

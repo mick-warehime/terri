@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 import actors.Actor;
 import commands.CommandProvider;
@@ -75,7 +76,7 @@ public class CollisionHandler implements CommandProvider {
 
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Etherable){
-				if(gObj.getRect().contains(x,y)){
+				if(gObj.getShape().contains(x,y)){
 					return (Etherable) gObj;
 				}
 			}
@@ -88,14 +89,14 @@ public class CollisionHandler implements CommandProvider {
 
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Etherable){
-				if(gObj.getRect().contains(x,y)){
+				if(gObj.getShape().contains(x,y)){
 					return (Etherable) gObj;
 				}
 			}
 		}
 		for (Actor nme: actors){
 			if(nme instanceof Etherable){
-				if(nme.getRect().contains(x,y)){
+				if(nme.getShape().contains(x,y)){
 					return (Etherable) nme;
 				}
 			}
@@ -125,39 +126,39 @@ public class CollisionHandler implements CommandProvider {
 
 
 
-	public boolean canPlaceEtherAt(Rectangle rect){
-		boolean answer = !isCollided(rect);
-		answer = answer && !playerRect.intersects(rect);
-		answer = answer && !isCollidedWithActor(rect);
-		answer = answer && !isCollidedWithDoor(rect);
+	public boolean canPlaceEtherAt(Shape shape){
+		boolean answer = !isCollided(shape);
+		answer = answer && !playerRect.intersects(shape);
+		answer = answer && !isCollidedWithActor(shape);
+		answer = answer && !isCollidedWithDoor(shape);
 		return answer;
 	}
 
 
 	//Checks for collisions with blocks and game Objects
-	public boolean isCollided(Rectangle rect){	
+	public boolean isCollided(Shape shape){	
 		boolean answer = false;
 		//	check if collided with permanent solid blocks	
-		answer = answer || isCollidedWithBlocks(rect);
+		answer = answer || isCollidedWithBlocks(shape);
 		// check if collided with solid etherable Objects
-		answer = answer || isCollidedWithObjects(rect);
+		answer = answer || isCollidedWithObjects(shape);
 
 		return answer;
 	}
 
-	public boolean isCollidedWithBlocks(Rectangle rect){
+	public boolean isCollidedWithBlocks(Shape shape){
 		for(Rectangle r: blocks ){
-			if(rect.intersects(r)){
+			if(shape.intersects(r)){
 				return true;
 			}	
 		}
 		return false;
 	}
 
-	public boolean isCollidedWithDoor(Rectangle rect){
+	public boolean isCollidedWithDoor(Shape shape){
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Door){
-				if(rect.intersects(gObj.getRect())){
+				if(shape.intersects(gObj.getShape())){
 					return true;
 				}
 
@@ -167,10 +168,10 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedWithActor(Rectangle rect){
+	public boolean isCollidedWithActor(Shape shape){
 		for (Actor nme: actors){
 			if(nme.canCollide()){
-				if(nme.getRect().intersects(rect)){
+				if(nme.getShape().intersects(shape)){
 					return true;
 				}
 			}
@@ -178,13 +179,13 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedWithObjects(Rectangle rect){
+	public boolean isCollidedWithObjects(Shape shape){
 		// check if collided with solid etherable Objects
 		for(GameObject gObj: gameObjects){
-			// don't check with its own rect and dont check with objects that are currently being held
-			if(gObj.getRect() != rect){
+			// don't check with its own shape and dont check with objects that are currently being held
+			if(gObj.getShape() != shape){
 				if(gObj.canCollide()){
-					if(rect.intersects(gObj.getRect())){
+					if(shape.intersects(gObj.getShape())){
 						return true;
 					}
 				}
@@ -193,8 +194,8 @@ public class CollisionHandler implements CommandProvider {
 		return false;
 	}
 
-	public boolean isCollidedWithPlayer(Rectangle rect){
-		return playerRect.intersects(rect);
+	public boolean isCollidedWithPlayer(Shape etherRect){
+		return playerRect.intersects(etherRect);
 	}
 
 
@@ -204,29 +205,29 @@ public class CollisionHandler implements CommandProvider {
 
 	//Returns if the line of sight from the player to an EtherObject
 	// is collided with any game objects
-	public boolean lineOfSightCollision(Rectangle testRect){
+	public boolean lineOfSightCollision(Shape shape){
 
 		//Make a line from centers of player and object
 		float playerX = playerRect.getCenterX();
 		float playerY = playerRect.getCenterY();
-		float objectX = testRect.getCenterX();
-		float objectY = testRect.getCenterY();
+		float objectX = shape.getCenterX();
+		float objectY = shape.getCenterY();
 
 		Line line = new Line(playerX, playerY, objectX, objectY);
 
 		//Check if collideable Game objects are intersecting 
 		// this line, other than the one from eObj
 		for(GameObject gObj: gameObjects){
-			if(gObj.getRect() != testRect && gObj.canCollide()){
-				if(line.intersects(gObj.getRect())){
+			if(gObj.getShape() != shape && gObj.canCollide()){
+				if(line.intersects(gObj.getShape())){
 					return true;
 				}
 			}
 		}
 
 		for (Actor nme: actors){
-			if(nme.canCollide() && nme.getRect() != testRect){
-				if(line.intersects(nme.getRect())){
+			if(nme.canCollide() && nme.getShape() != shape){
+				if(line.intersects(nme.getShape())){
 					return true;
 				}
 			}
@@ -243,8 +244,8 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 
-	//Checks a rect for collisions with interactive collideables
-	// outputs a list of commands for an actor with the rect to do,
+	//Checks a shape for collisions with interactive collideables
+	// outputs a list of commands for an actor with the shape to do,
 	// and does the interactive's inherent collision command
 	// For collisions to be class specific, we pass in a 
 	// collidingObjectClass.
@@ -259,9 +260,9 @@ public class CollisionHandler implements CommandProvider {
 		//
 		for (InteractiveCollideable interObj : interactiveGameObjects){
 
-			if (slightlyBiggerRect.intersects(interObj.getRect())){
-				interObj.onCollisionDo(collidingObjectClass);
-				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass));
+			if (slightlyBiggerRect.intersects(interObj.getShape())){
+				interObj.onCollisionDo(collidingObjectClass, rect);
+				output.addAll(interObj.onCollisionBroadcast(collidingObjectClass, rect));
 			}
 		}
 

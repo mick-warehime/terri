@@ -6,6 +6,7 @@ import java.util.Properties;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.TeleportCommand;
@@ -23,12 +24,12 @@ public class Teleporter extends GameObject implements InteractiveCollideable{
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass) {
+	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass) {
+	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList<Command> list = new ArrayList<Command>();
 		list.add(new TeleportCommand(destX, destY));
 		return list;
@@ -36,9 +37,9 @@ public class Teleporter extends GameObject implements InteractiveCollideable{
 	}
 
 	protected void setRect(){
-		//	make the rect smaller so you dont collide with it immediately after transport
+		//	make the shape smaller so you dont collide with it immediately after transport
 		int shrink = 2;
-		rect = new Rectangle(rect.getX()+shrink,rect.getY()+shrink,rect.getWidth()-2*shrink,rect.getHeight()-2*shrink);		
+		shape = new Rectangle(shape.getX()+shrink,shape.getY()+shrink,shape.getWidth()-2*shrink,shape.getHeight()-2*shrink);		
 	}
 	
 	

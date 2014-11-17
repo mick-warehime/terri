@@ -1,6 +1,7 @@
 package gameobjects;
 
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
 public interface Etherable {
 
@@ -15,9 +16,9 @@ public interface Etherable {
 	// check if anything is at the original position  (ether Rect) before restoring 
 	public abstract boolean canRestore();
 
-	public abstract Rectangle getEtherRect();
+	public abstract Shape getEtherRect();
 
-	public abstract Rectangle getRect();
+	public abstract Shape getShape();
 
 	public abstract void setMousePosition(int[] mousePos);
 

@@ -40,8 +40,8 @@ public class EtherEnemyGraphics{
 			if(isPut){			
 				renderImage((int)rect.getX()-mapX,(int)rect.getY()-mapY,(float) 1);
 			}else{ //Otherwise
-				int hoverX = (mouseX-imageWidthInPixels/2+mapX);
-				int hoverY = (mouseY-imageHeightInPixels/2+mapY);
+				int hoverX = (mouseX-imageWidthInPixels/2);
+				int hoverY = (mouseY-imageHeightInPixels/2);
 				if(canPut){
 					renderImage(hoverX-mapX,hoverY-mapY,(float) 0.5);
 				}
