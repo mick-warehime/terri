@@ -6,6 +6,7 @@ import java.util.Properties;
 import graphics.TurretGraphics;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -25,6 +26,8 @@ public class Turret extends GameObject implements ObjectCreator {
 	private boolean isShooting;
 	private boolean isInitializing;
 	private ArrayList<Shape> availableTargets;
+	private TurretEffectiveRange effectiveRange;
+	private Shape currentTarget = null;
 
 
 	public Turret(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
@@ -32,7 +35,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		this.isShooting = false;
 		this.isInitializing = true;
-		
+
 		// initial angle of the gun measure from the right (90 is down 270 is up)
 		this.angle = Float.parseFloat((String) args.get("angle"));
 
@@ -61,8 +64,17 @@ public class Turret extends GameObject implements ObjectCreator {
 		fileNames.add("data/turret.png");
 
 
-
 		this.graphics = new TurretGraphics(shape,map,tileX,tileY,centerRotateX,centerRotateY,fileNames);
+
+		//Initialize targeting
+		this.availableTargets = new ArrayList<Shape>();
+		float minX = this.shape.getMinX();
+		float minY = this.shape.getMinY();
+
+		this.effectiveRange = new TurretEffectiveRange(new Rectangle(minX-200,minY-200, 1000,1000 ), availableTargets);
+
+
+
 	}
 
 	public void render(int mapX, int mapY){
@@ -71,6 +83,44 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	}
 
+	private boolean isTargetable(Shape shape){
+		return !collisionHandler.lineOfSightCollision(shape,this.shape);
+	}
+	
+	private void determineCurrentTarget(){
+		
+		//If no current target
+		if (currentTarget!= null){
+			
+			//Find closest targetable, shape
+			if (!this.availableTargets.isEmpty()){
+				
+				float minDistSquared = 10000000;
+				for (Shape testTarget: availableTargets){
+					
+					
+					
+					
+					float targX = testTarget.getCenterX();
+					float targY = testTarget.getCenterY();
+					
+					float testDistSquared = (float) Math.pow(targX-centerOfHubX,2);
+					testDistSquared += Math.pow(targY-centerOfHubY,2);
+					
+					if (testDistSquared<minDistSquared){
+						minDistSquared = testDistSquared;
+						currentTarget = testTarget;
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		
+	}
+	
 	private float angleToPlayer(){
 		// calculate the angle from the hub of the gun to the center of the player
 		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
@@ -81,25 +131,25 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		return answer;
 	}
-	
+
 	private float distanceToPlayerFromHub(){
 		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
 		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
-		
+
 		float dx = (centerOfHubX-centerOfPlayerX);
 		float dy = (centerOfHubY-centerOfPlayerY);
-		
+
 		return (float) Math.sqrt(Math.pow(dx,2) + Math.pow(dy, 2));
 	}
-	
+
 
 
 
 	private boolean lockedOn() {
 		float angleToPlayer = angleToPlayer();
-		
+
 		return Math.abs(angleToPlayer-angle)<2;
-		
+
 	}
 
 	private void rotateToAngle(float targetAngle){
@@ -109,7 +159,7 @@ public class Turret extends GameObject implements ObjectCreator {
 				angle+=rotationSpeed;
 			}else
 				angle-=rotationSpeed;
-			
+
 		}
 
 		// dont let the angle go beyond the threshold angles
@@ -122,7 +172,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	}
 
 	private void tryToKillTarget(){
-		
+
 		chargeTimer +=1;
 
 		if(chargeTimer > chargeTime){
@@ -131,10 +181,11 @@ public class Turret extends GameObject implements ObjectCreator {
 		}
 	}
 
-	
-	
+
+
 	public void update(){
 
+		
 
 		//Rotation 
 		if(canTarget()){
@@ -148,43 +199,49 @@ public class Turret extends GameObject implements ObjectCreator {
 		}else{
 			chargeTimer = 0;
 		}
-		
+
 
 	}
-	
+
 	private boolean canTarget(){
-		return !collisionHandler.lineOfSightCollision(shape);
+		return !collisionHandler.lineOfSightCollisionToPlayer(shape);
 	}
 
 	@Override
 	public boolean hasObject() {
 		// TODO Auto-generated method stub
-		return isShooting;
+		return isShooting||isInitializing;
 	}
 
 	@Override
 	public Object getObject() throws SlickException {
-		isShooting = false;
-		
-		//Determine position of muzzle
-		float angleInRadians = (float) (Math.PI*angle/180);
-		
-		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
-		int beamStartX = (int) (dx + centerOfHubX);
-		
-		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
-		int beamStartY = (int) (dy + centerOfHubY);
-		
-		int beamLength = (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
-		int beamWidth = 5;
-		
-		return new ParticleBeam(beamStartX, beamStartY,  beamLength, beamWidth, angle);
-		
+		if (isInitializing){
+			isInitializing = false;
+			return this.effectiveRange;
 			
-			
-		
-		
+		}else{
+
+			isShooting = false;
+
+			//Determine position of muzzle
+			float angleInRadians = (float) (Math.PI*angle/180);
+
+			float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
+			int beamStartX = (int) (dx + centerOfHubX);
+
+			float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
+			int beamStartY = (int) (dy + centerOfHubY);
+
+			int beamLength = (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+			int beamWidth = 5;
+
+			return new ParticleBeam(beamStartX, beamStartY,  beamLength, beamWidth, angle);
+		}
+
+
+
+
 	}
-	
-	
+
+
 }

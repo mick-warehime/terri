@@ -89,7 +89,7 @@ public class EtherObject extends GameObject implements Etherable {
 	 */
 	@Override
 	public boolean canPut(){
-		boolean answer = !collisionHandler.lineOfSightCollision(shape);
+		boolean answer = !collisionHandler.lineOfSightCollisionToPlayer(shape);
 		answer = answer && collisionHandler.canPlaceEtherAt(shape);
 		return answer;
 	}
