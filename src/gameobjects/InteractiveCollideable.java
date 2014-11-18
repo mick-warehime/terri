@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.Shape;
 // The functions run depend on the class of object colliding
 public interface InteractiveCollideable {
 
-	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape);
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape);
+	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape);
+	public ArrayList<Command> onCollisionBroadcast(Class collidingObjectClass, Shape collidingObjectShape);
 	public Shape getShape();
 }

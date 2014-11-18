@@ -40,7 +40,7 @@ public class Actor {
 		status.updateEffects();
 		
 		//Receive all command inputs (some depend on status)
-		listener.update();
+		listener.receiveExternalInputs();
 		
 		//Do actions (depends on listener)
 		engine.update();

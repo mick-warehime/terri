@@ -54,7 +54,7 @@ public class LemmingBehavior extends Behavior implements CommandProvider{
 	}
 	
 	private void resolveInteractiveCollisions(){
-		ArrayList<Command> newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect(), "Enemy");
+		ArrayList<Command> newCommands = collisionHandler.resolveInteractiveCollisions(status.getRect(), Enemy.class);
 		commandStack.addAll(newCommands);
 		return;
 	}

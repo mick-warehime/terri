@@ -132,25 +132,21 @@ public class EtherEnemy extends Enemy implements Etherable{
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
-		// TODO Auto-generated method stub
+	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape) {
+		
 		 
 		if(canCollide()){
-			if (collidingObjectClass.equals("Player")){
-				status.gainEffect("Collided with player", 1);
-			}
+			super.onCollisionDo(collidingObjectClass, collidingObjectShape);
 		}
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
-		ArrayList<Command> list = new ArrayList<Command>();
+	public ArrayList<Command> onCollisionBroadcast(Class collidingObjectClass, Shape collidingObjectShape) {
+		
 		if(canCollide()){
-			if (collidingObjectClass == "Player"){
-				list.add( new DieCommand());
-			}
+			return super.onCollisionBroadcast(collidingObjectClass, collidingObjectShape);
 		}
-		return list;
+		return new ArrayList<Command>();
 	}
 	
 	
