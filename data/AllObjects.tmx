@@ -79,12 +79,5 @@
     <property name="y" value="1"/>
    </properties>
   </object>
-  <object name="Etherable Moving Platform" type="etherableMovingPlatform" x="496" y="128" width="224" height="16">
-   <properties>
-    <property name="initialDirection" value="-1"/>
-    <property name="range" value="4"/>
-    <property name="xOrY" value="y"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

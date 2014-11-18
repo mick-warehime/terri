@@ -13,7 +13,7 @@ public class Actor {
 	protected Image sprite;
 	protected GlobalInputListener listener;
 	protected ActionEngine engine;
-	protected StatusNew status;
+	protected Status status;
 
 	public Actor() throws SlickException {
 		
@@ -40,7 +40,7 @@ public class Actor {
 		status.updateEffects();
 		
 		//Receive all command inputs (some depend on status)
-		listener.update();
+		listener.receiveExternalInputs();
 		
 		//Do actions (depends on listener)
 		engine.update();

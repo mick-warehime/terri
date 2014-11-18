@@ -13,7 +13,7 @@ public class ActionEngine {
 
 
 	protected GlobalInputListener listener;
-	protected StatusNew status;
+	protected Status status;
 	private float gravity = 1;
 	protected float vx = 0;
 	protected float vy = 0;
@@ -23,7 +23,7 @@ public class ActionEngine {
 
 
 
-	public ActionEngine(GlobalInputListener listener, StatusNew status2) {
+	public ActionEngine(GlobalInputListener listener, Status status2) {
 
 		this.listener = listener;
 		this.status = status2;

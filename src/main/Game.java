@@ -30,7 +30,6 @@ import actors.Player;
 
 
 // TO DO 
-// 0) daveers mom (shots fired)
 // 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
 // 2) start menu, lemming types
 // 3) dog
@@ -51,7 +50,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 4;
+	private int currentLevel = 0;
 	private ProgressPoint progress;
 	
 	private int[] mousePos = new int[2];

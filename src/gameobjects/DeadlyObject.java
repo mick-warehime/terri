@@ -23,12 +23,12 @@ public class DeadlyObject extends GameObject implements InteractiveCollideable{
 		return false;
 	}
 	@Override
-	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
+	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
+	public ArrayList<Command> onCollisionBroadcast(Class collidingObjectClass, Shape collidingObjectShape) {
 		
 		ArrayList<Command> list = new ArrayList<Command>();
 		list.add(new DieCommand());

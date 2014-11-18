@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import actors.Actor;
+import actors.Player;
 import commands.CommandProvider;
 import gameobjects.Door;
 import gameobjects.Etherable;
@@ -200,7 +201,7 @@ public class CollisionHandler implements CommandProvider {
 
 
 	public ArrayList<Command> getCommands(){
-		return resolveInteractiveCollisions(playerRect, "Player");
+		return resolveInteractiveCollisions(playerRect, Player.class);
 	}
 
 	//Returns if the line of sight from the player to an EtherObject
@@ -249,7 +250,7 @@ public class CollisionHandler implements CommandProvider {
 	// and does the interactive's inherent collision command
 	// For collisions to be class specific, we pass in a 
 	// collidingObjectClass.
-	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect, String collidingObjectClass ){
+	public ArrayList <Command> resolveInteractiveCollisions(Rectangle rect, Class collidingObjectClass ){
 		ArrayList<Command> output = new  ArrayList <Command>();
 
 		//Make a slightly bigger rectangle because physics don't 

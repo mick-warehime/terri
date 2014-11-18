@@ -6,6 +6,7 @@ import java.util.Properties;
 import graphics.TurretGraphics;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Turret extends GameObject implements ObjectCreator {
@@ -22,12 +23,15 @@ public class Turret extends GameObject implements ObjectCreator {
 	private int chargeTime;
 	private int chargeTimer;
 	private boolean isShooting;
+	private boolean isInitializing;
+	private ArrayList<Shape> availableTargets;
 
 
 	public Turret(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
 		super(x, y, w, h, name, map, args);
 
 		this.isShooting = false;
+		this.isInitializing = true;
 		
 		// initial angle of the gun measure from the right (90 is down 270 is up)
 		this.angle = Float.parseFloat((String) args.get("angle"));
@@ -162,14 +166,24 @@ public class Turret extends GameObject implements ObjectCreator {
 	public Object getObject() throws SlickException {
 		isShooting = false;
 		
-		//Determine position of turret muzzle
+		//Determine position of muzzle
 		float angleInRadians = (float) (Math.PI*angle/180);
+		
 		float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
+		int beamStartX = (int) (dx + centerOfHubX);
+		
 		float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
+		int beamStartY = (int) (dy + centerOfHubY);
 		
-		int beamLength= (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+		int beamLength = (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+		int beamWidth = 5;
 		
-		return new ParticleBeam((int) (centerOfHubX+dx), (int) (centerOfHubY+dy),  beamLength, 5, angle);
+		return new ParticleBeam(beamStartX, beamStartY,  beamLength, beamWidth, angle);
+		
+			
+			
+		
+		
 	}
 	
 	

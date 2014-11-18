@@ -71,13 +71,13 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
+	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape) {
 		
 
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
+	public ArrayList<Command> onCollisionBroadcast(Class collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList<Command> list = new ArrayList<Command>();
 		
 		list.add(new MinimumDisplaceCommand(2*velocity[1],'y'));

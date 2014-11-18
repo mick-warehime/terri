@@ -74,13 +74,13 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	}
 
 	@Override
-	public void onCollisionDo(String collidingObjectClass, Shape collidingObjectShape) {
+	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape) {
 		this.isDying = true;
 		
 	}
 
 	@Override
-	public ArrayList<Command> onCollisionBroadcast(String collidingObjectClass, Shape collidingObjectShape) {
+	public ArrayList<Command> onCollisionBroadcast(Class collidingObjectClass, Shape collidingObjectShape) {
 		ArrayList <Command> output = new ArrayList<Command>();
 		output.add(new DieCommand());
 		return output;

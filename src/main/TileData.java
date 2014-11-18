@@ -173,7 +173,8 @@ public class TileData {
 			Constructor construct = test[0];
 			
 			for (Constructor con : test){
-				if(con.getParameterCount()==7){
+				Class[] types = con.getParameterTypes();
+				if(types.length== 7){
 					construct = con;
 					break;
 				}
