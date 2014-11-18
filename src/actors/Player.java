@@ -46,7 +46,6 @@ public class Player extends Actor {
 	
 	public void setStatus(int x, int y, CollisionHandler collisionHandler){
 				
-		//loop over all objects, find the start position object
 		int px = x;
 		int py = y;
 				

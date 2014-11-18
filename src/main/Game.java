@@ -36,6 +36,9 @@ import actors.Player;
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel
 // 0/5) graphics/ animations/particl effects
+//
+// 6) turret shoould update based on a clock not on frame updates // are there other methods that do this?
+
 
 public class Game extends BasicGame {
 
@@ -54,7 +57,7 @@ public class Game extends BasicGame {
 	private int[] mousePos = new int[2];
 
 	public Game() {
-		super("Mick is a dick");
+		super("DVIR IS NOT WELL ENDOWED");
 	}
 
 	@Override

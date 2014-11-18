@@ -12,6 +12,7 @@ import gameobjects.EtherObject;
 import gameobjects.GameObject;
 import gameobjects.Ladder;
 import gameobjects.ProgressPoint;
+import gameobjects.SpawnLocation;
 import gameobjects.Switch;
 import gameobjects.SwitchObject;
 import gameobjects.Teleporter;
@@ -34,7 +35,6 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import actors.Actor;
 import actors.Enemy;
-
 import actors.EtherEnemy;
 
 
@@ -87,6 +87,7 @@ public class TileData {
 		parserDict.put("enemy", Enemy.class);
 		parserDict.put("etherEnemy", EtherEnemy.class);
 		parserDict.put("etherElevator", EtherElevator.class);
+		parserDict.put("spawnLocation", SpawnLocation.class);
 
 	}
 
