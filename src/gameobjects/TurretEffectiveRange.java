@@ -20,6 +20,7 @@ public class TurretEffectiveRange implements InteractiveCollideable {
 
 	}
 
+	//Adds all valid targets to the Turret's availableTargets list
 	@Override
 	public void onCollisionDo(Class<?> collidingObjectClass,
 			Shape collidingObjectShape) {
@@ -31,6 +32,7 @@ public class TurretEffectiveRange implements InteractiveCollideable {
 		Class<?> testClass = collidingObjectClass;
 		
 		//You have to loop over all possible superclasses
+		// to see if one of them is targetableClass
 		while (testClass != null){
 			if(testClass.equals(targetableClass)){
 				validTarget = true;

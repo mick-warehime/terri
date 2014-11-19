@@ -126,7 +126,6 @@ public class Level {
 
 
 	private void removeFromList(Object obj, ArrayList<?> list){
-		
 		if (list.contains(obj)){
 			list.remove(obj);
 		}

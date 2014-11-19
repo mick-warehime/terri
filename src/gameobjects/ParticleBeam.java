@@ -16,7 +16,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	private Image beamImage;
 	private float angle;
 	private boolean isDying = false;
-	private int lifeTime = 40;
+	private int lifeTime = 20;
 	private int lifeCounter= 0;
 	private int length;
 	private int width;
@@ -75,7 +75,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 
 	@Override
 	public void onCollisionDo(Class collidingObjectClass, Shape collidingObjectShape) {
-		this.isDying = true;
+//		this.isDying = true;
 		
 	}
 

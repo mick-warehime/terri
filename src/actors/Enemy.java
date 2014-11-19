@@ -68,7 +68,6 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		behavior.determine();
 		super.update();
 		assert (status != null) : "Error! Collision Handler not incorporated!";
-
 	}
 
 	@Override

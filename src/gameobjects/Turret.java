@@ -84,60 +84,69 @@ public class Turret extends GameObject implements ObjectCreator {
 	}
 
 	private boolean isTargetable(Shape shape){
-		return !collisionHandler.lineOfSightCollision(shape,this.shape);
-	}
-	
-	private void determineCurrentTarget(){
+		//Not blocked and within rotation range
+		boolean answer = !collisionHandler.lineOfSightCollision(shape,this.shape);
+		answer = answer && (angleToShape(shape)>= rotationRange[0]);
+		answer = answer && (angleToShape(shape)<= rotationRange[1]);
 		
-		//If no current target
-		if (currentTarget!= null){
-			
-			//Find closest targetable, shape
+		return answer;
+	}
+
+	private void determineCurrentTarget(){
+
+		// If target is not in line of sight, untarget it.
+		if (currentTarget != null){
+			if (!isTargetable(currentTarget)){ currentTarget = null;}
+		}
+
+
+		//If no current target, find a current target
+		if (currentTarget== null){
+
+			//Find closest, targetable shape
 			if (!this.availableTargets.isEmpty()){
-				
-				float minDistSquared = 10000000;
+
+				float minDist = 10000000;
 				for (Shape testTarget: availableTargets){
-					
-					
-					
-					
-					float targX = testTarget.getCenterX();
-					float targY = testTarget.getCenterY();
-					
-					float testDistSquared = (float) Math.pow(targX-centerOfHubX,2);
-					testDistSquared += Math.pow(targY-centerOfHubY,2);
-					
-					if (testDistSquared<minDistSquared){
-						minDistSquared = testDistSquared;
+
+					if (!isTargetable(testTarget)){	continue;}
+
+					float targetDist = distanceFromHub(testTarget);
+
+					if (targetDist<minDist){
+						minDist = targetDist;
 						currentTarget = testTarget;
 					}
-					
-				}
-				
-			}
-			
-		}
-		
-		
-	}
-	
-	private float angleToPlayer(){
-		// calculate the angle from the hub of the gun to the center of the player
-		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
-		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
 
-		float answer = (float) Math.atan2(centerOfPlayerY-centerOfHubY,centerOfPlayerX-centerOfHubX);
+				}
+
+			}
+
+		}
+
+
+	}
+
+
+	private float angleToShape(Shape shape){
+		// calculate the angle from the hub of the gun to the center of the shape
+		float targetX = shape.getCenterX();
+		float targetY = shape.getCenterY();
+
+		float answer = (float) Math.atan2(targetY-centerOfHubY,targetX-centerOfHubX);
 		answer = (float) (answer*180/Math.PI);
 
 		return answer;
 	}
+	
 
-	private float distanceToPlayerFromHub(){
-		float centerOfPlayerX = collisionHandler.getPlayerCenterX();
-		float centerOfPlayerY = collisionHandler.getPlayerCenterY();
 
-		float dx = (centerOfHubX-centerOfPlayerX);
-		float dy = (centerOfHubY-centerOfPlayerY);
+	private float distanceFromHub(Shape shape){
+		float targetX = shape.getCenterX();
+		float targetY = shape.getCenterY();
+
+		float dx = (centerOfHubX-targetX);
+		float dy = (centerOfHubY-targetY);
 
 		return (float) Math.sqrt(Math.pow(dx,2) + Math.pow(dy, 2));
 	}
@@ -146,9 +155,12 @@ public class Turret extends GameObject implements ObjectCreator {
 
 
 	private boolean lockedOn() {
-		float angleToPlayer = angleToPlayer();
+		if (currentTarget != null){
 
-		return Math.abs(angleToPlayer-angle)<2;
+			return Math.abs(angleToShape(currentTarget)-angle)<5;
+		}
+		else {return false;}
+
 
 	}
 
@@ -171,7 +183,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	}
 
-	private void tryToKillTarget(){
+	private void chargeBeamAndFire(){
 
 		chargeTimer +=1;
 
@@ -185,27 +197,29 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	public void update(){
 
+		determineCurrentTarget();
 		
-
+		//So you don't target killed actors or shapes leaving the effective range
+		availableTargets.clear(); 
+		
 		//Rotation 
-		if(canTarget()){
-			rotateToAngle(angleToPlayer());
+		if(currentTarget!=null){
+			rotateToAngle(angleToShape(currentTarget));
 		}else {
 			rotateToAngle(restingAngle);
 		}
 
 		if (lockedOn()){
-			tryToKillTarget();
+			chargeBeamAndFire();
 		}else{
-			chargeTimer = 0;
+			chargeTimer -=1;
+			if (chargeTimer <0){chargeTimer = 0;}
 		}
 
 
 	}
 
-	private boolean canTarget(){
-		return !collisionHandler.lineOfSightCollisionToPlayer(shape);
-	}
+
 
 	@Override
 	public boolean hasObject() {
@@ -218,12 +232,12 @@ public class Turret extends GameObject implements ObjectCreator {
 		if (isInitializing){
 			isInitializing = false;
 			return this.effectiveRange;
-			
+
 		}else{
 
 			isShooting = false;
 
-			//Determine position of muzzle
+			//Determine position of muzzle in order to place the beam
 			float angleInRadians = (float) (Math.PI*angle/180);
 
 			float dx= (float) ((float) lengthOfMuzzle*Math.cos(angleInRadians));
@@ -232,8 +246,10 @@ public class Turret extends GameObject implements ObjectCreator {
 			float dy= (float) ((float) lengthOfMuzzle*Math.sin(angleInRadians));
 			int beamStartY = (int) (dy + centerOfHubY);
 
-			int beamLength = (int) (distanceToPlayerFromHub()- lengthOfMuzzle);
+			int beamLength = (int) (distanceFromHub(currentTarget)- lengthOfMuzzle);
 			int beamWidth = 5;
+			
+			currentTarget = null; //No longer target the shape after firing.
 
 			return new ParticleBeam(beamStartX, beamStartY,  beamLength, beamWidth, angle);
 		}

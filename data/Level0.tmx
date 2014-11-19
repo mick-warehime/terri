@@ -43,7 +43,7 @@
  </tileset>
  <layer name="tiles" width="50" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2PWwqAIBBFKwjaeetoTf1Yu+j9m1H+CE5WIre6By6ijuOcMksSVexpdFpHltwvppeU7Z+QDNqhzNz3Pn7m3q6L7TEIHpKf7aY8ZlOedVe564EGPbCgBxb0wIIeWNADC3pgceZRxxvlEfTAgh5Y/MXjLdADC3pgEcKjSuO8kfiaR3+so05n7Sed2XE2OeqlHqH7GYcVK0+Xb3AXAAA=
+   H4sIAAAAAAAAA+2PWwrDIBBFU6HQLWTFWUfWlB+bXeT9W0vrj+DEGJGbeA9cRB3HOY2qKv365W3Se7I9w2J7Sfn+k5LJODTKfx/iZ+/dutwek+Ah+bluOmA2HVh3lFgPNOiBBT2woAcW9MCCHljQA4s9jy7fKKegBxb0wKIUj6tADyxK8agf+WY5QwqPNsI15o3E3TzG/zqbDM5+MVk9Z4unXuqRup91+ADfUX7YcBcAAA==
   </data>
  </layer>
  <layer name="ether" width="50" height="30" opacity="0.3">
@@ -73,7 +73,6 @@
     <property name="minAngle" value="10"/>
    </properties>
   </object>
-  <object name="Enemy" type="enemy" x="384" y="112" width="64" height="16"/>
   <object name="EtherENemy" type="etherEnemy" x="592" y="256" width="96" height="16"/>
   <object name="Teleporter" type="teleporter" x="384" y="352" width="64" height="16">
    <properties>
@@ -84,10 +83,11 @@
   </object>
   <object name="MovingPlatform" type="movingPlatform" x="592" y="304" width="96" height="16">
    <properties>
-    <property name="switchTime" value="500"/>
+    <property name="switchTime" value="100"/>
     <property name="vx" value="-1"/>
     <property name="vy" value="0"/>
    </properties>
   </object>
+  <object name="Enemy" type="enemy" x="144" y="400" width="64" height="16"/>
  </objectgroup>
 </map>

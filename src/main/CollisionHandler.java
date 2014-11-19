@@ -288,14 +288,6 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 
-	public float getPlayerCenterX(){
-		return playerRect.getX()+playerRect.getWidth()/2;
-	}
-	public float getPlayerCenterY(){
-		return playerRect.getY()+playerRect.getHeight()/2;
-	}
-
-
 
 
 
