@@ -17,8 +17,8 @@ public class AnimatedGraphics {
 	protected int tileX;
 	protected int tileY; 
 	
-	public AnimatedGraphics(Shape rect2,TiledMap map, int tileX, int tileY, ArrayList<String> fileNames) throws SlickException {
-		this.rect = rect2;
+	public AnimatedGraphics(Shape rect,TiledMap map, int tileX, int tileY, ArrayList<String> fileNames) throws SlickException {
+		this.rect = rect;
 		
 		this.tileX = tileX;
 		this.tileY = tileY;
@@ -26,10 +26,10 @@ public class AnimatedGraphics {
 		this.tileHeightInPixels = map.getTileHeight();
 		this.tileWidthInPixels = map.getTileWidth();
 				
-		loadImages(map, fileNames);
+		loadImages( fileNames);
 	}
 	
-	private void loadImages(TiledMap map, ArrayList<String> fileNames) throws SlickException{
+	private void loadImages(ArrayList<String> fileNames) throws SlickException{
 		
 		imagesFromFile = new ArrayList<Image>();
 						

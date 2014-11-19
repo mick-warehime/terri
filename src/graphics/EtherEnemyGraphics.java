@@ -7,29 +7,28 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class EtherEnemyGraphics{
+import actors.Status;
+
+public class EtherEnemyGraphics extends EnemyGraphics{
 
 	protected ArrayList<Image> tileImages;
-	protected Image image;
+	
 	protected Rectangle rect;
 	protected Rectangle etherRect;
-	private int imageHeightInPixels;
-	private int imageWidthInPixels;
+	
 
-	public EtherEnemyGraphics(Rectangle rect,Rectangle etherRect) throws SlickException {
-		this.rect = rect;
+	public EtherEnemyGraphics(Status status, Rectangle etherRect, String imageFile) throws SlickException {
+		super(status,imageFile);
+		this.rect = status.getRect();
 		this.etherRect = etherRect;				
-		image = new Image("data/enemy2.png");
+		
 	}	
 	
-	public void render(int mapX, int mapY) {		
-			image.draw(rect.getX() -mapX, rect.getY() -mapY);
-	}
- 
-	public void renderImage(int x, int y, float opacity) {
+	private void renderImage(int x, int y, float opacity) {
 
 		image.setAlpha(opacity);
-		image.draw(x, y);
+		flippedImage.setAlpha(opacity);
+		super.render(x, y);
 	}
 	public void render(int mapX, int mapY, int mouseX, int mouseY, boolean isEther, boolean isPut, boolean canPut) {
 

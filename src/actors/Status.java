@@ -13,7 +13,7 @@ public class Status {
 
 	private boolean isDying;
 	private ArrayList<Effect> effects;
-//	private ArrayList<Attribute> attributes;
+	private int direction = 1;
 
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
@@ -159,23 +159,6 @@ public class Status {
 
 
 		
-//	class Attribute{
-//		public String name;
-//		private float value;
-//		
-//		public Attribute(String name, float initValue){
-//			this.name = name;
-//			this.value = initValue;
-//		}
-//		
-//		public float getValue(){
-//			return value;
-//		}
-//		
-//		public void setValue(float newValue){
-//			this.value = newValue;
-//		}
-//	}
 	
 	class Effect{
 
@@ -196,6 +179,14 @@ public class Status {
 		}
 
 
+	}
+	
+	public int getDirection(){
+		return direction;
+	}
+
+	public void flipDirection() {
+		direction = -1*direction;	
 	}
 
 }

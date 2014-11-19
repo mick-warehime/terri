@@ -12,7 +12,7 @@ import commands.MoveCommand;
 //Gives commands to an actor based on world conditions
 public class LemmingBehavior extends Behavior implements CommandProvider{
 
-	private int moveDirection = -1;
+	
 	
 	
 	public LemmingBehavior(Status status, CollisionHandler collisionHandler) {
@@ -45,10 +45,10 @@ public class LemmingBehavior extends Behavior implements CommandProvider{
 	private void decideMovement(){
 		
 		if (status.hasEffect("x collision")){
-			moveDirection = -moveDirection;
+			status.flipDirection();
 		}
 		
-		commandStack.add(new MoveCommand(moveDirection));
+		commandStack.add(new MoveCommand(status.getDirection()));
 		
 		return;
 	}

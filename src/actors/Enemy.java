@@ -36,7 +36,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 
 		status = new Status(rect);
 
- 		graphics = new EnemyGraphics(rect);
+ 		graphics = new EnemyGraphics(status,"data/enemy1.png");
  	}
 
 	public Enemy(int xPixels, int yPixels) throws SlickException {
@@ -48,7 +48,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 				
 		status = new Status(rect);
 
- 		graphics = new EnemyGraphics(status.getRect());
+ 		graphics = new EnemyGraphics(status,"data/enemy1.png");
  	}
 	
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){
@@ -88,7 +88,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 	
 	public void render( int mapX, int mapY) {
-		graphics.render(mapX, mapY); 
+		graphics.render(rect.getX() - mapX, rect.getY() - mapY); 
 	}
 
 

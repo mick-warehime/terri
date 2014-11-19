@@ -30,7 +30,7 @@ import actors.Player;
 
 
 // TO DO 
-// 1) turret lazers, jetpacks, doors that stay open?, turret switch (panel on wall)
+// 1) jetpacks, doors that stay open?, turret switch (panel on wall)
 // 2) start menu, lemming types
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel

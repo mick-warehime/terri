@@ -8,12 +8,15 @@ import org.newdawn.slick.geom.Shape;
 import actors.Actor;
 import actors.Enemy;
 
-public class TurretEffectiveRange implements InteractiveCollideable {
 
-	Shape rangeDelimiter;
+// Populates a list with all actors touching a given shape
+
+public class CollisionDomain implements InteractiveCollideable {
+
+	private Shape rangeDelimiter;
 	private ArrayList<Shape> targets;
 
-	public TurretEffectiveRange( Shape rangeDelimiter, ArrayList<Shape> targets){
+	public CollisionDomain( Shape rangeDelimiter, ArrayList<Shape> targets){
 		this.rangeDelimiter = rangeDelimiter;
 		this.targets = targets;
 

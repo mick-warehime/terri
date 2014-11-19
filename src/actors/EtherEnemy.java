@@ -36,7 +36,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
-		this.etherGraphics = new EtherEnemyGraphics(rect,etherRect);
+		this.etherGraphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
 		
 	}
 
@@ -47,7 +47,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
-		etherGraphics = new EtherEnemyGraphics(rect,etherRect);
+		etherGraphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
 		
 	}
 

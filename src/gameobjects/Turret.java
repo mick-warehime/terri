@@ -26,7 +26,7 @@ public class Turret extends GameObject implements ObjectCreator {
 	private boolean isShooting;
 	private boolean isInitializing;
 	private ArrayList<Shape> availableTargets;
-	private TurretEffectiveRange effectiveRange;
+	private CollisionDomain effectiveRange;
 	private Shape currentTarget = null;
 
 
@@ -69,13 +69,13 @@ public class Turret extends GameObject implements ObjectCreator {
 		//Initialize targeting
 		this.availableTargets = new ArrayList<Shape>();
 		
-
 		int minX = Integer.parseInt((String) args.get("minRangeX"))*map.getTileWidth();
 		int minY = Integer.parseInt((String) args.get("minRangeY"))*map.getTileHeight();
 		int maxX = Integer.parseInt((String) args.get("maxRangeX"))*map.getTileWidth();
 		int maxY = Integer.parseInt((String) args.get("maxRangeY"))*map.getTileHeight();
 		
-		this.effectiveRange = new TurretEffectiveRange(new Rectangle(minX,minY, maxX-minX,maxY-minY ), availableTargets);
+		//This object populates the available targets for the turret
+		this.effectiveRange = new CollisionDomain(new Rectangle(minX,minY, maxX-minX,maxY-minY ), availableTargets);
 
 
 
