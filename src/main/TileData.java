@@ -166,23 +166,22 @@ public class TileData {
 		//Construct gameObjects
 		//Define constructor from dictionary, if it's in it
 		if (parserDict.containsKey(objectType)){
-			Constructor<?>[] test = (parserDict.get(objectType).getConstructors());
+			Constructor<?>[] cList = (parserDict.get(objectType).getConstructors());
 			
-			Constructor construct = test[0];
+			Constructor constructor = cList[0];
 			
-			for (Constructor con : test){
+			for (Constructor con : cList){
 				Class[] types = con.getParameterTypes();
 				if(types.length== 7){
-					construct = con;
+					constructor = con;
 					break;
 				}
 			}
 
-			//		gameObjects.add(new DeadlyObject(x, y, w, h, map,args));
 			try {
 				//Populate different lists according to type
 				 
-				Object obj = (Object) construct.newInstance(x, y, w, h, name, map,args);
+				Object obj = (Object) constructor.newInstance(x, y, w, h, name, map,args);
 				
 				if (obj instanceof GameObject){
 					gameObjects.add((GameObject) obj );

@@ -68,10 +68,14 @@ public class Turret extends GameObject implements ObjectCreator {
 
 		//Initialize targeting
 		this.availableTargets = new ArrayList<Shape>();
-		float minX = this.shape.getMinX();
-		float minY = this.shape.getMinY();
+		
 
-		this.effectiveRange = new TurretEffectiveRange(new Rectangle(minX-200,minY-200, 1000,1000 ), availableTargets);
+		int minX = Integer.parseInt((String) args.get("minRangeX"))*map.getTileWidth();
+		int minY = Integer.parseInt((String) args.get("minRangeY"))*map.getTileHeight();
+		int maxX = Integer.parseInt((String) args.get("maxRangeX"))*map.getTileWidth();
+		int maxY = Integer.parseInt((String) args.get("maxRangeY"))*map.getTileHeight();
+		
+		this.effectiveRange = new TurretEffectiveRange(new Rectangle(minX,minY, maxX-minX,maxY-minY ), availableTargets);
 
 
 
@@ -94,9 +98,11 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	private void determineCurrentTarget(){
 
-		// If target is not in line of sight, untarget it.
+		// If current target is invalid, untarget it.
 		if (currentTarget != null){
-			if (!isTargetable(currentTarget)){ currentTarget = null;}
+			if (!isTargetable(currentTarget) 
+					|| !availableTargets.contains(currentTarget))
+			{ currentTarget = null;}
 		}
 
 

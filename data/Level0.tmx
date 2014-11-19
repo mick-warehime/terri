@@ -43,12 +43,12 @@
  </tileset>
  <layer name="tiles" width="50" height="30" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2PWwrDIBBFU6HQLWTFWUfWlB+bXeT9W0vrj+DEGJGbeA9cRB3HOY2qKv365W3Se7I9w2J7Sfn+k5LJODTKfx/iZ+/dutwek+Ah+bluOmA2HVh3lFgPNOiBBT2woAcW9MCCHljQA4s9jy7fKKegBxb0wKIUj6tADyxK8agf+WY5QwqPNsI15o3E3TzG/zqbDM5+MVk9Z4unXuqRup91+ADfUX7YcBcAAA==
+   H4sIAAAAAAAAA+2PWwqAIBBFKwjaeetoTf1Yu+j9m1H+CE5WIre6By6ijuOcMksSVexpdFpHltwvppeU7Z+QDNqhzNz3Pn7m3q6L7TEIHpKf7aY8ZlOedVe564EGPbCgBxb0wIIeWNADC3pgceZRxxvlEfTAgh5Y/MXjLdADC3pgEcKjSuO8kfiaR3+so05n7Sed2XE2OeqlHqH7GYcVK0+Xb3AXAAA=
   </data>
  </layer>
  <layer name="ether" width="50" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3IMQqAMBREwQ+JN9LaIvc/gdfQXtKapNLCwAwsDzYCAAAA+NIxGHPZl/HeKo8BczpTxJXa9r7av1pzxJbb9r5axm6xk1amcBcAAA==
+   H4sIAAAAAAAAA+3IsQnAMAxE0QPZGyW1C+8/QdZI+qDWlqo0Mf4Pjg8nAQB2diUDAAAAdtdqvq/6MABruk16bG70ef/qKNJZ5kafF7kXF2mFp3AXAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -70,7 +70,11 @@
     <property name="angle" value="10"/>
     <property name="chargeTime" value="50"/>
     <property name="maxAngle" value="170"/>
+    <property name="maxRangeX" value="30"/>
+    <property name="maxRangeY" value="29"/>
     <property name="minAngle" value="10"/>
+    <property name="minRangeX" value="8"/>
+    <property name="minRangeY" value="14"/>
    </properties>
   </object>
   <object name="EtherENemy" type="etherEnemy" x="592" y="256" width="96" height="16"/>
@@ -81,7 +85,7 @@
     <property name="y" value="7"/>
    </properties>
   </object>
-  <object name="MovingPlatform" type="movingPlatform" x="592" y="304" width="96" height="16">
+  <object name="MovingPlatform" type="movingPlatform" x="576" y="112" width="96" height="16">
    <properties>
     <property name="switchTime" value="100"/>
     <property name="vx" value="-1"/>
