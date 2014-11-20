@@ -92,6 +92,10 @@
     <property name="vy" value="0"/>
    </properties>
   </object>
-  <object name="Enemy" type="enemy" x="144" y="400" width="64" height="16"/>
+  <object name="Enemy" type="enemy" x="144" y="400" width="64" height="16">
+   <properties>
+    <property name="direction" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

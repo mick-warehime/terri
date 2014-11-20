@@ -16,7 +16,7 @@ public class ParticleBeam extends GameObject implements InteractiveCollideable {
 	private Image beamImage;
 	private float angle;
 	private boolean isDying = false;
-	private int lifeTime = 20;
+	private int lifeTime = 5;
 	private int lifeCounter= 0;
 	private int length;
 	private int width;

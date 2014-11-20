@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="170" height="30" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="170" height="60" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="metroidtiles" tilewidth="16" tileheight="16">
   <image source="metroidtiles.png" width="1024" height="800"/>
  </tileset>
@@ -41,129 +41,150 @@
  <tileset firstgid="3207" name="lemmings" tilewidth="32" tileheight="48">
   <image source="lemmings.png" width="384" height="384"/>
  </tileset>
- <layer name="tiles" width="170" height="30" opacity="0.5">
+ <layer name="tiles" width="170" height="60" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2aWW7CMBCGo6KK3owL9E45AHfgKnnmDbhFF9rXxiWWoiFex57Yzv9JI1HkeMuH1/YvXXd5e8R1jJshfl/9QudlC12ObzpXmNJeyWear2+bYoLWyZUupG4ltyPUF1f0uylGT034+DLv5yv53uWfidMUNP3S+zx1/uFqD+dd2vK19Z9vX4eUt0Y7dB7ccY7GsHvEl8VTm7+0zheLd/RduMjlqa1OtD2+7476xsFn7rCNF6W0Q5OiTnosjfE0NyHucT2l0H6ThONpSe0wEVOnAZ4WR0pPWwGelgc8fYazPs1NDZ6mdInjZ+ueYn3KA57KgHmfRw6XUnqawv0SfiPwlEcNnrYAPOUBT2VQjg7wNBp4KoPydC+w3z+PcQx8ZquecspaeqYFlKcHAU/fpwgBnoaXt5S+BZSnvYCnaiyFp/A0lv/1KcbTaKQ9dZW5lLYFpDxV4+k58JnSHVVgHyXDUPB4qoGn8HQvdL8fs9+fU6KjirU99cmrBQ5CnnLG0zklOarIsTaFp8/0Qp7G7PdrQHoPtVWk/q9Pzfstegpk+JzuTGuZ90H55JhjSj4/zUHu9SrIg+S5VOj5aQ7W8pRz1pTynKpWpM6ljl38uVQN5/0gL5Lzfux4Ck/B1u6j4Gmd1HAfBU/B/D5Kn1F9j/FB/r6P8WP47m5I75NHrnJylbFGH7nyKLkdqfP7A+XD2+ewTwAA
+   H4sIAAAAAAAAA+3a223CMBTG8YiqopuxQHfKAOzAKnnmDbpFL7SvjQtRI7eJHdvn2Cb/n3SkgoIvySfn1qYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2dtM0p6drnft6maivR78a2pqroR/f7Vw1te3Z+ttu13dOIWWPybXdkrGVPI+leXFV+3CrzXSGffIy3s9n63tX/qYcbmVv/9/xPDT+5ZpPzLGca3du//nu6yX95ZjH0EbsOmdX93Ct95mczuXXHvNpJnf2sXCRyuncmOz5+B47O28xfM4dc+tFKfMYpBjTsJaG5FTakuzF5tRm7zdNMTktaR5TQsbUkdPipMzpvSCn5SGnf8Vcn0qrIaepshSTzTXklOvTOORUB+f9OBJZSpVZ7ZJETuOsJae5kdM45FSHyWhHToPVkFONMUszOd0q3O8f+9ov/M1ac5qyL1d/NeV0p5DT51stQU7l+6spp61CTs1aSk7Jaaif61PW02A5rvXIqRyznh4X/qb0jBoSOQ1pU7qv3LqC19MBOZVbt2vJ6Vbp/X7I/f5YiRk1Ss1p6jnktlPKacx6OlZSRo2ca1zKTJWe01YppyH3+zXQyFBpcsxF6//6zHn/HnO6Rjly+nZ7Z1rLeR/5uXIqcY4p+fmpBOnr1TXIct5XzOnS56cScuVU855IUq4xaj2X2jfhz6VqeN7vkuMeXnP80jTP+6Hr6T3kNERstrVKw9reR9WUU/yq4X0UOcX4fdTwjOqjr1fr86Wvz4nvLhPb+7Qh1Y9UHzn2kauNkueRur1vGBPAbWCfAAA=
   </data>
  </layer>
- <layer name="ether" width="170" height="30" opacity="0.3">
+ <layer name="ether" width="170" height="60" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aXQqCQBSG4QGVCtpKP0Red1k7qw20oi5qA+0k7xNM1IrwNHPGUd8HDkdxdEb4FASNAQAAAIDKLikKCBk5BQAA/9jMigJCRk7RB+QUfUBO0YWJcDw5RRf2wvHkFL5c5tX2UXguOUUXrsLx5BRa6u9PW+R0vM5xs0JGTsfrnjQrZOQUfUBOYWPqaR5yChsHT/MMOaflf7rfCm6cXr38tn/vrgw5p31Wf560M2Dj5mkechom3vsAAITnERmTRbKuQboGaW97THMNPu4lU7ierwz8so2NSWNZ1yBdg7S3Paa5Bh/3kipcz3UGFvn35DKvVV7r2ec+4NoTVqyImrBPAAA=
+   H4sIAAAAAAAAA+3aQQrCMBAF0EBb9EB27VJvphfwTHoBb2L3LkSwm5KI6VR9D4ZZBMIPTMgmKQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU7bdo2DJzCkAAAAAS7OKDgAZdtEBIMMhOgBkOEcHAPigUzsuWKJrNy7gfc9/VyUFr9bRASDDPjrAD/Au1HeMDkCob7lPl+gAhPqWOQWAf3JrUhqasl5DaYbSnrtWM8McZxkq7DfXDEzZtCn1bVmvoTRDac9dq5lhjrP0Ffabawagljs2tsqZYJ8AAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
-  <object name="Timed Pl" type="timedPlatform" x="16" y="352" width="112" height="16">
+  <object name="Timed Pl" type="timedPlatform" x="16" y="832" width="112" height="16">
    <properties>
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="Lava" type="deadly" x="416" y="432" width="208" height="32"/>
-  <object name="P" type="timedPlatform" x="768" y="368" width="32" height="32">
+  <object name="Lava" type="deadly" x="416" y="912" width="208" height="32"/>
+  <object name="P" type="timedPlatform" x="768" y="848" width="32" height="32">
    <properties>
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="816" y="336" width="32" height="48">
+  <object name="E" type="enemy" x="816" y="816" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Lava" type="deadly" x="960" y="432" width="1728" height="32"/>
-  <object type="progressPoint" x="640" y="240" width="16" height="160">
+  <object name="Lava" type="deadly" x="960" y="912" width="1728" height="32"/>
+  <object type="progressPoint" x="640" y="720" width="16" height="160">
    <properties>
     <property name="index" value="1"/>
     <property name="x" value="40"/>
-    <property name="y" value="23"/>
+    <property name="y" value="53"/>
    </properties>
   </object>
-  <object name="St" type="progressPoint" x="80" y="304" width="16" height="16">
+  <object name="St" type="progressPoint" x="80" y="784" width="16" height="16">
    <properties>
     <property name="index" value="0"/>
-    <property name="x" value="5"/>
-    <property name="y" value="19"/>
+    <property name="x" value="85"/>
+    <property name="y" value="33"/>
    </properties>
   </object>
-  <object type="progressPoint" x="944" y="208" width="16" height="160">
+  <object type="progressPoint" x="944" y="688" width="16" height="160">
    <properties>
     <property name="index" value="2"/>
     <property name="x" value="59"/>
-    <property name="y" value="21"/>
+    <property name="y" value="51"/>
    </properties>
   </object>
-  <object type="progressPoint" x="1328" y="32" width="16" height="64">
+  <object type="progressPoint" x="1328" y="512" width="16" height="64">
    <properties>
     <property name="index" value="3"/>
     <property name="x" value="83"/>
-    <property name="y" value="4"/>
+    <property name="y" value="34"/>
    </properties>
   </object>
-  <object type="progressPoint" x="2080" y="48" width="16" height="80">
-   <properties>
-    <property name="index" value="4"/>
-    <property name="x" value="130"/>
-    <property name="y" value="5"/>
-   </properties>
-  </object>
-  <object name="T" type="teleporter" x="1664" y="192" width="16" height="64">
+  <object name="T" type="teleporter" x="1664" y="672" width="16" height="64">
    <properties>
     <property name="type" value="enemy"/>
     <property name="x" value="91"/>
-    <property name="y" value="20"/>
+    <property name="y" value="50"/>
    </properties>
   </object>
-  <object name="T" type="teleporter" x="1440" y="320" width="16" height="64">
+  <object name="T" type="teleporter" x="1440" y="800" width="16" height="64">
    <properties>
     <property name="type" value="enemy"/>
     <property name="x" value="102"/>
-    <property name="y" value="13"/>
+    <property name="y" value="43"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1536" y="320" width="32" height="48">
+  <object name="E" type="enemy" x="1536" y="800" width="32" height="48">
    <properties>
+    <property name="direction" value="-1"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1504" y="320" width="32" height="48">
+  <object name="E" type="enemy" x="1504" y="800" width="32" height="48">
    <properties>
+    <property name="direction" value="-1"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1472" y="320" width="32" height="48">
+  <object name="E" type="enemy" x="1472" y="800" width="32" height="48">
    <properties>
+    <property name="direction" value="-1"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Elevat" type="movingPlatform" x="1168" y="272" width="64" height="32">
+  <object name="Elevat" type="movingPlatform" x="1168" y="752" width="64" height="32">
    <properties>
     <property name="switchTime" value="130"/>
     <property name="vx" value="0"/>
     <property name="vy" value="-1"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1616" y="192" width="32" height="48">
+  <object name="E" type="enemy" x="1616" y="672" width="32" height="48">
    <properties>
+    <property name="direction" value="-1"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="P" type="timedPlatform" x="1552" y="64" width="32" height="32">
+  <object name="P" type="timedPlatform" x="1552" y="544" width="32" height="32">
    <properties>
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1552" y="224" width="32" height="48">
+  <object name="E" type="enemy" x="1552" y="704" width="32" height="48">
+   <properties>
+    <property name="direction" value="-1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object name="E" type="enemy" x="848" y="816" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="Ladder" type="ladder" x="1856" y="128" width="32" height="256"/>
-  <object name="E" type="enemy" x="848" y="336" width="32" height="48">
+  <object name="E" type="enemy" x="880" y="816" width="32" height="48">
    <properties>
     <property name="type" value="enemy"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="880" y="336" width="32" height="48">
+  <object name="Turret" type="turret" x="1904" y="672" width="48" height="64">
    <properties>
-    <property name="type" value="enemy"/>
+    <property name="angle" value="10"/>
+    <property name="chargeTime" value="50"/>
+    <property name="maxAngle" value="170"/>
+    <property name="maxRangeX" value="128"/>
+    <property name="maxRangeY" value="55"/>
+    <property name="minAngle" value="10"/>
+    <property name="minRangeX" value="114"/>
+    <property name="minRangeY" value="38"/>
+   </properties>
+  </object>
+  <object name="Timed Pl" type="timedPlatform" x="1840" y="784" width="208" height="16">
+   <properties>
+    <property name="duration" value="2"/>
+   </properties>
+  </object>
+  <object type="progressPoint" x="2224" y="624" width="16" height="176">
+   <properties>
+    <property name="index" value="4"/>
+    <property name="x" value="139"/>
+    <property name="y" value="47"/>
    </properties>
   </object>
  </objectgroup>

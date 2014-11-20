@@ -14,6 +14,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DieCommand;
 import commands.GlobalInputListener;
 import gameobjects.InteractiveCollideable;
+import graphics.ActorGraphics;
 import graphics.EnemyGraphics;
 
 public class Enemy extends Actor implements InteractiveCollideable{
@@ -21,7 +22,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	private LemmingBehavior behavior;
 	private int x;
 	private int y;
-	private EnemyGraphics graphics;
+	private ActorGraphics graphics;
 	protected Rectangle rect;
 
 	public Enemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
@@ -35,6 +36,15 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		rect = new Rectangle(this.x,this.y,32, 48);
 
 		status = new Status(rect);
+		
+		
+		if(args.containsKey("direction")){
+			int dir = Integer.parseInt((String) args.get("direction"));
+			if (dir*status.getDirection()<0){//directions don't agree
+				status.flipDirection();
+			}
+		}else{
+		}
 
  		graphics = new EnemyGraphics(status,"data/enemy1.png");
  	}

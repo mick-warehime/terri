@@ -180,7 +180,11 @@ public class TileData {
 
 			try {
 				//Populate different lists according to type
-				 
+				
+				if (args == null){
+					args= new Properties();
+				}
+				
 				Object obj = (Object) constructor.newInstance(x, y, w, h, name, map,args);
 				
 				if (obj instanceof GameObject){
