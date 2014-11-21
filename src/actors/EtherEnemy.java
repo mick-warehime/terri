@@ -26,7 +26,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 	protected int pixelWidth;
 	private int putX;
 	private int putY;
-	protected EtherEnemyGraphics etherGraphics;
+	
 
 	private CollisionHandler collisionHandler;
 	private int[] mousePos; 
@@ -36,7 +36,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
-		this.etherGraphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
+		this.graphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
 		
 	}
 
@@ -47,7 +47,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 
 		etherRect = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
-		etherGraphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
+		graphics = new EtherEnemyGraphics(status,etherRect,"data/enemy2.png");
 		
 	}
 
@@ -128,7 +128,7 @@ public class EtherEnemy extends Enemy implements Etherable{
 
 
 	public void render(int mapX, int mapY){
-		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
+		((EtherEnemyGraphics)graphics).render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
 	}
 
 	@Override

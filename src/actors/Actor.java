@@ -1,5 +1,6 @@
 package actors;
 
+import graphics.ActorGraphics;
 import main.CollisionHandler;
 
 import org.newdawn.slick.Image;
@@ -8,9 +9,9 @@ import org.newdawn.slick.geom.Rectangle;
 
 import commands.GlobalInputListener;
 
-public class Actor {
+public abstract class Actor {
 
-	protected Image sprite;
+	protected ActorGraphics graphics;
 	protected GlobalInputListener listener;
 	protected ActionEngine engine;
 	protected Status status;
@@ -27,9 +28,7 @@ public class Actor {
 
  
 	
-	public void render( int mapX, int mapY) {
-		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
-	}
+	public abstract void render( int mapX, int mapY);
 	
 	
 	
@@ -69,10 +68,5 @@ public class Actor {
 	}
 
 
-	public void update(int mouseX, int mouseY) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); 
-
-	}
 
 }

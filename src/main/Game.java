@@ -17,6 +17,10 @@ import actors.Player;
 
 //  To doo to doo to do to do do do to doooooo
  
+// Figure out how PlayerGraphics.render is putting the hover flame in the
+// right place... Fix bug where a top collision while hovering makes you
+// hover forever.
+
 //   platforms that have a limited number of times you can be on them?
 
 //  find a way to skip empty objects on .tmx
@@ -47,7 +51,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 1;
+	private int currentLevel = 0;
 	private ProgressPoint progress;
 	
 	private int[] mousePos = new int[2];

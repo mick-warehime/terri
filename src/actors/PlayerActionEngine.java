@@ -93,6 +93,10 @@ public class PlayerActionEngine extends ActionEngine {
 		boolean answer = this.isFalling();
 		answer = answer && jumpTimer == 0;
 		answer = answer && hoverFuel >0;
+//				(hoverFuel == this.maxHoverFuel 
+//				||
+//				(status.hasEffect("hovering") && hoverFuel >0)
+//						);
 		return answer;
 	}
 	

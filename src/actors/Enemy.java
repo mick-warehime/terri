@@ -22,7 +22,6 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	private LemmingBehavior behavior;
 	private int x;
 	private int y;
-	private ActorGraphics graphics;
 	protected Rectangle rect;
 
 	public Enemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
@@ -98,7 +97,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 	
 	public void render( int mapX, int mapY) {
-		graphics.render(rect.getX() - mapX, rect.getY() - mapY); 
+		graphics.render((int) rect.getX() - mapX, (int) rect.getY() - mapY); 
 	}
 
 

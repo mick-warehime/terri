@@ -18,7 +18,7 @@ public class ActorGraphics {
 		flippedImage = image.getFlippedCopy(true, false);
 	}
 
-	public void render(float x, float y) {		
+	public void render(int x, int y) {		
 		
 		if (status.getDirection() == 1){
 			image.draw(x, y);
@@ -29,4 +29,5 @@ public class ActorGraphics {
 		
 	}
 
+	
 }
