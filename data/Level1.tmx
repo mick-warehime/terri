@@ -79,8 +79,8 @@
   <object name="St" type="progressPoint" x="80" y="784" width="16" height="16">
    <properties>
     <property name="index" value="0"/>
-    <property name="x" value="85"/>
-    <property name="y" value="33"/>
+    <property name="x" value="5"/>
+    <property name="y" value="49"/>
    </properties>
   </object>
   <object type="progressPoint" x="944" y="688" width="16" height="160">

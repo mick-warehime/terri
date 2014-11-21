@@ -22,9 +22,14 @@ public class PlayerActionEngine extends ActionEngine {
 	private int jumpTimerIncrement = 20;
 	private int interactTimer = 0;
 	private int interactTimerIncrement = 20;
+	private int hoverFuel = 0;
+	private int maxHoverFuel = 40;
+	private float hoverAcc = (float) -1.1;
 	
 	
 	private float runDec = 1;
+
+	
 	
 
 	
@@ -71,9 +76,25 @@ public class PlayerActionEngine extends ActionEngine {
 			jumpTimer += jumpTimerIncrement;
 			status.removeEffect("climbing");
 		}
+		
+		//If the player can hover, do that
+		if (canHover()){
+			hoverFuel -=1;
+			status.gainEffect("hovering",1);
+			this.vy+=hoverAcc;
+		}
+
+		
+		
 		return;
 	}
 	
+	private boolean canHover(){
+		boolean answer = this.isFalling();
+		answer = answer && jumpTimer == 0;
+		answer = answer && hoverFuel >0;
+		return answer;
+	}
 	
 	
 	
@@ -123,6 +144,9 @@ public class PlayerActionEngine extends ActionEngine {
 		}
 		if (interactTimer>0){
 			interactTimer -=1;
+		}
+		if (!status.hasEffect("hovering")){
+			hoverFuel = Math.min(hoverFuel+1,maxHoverFuel);
 		}
 		
 		
@@ -176,13 +200,18 @@ public class PlayerActionEngine extends ActionEngine {
 
 	public void attemptClimb(int direction) {		
 	
-		if (status.hasEffect("touching ladder") && jumpTimer==0){
+		if (canClimb()){
 			this.vy =direction*climbSpeed;	
 			status.gainEffect("climbing", 10000);
 		}
 		return;
 	}
 	
+	private boolean canClimb(){
+		boolean answer = status.hasEffect("touching ladder") ;
+		answer = answer && jumpTimer==0;
+		return answer;
+	}
 
 
 
