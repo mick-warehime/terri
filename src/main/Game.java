@@ -18,8 +18,7 @@ import actors.Player;
 //  To doo to doo to do to do do do to doooooo
  
 // Figure out how PlayerGraphics.render is putting the hover flame in the
-// right place... Fix bug where a top collision while hovering makes you
-// hover forever.
+// right place... 
 
 //   platforms that have a limited number of times you can be on them?
 

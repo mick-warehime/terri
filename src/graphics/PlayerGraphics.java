@@ -21,12 +21,11 @@ public class PlayerGraphics extends ActorGraphics {
 	}
 	
 	@Override
-	public void render( int mapX, int mapY){
-		super.render(mapX, mapY);
+	public void render( int renderX, int renderY){
+		super.render(renderX, renderY);
 		if (status.hasEffect("hovering")){
-			float dy = status.getRect().getHeight();
-			
-			flameImage.draw(mapX,mapY+dy);
+			float dy = status.getRect().getHeight();			
+			flameImage.draw(renderX,renderY+dy);
 		}
 		
 	}

@@ -80,7 +80,9 @@ public class PlayerActionEngine extends ActionEngine {
 		//If the player can hover, do that
 		if (canHover()){
 			hoverFuel -=1;
-			status.gainEffect("hovering",1);
+			//Has to be at 2 as otherwise updateTimers won't see it
+			status.gainEffect("hovering",2); 
+			
 			this.vy+=hoverAcc;
 		}
 
@@ -92,11 +94,12 @@ public class PlayerActionEngine extends ActionEngine {
 	private boolean canHover(){
 		boolean answer = this.isFalling();
 		answer = answer && jumpTimer == 0;
-		answer = answer && hoverFuel >0;
-//				(hoverFuel == this.maxHoverFuel 
-//				||
-//				(status.hasEffect("hovering") && hoverFuel >0)
-//						);
+		answer = answer && 
+				(hoverFuel == maxHoverFuel 
+				||
+				(status.hasEffect("hovering") && hoverFuel >0)
+						);
+				//hoverFuel >0;
 		return answer;
 	}
 	

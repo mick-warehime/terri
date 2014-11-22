@@ -18,12 +18,12 @@ public class ActorGraphics {
 		flippedImage = image.getFlippedCopy(true, false);
 	}
 
-	public void render(int x, int y) {		
+	public void render(int renderX, int renderY) {		
 		
 		if (status.getDirection() == 1){
-			image.draw(x, y);
+			image.draw(renderX, renderY);
 		}else{
-			flippedImage.draw(x, y);
+			flippedImage.draw(renderX, renderY);
 		}
 			
 		
