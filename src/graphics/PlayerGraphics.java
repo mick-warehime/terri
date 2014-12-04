@@ -1,5 +1,6 @@
 package graphics;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -20,13 +21,15 @@ public class PlayerGraphics extends ActorGraphics {
 		
 	}
 	
-	@Override
-	public void render( int renderX, int renderY){
+	
+	public void render( Graphics g, int renderX, int renderY){
 		super.render(renderX, renderY);
 		if (status.hasEffect("hovering")){
 			float dy = status.getRect().getHeight();			
 			flameImage.draw(renderX,renderY+dy);
 		}
+		
+		
 		
 	}
 

@@ -5,6 +5,7 @@ import graphics.PlayerGraphics;
 import main.Level;
 import main.CollisionHandler;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -41,9 +42,10 @@ public class Player extends Actor {
 		this.graphics = new PlayerGraphics(status,"data/head.png");
 	}
 
-	public void render( int mapX, int mapY) {
-		graphics.render((int) status.getX()-mapX, (int) status.getY() - mapY);
+	public void render( Graphics g, int mapX, int mapY) {
+		((PlayerGraphics)graphics).render(g,(int) status.getX()-mapX, (int) status.getY() - mapY);
 		
+//		gun.render(g,(int) rect.getCenterX(),(int) rect.getCenterY(), mapX, mapY);
 //		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
 	}
 
@@ -78,6 +80,8 @@ public class Player extends Actor {
 		status.setX(level.getProgressX());
 		status.setY(level.getProgressY());
 	}
+
+	
 
 	
 

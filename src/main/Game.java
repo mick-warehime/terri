@@ -177,7 +177,7 @@ public class Game extends BasicGame {
 			int mouseY = gc.getInput().getMouseY();
 
 			level.draw(g,(int) terri.getX(),(int)terri.getY());
-			terri.render(level.getMapX(),level.getMapY());
+			terri.render(g, level.getMapX(),level.getMapY());
 		}
 	}
 

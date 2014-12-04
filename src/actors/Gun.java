@@ -1,5 +1,7 @@
 package actors;
 
+import org.newdawn.slick.Graphics;
+
 import main.CollisionHandler;
 import gameobjects.Etherable;
 import gameobjects.Timed;
@@ -123,6 +125,13 @@ public class Gun {
 		
 		return !collisionHandler.isCollidedWithPlayer(activeObject.getEtherRect());
 	}
+
+
+//	public void render(Graphics g, int initX, int initY, int mapX, int mapY ) {
+//		
+//		g.drawLine(initX, initY, mousePos[0]+mapX, mousePos[1]+mapY);
+//		System.out.println(mousePos[0] + "," + mousePos[1]);
+//	}
 	
 
 }
