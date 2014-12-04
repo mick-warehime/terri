@@ -51,10 +51,19 @@
     <property name="duration" value="5"/>
    </properties>
   </object>
+  <object type="etherEnemy" x="256" y="1216" width="32" height="48"/>
+  <object type="spawnLocation" x="368" y="1520" width="32" height="32">
+   <properties>
+    <property name="sx" value="23"/>
+    <property name="sy" value="91"/>
+    <property name="waitTime" value="3"/>
+   </properties>
+  </object>
+  <object type="deadly" x="176" y="1520" width="64" height="32"/>
  </objectgroup>
  <layer name="ether" width="40" height="100" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UvQkCQRAG0AETDwQb0c60FkOb0FrEf4vQHpzASLhoPW6E9+ALNtjlgxk2AgAAAAAAAAAAAKhuNY1YT8du0W+X3faF+z2z26twP/NtU32+iy5i2Y3dop/9a1N9/8y3TbX5zr/O1f6XzcDvb2dt94fu1+rw4/eOk4hT5py5ZK6ZW+aeeXwCwPD8xwD8ozenk+KQgD4AAA==
+   H4sIAAAAAAAAA+3UywnCQBSF4QuZRQKCjehOu9JaXNqEdqA1iG+L0J3ZKXgWSkAIWYxjrvJ/cBgCeRy4kzEDAAAAAAAAAAAAAAAAAADejXKzcd52i3ozdZs77ndWt4vjfsw3jvf59gqzftF2i3rsvzje9x/zjeNtvt23a2/nyyTx+6eduOdT94u1+vD71pnZRtkqO2WvHJSjcnoGAJAe5zHwH676V8usWpssgtkypO/1MtC3hqFam9x0z/2L/fB7HrMXLmWAPgAA
   </data>
  </layer>
 </map>

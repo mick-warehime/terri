@@ -85,7 +85,7 @@ public class GameObject {
 		this.collisionHandler = collisionHandler;
 	}
 
-	public void update(){
+	public void update() throws SlickException{
 //		throw new UnsupportedOperationException(); 
 	}
 

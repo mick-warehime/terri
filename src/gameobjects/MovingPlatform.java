@@ -48,7 +48,7 @@ public class MovingPlatform extends GameObject implements InteractiveCollideable
 		return answer;
 	}
 
-	public void update(){
+	public void update() throws SlickException{
 		super.update();
 
 		switchTimer +=1;
