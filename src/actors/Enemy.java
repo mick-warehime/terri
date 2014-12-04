@@ -14,6 +14,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import commands.DieCommand;
 import commands.GlobalInputListener;
 import gameobjects.InteractiveCollideable;
+import graphics.ActorGraphics;
 import graphics.EnemyGraphics;
 
 public class Enemy extends Actor implements InteractiveCollideable{
@@ -21,7 +22,6 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	private LemmingBehavior behavior;
 	private int x;
 	private int y;
-	private EnemyGraphics graphics;
 	protected Rectangle rect;
 
 	public Enemy(int x, int y, int w, int h, String name, TiledMap map, Properties args ) throws SlickException {
@@ -36,9 +36,16 @@ public class Enemy extends Actor implements InteractiveCollideable{
 
 		status = new Status(rect);
 		
- 		graphics = new EnemyGraphics(rect);
+		
+		if(args.containsKey("direction")){
+			int dir = Integer.parseInt((String) args.get("direction"));
+			if (dir*status.getDirection()<0){//directions don't agree
+				status.flipDirection();
+			}
+		}else{
+		}
 
-
+ 		graphics = new EnemyGraphics(status,"data/enemy1.png");
  	}
 
 	public Enemy(int xPixels, int yPixels) throws SlickException {
@@ -50,7 +57,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 				
 		status = new Status(rect);
 
- 		graphics = new EnemyGraphics(status.getRect());
+ 		graphics = new EnemyGraphics(status,"data/enemy1.png");
  	}
 	
 	public void incorporateCollisionHandler(CollisionHandler collisionHandler){
@@ -70,7 +77,6 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		behavior.determine();
 		super.update();
 		assert (status != null) : "Error! Collision Handler not incorporated!";
-
 	}
 
 	@Override
@@ -91,7 +97,7 @@ public class Enemy extends Actor implements InteractiveCollideable{
 	}
 	
 	public void render( int mapX, int mapY) {
-		graphics.render(mapX, mapY); 
+		graphics.render((int) rect.getX() - mapX, (int) rect.getY() - mapY); 
 	}
 
 

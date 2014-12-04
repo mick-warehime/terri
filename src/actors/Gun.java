@@ -106,7 +106,7 @@ public class Gun {
 			return false;
 		}
 		
-		return !collisionHandler.lineOfSightCollision(testObject.getShape());
+		return !collisionHandler.lineOfSightCollisionToPlayer(testObject.getShape());
 	}
 	
 	//Tests whether a held object can be put in a given place.

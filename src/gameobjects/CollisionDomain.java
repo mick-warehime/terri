@@ -1,0 +1,72 @@
+package gameobjects;
+
+import java.util.ArrayList;
+
+import org.newdawn.slick.command.Command;
+import org.newdawn.slick.geom.Shape;
+
+import actors.Actor;
+import actors.Enemy;
+
+
+// Populates a list with all actors touching a given shape
+
+public class CollisionDomain implements InteractiveCollideable {
+
+	private Shape rangeDelimiter;
+	private ArrayList<Shape> targets;
+
+	public CollisionDomain( Shape rangeDelimiter, ArrayList<Shape> targets){
+		this.rangeDelimiter = rangeDelimiter;
+		this.targets = targets;
+
+
+	}
+
+	//Adds all valid targets to the Turret's availableTargets list
+	@Override
+	public void onCollisionDo(Class<?> collidingObjectClass,
+			Shape collidingObjectShape) {
+		
+		
+		boolean validTarget = false;
+		Class<Actor> targetableClass = Actor.class;
+		
+		Class<?> testClass = collidingObjectClass;
+		
+		//You have to loop over all possible superclasses
+		// to see if one of them is targetableClass
+		while (testClass != null){
+			if(testClass.equals(targetableClass)){
+				validTarget = true;
+				break;
+			}
+			testClass = testClass.getSuperclass();
+		}
+		
+		
+		if (validTarget){
+			if (!targets.contains(collidingObjectShape)){
+				targets.add(collidingObjectShape);
+			}
+		}
+
+
+
+	}
+
+	@Override
+	public ArrayList<Command> onCollisionBroadcast(Class<?> collidingObjectClass,
+			Shape collidingObjectShape) {
+		// TODO Auto-generated method stub
+		return new ArrayList<Command>();
+	}
+
+	@Override
+	public Shape getShape() {
+		// TODO Auto-generated method stub
+		return rangeDelimiter;
+	}
+
+
+}

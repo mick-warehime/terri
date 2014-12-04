@@ -48,7 +48,7 @@
  </layer>
  <layer name="ether" width="50" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3IMQqAMBREwQ+JN9LaIvc/gdfQXtKapNLCwAwsDzYCAAAA+NIxGHPZl/HeKo8BczpTxJXa9r7av1pzxJbb9r5axm6xk1amcBcAAA==
+   H4sIAAAAAAAAA+3PMQqAMBBE0YEk4IG0tsh5PZHX0F5COrNb2WTxPxgGphsJAPBnpxN0x2InGn7MhR8AAMSwFz9f1VcAxHQl6U5jW1vrWa1Z2vLY1tYavgc2+J5mcBcAAA==
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -70,10 +70,13 @@
     <property name="angle" value="10"/>
     <property name="chargeTime" value="50"/>
     <property name="maxAngle" value="170"/>
+    <property name="maxRangeX" value="30"/>
+    <property name="maxRangeY" value="29"/>
     <property name="minAngle" value="10"/>
+    <property name="minRangeX" value="8"/>
+    <property name="minRangeY" value="14"/>
    </properties>
   </object>
-  <object name="Enemy" type="enemy" x="384" y="112" width="64" height="16"/>
   <object name="EtherENemy" type="etherEnemy" x="592" y="256" width="96" height="16"/>
   <object name="Teleporter" type="teleporter" x="384" y="352" width="64" height="16">
    <properties>
@@ -82,11 +85,28 @@
     <property name="y" value="7"/>
    </properties>
   </object>
-  <object name="MovingPlatform" type="movingPlatform" x="592" y="304" width="96" height="16">
+  <object name="MovingPlatform" type="movingPlatform" x="576" y="112" width="96" height="16">
    <properties>
-    <property name="switchTime" value="500"/>
+    <property name="switchTime" value="100"/>
     <property name="vx" value="-1"/>
     <property name="vy" value="0"/>
+   </properties>
+  </object>
+  <object name="Enemy" type="enemy" x="144" y="400" width="64" height="16">
+   <properties>
+    <property name="direction" value="1"/>
+   </properties>
+  </object>
+  <object name="Ladder" type="ladder" x="128" y="144" width="96" height="80">
+   <properties>
+    <property name="angle" value="10"/>
+    <property name="chargeTime" value="50"/>
+    <property name="maxAngle" value="170"/>
+    <property name="maxRangeX" value="30"/>
+    <property name="maxRangeY" value="29"/>
+    <property name="minAngle" value="10"/>
+    <property name="minRangeX" value="8"/>
+    <property name="minRangeY" value="14"/>
    </properties>
   </object>
  </objectgroup>

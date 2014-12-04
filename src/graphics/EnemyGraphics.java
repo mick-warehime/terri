@@ -1,29 +1,14 @@
 package graphics;
 
-import java.util.ArrayList;
-
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.tiled.TiledMap;
+import actors.Status;
 
-public class EnemyGraphics{
+public class EnemyGraphics extends ActorGraphics{
 
-	protected ArrayList<Image> tileImages;
-	protected Image image;
-	protected Rectangle rect;
-
-	public EnemyGraphics(Rectangle rect) throws SlickException {
-		this.rect = rect;
-				
-		String imageString = "data/enemy1.png";
+	public EnemyGraphics(Status status, String imageFile) throws SlickException {
+		super(status,imageFile);
 		
-		image = new Image(imageString);
-	}	
-	
-	public void render(int mapX, int mapY) {		
-			image.draw(rect.getX() -mapX, rect.getY() -mapY);
 	}
- 
+
 
 }

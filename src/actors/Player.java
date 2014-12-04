@@ -1,10 +1,10 @@
 package actors;
 
 
+import graphics.PlayerGraphics;
 import main.Level;
 import main.CollisionHandler;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -21,7 +21,7 @@ public class Player extends Actor {
 	public Player(int x, int y, CollisionHandler collisionHandler, int[] mousePos) throws SlickException {
 
  		
-		sprite = new Image("data/head.png");		
+//		sprite = new Image("data/head.png");		
 		
 		keyboard = new KeyboardInputListener();
 		listener = new GlobalInputListener();
@@ -37,10 +37,14 @@ public class Player extends Actor {
 
 		gun = new Gun(collisionHandler, mousePos);
 		engine = new PlayerActionEngine(listener,status, gun);
+		
+		this.graphics = new PlayerGraphics(status,"data/head.png");
 	}
 
 	public void render( int mapX, int mapY) {
-		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
+		graphics.render((int) status.getX()-mapX, (int) status.getY() - mapY);
+		
+//		sprite.draw((int)this.status.getX()-mapX,(int)this.status.getY()-mapY);    
 	}
 
 	
@@ -49,9 +53,7 @@ public class Player extends Actor {
 		int px = x;
 		int py = y;
 				
-		float h = sprite.getHeight();
-		float w = sprite.getWidth();
-		rect = new Rectangle((float) px, (float) py-1, w, h);
+		rect = new Rectangle((float) px, (float) py-1, 32, 32);
 		status = new Status(rect);
 		status.setCollisionHandler(collisionHandler);
 		
@@ -75,6 +77,8 @@ public class Player extends Actor {
 		status.setX(level.getProgressX());
 		status.setY(level.getProgressY());
 	}
+
+	
 
 
 

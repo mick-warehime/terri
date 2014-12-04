@@ -42,27 +42,27 @@ public class CollisionHandler implements CommandProvider {
 		this.actors = actors;
 		this.interactiveGameObjects = interactiveCollideables;
 
-//		populateInteractiveCollideables();
+		//		populateInteractiveCollideables();
 
 	}
 
-//	private void populateInteractiveCollideables() {
-//		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
-//
-//		for (GameObject gObj: gameObjects){
-//			if (gObj instanceof InteractiveCollideable){
-//				interactiveGameObjects.add((InteractiveCollideable) gObj);
-//			}
-//		}
-//
-//		for (Actor actor: actors){
-//			if (actor instanceof InteractiveCollideable){
-//				interactiveGameObjects.add((InteractiveCollideable) actor);
-//			}
-//		}
-//
-//
-//	}
+	//	private void populateInteractiveCollideables() {
+	//		interactiveGameObjects = new ArrayList<InteractiveCollideable>();
+	//
+	//		for (GameObject gObj: gameObjects){
+	//			if (gObj instanceof InteractiveCollideable){
+	//				interactiveGameObjects.add((InteractiveCollideable) gObj);
+	//			}
+	//		}
+	//
+	//		for (Actor actor: actors){
+	//			if (actor instanceof InteractiveCollideable){
+	//				interactiveGameObjects.add((InteractiveCollideable) actor);
+	//			}
+	//		}
+	//
+	//
+	//	}
 
 
 	public void addPlayerRect(Rectangle playerRect){
@@ -204,36 +204,43 @@ public class CollisionHandler implements CommandProvider {
 		return resolveInteractiveCollisions(playerRect, Player.class);
 	}
 
-	//Returns if the line of sight from the player to an EtherObject
-	// is collided with any game objects
-	public boolean lineOfSightCollision(Shape shape){
+
+	
+	//Checks if the straight line between two shapes intersects
+	// any other collideable shape
+	public boolean lineOfSightCollision(Shape shape, Shape shape2) {
+
 
 		//Make a line from centers of player and object
-		float playerX = playerRect.getCenterX();
-		float playerY = playerRect.getCenterY();
-		float objectX = shape.getCenterX();
-		float objectY = shape.getCenterY();
+		float x1 = shape.getCenterX();
+		float y1 = shape.getCenterY();
+		float x2 = shape2.getCenterX();
+		float y2 = shape2.getCenterY();
 
-		Line line = new Line(playerX, playerY, objectX, objectY);
+		Line line = new Line(x1, y1, x2, y2);
 
 		//Check if collideable Game objects are intersecting 
-		// this line, other than the one from eObj
+		// this line, other than the inputs
 		for(GameObject gObj: gameObjects){
-			if(gObj.getShape() != shape && gObj.canCollide()){
-				if(line.intersects(gObj.getShape())){
-					return true;
+			if(gObj.canCollide()){
+				if(gObj.getShape() != shape && gObj.getShape() != shape2 ){
+					if(line.intersects(gObj.getShape())){
+						return true;
+					}
 				}
 			}
 		}
 
-		for (Actor nme: actors){
-			if(nme.canCollide() && nme.getShape() != shape){
-				if(line.intersects(nme.getShape())){
-					return true;
+		for (Actor actor: actors){
+			if(actor.canCollide()){
+				if(actor.getShape() != shape && actor.getShape() != shape2 ){
+					if(line.intersects(actor.getShape())){
+						return true;
+					}
 				}
 			}
 		} 
-		
+
 		//Also check the basic game tiles
 		for(Rectangle block :blocks){
 			if(line.intersects(block)){
@@ -242,6 +249,16 @@ public class CollisionHandler implements CommandProvider {
 		}
 
 		return false;
+
+
+	}
+
+
+
+	//Returns if the line of sight from the player to an EtherObject
+	// is collided with any game objects
+	public boolean lineOfSightCollisionToPlayer(Shape shape){
+		return lineOfSightCollision(shape,playerRect);
 	}
 
 
@@ -271,12 +288,6 @@ public class CollisionHandler implements CommandProvider {
 	}
 
 
-	public float getPlayerCenterX(){
-		return playerRect.getX()+playerRect.getWidth()/2;
-	}
-	public float getPlayerCenterY(){
-		return playerRect.getY()+playerRect.getHeight()/2;
-	}
 
 
 
