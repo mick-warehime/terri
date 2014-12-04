@@ -39,6 +39,11 @@ import actors.Player;
 // 6) turret shoould update based on a clock not on frame updates // are there other methods that do this?
 
 
+//mick to do
+//
+//  put enemy move direction in status. make lemming behavior get move direction from status
+//  add wait timer and multiple enemies to the spawnlocation
+
 public class Game extends BasicGame {
 
 	static int width = 640;
@@ -50,7 +55,7 @@ public class Game extends BasicGame {
 	private InputProvider keyboardInputProvider;
 	private Player terri;
 	private Level level;
-	private int currentLevel = 0;
+	private int currentLevel = 4;
 	private ProgressPoint progress;
 	
 	private int[] mousePos = new int[2];

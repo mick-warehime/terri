@@ -14,7 +14,7 @@ public class Status {
 	private boolean isDying;
 	private ArrayList<Effect> effects;
 //	private ArrayList<Attribute> attributes;
-
+	private int direction = -1;
 	private Rectangle rect;
 	private CollisionHandler collisionHandler;
 
@@ -198,4 +198,11 @@ public class Status {
 
 	}
 
+	public void setDirection(int moveDirection){
+		this.direction = moveDirection;
+	}
+	
+	public int getDirection(){
+		return direction;
+	}
 }

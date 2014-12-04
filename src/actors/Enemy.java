@@ -35,8 +35,10 @@ public class Enemy extends Actor implements InteractiveCollideable{
 		rect = new Rectangle(this.x,this.y,32, 48);
 
 		status = new Status(rect);
-
+		
  		graphics = new EnemyGraphics(rect);
+
+
  	}
 
 	public Enemy(int xPixels, int yPixels) throws SlickException {
