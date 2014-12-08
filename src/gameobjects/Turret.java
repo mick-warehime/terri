@@ -30,8 +30,8 @@ public class Turret extends GameObject implements ObjectCreator {
 	private Shape currentTarget = null;
 
 
-	public Turret(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
-		super(x, y, w, h, name, map, args);
+	public Turret(int tileX, int tileY, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
+		super(tileX, tileY, w, h, name, map, args);
 
 		this.isShooting = false;
 		this.isInitializing = true;

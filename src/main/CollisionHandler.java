@@ -73,7 +73,7 @@ public class CollisionHandler implements CommandProvider {
 
 
 
-	public Etherable isAtEtherObject(int x, int y){
+	public Etherable etherObjectAtPosition(int x, int y){
 
 		for(GameObject gObj: gameObjects){
 			if(gObj instanceof Etherable){

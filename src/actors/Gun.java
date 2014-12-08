@@ -4,6 +4,7 @@ import org.newdawn.slick.Graphics;
 
 import main.CollisionHandler;
 import gameobjects.Etherable;
+import gameobjects.Rotateable;
 import gameobjects.Timed;
 
 
@@ -12,9 +13,13 @@ import gameobjects.Timed;
 public class Gun {
 	
 	
-	private String status = "idle";
+	static int IDLE_STATE = 0;
+	static int HOLDING_STATE = 1;
+	static int PUT_STATE = 2;
+	
+	private int state = IDLE_STATE;
 	private int busyTime = 0;
-	private int busyTimeIncrement = 30;
+	private static int busyTimeIncrement = 30;
 	private Etherable activeObject = null;
 	private CollisionHandler collisionHandler;
 	private int[] mousePos;
@@ -27,8 +32,21 @@ public class Gun {
 	}
 	
 	
+	
+	public void attemptRotate( boolean rotateClockwise){
+		
+		if (state == HOLDING_STATE){
+			if (activeObject instanceof Rotateable){
+				((Rotateable)activeObject).rotate(rotateClockwise);
+			}
+		}
+		
+		
+		
+	}
+	
 	public void shootEtherBeam(){
-		if (status == "idle"){ //Fire gun to turn things ether, if something is there
+		if (state == IDLE_STATE){ //Fire gun to turn things ether, if something is there
 			
 			Etherable etherableObject = checkForEtherableObject();
 						
@@ -36,18 +54,18 @@ public class Gun {
 				activeObject = etherableObject;
 				activeObject.setObjectToEther();
 				busyTime += busyTimeIncrement;
-				status = "holding object";
+				state = HOLDING_STATE;
 			}							
-		}else if (status == "holding object"){ //Fire gun to place an ethered thing
+		}else if (state == HOLDING_STATE){ //Fire gun to place an ethered thing
 			
 			if (canPut()){
 
 				activeObject.put();
 				busyTime += busyTimeIncrement;
-				status = "object placed";
+				state = PUT_STATE;
 				if(activeObject instanceof Timed){
 					activeObject = null;
-					status = "idle";
+					state = IDLE_STATE;
 				}
 							
 			}
@@ -58,7 +76,7 @@ public class Gun {
 	}
 	
 	public Etherable checkForEtherableObject(){
-		Etherable etherableObject = collisionHandler.isAtEtherObject(mousePos[0],mousePos[1]);
+		Etherable etherableObject = collisionHandler.etherObjectAtPosition(mousePos[0],mousePos[1]);
 		if(etherableObject==null){
 			etherableObject = collisionHandler.isAtEtherEnemy(mousePos[0],mousePos[1]);
 			
@@ -75,7 +93,7 @@ public class Gun {
 			activeObject = null;
 			
 			
-			status = "idle";
+			state = IDLE_STATE;
 		}
 		
 		

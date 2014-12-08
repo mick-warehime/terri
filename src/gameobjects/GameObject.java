@@ -19,9 +19,6 @@ public class GameObject {
 	protected TileGraphics graphics;
 	
 
-	protected int tileX; // (I,J) top left in tiles
-	protected int tileY;
-
 	protected int tileSize;
 	protected int proximity;
 
@@ -35,9 +32,6 @@ public class GameObject {
 
 		tileSize = map.getTileHeight();				
 
-		//Position in tile index
-		this.tileX = tileX;
-		this.tileY = tileY;
 
 		this.name = name; 
 

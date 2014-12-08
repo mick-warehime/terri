@@ -10,8 +10,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WeightedSwitch extends SwitchObject {
 	
-	public WeightedSwitch(int x, int y, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
-		super(x, y, w, h, name, map, args);
+	public WeightedSwitch(int tileX, int tileY, int w, int h, String name, TiledMap map,Properties args) throws SlickException {		
+		super(tileX, tileY, w, h, name, map, args);
 		
 		ArrayList<String> fileNames = new ArrayList<String>();
 		fileNames.add("data/switch_down.png");

@@ -14,8 +14,8 @@ public class SwitchObject extends GameObject implements Interactive {
 	protected String targetName;
 	protected AnimatedGraphics animatedDrawer;
 
-	public SwitchObject(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
-		super(x, y, w, h, name, map, args);
+	public SwitchObject(int tileX, int tileY, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
+		super(tileX, tileY, w, h, name, map, args);
 
 
 		this.targetName = (String) args.get("target");

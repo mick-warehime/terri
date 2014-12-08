@@ -87,7 +87,7 @@ public class ActionEngine {
 
 
 
-		assert !status.isCollided() : "Actor is inside an object!";
+		assert !status.isCollided() : "Actor at" + status.getX() + "," + status.getY() + " is inside an object!";
 
 	}
 

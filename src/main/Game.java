@@ -13,6 +13,7 @@ import commands.InteractCommand;
 import commands.JumpCommand;
 import commands.MoveCommand;
 import commands.RestoreCommand;
+import commands.RotateCommand;
 import gameobjects.ProgressPoint;
 import actors.Player;
 
@@ -156,6 +157,9 @@ public class Game extends BasicGame {
 		Command interact = new InteractCommand();
 		Command ascend = new ClimbCommand(-1);
 		Command descend = new ClimbCommand(+1);
+		Command rotateCW = new RotateCommand(true);
+		Command rotateCCW = new RotateCommand(false);
+		
 
 		//Bind commands to keys
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_SPACE), jump);
@@ -163,9 +167,13 @@ public class Game extends BasicGame {
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_D), moveRight);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_W), ascend);
 		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_S), descend);
-		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_E), interact);
+		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_F), interact);
+		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_E), rotateCW);
+		keyboardInputProvider.bindCommand(new KeyControl(Input.KEY_Q), rotateCCW);
+		
 		keyboardInputProvider.bindCommand(new MouseButtonControl(0), shootCommand);
 		keyboardInputProvider.bindCommand(new MouseButtonControl(1), restore);
+		
 	}
 
 

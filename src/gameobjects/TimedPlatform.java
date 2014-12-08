@@ -7,7 +7,7 @@ import java.util.Properties;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TimedPlatform extends EtherObject  implements Timed{
+public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 
 	private int duration;
 	private long putTime;
@@ -46,6 +46,15 @@ public class TimedPlatform extends EtherObject  implements Timed{
 		super.put();
 
 		putTime = getTime();
+	}
+
+	@Override
+	public void rotate(boolean rotateClockwise) {
+		String out = "Rotating";
+		if (rotateClockwise){ out+= " clockwise";}
+		else {out+= " counter-clockwise";}
+		System.out.println(out);
+		
 	}
 
 
