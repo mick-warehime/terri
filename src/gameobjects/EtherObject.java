@@ -71,9 +71,13 @@ public class EtherObject extends GameObject implements Etherable {
 	public void update(){
 		if(isEther && !isPut){
 			//		eventually used to update doors/elevators etc;
-			int hoverX = (int) (mousePos[0]-shape.getWidth()/2);
-			int hoverY =(int) (mousePos[1]-shape.getHeight()/2);
-			shape.setLocation(hoverX,hoverY);			
+			float dx = shape.getX() - shape.getMinX();
+			float dy = shape.getY() - shape.getMinY(); //this is a stupid kludge. See comment in timedEtherPlatform.rotate
+			int hoverX = (int) (mousePos[0]-shape.getWidth()*.5 + dx);
+			int hoverY = (int) (mousePos[1]-shape.getHeight()*.5 + dy);
+			
+			shape.setLocation(hoverX,hoverY);	
+		
 		}		
 	}
 

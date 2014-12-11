@@ -48,7 +48,7 @@
  </layer>
  <layer name="ether" width="170" height="60" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aQQrCMBAF0EBb9EB27VJvphfwTHoBb2L3LkSwm5KI6VR9D4ZZBMIPTMgmKQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU7bdo2DJzCkAAAAAS7OKDgAZdtEBIMMhOgBkOEcHAPigUzsuWKJrNy7gfc9/VyUFr9bRASDDPjrAD/Au1HeMDkCob7lPl+gAhPqWOQWAf3JrUhqasl5DaYbSnrtWM8McZxkq7DfXDEzZtCn1bVmvoTRDac9dq5lhjrP0Ffabawagljs2tsqZYJ8AAA==
+   H4sIAAAAAAAAA+3aQQrCMBAF0EBb9EC6dqk30wt4Jr2AN7F7FyLYTUnAdFr7HgyzCIQfOiWbpAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjDl074I5M6cAAAAAzM0mOgBkOEYHgAzn6ACQ4RYdAOCHru2wmKe1v5N4dMNintY+p0vx+U4lBd+20QEgwyk6wB9wL9R3iQ5AqKX8T/foAIRaypwCwJo8m5T6pqzXUJqhtOeu1cwwxVn6CvtNNQNjdm1K+7as11CaobTnrtXMMMVZ9hX2m2oGoJYXGgpUBWCfAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -185,6 +185,11 @@
     <property name="index" value="4"/>
     <property name="x" value="139"/>
     <property name="y" value="47"/>
+   </properties>
+  </object>
+  <object name="Timed Pl" type="timedPlatform" x="144" y="768" width="32" height="32">
+   <properties>
+    <property name="duration" value="2"/>
    </properties>
   </object>
  </objectgroup>

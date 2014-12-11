@@ -35,16 +35,26 @@ public class Gun {
 	
 	public void attemptRotate( boolean rotateClockwise){
 		
-		if (state == HOLDING_STATE){
-			if (activeObject instanceof Rotateable){
-				((Rotateable)activeObject).rotate(rotateClockwise);
-			}
+		if (canRotate()){
+			((Rotateable)activeObject).rotate(rotateClockwise, mousePos);
+			busyTime += busyTimeIncrement;
 		}
 		
 		
 		
 	}
 	
+	private boolean canRotate() {
+		boolean answer = (state == HOLDING_STATE);
+		answer = answer && (activeObject instanceof Rotateable);
+		answer = answer && (busyTime == 0);
+				
+		// TODO Auto-generated method stub
+		return answer;
+	}
+
+
+
 	public void shootEtherBeam(){
 		if (state == IDLE_STATE){ //Fire gun to turn things ether, if something is there
 			

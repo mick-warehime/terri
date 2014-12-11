@@ -5,6 +5,7 @@ import graphics.TimedEtherGraphics;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
@@ -26,9 +27,9 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 		long timeElapsed = getTime()-putTime; 
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
-		
+
 		timedEtherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
-		
+
 	}
 
 	@Override
@@ -49,12 +50,31 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 	}
 
 	@Override
-	public void rotate(boolean rotateClockwise) {
-		String out = "Rotating";
-		if (rotateClockwise){ out+= " clockwise";}
-		else {out+= " counter-clockwise";}
-		System.out.println(out);
+	public void rotate(boolean rotateClockwise, int[] mousePos) {
 		
+		//I think the issue is with shape.setLocation
+		// There is a discrepancy between minX and x for the shape object,
+		// it seems.
+	
+		float rotationAngle;
+		if (rotateClockwise){ 		
+			rotationAngle = (float) (-0.5*Math.PI);
+
+		}
+		else {
+			
+			rotationAngle = (float) (0.5*Math.PI);
+		}
+		
+		Transform rotation = Transform.createRotateTransform(rotationAngle,shape.getCenterX(),shape.getCenterY());
+		Transform etherRotation = Transform.createRotateTransform(rotationAngle,etherShape.getCenterX(),etherShape.getCenterY());
+		
+		this.shape = shape.transform(rotation);
+		this.etherShape = etherShape.transform(etherRotation);
+
+		
+		
+
 	}
 
 
