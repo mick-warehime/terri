@@ -105,8 +105,8 @@ public class Gun {
 		if (testObject==null){
 			return false;
 		}
-		
-		return !collisionHandler.lineOfSightCollisionToPlayer(testObject.getShape());
+		boolean checkTransparent = true;
+		return !collisionHandler.lineOfSightCollisionToPlayer(testObject.getShape(),checkTransparent);
 	}
 	
 	//Tests whether a held object can be put in a given place.

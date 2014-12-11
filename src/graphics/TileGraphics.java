@@ -50,15 +50,17 @@ public class TileGraphics{
 		
 	}
 	
-	public void render(int mapX, int mapY) {
+	public void render(int mapX, int mapY, float opacity) {
 
 		assert (tileImages.get(0)!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. " +" "+ tileX+" "+tileY+"\n";
 					
 		int count = 0;
 		for(int i = 0; i < numberOfXTiles; i++){
 			for(int j = 0; j < numberOfYTiles; j++){
+				Image im = tileImages.get(count);
+				im.setAlpha(opacity);
 				//		
-				tileImages.get(count).draw(rect.getX() + i*tileWidthInPixels - mapX,
+				im.draw(rect.getX() + i*tileWidthInPixels - mapX,
 									       rect.getY() + j*tileHeightInPixels - mapY);
 				count ++;			
 			}

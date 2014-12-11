@@ -35,6 +35,8 @@ import actors.Player;
 
 // TO DO 
 // 1) doors that stay open?, turret switch (panel on wall)
+// 1.5) walls to shoot through but not walk through. walks to walk through but not shoot through
+// 1.5.1) rotate held object (enemy / elevator / platform)
 // 2) start menu, lemming types
 // 3) dog
 // 4) item upgrades, doors to other areas, save points, map travel
