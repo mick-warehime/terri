@@ -30,9 +30,6 @@ public class EtherGraphics extends TileGraphics{
 
 
 
-	public void renderTile(int topLeftX, int topLeftY, int mapX, int mapY, float opacity) {
- 		super.render(topLeftX, topLeftY, mapX, mapY, opacity);
-	}
 
 	public void render(int mapX, int mapY, int mouseX, int mouseY,  boolean isEther, boolean isPut, boolean canPut, float putOpacity) {
  		if(isEther){ //If ether
