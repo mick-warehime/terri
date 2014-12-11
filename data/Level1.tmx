@@ -43,12 +43,12 @@
  </tileset>
  <layer name="tiles" width="170" height="60" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3a223CMBTG8YiqopuxQHfKAOzAKnnmDbpFL7SvjQtRI7eJHdvn2Cb/n3SkgoIvySfn1qYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2dtM0p6drnft6maivR78a2pqroR/f7Vw1te3Z+ttu13dOIWWPybXdkrGVPI+leXFV+3CrzXSGffIy3s9n63tX/qYcbmVv/9/xPDT+5ZpPzLGca3du//nu6yX95ZjH0EbsOmdX93Ct95mczuXXHvNpJnf2sXCRyuncmOz5+B47O28xfM4dc+tFKfMYpBjTsJaG5FTakuzF5tRm7zdNMTktaR5TQsbUkdPipMzpvSCn5SGnf8Vcn0qrIaepshSTzTXklOvTOORUB+f9OBJZSpVZ7ZJETuOsJae5kdM45FSHyWhHToPVkFONMUszOd0q3O8f+9ov/M1ac5qyL1d/NeV0p5DT51stQU7l+6spp61CTs1aSk7Jaaif61PW02A5rvXIqRyznh4X/qb0jBoSOQ1pU7qv3LqC19MBOZVbt2vJ6Vbp/X7I/f5YiRk1Ss1p6jnktlPKacx6OlZSRo2ca1zKTJWe01YppyH3+zXQyFBpcsxF6//6zHn/HnO6Rjly+nZ7Z1rLeR/5uXIqcY4p+fmpBOnr1TXIct5XzOnS56cScuVU855IUq4xaj2X2jfhz6VqeN7vkuMeXnP80jTP+6Hr6T3kNERstrVKw9reR9WUU/yq4X0UOcX4fdTwjOqjr1fr86Wvz4nvLhPb+7Qh1Y9UHzn2kauNkueRur1vGBPAbWCfAAA=
+   H4sIAAAAAAAAA+3aW07CQBTG8QZjcGdswD11AeyBrfSZN3AXXtBXW6GxGe1ce87M0P8vOYmQMpf2y/Rm0wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFO7aZrT07XOfb3M1NejX41t2Wrsx3c7V81tezb+Ntv1nVNMmWNybRcytpLnEZoXV7UPt9rMZ9gnL9P9fDa+d+VvzuFW5vb/Hc9D41+u+aQcS1u7tv3nu69D+ssxj7GN1HXOrO7hWu+WnNrya475ZMmdeSxcpHJqG5M5H99jZ+Ythc+5w7ZelDKP0RJjGtfSmJxKC8leak5N5n7TlJLTkuYxJ2ZMHTktzpI5vRfktDzk9K+U61NpNeR0qSylZHMNOeX6NA051cF5P41ElpbKrHZJIqdp1pLT3MhpGnKqY8hoR06jaR3zJTNWa063Cvf7x772gb8hp+l9ufqrKac7hZw+3yoEOZXvr6actgo5HdZSckpOY/1cn7KeRstxrUdO5Qzr6THwN6VndCCR05g2pfvKrSt4PR2RU7l1u5acbpXe78fc70+VmNFBqTldeg657ZRymrKeTpWU0UHONW7JTJWe01YppzH3+zXQyFBpcsxF6//6hvP+PeZ0jXLk9O32zrSW8z7yc+VU4hxT8vNTCdLXq2uQ5byvmNPQ56cScuVU855IUq4xaj2X2jfxz6VqeN7vkuMeXnP80jTP+7Hr6T3kNEZqtrVKw9reR9WUU/yq4X0UOcX0fdT4jOqjr1fj86Wvz5nvLjPb+7Qh1Y9UHzn2kauNkuexdHvfKvMmuWCfAAA=
   </data>
  </layer>
  <layer name="ether" width="170" height="60" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3aQQrCMBAF0EBb9EB27VJvphfwTHoBb2L3LkSwm5KI6VR9D4ZZBMIPTMgmKQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU7bdo2DJzCkAAAAAS7OKDgAZdtEBIMMhOgBkOEcHAPigUzsuWKJrNy7gfc9/VyUFr9bRASDDPjrAD/Au1HeMDkCob7lPl+gAhPqWOQWAf3JrUhqasl5DaYbSnrtWM8McZxkq7DfXDEzZtCn1bVmvoTRDac9dq5lhjrP0Ffabawagljs2tsqZYJ8AAA==
+   H4sIAAAAAAAAA+3aQQrCMBAF0EBb9EC6dqk30wt4Jr2AN7F7FyLYTUnAdFr7HgyzCIQfOiWbpAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjDl074I5M6cAAAAAzM0mOgBkOEYHgAzn6ACQ4RYdAOCHru2wmKe1v5N4dMNintY+p0vx+U4lBd+20QEgwyk6wB9wL9R3iQ5AqKX8T/foAIRaypwCwJo8m5T6pqzXUJqhtOeu1cwwxVn6CvtNNQNjdm1K+7as11CaobTnrtXMMMVZ9hX2m2oGoJYXGgpUBWCfAAA=
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -147,7 +147,7 @@
     <property name="duration" value="2"/>
    </properties>
   </object>
-  <object name="E" type="enemy" x="1552" y="704" width="32" height="48">
+  <object name="E" type="enemy" x="1546" y="701" width="32" height="48">
    <properties>
     <property name="direction" value="-1"/>
     <property name="type" value="enemy"/>
@@ -185,6 +185,11 @@
     <property name="index" value="4"/>
     <property name="x" value="139"/>
     <property name="y" value="47"/>
+   </properties>
+  </object>
+  <object name="Timed Pl" type="timedPlatform" x="144" y="768" width="32" height="32">
+   <properties>
+    <property name="duration" value="2"/>
    </properties>
   </object>
  </objectgroup>

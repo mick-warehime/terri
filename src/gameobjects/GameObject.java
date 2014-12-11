@@ -19,9 +19,6 @@ public class GameObject {
 	protected TileGraphics graphics;
 	
 
-	protected int tileX; // (I,J) top left in tiles
-	protected int tileY;
-
 	protected int tileSize;
 	protected int proximity;
 
@@ -36,9 +33,6 @@ public class GameObject {
 
 		tileSize = map.getTileHeight();				
 
-		//Position in tile index
-		this.tileX = tileX;
-		this.tileY = tileY;
 
 		this.name = name; 
 
@@ -56,8 +50,11 @@ public class GameObject {
 		this.name = name; 
 		
 	}
-	protected void setGraphics(Shape rect, TiledMap map, int x, int y, int w, int h) throws SlickException{
-		graphics = new TileGraphics(rect, map, x,y,w,h);
+	protected void setGraphics(
+			Shape rect, TiledMap map, int tileX, 
+			int tileY, int widthInTiles, int heightInTiles) 
+					throws SlickException{
+		graphics = new TileGraphics(rect, map, tileX,tileY,widthInTiles,heightInTiles);
 	}
 
 	//For removal of objects by level

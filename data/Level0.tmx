@@ -48,7 +48,7 @@
  </layer>
  <layer name="ether" width="50" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3PMQqAMBBE0YEk4IG0tsh5PZHX0F5COrNb2WTxPxgGphsJAPBnpxN0x2InGn7MhR8AAMSwFz9f1VcAxHQl6U5jW1vrWa1Z2vLY1tYavgc2+J5mcBcAAA==
+   H4sIAAAAAAAAA+3PMQqAMBBE0ZFE8EBaW3hFr+GJvIb2EuzMbmWzIf/BZ2C7lQAAPTud8Domu9bwRyy9/7EPdgAARLOOfn9tnwC06UrSneq1bmWjmrO05HqtW1n4HjIzMb5wFwAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -107,6 +107,14 @@
     <property name="minAngle" value="10"/>
     <property name="minRangeX" value="8"/>
     <property name="minRangeY" value="14"/>
+   </properties>
+  </object>
+  <object name="TimedEtherVator" type="timedEtherElevator" x="352" y="208" width="96" height="16">
+   <properties>
+    <property name="duration" value="5"/>
+    <property name="initialDirection" value="-1"/>
+    <property name="range" value="5"/>
+    <property name="xOrY" value="y"/>
    </properties>
   </object>
  </objectgroup>

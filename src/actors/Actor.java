@@ -28,7 +28,7 @@ public abstract class Actor {
 
  
 	
-	public abstract void render( int mapX, int mapY);
+	public  void render( int mapX, int mapY){};
 	
 	
 	

@@ -50,6 +50,11 @@ public class PlayerActionEngine extends ActionEngine {
 		}
 		return;
 	}
+	
+	public void attemptRotate(boolean rotateClockwise){
+		gun.attemptRotate(rotateClockwise);
+		
+	}
 
 	public void attemptInteract(){
 		//Get nearby objects to interact with

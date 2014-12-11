@@ -1,6 +1,5 @@
 package gameobjects;
 
-import graphics.TimedEtherGraphics;
 
 import java.util.Properties;
 
@@ -11,14 +10,12 @@ public class TimedEtherElevator extends EtherElevator  implements Timed{
 
 	private int duration;
 	private long putTime;
-	private TimedEtherGraphics timedEtherGraphics;
 
 	public TimedEtherElevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {		
 		super(x, y, w, h, name, map,args);
 
 		// default duration is set to 1000 milliseconds	
 		this.duration = Integer.parseInt((String) args.get("duration"))*1000;
-		this.timedEtherGraphics = new TimedEtherGraphics(shape,etherShape,map,x, y, w, h);
 
 	}
 
@@ -27,7 +24,7 @@ public class TimedEtherElevator extends EtherElevator  implements Timed{
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 		
-		timedEtherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
+		etherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
 		 
 	}
 

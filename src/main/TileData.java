@@ -162,8 +162,7 @@ public class TileData {
 		String name = map.getObjectName(gi, oi);
 		
 		Properties args = map.getObjectProperties(gi,oi);
-
-		//Get object type
+		
 		String objectType =  map.getObjectType(gi,oi);	
  		
 		
@@ -188,7 +187,7 @@ public class TileData {
 				if (args == null){
 					args= new Properties();
 				}
-				
+					
 				Object obj = (Object) constructor.newInstance(x, y, w, h, name, map,args);
 				
 				if (obj instanceof GameObject){
