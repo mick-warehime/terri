@@ -38,7 +38,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 		xPos = x*tileSize;
 		yPos = y*tileSize;
 
-		// 		
+		System.out.println(args);
 		this.range = Integer.parseInt((String)args.get("range"))*tileSize;
 		
 		if (args.containsKey("initialDirection")){

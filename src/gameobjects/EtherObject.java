@@ -83,7 +83,7 @@ public class EtherObject extends GameObject implements Etherable {
 
 	public void render(int mapX, int mapY){
 		
-		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut());
+		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut(),1);
 		 
 	}
 
