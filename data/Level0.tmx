@@ -48,7 +48,7 @@
  </layer>
  <layer name="ether" width="50" height="30" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3PMQqAMBBE0ZFE8EBaW3hFr+GJvIb2EuzMbmWzIf/BZ2C7lQAAPTud8Domu9bwRyy9/7EPdgAARLOOfn9tnwC06UrSneq1bmWjmrO05HqtW1n4HjIzMb5wFwAA
+   H4sIAAAAAAAAA+3PvQmAQAyG4Rx3gpXTaG1h72hWruEqLuAa2sthIWquEMUf7n3g44OQIhEBAMRsCASLLtXzN/zxLbH/0Ro9AAB8TZlsY82aq6pdEK/s7QNuUr99wE2ak/ujFZnssbWZ76f0J/dzJ1K4Y2sz3wibAcH0+85wFwAA
   </data>
  </layer>
  <objectgroup name="objects" opacity="0.58">
@@ -117,5 +117,6 @@
     <property name="xOrY" value="y"/>
    </properties>
   </object>
+  <object name="Door" type="door" x="80" y="400" width="16" height="64"/>
  </objectgroup>
 </map>

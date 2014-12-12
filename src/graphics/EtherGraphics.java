@@ -29,8 +29,6 @@ public class EtherGraphics extends TileGraphics{
 
 
 
-
-
 	public void render(int mapX, int mapY, int mouseX, int mouseY,  boolean isEther, boolean isPut, boolean canPut, float putOpacity) {
  		if(isEther){ //If ether
 			//Draw ether tile

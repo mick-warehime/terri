@@ -49,8 +49,12 @@ public class EtherObject extends GameObject implements Etherable {
 
 		if(isEther && !isPut){
 			this.isPut = true;
-			putX = (int) (mousePos[0]-shape.getWidth()/2);
-			putY = (int) (mousePos[1]-shape.getHeight()/2);
+			
+			float dx = shape.getX() - shape.getMinX();
+			float dy = shape.getY() - shape.getMinY(); //this is a stupid kludge. See comment in timedEtherPlatform.rotate
+			
+			putX = (int) (mousePos[0]-shape.getWidth()/2 + dx);
+			putY = (int) (mousePos[1]-shape.getHeight()/2 + dy);
 			shape.setLocation(putX,putY);
 		}
 	}
