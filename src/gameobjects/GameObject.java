@@ -27,6 +27,7 @@ public class GameObject {
 	protected Shape shape;
 	protected ArrayList<Image> sprites = new ArrayList<Image>(); 
 	protected CollisionHandler collisionHandler;
+	protected float opacity = 1;
 
 	public GameObject(int tileX, int tileY, int widthInTiles, int heightInTiles, String name, TiledMap map, Properties args) throws SlickException{
 
@@ -70,7 +71,7 @@ public class GameObject {
 	}
 
 	public void render(int mapX, int mapY){
-		graphics.render(mapX, mapY); 
+		graphics.render(mapX, mapY, opacity); 
 		
 	}
 

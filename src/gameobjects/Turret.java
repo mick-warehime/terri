@@ -89,7 +89,7 @@ public class Turret extends GameObject implements ObjectCreator {
 
 	private boolean isTargetable(Shape shape){
 		//Not blocked and within rotation range
-		boolean answer = !collisionHandler.lineOfSightCollision(shape,this.shape);
+		boolean answer = !collisionHandler.lineOfSightCollision(shape,this.shape,false);
 		answer = answer && (angleToShape(shape)>= rotationRange[0]);
 		answer = answer && (angleToShape(shape)<= rotationRange[1]);
 		
