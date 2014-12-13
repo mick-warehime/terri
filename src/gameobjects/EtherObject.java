@@ -21,7 +21,6 @@ public class EtherObject extends GameObject implements Etherable {
 	protected boolean isEther = false;
 	protected boolean isPut = false;
 	protected boolean isTimed = false;
-	protected EtherGraphics etherGraphics;
 	protected int[] mousePos;
 
 
@@ -31,11 +30,11 @@ public class EtherObject extends GameObject implements Etherable {
 		// used for collision detection		
 		etherShape = new Rectangle(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
 		
-		this.etherGraphics = new EtherGraphics(shape,etherShape,map,x, y, w, h);
+		this.graphics = new EtherGraphics(shape,etherShape,map,x, y, w, h);
 	}
 
 
-
+	
 	 
 	@Override
 	public void setObjectToEther(){
@@ -50,11 +49,9 @@ public class EtherObject extends GameObject implements Etherable {
 		if(isEther && !isPut){
 			this.isPut = true;
 			
-			float dx = shape.getX() - shape.getMinX();
-			float dy = shape.getY() - shape.getMinY(); //this is a stupid kludge. See comment in timedEtherPlatform.rotate
 			
-			putX = (int) (mousePos[0]-shape.getWidth()/2 + dx);
-			putY = (int) (mousePos[1]-shape.getHeight()/2 + dy);
+			putX = (int) (mousePos[0]-shape.getWidth()/2 );
+			putY = (int) (mousePos[1]-shape.getHeight()/2 );
 			shape.setLocation(putX,putY);
 		}
 	}
@@ -63,22 +60,20 @@ public class EtherObject extends GameObject implements Etherable {
 	@Override
 	public void restore() {
 		
-		if(canRestore()){
-			// TODO Auto-generated method stub
-			isPut = false;
-			isEther = false;
-			shape.setLocation(etherShape.getX(),etherShape.getY());
-		}
+		// TODO Auto-generated method stub
+		isPut = false;
+		isEther = false;
+		shape = new Rectangle(etherShape.getX(),etherShape.getY(), etherShape.getWidth(),etherShape.getHeight());
+		graphics.setRect(shape);
+
 	}
 
 
 	public void update(){
 		if(isEther && !isPut){
 			//		eventually used to update doors/elevators etc;
-			float dx = shape.getX() - shape.getMinX();
-			float dy = shape.getY() - shape.getMinY(); //this is a stupid kludge. See comment in timedEtherPlatform.rotate
-			int hoverX = (int) (mousePos[0]-shape.getWidth()*.5 + dx);
-			int hoverY = (int) (mousePos[1]-shape.getHeight()*.5 + dy);
+			int hoverX = (int) (mousePos[0]-shape.getWidth()*.5);
+			int hoverY = (int) (mousePos[1]-shape.getHeight()*.5);
 			
 			shape.setLocation(hoverX,hoverY);	
 		
@@ -87,7 +82,7 @@ public class EtherObject extends GameObject implements Etherable {
 
 	public void render(int mapX, int mapY){
 		
-		etherGraphics.render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut(),1);
+		((EtherGraphics)graphics).render(mapX, mapY, mousePos[0], mousePos[1], isEther, isPut, canPut(),1);
 		 
 	}
 

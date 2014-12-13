@@ -50,6 +50,7 @@ public class GameObject {
 		this.name = name; 
 		
 	}
+	
 	protected void setGraphics(
 			Shape rect, TiledMap map, int tileX, 
 			int tileY, int widthInTiles, int heightInTiles) 

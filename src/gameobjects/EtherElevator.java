@@ -121,6 +121,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 
 	public void restore() {
+		
 		super.restore();
 
 		// setting isMoving true catches the case where it was held but not put

@@ -148,10 +148,12 @@ public class Gun {
 	
 	private boolean canRestore(){
 		
+		
 		if (activeObject==null){ return false;}
+		boolean answer = activeObject.canRestore();
+		answer = answer && !collisionHandler.isCollidedWithPlayer(activeObject.getEtherRect());
 		
-		
-		return !collisionHandler.isCollidedWithPlayer(activeObject.getEtherRect());
+		return answer;
 	}
 
 

@@ -59,7 +59,7 @@ public class TileGraphics{
 				
 				Image im = tileImages[i][j];
 				im.setAlpha(opacity);
-				//		
+					
 				im.draw(rect.getX() + i*tileWidthInPixels - mapX,
 						rect.getY() + j*tileHeightInPixels - mapY);
 			}
@@ -67,10 +67,15 @@ public class TileGraphics{
 		
 	}
 	
+	public void setRect(Shape rect){
+		
+		this.rect = rect;
+		
+	}
+	
 	public void renderTile(int topLeftX, int topLeftY, int mapX, int mapY, float opacity) {
 		
-		assert (tileImages!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. ";
-					
+		assert (tileImages!=null) : "\n ERROR: NO SPRITES DEFINED. CHECK ETHER LAYER FOR MISSING SPRITES. ";		
 		
 		for(int i = 0; i < numberOfXTiles; i++){
 			for(int j = 0; j < numberOfYTiles; j++){	
@@ -108,6 +113,26 @@ public class TileGraphics{
 			int tempY = numberOfYTiles;
 			numberOfYTiles = numberOfXTiles;
 			numberOfXTiles = tempY;
+			
+			tileImages = temp;
+			
+		}
+		
+		if ( (numTurns -2) % 4 == 0){ 
+			/* pi rotation. 
+			 * x (row indices) -> (row indices, backwards)
+			 * y (column indices) -> (column indices, backwards)
+			 * */
+			
+			 
+			Image[][] temp = new Image[numberOfXTiles][numberOfYTiles];
+			for (int i = 0; i<numberOfXTiles; i++){
+				for (int j = 0; j<numberOfYTiles; j++){
+					temp[numberOfXTiles-(i+1)][numberOfYTiles-(j+1)] = tileImages[i][j];
+					
+				}	
+			}
+			
 			
 			tileImages = temp;
 			

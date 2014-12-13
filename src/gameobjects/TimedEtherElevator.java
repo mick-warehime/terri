@@ -1,6 +1,8 @@
 package gameobjects;
 
 
+import graphics.EtherGraphics;
+
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
@@ -24,7 +26,7 @@ public class TimedEtherElevator extends EtherElevator  implements Timed{
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 		
-		etherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
+		((EtherGraphics)graphics).render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
 		 
 	}
 
@@ -34,7 +36,9 @@ public class TimedEtherElevator extends EtherElevator  implements Timed{
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
 			if(timeElapsed > duration){
-				this.restore();
+				if(canRestore()){
+					this.restore();
+				}
 			}
 		}
  		

@@ -1,10 +1,11 @@
 package gameobjects;
 
+import graphics.EtherGraphics;
 
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Transform;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
@@ -25,7 +26,7 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 		float percentTimeLeft = (float) Math.abs(timeElapsed-duration)/duration;		
 		percentTimeLeft = (float) Math.max(percentTimeLeft, 0.2);
 
-		etherGraphics.render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
+		((EtherGraphics)graphics).render(mapX, mapY, mousePos[0],mousePos[1], isEther, isPut, canPut(), percentTimeLeft);
 
 	}
 
@@ -35,47 +36,47 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 		if(isPut){
 			long timeElapsed = getTime()-putTime; 
 			if(timeElapsed > duration){
-				this.restore();
+				if (this.canRestore()){
+					this.restore();
+				}
 			}
 		}
 	}
 
+	
+	
 	public void put(){
 		super.put();
 
 		putTime = getTime();
 	}
 
+	public void restore() {
+		super.restore();
+		((EtherGraphics)graphics).restoreOriginalAngle();
+		
+	}
+	
 	@Override
 	public void rotate(boolean rotateClockwise, int[] mousePos) {
-		
-		
-		
-		
-		
-		//I think the issue is with shape.setLocation
-		// There is a discrepancy between minX and x for the shape object,
-		// it seems.
 	
 		float rotationAngle;
 		if (rotateClockwise){ 		
-			rotationAngle = (float) (-0.5*Math.PI);
-
+			rotationAngle = (float) (-0.5*Math.PI);		
 		}
 		else {
-			
 			rotationAngle = (float) (0.5*Math.PI);
 		}
+		// Do it the simple way, for rects only.
+		float width = shape.getWidth();
+		float height = shape.getHeight();
 		
-		Transform rotation = Transform.createRotateTransform(rotationAngle,shape.getCenterX(),shape.getCenterY());
-		Transform etherRotation = Transform.createRotateTransform(rotationAngle,etherShape.getCenterX(),etherShape.getCenterY());
 		
-		System.out.println("Rotation:" + shape.getWidth()+"," + shape.getHeight());
-		this.shape = shape.transform(rotation);
-		this.etherShape = etherShape.transform(etherRotation);
-		System.out.println(shape.getWidth()+"," + shape.getHeight());
+		shape = new Rectangle(
+				shape.getCenterX() - height/2, shape.getCenterY()-width/2, height,width);
 		
-		etherGraphics.rotateImages(rotationAngle);
+		graphics.setRect(shape);			
+		graphics.rotateImages(rotationAngle);
 		
 
 	}
