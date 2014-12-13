@@ -4,23 +4,25 @@ package gameobjects;
 // BUG TO FIX:: WHEN ELEVATOR HITS SOMETHING IT GETS OUT OF PHASE AND RESETS TO THE WRONG PLACE!!!
 
 
+import graphics.EtherGraphics;
+
 import java.util.ArrayList;
 import java.util.Properties;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.DisplaceCommand;
 import commands.MinimumDisplaceCommand;
 
-public class EtherElevator extends EtherObject implements InteractiveCollideable {
+public class EtherElevator extends EtherObject implements InteractiveCollideable,Rotateable {
 
 
 
-	private int xPos;
-	private int yPos;
+	
 	private int speed;
 	private int range;
 	private int displacement = 0;
@@ -29,14 +31,12 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 	private boolean isMoving = true;
 	private int initialDirection;
 	private char xOrY;
+	private char originalXOrY;
 	
 
 	public EtherElevator(int x, int y, int w, int h, String name, TiledMap map, Properties args) throws SlickException {
 		super(x, y, w, h, name, map,args);
 
-		// set y position to initial y position 
-		xPos = x*tileSize;
-		yPos = y*tileSize;
 
 		System.out.println(args);
 		this.range = Integer.parseInt((String)args.get("range"))*tileSize;
@@ -51,7 +51,8 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 			this.xOrY = ((String)args.get("xOrY")).charAt(0);
 		}else{
 			this.xOrY = 'x';
-		}				
+		}		
+		this.originalXOrY = xOrY;
 		
 		initializeMovement(initialDirection);
 		
@@ -91,9 +92,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 	public void put(){
 		super.put();
 		
-		
-		if(xOrY == 'x'){xPos = putX;}
-		else{ yPos = putY;}
+	
 		
 		initializeMovement(speed); 
 		
@@ -130,8 +129,9 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 		displacement = etherDisplacement;
 		speed = etherSpeed;
 		
-
-		shape.setLocation(etherShape.getX(),etherShape.getY());
+//
+//		shape.setLocation(etherShape.getX(),etherShape.getY());
+		restoreToOriginalAngle();
 	}
 
 	public void toggle(){
@@ -155,9 +155,7 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 
 	@Override
 	public void onCollisionDo(Class collidingObjectClass,Shape collidingObjectShape) {
-		// TODO Auto-generated method stub
-
-	}
+		}
 
 
 	private void initializeMovement(int direction){
@@ -170,6 +168,43 @@ public class EtherElevator extends EtherObject implements InteractiveCollideable
 			speed = -1;
 		}
 	}
+
+	
+	
+	
+	@Override
+	public void rotate(boolean rotateClockwise, int[] mousePos) {
+		float rotationAngle;
+		if (rotateClockwise){ 		
+			rotationAngle = (float) (-0.5*Math.PI);		
+		}
+		else {
+			rotationAngle = (float) (0.5*Math.PI);
+		}
+		// Do it the simple way, for rects only.
+		float width = shape.getWidth();
+		float height = shape.getHeight();
+		
+		
+		shape = new Rectangle(
+				shape.getCenterX() - height/2, shape.getCenterY()-width/2, height,width);
+		
+		graphics.setRect(shape);			
+		graphics.rotateImages(rotationAngle);
+		
+		if (xOrY == 'x'){ xOrY = 'y';}
+		else {xOrY = 'x';}
+		
+		
+	}
+	
+	@Override
+	public void restoreToOriginalAngle() {
+		((EtherGraphics)graphics).restoreOriginalAngle();
+		this.xOrY = this.originalXOrY;
+		
+	}
+
 
 
 

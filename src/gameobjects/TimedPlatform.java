@@ -53,9 +53,11 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 
 	public void restore() {
 		super.restore();
-		((EtherGraphics)graphics).restoreOriginalAngle();
+		this.restoreToOriginalAngle();
 		
 	}
+	
+	
 	
 	@Override
 	public void rotate(boolean rotateClockwise, int[] mousePos) {
@@ -79,6 +81,12 @@ public class TimedPlatform extends EtherObject  implements Timed,Rotateable{
 		graphics.rotateImages(rotationAngle);
 		
 
+	}
+
+	@Override
+	public void restoreToOriginalAngle() {
+		((EtherGraphics)graphics).restoreOriginalAngle();
+		
 	}
 
 
